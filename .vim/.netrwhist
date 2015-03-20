@@ -1,0 +1,6 @@
+let g:netrw_dirhistmax  =10
+let g:netrw_dirhist_cnt =4
+let g:netrw_dirhist_1='/Users/morgan/.vim'
+let g:netrw_dirhist_2='/Users/morgan/projects/code school/rails_for_zombies_2/TwitterForZombies'
+let g:netrw_dirhist_3='/Users/morgan/projects/code school/rails_for_zombies_2/TwitterForZombies/config'
+let g:netrw_dirhist_4='/Users/morgan/projects/code school/rails_for_zombies_2/TwitterForZombies'
