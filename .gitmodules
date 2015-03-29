@@ -7,3 +7,6 @@
 [submodule "oh-my-zsh"]
 	path = oh-my-zsh
 	url = git@github.com:baberthal/oh-my-zsh
+[submodule "tmux/tmux-cpu"]
+	path = tmux/tmux-cpu
+	url = git@github.com:tmux-plugins/tmux-cpu
