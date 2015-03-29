@@ -5,31 +5,46 @@ filetype off
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 
+" Vundle manages itself
 Plugin 'gmarik/Vundle.vim'
+
+" Pretty colors & some syntax highlighting
 Plugin 'altercation/vim-colors-solarized'
+Plugin 'scrooloose/syntastic'
+Plugin 'rodjek/vim-puppet'
+Plugin 'tmux-plugins/vim-tmux'
+
+" Alignment and autocomplete
 Plugin 'godlygeek/tabular'
 Plugin 'L9'
-Plugin 'AutoComplPop'
+Plugin 'junegunn/vim-easy-align'
+Plugin 'tpope/vim-endwise'
+Plugin 'townk/vim-autoclose'
+Plugin 'edsono/vim-matchit'
+Plugin 'tpope/vim-surround'
+
+" Ruby (on rails) development plugins
 Plugin 'tpope/vim-rails.git'
 Plugin 'tpope/vim-rvm.git'
 Plugin 'vim-ruby/vim-ruby.git'
 Plugin 'Keithbsmiley/rspec.vim'
 Plugin 'tpope/vim-fugitive'
-Plugin 'junegunn/vim-easy-align'
 Plugin 'ecomba/vim-ruby-refactoring'
+
+" IDE-ish plugins
 Plugin 'kien/ctrlp.vim'
 Plugin 'scrooloose/nerdtree'
 Plugin 'jistr/vim-nerdtree-tabs'
-Plugin 'bling/vim-airline'
-Plugin 'tpope/vim-endwise'
-Plugin 'townk/vim-autoclose'
-Plugin 'edsono/vim-matchit'
-Plugin 'tpope/vim-surround'
 Plugin 'wesQ3/vim-windowswap'
+
+" snipmate
 Plugin 'MarcWeber/vim-addon-mw-utils'
 Plugin 'tomtom/tlib_vim'
 Plugin 'garbas/vim-snipmate'
 Plugin 'honza/vim-snippets'
+
+" Statusline
+Plugin 'bling/vim-airline'
 
 call vundle#end()
 filetype plugin indent on
@@ -64,6 +79,7 @@ if has('gui_running')
 	endif
 endif
 
+" No scroll bars in gvim mode
 set guioptions-=r
 set guioptions-=l
 set guioptions-=L
@@ -72,8 +88,6 @@ set tags=./tags;
 
 " Search a file in the filetree
 nnoremap <space><space> :split<cr> :<C-u>Unite -start-insert file_rec/async<cr>
-" reset not it is <C-l> normally
-:nnoremap <space>r <Plug>(unite_restart)
 
 
 " ----EASY ALIGN SETTINGS----
@@ -87,4 +101,15 @@ noremap <leader>yy "*Y
 
 " Preserve indentation while pasting text from OS X Clipboard
 noremap <leader>p :set paste<CR>:put *<CR>:set nopaste<CR>
+
+" Automatically delete trailing whitespace during :w
 autocmd BufWritePre * :%s/\s\+$//e
+
+" NERDTree settings
+let g:nerdtree_tabs_open_on_console_startup=1
+
+" Allow mouse mode in console
+set mouse=a
+
+" tmuxline settings
+let g:tmuxline_preset = 'tmux'

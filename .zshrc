@@ -45,17 +45,20 @@ ENABLE_CORRECTION="true"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git brew brew-cask gem git-extras github knife knife_ssh lol osx pip python rails rand-quote ruby rvm tmux vundle xcode)
+plugins=(git common-aliases brew brew-cask bundler compleat gem git-extras github lol osx pip python rails rand-quote ruby rvm tmux tmuxinator vundle xcode)
 
 # User configuration
 
 export EDITOR="vim"
-bindkey -v 
+bindkey -v
 export PATH=$HOME/bin:/usr/local/bin:$PATH
+export PATH=$PATH:$HOME/Library/Android/sdk/platform-tools
 # export MANPATH="/usr/local/man:$MANPATH"
 export POWERLINE_CONFIG_COMMAND=/Users/morgan/.vim/bundle/powerline/scripts/powerline-config
 export HOMEBREW_GITHUB_API_TOKEN=22a666338b8aa4ce66c3ceb0f2151c7233f8acd4
 source $ZSH/oh-my-zsh.sh
+source ~/bin/tmuxinator.zsh
+
 
 # You may need to manually set your language environment
 export LANG=en_US.utf8
