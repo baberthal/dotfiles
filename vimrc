@@ -19,7 +19,7 @@ Plugin 'godlygeek/tabular'
 Plugin 'L9'
 Plugin 'junegunn/vim-easy-align'
 Plugin 'tpope/vim-endwise'
-Plugin 'townk/vim-autoclose'
+Plugin 'Raimondi/delimitMate'
 Plugin 'edsono/vim-matchit'
 Plugin 'tpope/vim-surround'
 
