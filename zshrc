@@ -45,7 +45,7 @@ ENABLE_CORRECTION="true"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git common-aliases brew brew-cask bundler compleat gem git-extras github lol osx pip python rails rand-quote ruby rvm tmux tmuxinator vundle xcode)
+plugins=(git brew brew-cask bundler compleat gem git-extras github lol osx pip python rails rand-quote ruby rvm tmux tmuxinator vundle xcode)
 
 # User configuration
 
@@ -99,6 +99,9 @@ ssh() {
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
+alias zshrc="vim ~/.zshrc"
+alias vimrc="vim ~/.vimrc"
+alias tmuxconf="vim ~/.tmux/conf"
 
 ### Added by the Heroku Toolbelt
 export PATH="/usr/local/heroku/bin:$PATH"

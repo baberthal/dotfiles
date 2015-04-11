@@ -13,6 +13,7 @@ Plugin 'altercation/vim-colors-solarized'
 Plugin 'scrooloose/syntastic'
 Plugin 'rodjek/vim-puppet'
 Plugin 'tmux-plugins/vim-tmux'
+Plugin 'kchmck/vim-coffee-script'
 
 " Alignment and autocomplete
 Plugin 'godlygeek/tabular'
@@ -22,6 +23,7 @@ Plugin 'tpope/vim-endwise'
 Plugin 'Raimondi/delimitMate'
 Plugin 'edsono/vim-matchit'
 Plugin 'tpope/vim-surround'
+Plugin 'tpope/vim-sleuth'
 
 " Ruby (on rails) development plugins
 Plugin 'tpope/vim-rails.git'
@@ -30,6 +32,7 @@ Plugin 'vim-ruby/vim-ruby.git'
 Plugin 'Keithbsmiley/rspec.vim'
 Plugin 'tpope/vim-fugitive'
 Plugin 'ecomba/vim-ruby-refactoring'
+Plugin 'tpope/vim-bundler'
 
 " IDE-ish plugins
 Plugin 'kien/ctrlp.vim'
@@ -37,7 +40,7 @@ Plugin 'scrooloose/nerdtree'
 Plugin 'jistr/vim-nerdtree-tabs'
 Plugin 'wesQ3/vim-windowswap'
 
-" snipmate
+" ultisnips
 Plugin 'MarcWeber/vim-addon-mw-utils'
 Plugin 'tomtom/tlib_vim'
 Plugin 'garbas/vim-snipmate'
@@ -49,9 +52,6 @@ Plugin 'bling/vim-airline'
 call vundle#end()
 filetype plugin indent on
 
-set bs=2
-set ts=2
-set sw=2
 set number
 set nuw=3
 set ruler
@@ -86,9 +86,11 @@ set guioptions-=L
 
 set tags=./tags;
 
-" Search a file in the filetree
-nnoremap <space><space> :split<cr> :<C-u>Unite -start-insert file_rec/async<cr>
-
+" Utilisnips configuration
+let g:UltiSnipsExpandTrigger="<tab>"
+let g:UltiSnipsJumpForwardTrigger="<c-l>"
+let g:UltiSnipsJumpBackwardTrigger="<c-z>"
+let g:UltiSnipsEditSplit="horizontal"
 
 " ----EASY ALIGN SETTINGS----
 vnoremap <silent> <Enter> :EasyAlign<cr>
