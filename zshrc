@@ -101,7 +101,7 @@ ssh() {
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 alias zshrc="vim ~/.zshrc"
 alias vimrc="vim ~/.vimrc"
-alias tmuxconf="vim ~/.tmux/conf"
+alias tmuxconf="vim ~/.tmux.conf"
 
 ### Added by the Heroku Toolbelt
 export PATH="/usr/local/heroku/bin:$PATH"
