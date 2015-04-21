@@ -61,34 +61,34 @@ source ~/bin/tmuxinator.zsh
 
 
 # You may need to manually set your language environment
-export LANG=en_US.utf8
+export LANG=en_US.UTF-8
 export LC_ALL=en_US.UTF-8
 
 # ssh wrapper that renames current tmux window to the hostname of the remote host
 #ssh() {
-#	tmux rename-window "$*"
-#	command ssh "$@"
-#	exit
+# tmux rename-window "$*"
+# command ssh "$@"
+# exit
 #}
 ssh() {
 # Do nothing if we are not inside tmux or ssh is called without arguments
-	if [[ $# == 0 || -z $TMUX ]]; then
-		command ssh $@
-		return
-	fi
-	# The hostname is the last parameter (i.e. ${(P)#})
-	local remote=${${(P)#}%.*}
-	local old_name="$(tmux display-message -p '#W')"
-	local renamed=0
-	# Save the current name
-	if [[ $remote != -* ]]; then
-		renamed=1
-		tmux rename-window $remote
-	fi
-	command ssh $@
-	if [[ $renamed == 1 ]]; then
-		tmux rename-window "$old_name"
-	fi
+  if [[ $# == 0 || -z $TMUX ]]; then
+    command ssh $@
+    return
+  fi
+  # The hostname is the last parameter (i.e. ${(P)#})
+  local remote=${${(P)#}%.*}
+  local old_name="$(tmux display-message -p '#W')"
+  local renamed=0
+  # Save the current name
+  if [[ $remote != -* ]]; then
+    renamed=1
+    tmux rename-window $remote
+  fi
+  command ssh $@
+  if [[ $renamed == 1 ]]; then
+    tmux rename-window "$old_name"
+  fi
 }
 
 # Set personal aliases, overriding those provided by oh-my-zsh libs,
@@ -102,6 +102,10 @@ ssh() {
 alias zshrc="vim ~/.zshrc"
 alias vimrc="vim ~/.vimrc"
 alias tmuxconf="vim ~/.tmux.conf"
+export LESSOPEN="| source-highlight -f esc -i %s -o STDOUT"
+export LESS=" -R "
+alias nest="nest.py --user j.morgan.lieberthal@gmail.com --password kbner7xL"
+alias gclone="git clone --recursive"
 
 ### Added by the Heroku Toolbelt
 export PATH="/usr/local/heroku/bin:$PATH"
