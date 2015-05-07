@@ -13,6 +13,8 @@ Plugin 'altercation/vim-colors-solarized'
 Plugin 'scrooloose/syntastic'
 Plugin 'rodjek/vim-puppet'
 Plugin 'kchmck/vim-coffee-script'
+Plugin 'burnettk/vim-angular'
+Plugin 'othree/javascript-libraries-syntax.vim'
 
 " Useful tmux integration
 Plugin 'tmux-plugins/vim-tmux'
@@ -40,7 +42,6 @@ Plugin 'tpope/vim-bundler'
 
 " Window / pane management
 Plugin 'wesQ3/vim-windowswap'
-Plugin 'gcmt/taboo.vim'
 Plugin 'vim-scripts/ZoomWin'
 
 " File search, other good stuff
@@ -49,12 +50,16 @@ Plugin 'scrooloose/nerdtree'
 Plugin 'jlanzarotta/bufexplorer'
 Plugin 'terryma/vim-multiple-cursors'
 Plugin 'tpope/vim-commentary'
+Plugin 'mattn/gist-vim'
 
 " snipmate
-Plugin 'MarcWeber/vim-addon-mw-utils'
-Plugin 'tomtom/tlib_vim'
-Plugin 'garbas/vim-snipmate'
+" Plugin 'MarcWeber/vim-addon-mw-utils'
+" Plugin 'tomtom/tlib_vim'
+" Plugin 'garbas/vim-snipmate'
+Plugin 'SirVer/ultisnips'
 Plugin 'honza/vim-snippets'
+Plugin 'Valloric/YouCompleteMe'
+Plugin 'ervandew/supertab'
 
 " Statusline
 Plugin 'bling/vim-airline'
@@ -62,11 +67,10 @@ Plugin 'bling/vim-airline'
 call vundle#end()
 filetype plugin indent on
 
-set number
-set nuw=3
 set ruler
+set number
 set colorcolumn=82
-highlight ColorColumn ctermbg=cyan guibg=cyan
+highlight ColorColumn ctermbg=37 guibg=cyan
 let mapleader="\<Space>"
 
 " Colors, fonts, encoding, and background setting
@@ -77,6 +81,10 @@ let g:solarized_termtrans = 1
 set laststatus=2
 set noshowmode
 call togglebg#map("<F5>")
+let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#windowswap#enabled = 1
+let g:airline#extensions#syntastic#enabled = 1
+let g:airline_theme = 'dark'
 
 set guifont=Inconsolata\ for\ Powerline
 set encoding=utf-8
@@ -106,15 +114,49 @@ set guioptions-=L
 
 set tags=./tags;
 
-" Utilisnips configuration
-" let g:UltiSnipsExpandTrigger="<tab>"
-" let g:UltiSnipsJumpForwardTrigger="<tab>"
-" let g:UltiSnipsJumpBackwardTrigger="<c-z>"
-" let g:UltiSnipsEditSplit="horizontal"
-" let g:UltiSnipsEnableSnipMate=1
+" JS Library syntax highlighting
+let g:used_javascript_libs = 'jquery, angularjs'
+
+" bufExplorer options
+let g:bufExplorerShowRelativePath=1
+
+" Relative and absolute line numbers
+autocmd InsertEnter * silent! :call NumberToggle()
+autocmd InsertLeave,BufNewFile,VimEnter * silent! :call NumberToggle()
+
+function! NumberToggle()
+  if(&relativenumber == 1)
+    set norelativenumber
+    set number
+    highlight CursorLineNr term=bold ctermfg=4
+  else
+    set relativenumber
+    highlight LineNr term=bold ctermfg=10
+    highlight CursorLineNr term=bold ctermfg=2
+  endif
+endfunc
+
+nnoremap <silent><leader>\ :call NumberToggle() <CR>
+
+" Make UltiSnips play nice with YouCompleteMe
+let g:ycm_key_list_select_completion = ['<C-n>', '<Down>']
+let g:ycm_key_list_previous_completion = ['<C-p>', '<Up>']
+let g:SuperTabDefaultCompletionType = '<C-n>'
+let g:UltiSnipsEnableSnipMate = 1
+let g:UltiSnipsExpandTrigger = "<tab>"
+let g:UltiSnipsJumpForwardTrigger = "<tab>"
+let g:UltiSnipsJumpBackwardTrigger = "<s-tab>"
+
+" Multiple cursors settings
+let g:multi_cursor_use_default_mapping = 0
+let g:multi_cursor_start_key = '<F7>'
+let g:multi_cursor_next_key = '<c-n>'
+let g:multi_cursor_prev_key = '<c-p>'
+let g:multi_cursor_skip_key = '<c-x>'
+let g:multi_cursor_quit_key = '<Esc>'
 
 " ----EASY ALIGN SETTINGS----
-vnoremap <silent> <Enter> :EasyAlign<cr>
+vnoremap <silent> <Enter> :EasyAlign<CR>
 vmap <Enter> <Plug>(EasyAlign)
 nmap ga <Plug>(EasyAlign)
 
@@ -146,6 +188,19 @@ if ShouldNerdTree()
     autocmd vimenter * NERDTree
 endif
 
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
+
+" Append modeline after last line in buffer.
+" Use substitute() instead of printf() to handle '%%s' modeline in LaTeX
+" files.
+function! AppendModeline()
+  let l:modeline = printf(" vim: set ts=%d sw=%d tw=%d %set :",
+        \ &tabstop, &shiftwidth, &textwidth, &expandtab ? '' : 'no')
+  let l:modeline = substitute(&commentstring, "%s", l:modeline, "")
+  call append(line("$"), l:modeline)
+endfunction
+
+nnoremap <silent> <Leader>ml :call AppendModeline()<CR>
 " Allow mouse mode in console, but only for normal mode (everything in help)
 set mouse=nih
 
