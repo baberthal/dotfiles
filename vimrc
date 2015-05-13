@@ -51,6 +51,7 @@ Plugin 'jlanzarotta/bufexplorer'
 Plugin 'terryma/vim-multiple-cursors'
 Plugin 'tpope/vim-commentary'
 Plugin 'mattn/gist-vim'
+Plugin 'gcmt/taboo.vim'
 
 " snipmate
 " Plugin 'MarcWeber/vim-addon-mw-utils'
@@ -81,10 +82,13 @@ let g:solarized_termtrans = 1
 set laststatus=2
 set noshowmode
 call togglebg#map("<F5>")
+
+" Airline config
 let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#taboo#enabled = 1
 let g:airline#extensions#windowswap#enabled = 1
 let g:airline#extensions#syntastic#enabled = 1
-let g:airline_theme = 'dark'
+let g:airline_theme = 'jml'
 
 set guifont=Inconsolata\ for\ Powerline
 set encoding=utf-8
@@ -106,6 +110,7 @@ nmap <Leader>s :source $MYVIMRC<CR>
 nmap <Leader>v :e $MYVIMRC<CR>
 nmap <Leader>w :w<CR>
 map <F6> :NERDTreeToggle<CR>
+map <Leader>rn :TabooRename
 
 " No scroll bars in gvim mode
 set guioptions-=r
@@ -160,8 +165,6 @@ vnoremap <silent> <Enter> :EasyAlign<CR>
 vmap <Enter> <Plug>(EasyAlign)
 nmap ga <Plug>(EasyAlign)
 
-let g:session_autosave = 'no'
-
 " Yank text to the OS X Clipboard
 noremap <leader>y "*y
 noremap <leader>yy "*Y
@@ -206,3 +209,7 @@ set mouse=nih
 
 " tmuxline settings
 let g:tmuxline_preset = 'tmux'
+
+" Taboo.vim settings
+let g:taboo_tabline = 0
+let g:taboo_renamed_tab_format = "%l %m"

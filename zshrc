@@ -14,18 +14,23 @@ plugins=(git brew brew-cask bower bundler compleat git gitignore github lol osx 
 
 export EDITOR="vim"
 bindkey -v
+
 export PATH=$HOME/bin:/usr/local/bin:$PATH
 export PATH=$PATH:$HOME/Library/Android/sdk/platform-tools
+
 # export MANPATH="/usr/local/man:$MANPATH"
+
 export POWERLINE_CONFIG_COMMAND=/Users/morgan/.vim/bundle/powerline/scripts/powerline-config
 export HOMEBREW_GITHUB_API_TOKEN=22a666338b8aa4ce66c3ceb0f2151c7233f8acd4
+
 source $ZSH/oh-my-zsh.sh
 source ~/bin/tmuxinator.zsh
-export KEYTIMEOUT=1
-pbn=~/projects/puck_by_numbers
+source ~/.nvm/nvm.sh
 
 export LANG=en_US.UTF-8
 export LC_ALL=en_US.UTF-8
+export KEYTIMEOUT=1
+pbn=~/projects/puck_by_numbers
 
 # ssh wrapper that renames current tmux window to the hostname of the remote host
 #ssh() {
@@ -77,3 +82,5 @@ export PATH="/usr/local/heroku/bin:$PATH"
 
 export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
 function gi() { curl -L -s https://www.gitignore.io/api/$@ ;}
+
+
