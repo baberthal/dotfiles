@@ -10,3 +10,6 @@
 [submodule "tmux/tmux-mem-cpu-load"]
 	path = tmux/tmux-mem-cpu-load
 	url = git@github.com:thewtex/tmux-mem-cpu-load.git
+[submodule "oh-my-zsh"]
+	path = oh-my-zsh
+	url = git@github.com:baberthal/oh-my-zsh.git
