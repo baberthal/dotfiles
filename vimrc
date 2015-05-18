@@ -61,6 +61,7 @@ Plugin 'SirVer/ultisnips'
 Plugin 'honza/vim-snippets'
 Plugin 'Valloric/YouCompleteMe'
 Plugin 'ervandew/supertab'
+Plugin 'matthewsimo/angular-vim-snippets'
 
 " Statusline
 Plugin 'bling/vim-airline'
@@ -159,6 +160,11 @@ let g:multi_cursor_next_key = '<c-n>'
 let g:multi_cursor_prev_key = '<c-p>'
 let g:multi_cursor_skip_key = '<c-x>'
 let g:multi_cursor_quit_key = '<Esc>'
+
+let g:syntastic_html_tidy_ignore_errors =[ " proprietary attribute \"ng-",
+      \"is not recognized!", "discarding unexpected",
+      \"trimming empty <", "unescaped &",
+      \ "lacks \"action"]
 
 " ----EASY ALIGN SETTINGS----
 vnoremap <silent> <Enter> :EasyAlign<CR>
