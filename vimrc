@@ -12,9 +12,6 @@ Plugin 'gmarik/Vundle.vim'
 Plugin 'altercation/vim-colors-solarized'
 Plugin 'scrooloose/syntastic'
 Plugin 'rodjek/vim-puppet'
-Plugin 'kchmck/vim-coffee-script'
-Plugin 'burnettk/vim-angular'
-Plugin 'othree/javascript-libraries-syntax.vim'
 
 " Useful tmux integration
 Plugin 'tmux-plugins/vim-tmux'
@@ -40,6 +37,14 @@ Plugin 'tpope/vim-fugitive'
 Plugin 'ecomba/vim-ruby-refactoring'
 Plugin 'tpope/vim-bundler'
 
+" AngularJS stuff
+Plugin 'burnettk/vim-angular'
+Plugin 'pangloss/vim-javascript'
+Plugin 'othree/javascript-libraries-syntax.vim'
+Plugin 'matthewsimo/angular-vim-snippets'
+Plugin 'kchmck/vim-coffee-script'
+Plugin 'claco/jasmine.vim'
+
 " Window / pane management
 Plugin 'wesQ3/vim-windowswap'
 Plugin 'vim-scripts/ZoomWin'
@@ -61,7 +66,7 @@ Plugin 'SirVer/ultisnips'
 Plugin 'honza/vim-snippets'
 Plugin 'Valloric/YouCompleteMe'
 Plugin 'ervandew/supertab'
-Plugin 'matthewsimo/angular-vim-snippets'
+Plugin 'chrisgillis/vim-bootstrap3-snippets'
 
 " Statusline
 Plugin 'bling/vim-airline'
@@ -182,11 +187,11 @@ noremap <leader>p :set paste<CR>:put *<CR>:set nopaste<CR>
 autocmd BufWritePre * :%s/\s\+$//e
 
 " Fix ugly tabstops and retab, all in one command
-command Fixtab :set tabstop=2 | :set expandtab | :retab
+command! Fixtab :set tabstop=2 | :set expandtab | :retab
 
 " NERDTree settings, but only if we open in a project where we want it
 
-function ShouldNerdTree()
+function! ShouldNerdTree()
     let projects_list = ['puck_by_numbers', 'mlb_terminal', 'uber_widgets', 'hangups']
     if(index(projects_list, split(getcwd(),"/")[-1]) >=0 )
         return 1
@@ -203,8 +208,8 @@ autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTree
 " Use substitute() instead of printf() to handle '%%s' modeline in LaTeX
 " files.
 function! AppendModeline()
-  let l:modeline = printf(" vim: set ts=%d sw=%d tw=%d %set :",
-        \ &tabstop, &shiftwidth, &textwidth, &expandtab ? '' : 'no')
+  let l:modeline = printf(" vim: set ts=%d sw=%d tw=%d ft=%s %set :",
+        \ &tabstop, &shiftwidth, &textwidth, &filetype, &expandtab ? '' : 'no')
   let l:modeline = substitute(&commentstring, "%s", l:modeline, "")
   call append(line("$"), l:modeline)
 endfunction
@@ -212,6 +217,11 @@ endfunction
 nnoremap <silent> <Leader>ml :call AppendModeline()<CR>
 " Allow mouse mode in console, but only for normal mode (everything in help)
 set mouse=nih
+
+function! GetSnipsInCurrentScope()
+  return UltiSnips#SnippetsInCurrentScope()
+endfunction
+
 
 " tmuxline settings
 let g:tmuxline_preset = 'tmux'
