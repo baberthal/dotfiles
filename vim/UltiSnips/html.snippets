@@ -1,4 +1,12 @@
-snippet mdc "Material Design Card" w
+snippet mdb "Material Design Button" w
+<md-button>$0</md-button>
+endsnippet
+
+snippet mdb. "MD button with class" w
+<md-button class="$1" ${2: href="$3"}>$0</md-button>
+endsnippet
+
+snippet mdcard "Material Design Card" w
 <md-card>
 	<md-card-content>
 		$0
@@ -6,19 +14,127 @@ snippet mdc "Material Design Card" w
 </md-card>
 endsnippet
 
-snippet mdcon "md-content" w
+snippet mdcheck "MD checkbox" w
+<md-checkbox ng-model="$1" aria-label="$2">$0</md-button>
+endsnippet
+
+snippet mdcontent "md-content" w
 <md-content layout-padding>
 	$0
 </md-content>
 endsnippet
 
-snippet mdicon "md-icon" w
-<md-icon md-font-icon="$0" alt="$1"></md-icon>
+snippet mddiv "MD divider" w
+<md-divider></md-divider>
 endsnippet
 
-snippet mdi "md-input with container" w
+snippet mdglist "MD grid list" w
+<md-grid-list md-cols="$1" md-gutter="$2" md-row-height="$3">
+	$0
+</md-grid-list>
+endsnippet
+
+snippet mdgtile "MG grid tile" w
+<md-grid-tile>
+${1: 	<md-grid-tile-header>
+		$2
+	</md-grid-tile-header>
+	} 	$0${3:
+	<md-grid-tile-footer>
+		$4
+	</md-grid-tile-footer>}
+</md-grid-tile>
+endsnippet
+
+
+snippet mdicon "md-icon" w
+<md-icon md-font-icon="$1" alt="$2">$0</md-icon>
+endsnippet
+
+snippet mdinput "md-input with container" w
 <md-input-container>
-	<label>$0</label>
-	<input name="$0" ng-model="$1">
-</md-input-container>
+${1: 	<label>$2</label>
+}	<input name="$3" ng-model="$4" type="$5"${6: placeholder="$7"}>
+</md-input-container>$0
+endsnippet
+
+snippet mdlist "MD list container" w
+<md-list>
+	<md-list-item class="$1" ng-repeat="$2">
+		$0
+	</md-list-item>
+</md-list>
+endsnippet
+
+snippet mdprogc "MD progress circular" w
+<md-progress-circular md-mode="${1:in}determinate" value="$2"${3: md-diameter="$4"}></md-progress-circular>$0
+endsnippet
+
+snippet mdprogl "MD progress linear" w
+<md-progress-linear md-mode="$1" value="$2"></md-progress-linear>$0
+endsnippet
+
+snippet mdradio "MD radio button" w
+<md-radio-group ng-model="$1">
+	<md-radio-button ng-value="$2" aria-label="$3">
+		${0:$3}
+	</md-radio-button>
+</md-radio-group>
+endsnippet
+
+snippet mdsel "MD select" w
+<md-select ng-model="$1" placeholder="$2">
+${3: 	<md-select-label>$4</md-select-label>
+} 	<md-option ng-value="$5" ng-repeat="$6">$7</md-option>
+</md-select>
+endsnippet
+
+snippet lay "layout=" i
+layout="$1"$0
+endsnippet
+
+snippet mdslide "MD slider" w
+<md-slider ng-model="$1" min="$2" max="$3">
+</md-slider>$0
+endsnippet
+
+snippet mdsubh "MD subheader" w
+<md-subheader${1: class="$2"}>$0</md-subhead>
+endsnippet
+
+snippet mdswipel "MD swipe left" w
+<div md-swipe-left="$1">$0</div>
+endsnippet
+
+snippet mdswiper "MD swipe right" w
+<div md-swipe-right="$1">$0</div>
+endsnippet
+
+snippet mdswitch "MD switch" w
+<md-switch ng-model="$1" aria-label="$2">
+	${0: $2}
+</md-switch>
+endsnippet
+
+snippet mdtabs "MD tabs container" w
+<md-tabs>
+	$0
+</md-tabs>
+endsnippet
+
+snippet mdtab "MD tab (for use in MD tabs container)" w
+<md-tab>
+	<md-tab-label>
+		$1
+	</md-tab-label>
+	<md-tab-body>
+		$2
+	</md-tab-body>
+</md-tab>
+endsnippet
+
+snippet mdtool "MD tooltip" w
+<md-tooltip>
+	$0
+</md-tooltip>
 endsnippet
