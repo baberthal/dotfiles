@@ -5,18 +5,16 @@ export ZSH=$HOME/.oh-my-zsh
 # Optionally, if you set this to "random", it'll load a random theme each
 # time that oh-my-zsh is loaded.
 ZSH_THEME="morgan"
-
 DISABLE_AUTO_UPDATE="true"
 DISABLE_AUTO_TITLE="true"
 ENABLE_CORRECTION="true"
 
-plugins=(git brew brew-cask bower bundler compleat git gitignore github lol osx rails rake ruby rvm tmux tmuxinator vundle)
+plugins=(git brew compleat lol osx rails rake rvm tmux tmuxinator)
 
 export EDITOR="vim"
 bindkey -v
-
-export PATH=$HOME/bin:/usr/local/bin:$PATH
-export PATH=$PATH:$HOME/Library/Android/sdk/platform-tools
+export PATH=$HOME/bin:/usr/local/bin:$PATH:$HOME/Library/Android/sdk/platform-tools
+export PATH=/Applications/Postgres.app/Contents/Versions/9.4/bin:$PATH
 
 # export MANPATH="/usr/local/man:$MANPATH"
 
@@ -62,10 +60,12 @@ ssh() {
 
 pygless()
 {
-  LESSOPEN="| pygmentize -f terminal256 -O style=solarized -g %s" less -R "$@";
+  LESSOPEN="| pygmentize -f terminal256 -O style=solarized256 -g %s" less -R "$@";
 }
 
+function mountAndroid() { hdiutil attach /Volumes/HDD/android.dmg -mountpoint /Volumes/android; }
 
+function umountAndroid() { hdiutil detach /Volumes/android; }
 
 alias zshrc="vim ~/.zshrc"
 alias vimrc="vim ~/.vimrc"
@@ -76,12 +76,16 @@ alias nest="nest.py --user j.morgan.lieberthal@gmail.com --password kbner7xL"
 alias gclone="git clone --recursive"
 export R_HOME=/usr/local/Cellar/r/3.2.0/R.framework/Resources
 
+ulimit -S -n 1024
+
 
 ### Added by the Heroku Toolbelt
 export PATH="/usr/local/heroku/bin:$PATH"
 
 export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
 function gi() { curl -L -s https://www.gitignore.io/api/$@ ;}
+
+export USE_CCACHE=1
 
 zstyle ':completion:*' accept-exact '*(N)'
 zstyle ':completion:*' use-cache on

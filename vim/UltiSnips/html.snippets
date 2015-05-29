@@ -46,9 +46,14 @@ ${1: 	<md-grid-tile-header>
 </md-grid-tile>
 endsnippet
 
+snippet divl "Div with layout" w
+<div layout="$1">
+	$0
+</div>
+endsnippet
 
 snippet mdicon "md-icon" w
-<md-icon md-font-icon="$1" alt="$2">$0</md-icon>
+<md-icon md-svg-icon="$1" alt="$2"></md-icon>$0
 endsnippet
 
 snippet mdinput "md-input with container" w
@@ -99,7 +104,7 @@ snippet mdslide "MD slider" w
 endsnippet
 
 snippet mdsubh "MD subheader" w
-<md-subheader${1: class="$2"}>$0</md-subhead>
+<md-subheader${1: class="$2"}>$0</md-subheader>
 endsnippet
 
 snippet mdswipel "MD swipe left" w
@@ -133,8 +138,14 @@ snippet mdtab "MD tab (for use in MD tabs container)" w
 </md-tab>
 endsnippet
 
-snippet mdtool "MD tooltip" w
+snippet mdtt "MD tooltip" w
 <md-tooltip>
 	$0
 </md-tooltip>
+endsnippet
+
+snippet mdtb "MD toolbar" w
+<md-toolbar class="$1">
+	<h1 class="md-toolbar-tools">$0</h1>
+</md-toolbar>
 endsnippet

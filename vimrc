@@ -117,6 +117,10 @@ nmap <Leader>v :e $MYVIMRC<CR>
 nmap <Leader>w :w<CR>
 map <F6> :NERDTreeToggle<CR>
 map <Leader>rn :TabooRename
+map <silent> <Leader>= :tabmove +1<CR>
+map <silent> <Leader>- :tabmove -1<CR>
+map <silent> <Leader>] :tabnext<CR>
+map <silent> <Leader>[ :tabprevious<CR>
 
 " No scroll bars in gvim mode
 set guioptions-=r
@@ -223,9 +227,7 @@ function! GetSnipsInCurrentScope()
 endfunction
 
 
-" tmuxline settings
-let g:tmuxline_preset = 'tmux'
-
 " Taboo.vim settings
 let g:taboo_tabline = 0
+let g:taboo_modified_tab_flag = "+"
 let g:taboo_renamed_tab_format = "%l %m"

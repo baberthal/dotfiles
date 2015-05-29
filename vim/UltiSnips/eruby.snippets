@@ -1,7 +1,21 @@
 extends html
 
+global !p
+def x(snip):
+	if snip.ft.startswith("x"):
+		snip.rv = '/'
+	else:
+		snip.rv = ""
+endglobal
+
 snippet span "HTML span" i
 <span>
 	$0
 </span>
+endsnippet
+
+snippet div. "<div> with class" w
+<div`!p snip.rv=' class="' if t[1] else ""`${1:name}`!p snip.rv = '"' if t[1] else ""`>
+	$0
+</div><!-- $1 -->
 endsnippet
