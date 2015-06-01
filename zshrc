@@ -60,7 +60,7 @@ ssh() {
 
 pygless()
 {
-  LESSOPEN="| pygmentize -f terminal256 -O style=solarized256 -g %s" less -R "$@";
+  LESSOPEN="| pygmentize -f terminal256 -O style=solarized -g %s" less -R "$@";
 }
 
 function mountAndroid() { hdiutil attach /Volumes/HDD/android.dmg -mountpoint /Volumes/android; }
@@ -90,3 +90,8 @@ export USE_CCACHE=1
 zstyle ':completion:*' accept-exact '*(N)'
 zstyle ':completion:*' use-cache on
 zstyle ':completion:*' cache-path ~/.zsh/cache
+
+export GOPATH=$HOME/golang
+export GOROOT=/usr/local/opt/go/libexec
+export PATH=$PATH:$GOPATH/bin
+export PATH=$PATH:$GOROOT/bin
