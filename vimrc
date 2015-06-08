@@ -30,12 +30,11 @@ Plugin 'tpope/vim-repeat'
 
 " Ruby (on rails) development plugins
 Plugin 'tpope/vim-rails.git'
-Plugin 'tpope/vim-rvm.git'
+Plugin 'tpope/vim-bundler.git'
 Plugin 'vim-ruby/vim-ruby.git'
-Plugin 'Keithbsmiley/rspec.vim'
+Plugin 'keith/rspec.vim'
 Plugin 'tpope/vim-fugitive'
 Plugin 'ecomba/vim-ruby-refactoring'
-Plugin 'tpope/vim-bundler'
 
 " AngularJS stuff
 Plugin 'burnettk/vim-angular'
@@ -135,9 +134,14 @@ let g:used_javascript_libs = 'jquery, angularjs'
 " bufExplorer options
 let g:bufExplorerShowRelativePath=1
 
-" Relative and absolute line numbers
-autocmd InsertEnter * silent! :call NumberToggle()
-autocmd InsertLeave,BufNewFile,VimEnter * silent! :call NumberToggle()
+augroup defaults
+  " Relative and absolute line numbers
+  autocmd InsertEnter * silent! :call NumberToggle()
+  autocmd InsertLeave,BufNewFile,VimEnter * silent! :call NumberToggle()
+  " Automatically delete trailing whitespace during :w
+  autocmd BufWritePre * :%s/\s\+$//e
+  autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
+augroup END
 
 function! NumberToggle()
   if(&relativenumber == 1)
@@ -187,8 +191,6 @@ noremap <leader>yy "*Y
 " Preserve indentation while pasting text from OS X Clipboard
 noremap <leader>p :set paste<CR>:put *<CR>:set nopaste<CR>
 
-" Automatically delete trailing whitespace during :w
-autocmd BufWritePre * :%s/\s\+$//e
 
 " Fix ugly tabstops and retab, all in one command
 command! Fixtab :set tabstop=2 | :set expandtab | :retab
@@ -206,7 +208,6 @@ if ShouldNerdTree()
     autocmd vimenter * NERDTree
 endif
 
-autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
 
 " Append modeline after last line in buffer.
 " Use substitute() instead of printf() to handle '%%s' modeline in LaTeX
