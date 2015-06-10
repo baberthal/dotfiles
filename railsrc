@@ -1,0 +1,1 @@
+-d postgresql --skip-test-unit -m ~/projects/dotfiles/rails_template.rb
