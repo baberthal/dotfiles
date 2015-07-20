@@ -12,6 +12,13 @@ Plugin 'gmarik/Vundle.vim'
 Plugin 'altercation/vim-colors-solarized'
 Plugin 'scrooloose/syntastic'
 Plugin 'rodjek/vim-puppet'
+Plugin 'rdnetto/YCM-Generator'
+
+" HTML and various pre-processors
+Plugin 'othree/html5.vim'
+Plugin 'digitaltoad/vim-jade'
+Plugin 'tpope/vim-haml'
+Plugin 'curist/vim-angular-template'
 
 " Useful tmux integration
 Plugin 'tmux-plugins/vim-tmux'
@@ -36,13 +43,19 @@ Plugin 'keith/rspec.vim'
 Plugin 'tpope/vim-fugitive'
 Plugin 'ecomba/vim-ruby-refactoring'
 
+" Vanilla JS
+Plugin 'othree/yajs.vim'
+Plugin 'othree/javascript-libraries-syntax.vim'
+Plugin 'claco/jasmine.vim'
+Plugin 'kchmck/vim-coffee-script'
+Plugin 'walm/jshint.vim'
+
+" Node.js
+Plugin 'moll/vim-node'
+
 " AngularJS stuff
 Plugin 'burnettk/vim-angular'
-Plugin 'pangloss/vim-javascript'
-Plugin 'othree/javascript-libraries-syntax.vim'
 Plugin 'matthewsimo/angular-vim-snippets'
-Plugin 'kchmck/vim-coffee-script'
-Plugin 'claco/jasmine.vim'
 
 " Window / pane management
 Plugin 'wesQ3/vim-windowswap'
@@ -56,6 +69,7 @@ Plugin 'terryma/vim-multiple-cursors'
 Plugin 'tpope/vim-commentary'
 Plugin 'mattn/gist-vim'
 Plugin 'gcmt/taboo.vim'
+Plugin 'rizzatti/dash.vim'
 
 " snipmate
 " Plugin 'MarcWeber/vim-addon-mw-utils'
@@ -76,6 +90,7 @@ filetype plugin indent on
 set ruler
 set number
 set colorcolumn=82
+set modeline
 highlight ColorColumn ctermbg=37 guibg=cyan
 let mapleader="\<Space>"
 
@@ -129,10 +144,12 @@ set guioptions-=L
 set tags=./tags;
 
 " JS Library syntax highlighting
-let g:used_javascript_libs = 'jquery, angularjs'
+let g:used_javascript_libs = 'jquery, angularjs, angularui, jasmine, chai, underscore'
 
 " bufExplorer options
 let g:bufExplorerShowRelativePath=1
+
+au VimEnter * echom "(>^.^<)"
 
 augroup defaults
   " Relative and absolute line numbers
@@ -142,6 +159,8 @@ augroup defaults
   autocmd BufWritePre * :%s/\s\+$//e
   autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
 augroup END
+
+autocmd FileType coffee set commentstring=#\ %s
 
 function! NumberToggle()
   if(&relativenumber == 1)
@@ -160,6 +179,7 @@ nnoremap <silent><leader>\ :call NumberToggle() <CR>
 " Make UltiSnips play nice with YouCompleteMe
 let g:ycm_key_list_select_completion = ['<C-n>', '<Down>']
 let g:ycm_key_list_previous_completion = ['<C-p>', '<Up>']
+let g:ycm_path_to_python_interpreter = '/usr/local/bin/python'
 let g:SuperTabDefaultCompletionType = '<C-n>'
 let g:UltiSnipsEnableSnipMate = 1
 let g:UltiSnipsExpandTrigger = "<tab>"
@@ -208,7 +228,6 @@ if ShouldNerdTree()
     autocmd vimenter * NERDTree
 endif
 
-
 " Append modeline after last line in buffer.
 " Use substitute() instead of printf() to handle '%%s' modeline in LaTeX
 " files.
@@ -220,6 +239,14 @@ function! AppendModeline()
 endfunction
 
 nnoremap <silent> <Leader>ml :call AppendModeline()<CR>
+
+function! AppendJSLint()
+  call append(line("0"), "'use strict';")
+  call append(line("0"), "/* jslint node: true */")
+endfunction
+nnoremap <silent> <Leader>js :call AppendJSLint()<CR>
+
+
 " Allow mouse mode in console, but only for normal mode (everything in help)
 set mouse=nih
 
