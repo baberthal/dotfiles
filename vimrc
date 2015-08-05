@@ -1,6 +1,7 @@
 set nocompatible
 filetype off
 
+" Vundle Plugins {{{1
 " Runtime Path and Vundle plugin settings
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
@@ -57,6 +58,10 @@ Plugin 'moll/vim-node'
 Plugin 'burnettk/vim-angular'
 Plugin 'matthewsimo/angular-vim-snippets'
 
+" C Family
+Plugin 'Rip-Rip/clang_complete'
+Plugin 'b4winckler/vim-objc'
+
 " Window / pane management
 Plugin 'wesQ3/vim-windowswap'
 Plugin 'vim-scripts/ZoomWin'
@@ -86,13 +91,16 @@ Plugin 'bling/vim-airline'
 
 call vundle#end()
 filetype plugin indent on
+" 1}}} "
 
+" Basics {{{ "
 set ruler
 set number
 set colorcolumn=82
 set modeline
 highlight ColorColumn ctermbg=37 guibg=cyan
 let mapleader="\<Space>"
+set mouse=nih
 
 " Colors, fonts, encoding, and background setting
 syntax enable
@@ -103,13 +111,6 @@ set laststatus=2
 set noshowmode
 call togglebg#map("<F5>")
 
-" Airline config
-let g:airline#extensions#tabline#enabled = 1
-let g:airline#extensions#taboo#enabled = 1
-let g:airline#extensions#windowswap#enabled = 1
-let g:airline#extensions#syntastic#enabled = 1
-let g:airline_theme = 'jml'
-
 set guifont=Inconsolata\ for\ Powerline
 set encoding=utf-8
 let g:airline_powerline_fonts = 1
@@ -117,7 +118,14 @@ set t_Co=256
 set fillchars+=stl:\ ,stlnc:\
 set term=xterm-256color
 set termencoding=utf-8
+set tags=./tags;
 
+" No scroll bars in gvim mode
+set guioptions-=r
+set guioptions-=l
+set guioptions-=L
+
+" Silly hack for gvim... who uses that anyway?
 if has('gui_running')
     let s:uname = system("uname")
     if s:uname == "Darwin\n"
@@ -125,7 +133,19 @@ if has('gui_running')
     endif
 endif
 
-" Some leader remaps
+set fdm=marker
+
+" }}} Basics "
+
+" Airline Config {{{ "
+let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#taboo#enabled = 1
+let g:airline#extensions#windowswap#enabled = 1
+let g:airline#extensions#syntastic#enabled = 1
+let g:airline_theme = 'jml'
+" }}} Airline Config "
+
+" Remaps {{{ "
 nmap <Leader>s :source $MYVIMRC<CR>
 nmap <Leader>v :e $MYVIMRC<CR>
 nmap <Leader>w :w<CR>
@@ -136,32 +156,34 @@ map <silent> <Leader>- :tabmove -1<CR>
 map <silent> <Leader>] :tabnext<CR>
 map <silent> <Leader>[ :tabprevious<CR>
 
-" No scroll bars in gvim mode
-set guioptions-=r
-set guioptions-=l
-set guioptions-=L
+" Yank text to the OS X Clipboard
+noremap <leader>y "*y
+noremap <leader>yy "*Y
 
-set tags=./tags;
+" Preserve indentation while pasting text from OS X Clipboard
+noremap <leader>p :set paste<CR>:put *<CR>:set nopaste<CR>
+" }}} Remaps "
 
+" One-Off Plugin Settings {{{ "
 " JS Library syntax highlighting
 let g:used_javascript_libs = 'jquery, angularjs, angularui, jasmine, chai, underscore'
 
 " bufExplorer options
 let g:bufExplorerShowRelativePath=1
 
-au VimEnter * echom "(>^.^<)"
 
-augroup defaults
-  " Relative and absolute line numbers
-  autocmd InsertEnter * silent! :call NumberToggle()
-  autocmd InsertLeave,BufNewFile,VimEnter * silent! :call NumberToggle()
-  " Automatically delete trailing whitespace during :w
-  autocmd BufWritePre * :%s/\s\+$//e
-  autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
-augroup END
+" ----EASY ALIGN SETTINGS----
+vnoremap <silent> <Enter> :EasyAlign<CR>
+vmap <Enter> <Plug>(EasyAlign)
+nmap ga <Plug>(EasyAlign)
 
-autocmd FileType coffee set commentstring=#\ %s
+" Taboo.vim settings
+let g:taboo_tabline = 0
+let g:taboo_modified_tab_flag = "+"
+let g:taboo_renamed_tab_format = "%l %m"
+" }}} One-Off Plugin Settings "
 
+" User-Defined Functions {{{ "
 function! NumberToggle()
   if(&relativenumber == 1)
     set norelativenumber
@@ -173,71 +195,15 @@ function! NumberToggle()
     highlight CursorLineNr term=bold ctermfg=2
   endif
 endfunc
-
 nnoremap <silent><leader>\ :call NumberToggle() <CR>
 
-" Make UltiSnips play nice with YouCompleteMe
-let g:ycm_key_list_select_completion = ['<C-n>', '<Down>']
-let g:ycm_key_list_previous_completion = ['<C-p>', '<Up>']
-let g:ycm_path_to_python_interpreter = '/usr/local/bin/python'
-let g:SuperTabDefaultCompletionType = '<C-n>'
-let g:UltiSnipsEnableSnipMate = 1
-let g:UltiSnipsExpandTrigger = "<tab>"
-let g:UltiSnipsJumpForwardTrigger = "<tab>"
-let g:UltiSnipsJumpBackwardTrigger = "<s-tab>"
-
-" Multiple cursors settings
-let g:multi_cursor_use_default_mapping = 0
-let g:multi_cursor_start_key = '<F7>'
-let g:multi_cursor_next_key = '<c-n>'
-let g:multi_cursor_prev_key = '<c-p>'
-let g:multi_cursor_skip_key = '<c-x>'
-let g:multi_cursor_quit_key = '<Esc>'
-
-let g:syntastic_html_tidy_ignore_errors =[ " proprietary attribute \"ng-",
-      \"is not recognized!", "discarding unexpected",
-      \"trimming empty <", "unescaped &",
-      \ "lacks \"action"]
-
-" ----EASY ALIGN SETTINGS----
-vnoremap <silent> <Enter> :EasyAlign<CR>
-vmap <Enter> <Plug>(EasyAlign)
-nmap ga <Plug>(EasyAlign)
-
-" Yank text to the OS X Clipboard
-noremap <leader>y "*y
-noremap <leader>yy "*Y
-
-" Preserve indentation while pasting text from OS X Clipboard
-noremap <leader>p :set paste<CR>:put *<CR>:set nopaste<CR>
-
-
-" Fix ugly tabstops and retab, all in one command
-command! Fixtab :set tabstop=2 | :set expandtab | :retab
-
-" NERDTree settings, but only if we open in a project where we want it
-
-function! ShouldNerdTree()
-    let projects_list = ['puck_by_numbers', 'mlb_terminal', 'uber_widgets', 'hangups']
-    if(index(projects_list, split(getcwd(),"/")[-1]) >=0 )
-        return 1
-    endif
-endfunction
-
-if ShouldNerdTree()
-    autocmd vimenter * NERDTree
-endif
-
 " Append modeline after last line in buffer.
-" Use substitute() instead of printf() to handle '%%s' modeline in LaTeX
-" files.
 function! AppendModeline()
   let l:modeline = printf(" vim: set ts=%d sw=%d tw=%d ft=%s %set :",
         \ &tabstop, &shiftwidth, &textwidth, &filetype, &expandtab ? '' : 'no')
   let l:modeline = substitute(&commentstring, "%s", l:modeline, "")
   call append(line("$"), l:modeline)
 endfunction
-
 nnoremap <silent> <Leader>ml :call AppendModeline()<CR>
 
 function! AppendJSLint()
@@ -246,16 +212,66 @@ function! AppendJSLint()
 endfunction
 nnoremap <silent> <Leader>js :call AppendJSLint()<CR>
 
+command! Fixtab :set tabstop=2 | :set expandtab | :retab | :set tabstop=2
+" }}} User-Defined Functions "
 
-" Allow mouse mode in console, but only for normal mode (everything in help)
-set mouse=nih
+" Autocommands {{{ "
+augroup defaults
+  " Relative and absolute line numbers
+  autocmd InsertEnter * silent! :call NumberToggle()
+  autocmd InsertLeave,BufNewFile,VimEnter * silent! :call NumberToggle()
+  " Automatically delete trailing whitespace during :w
+  autocmd BufWritePre * :%s/\s\+$//e
+  autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
+  autocmd BufEnter * filetype detect
+augroup END
 
-function! GetSnipsInCurrentScope()
-  return UltiSnips#SnippetsInCurrentScope()
-endfunction
+autocmd FileType coffee set commentstring=#\ %s
+" }}} Autocommands "
 
+" Syntastic {{{ "
+" No warnings for ng- directives, haml bs
+let g:syntastic_html_tidy_ignore_errors =[ " proprietary attribute \"ng-",
+      \"is not recognized!", "discarding unexpected",
+      \"trimming empty <", "unescaped &",
+      \ "lacks \"action"]
 
-" Taboo.vim settings
-let g:taboo_tabline = 0
-let g:taboo_modified_tab_flag = "+"
-let g:taboo_renamed_tab_format = "%l %m"
+let g:syntastic_objc_config_file = '.clang_complete'
+let g:syntastic_objc_checker = 'clang'
+
+" }}} Syntastic "
+
+" Ultisnips / YCM / Supertab {{{ "
+let g:ycm_key_list_select_completion = ['<C-n>', '<Down>']
+let g:ycm_key_list_previous_completion = ['<C-p>', '<Up>']
+let g:ycm_path_to_python_interpreter = '/usr/local/bin/python'
+
+let g:SuperTabDefaultCompletionType = '<C-n>'
+let g:UltiSnipsEnableSnipMate = 1
+let g:UltiSnipsExpandTrigger = "<tab>"
+let g:UltiSnipsJumpForwardTrigger = "<tab>"
+let g:UltiSnipsJumpBackwardTrigger = "<s-tab>"
+" }}} Ultisnips / YCM / Supertab "
+
+" Vim Multiple Cursors {{{ "
+let g:multi_cursor_use_default_mapping = 0
+let g:multi_cursor_start_key = '<F7>'
+let g:multi_cursor_next_key = '<c-n>'
+let g:multi_cursor_prev_key = '<c-p>'
+let g:multi_cursor_skip_key = '<c-x>'
+let g:multi_cursor_quit_key = '<Esc>'
+" }}} Vim Multiple Cursors "
+
+" Clang_Complete {{{ "
+let g:clang_complete_auto = 0
+let g:clang_use_library =1
+let g:clang_periodic_quickfix = 0
+let g:clang_close_preview = 1
+
+let g:clang_snippets = 1
+
+let g:clang_snippets_engine = 'ultisnips'
+
+let g:clang_exec = '/usr/local/opt/llvm/bin/clang'
+let g:clang_library_path = '/usr/local/opt/llvm/lib/libclang.dylib'
+" }}} Clang_Complete "
