@@ -1,3 +1,14 @@
 snippet str "use strict" b
 'use strict';$0
 endsnippet
+
+snippet re "var xx = require('xx')" b
+var $1 = require('${3:${2:gulp-}${1/([a-z])([A-Z])/$1-\l$2/}}')$4;$0
+endsnippet
+
+snippet gulpt "gulp.task(...)" b
+gulp.task('$1', function() {
+	return ${2:gulp.src($3)}
+		$4
+});$5
+endsnippet

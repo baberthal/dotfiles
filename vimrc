@@ -61,10 +61,12 @@ Plugin 'matthewsimo/angular-vim-snippets'
 " C Family
 Plugin 'Rip-Rip/clang_complete'
 Plugin 'b4winckler/vim-objc'
+Plugin 'tomtom/templator_vim'
+" Plugin 'keith/swift.vim'
+Plugin 'kballard/vim-swift'
 
 " Window / pane management
 Plugin 'wesQ3/vim-windowswap'
-Plugin 'vim-scripts/ZoomWin'
 
 " File search, other good stuff
 Plugin 'kien/ctrlp.vim'
@@ -72,6 +74,7 @@ Plugin 'scrooloose/nerdtree'
 Plugin 'jlanzarotta/bufexplorer'
 Plugin 'terryma/vim-multiple-cursors'
 Plugin 'tpope/vim-commentary'
+Plugin 'mattn/webapi-vim'
 Plugin 'mattn/gist-vim'
 Plugin 'gcmt/taboo.vim'
 Plugin 'rizzatti/dash.vim'
@@ -101,6 +104,8 @@ set modeline
 highlight ColorColumn ctermbg=37 guibg=cyan
 let mapleader="\<Space>"
 set mouse=nih
+
+hi search ctermfg=6 ctermbg=15 cterm=bold,reverse
 
 " Colors, fonts, encoding, and background setting
 syntax enable
@@ -151,10 +156,10 @@ nmap <Leader>v :e $MYVIMRC<CR>
 nmap <Leader>w :w<CR>
 map <F6> :NERDTreeToggle<CR>
 map <Leader>rn :TabooRename
-map <silent> <Leader>= :tabmove +1<CR>
-map <silent> <Leader>- :tabmove -1<CR>
-map <silent> <Leader>] :tabnext<CR>
-map <silent> <Leader>[ :tabprevious<CR>
+nmap <silent> <Leader>= :tabmove +1<CR>
+nmap <silent> <Leader>- :tabmove -1<CR>
+nmap <silent> <Leader>] :tabnext<CR>
+nmap <silent> <Leader>[ :tabprevious<CR>
 
 " Yank text to the OS X Clipboard
 noremap <leader>y "*y
@@ -162,6 +167,11 @@ noremap <leader>yy "*Y
 
 " Preserve indentation while pasting text from OS X Clipboard
 noremap <leader>p :set paste<CR>:put *<CR>:set nopaste<CR>
+
+nmap <silent> <leader>hl :set hlsearch! hlsearch?<CR>
+nmap <leader>vs :vsplit<CR>
+nmap <leader>hs :split<CR>
+
 " }}} Remaps "
 
 " One-Off Plugin Settings {{{ "
@@ -181,9 +191,16 @@ nmap ga <Plug>(EasyAlign)
 let g:taboo_tabline = 0
 let g:taboo_modified_tab_flag = "+"
 let g:taboo_renamed_tab_format = "%l %m"
+
 " }}} One-Off Plugin Settings "
 
 " User-Defined Functions {{{ "
+"Toggle numbers from relative to absolute
+function! FindRubocopYml()
+  if filereadable(".rubocop.yml")
+  endif
+endfunction
+
 function! NumberToggle()
   if(&relativenumber == 1)
     set norelativenumber
@@ -206,6 +223,7 @@ function! AppendModeline()
 endfunction
 nnoremap <silent> <Leader>ml :call AppendModeline()<CR>
 
+" Add js lint and use strict to nodejs files
 function! AppendJSLint()
   call append(line("0"), "'use strict';")
   call append(line("0"), "/* jslint node: true */")
@@ -213,6 +231,48 @@ endfunction
 nnoremap <silent> <Leader>js :call AppendJSLint()<CR>
 
 command! Fixtab :set tabstop=2 | :set expandtab | :retab | :set tabstop=2
+
+" Build and run an xcode project from vim!
+if !exists("g:xcoderun_command")
+  let g:xcoderun_command = "xcoderun"
+endif
+
+function! XcodeRun()
+  silent !clear
+  execute "!" . g:xcoderun_command
+endfunction
+
+command! Xcoderun :call XcodeRun()
+
+function! EditLastMigration()
+  :call RailsDetect()
+  if exists('b:rails_root')
+    let b:migrations = split(globpath(b:rails_root, 'db/migrate/*'), '\n')
+    let b:last_migration = b:migrations[-1]
+    execute 'edit' b:last_migration
+  endif
+endfunction
+nnoremap <Leader>lm :call EditLastMigration()<CR>
+
+command! EditLastMigration :call EditLastMigration()
+
+" Zoom / Restore window
+function! s:ZoomToggle() abort
+  if exists('t:zoomed') && t:zoomed
+    execute t:zoom_winrestcmd
+    let t:zoomed = 0
+  else
+    let t:zoom_winrestcmd = winrestcmd()
+    resize
+    vertical resize
+    let t:zoomed = 1
+  endif
+endfunction
+
+command! ZoomToggle call s:ZoomToggle()
+nnoremap <silent> <leader>oo :ZoomToggle<CR>
+
+"
 " }}} User-Defined Functions "
 
 " Autocommands {{{ "
