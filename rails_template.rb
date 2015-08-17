@@ -11,7 +11,6 @@ gem 'puma'
 
 gem_group :development, :test do
   gem 'rspec-rails'
-  gem 'rspec-activemodel-mocks'
   gem 'pry-rails'
   gem 'pry-theme'
   gem 'factory_girl_rails'
@@ -22,6 +21,7 @@ gem_group :development, :test do
   gem 'guard-bundler', require: false
   gem 'guard-teaspoon'
   gem 'guard-coffeescript'
+  gem 'guard-rubocop', require: false
   gem 'ruby_gntp'
   gem 'capybara'
   gem 'database_cleaner'
@@ -29,8 +29,8 @@ gem_group :development, :test do
   gem 'phantomjs'
   gem 'teaspoon-jasmine'
   gem 'poltergeist'
-  gem 'shoulda-matchers', github: 'thoughtbot/shoulda-matchers'
   gem 'simplecov', require: false
+  gem 'rubocop', require: false
 end
 
 run 'bundle install'
