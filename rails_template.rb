@@ -10,32 +10,29 @@ gem 'pg_search'
 gem 'puma'
 
 gem_group :development, :test do
+  gem 'colorize'
   gem 'rspec-rails'
   gem 'pry-rails'
   gem 'pry-theme'
   gem 'factory_girl_rails'
   gem 'rb-fsevent', require: false if RUBY_PLATFORM =~ /darwin/i
-  gem 'launchy'
   gem 'guard-rspec', require: false
   gem 'guard-livereload', require: false
   gem 'guard-bundler', require: false
-  gem 'guard-teaspoon'
-  gem 'guard-coffeescript'
   gem 'guard-rubocop', require: false
   gem 'ruby_gntp'
   gem 'capybara'
   gem 'database_cleaner'
   gem 'selenium-webdriver'
   gem 'phantomjs'
-  gem 'teaspoon-jasmine'
   gem 'poltergeist'
   gem 'simplecov', require: false
   gem 'rubocop', require: false
+  gem 'faker'
 end
 
 run 'bundle install'
 generate 'rspec:install'
 run 'guard init'
-generate 'teaspoon:install --coffee'
 
 #  vim: set ts=8 sw=2 tw=0 et :
