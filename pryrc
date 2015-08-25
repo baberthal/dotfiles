@@ -2,23 +2,6 @@ require 'colorize'
 # require 'active_support/core_ext/string'
 Pry.config.theme = "solarized"
 
-Pry::Commands.create_command "rvm" do
-  description "Display RVM info (ruby-version & gemset)"
-
-  def process
-    version = RUBY_VERSION
-    stone = "\xF0\x9f\x92\x8e"
-    ruby_message = "#{stone}  #{version}".colorize(:red)
-
-    at = "@".colorize(:blue)
-    gemset_message = `rvm gemset name`.to_s.squish.colorize(:green)
-
-    message = "#{ruby_message} #{at} #{gemset_message}"
-
-    output.puts message
-  end
-end
-
 def prompt_setup(options = {})
   options[:line_nr_color] ||= :white
   options[:tgt_self_pc] ||= :light_red
