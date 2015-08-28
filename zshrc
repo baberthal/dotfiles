@@ -1,13 +1,10 @@
-# Source Prezto.
-if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
-  source "${ZDOTDIR:-$HOME}/.zprezto/init.zsh"
-fi
-
+export ZSH=$HOME/.oh-my-zsh
+ZSH_THEME="morgan"
 DISABLE_AUTO_UPDATE="true"
 DISABLE_AUTO_TITLE="true"
 ENABLE_CORRECTION="true"
 
-# plugins=(git brew compleat lol osx rails rake rvm tmux tmuxinator)
+plugins=(git brew compleat lol osx rails rake rvm tmux tmuxinator)
 
 export EDITOR="vim"
 bindkey -v
@@ -17,7 +14,7 @@ export PATH=/Applications/Postgres.app/Contents/Versions/9.4/bin:$PATH
 export POWERLINE_CONFIG_COMMAND=/Users/morgan/.vim/bundle/powerline/scripts/powerline-config
 export HOMEBREW_GITHUB_API_TOKEN=22a666338b8aa4ce66c3ceb0f2151c7233f8acd4
 
-# source $ZSH/oh-my-zsh.sh
+source $ZSH/oh-my-zsh.sh
 source ~/bin/tmuxinator.zsh
 source ~/.nvm/nvm.sh
 export LANG=en_US.UTF-8
