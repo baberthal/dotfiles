@@ -1,0 +1,5 @@
+alias zshrc="vim ~/.zshrc"
+alias vimrc="vim ~/.vimrc"
+alias tmuxconf="vim ~/.tmux.conf"
+alias nest="nest.py --user j.morgan.lieberthal@gmail.com --password kbner7xL"
+alias gclone="git clone --recursive"
