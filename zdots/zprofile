@@ -30,15 +30,6 @@ typeset -gU cdpath fpath mailpath path
 # )
 
 # Set the list of directories that Zsh searches for programs.
-path=(
-  $HOME/bin
-  /Applications/Postgres.app/Contents/Versions/9.4/bin
-  /usr/local/{bin,sbin}
-  /usr/local/heroku/bin
-  $HOME/Library/Android/sdk/platform-tools
-  $path
-)
-
 #
 # Less
 #

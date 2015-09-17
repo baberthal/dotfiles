@@ -1,7 +1,7 @@
 export ZSH=$HOME/.oh-my-zsh
 ZSH_THEME="morgan"
 
-plugins=(git brew bower bundler compleat lol osx rails rake-fast ruby rvm tmux tmuxinator zeus)
+plugins=(git brew bower compleat lol osx rails rake-fast ruby rvm tmux tmuxinator zeus)
 
 bindkey -v
 
@@ -20,8 +20,8 @@ export LANG=en_US.UTF-8
 export LC_ALL=en_US.UTF-8
 export KEYTIMEOUT=1
 
-export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
-
 zstyle ':completion:*' accept-exact '*(N)'
 zstyle ':completion:*' use-cache on
 zstyle ':completion:*' cache-path ~/.zsh/cache
+
+export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
