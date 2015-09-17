@@ -58,13 +58,6 @@ Plugin 'moll/vim-node'
 Plugin 'burnettk/vim-angular'
 Plugin 'matthewsimo/angular-vim-snippets'
 
-" C Family
-Plugin 'Rip-Rip/clang_complete'
-Plugin 'b4winckler/vim-objc'
-Plugin 'tomtom/templator_vim'
-" Plugin 'keith/swift.vim'
-Plugin 'kballard/vim-swift'
-
 " Window / pane management
 Plugin 'wesQ3/vim-windowswap'
 
@@ -139,6 +132,7 @@ if has('gui_running')
 endif
 
 set fdm=marker
+set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*.png,*/node_modules/*
 
 " }}} Basics "
 
@@ -296,8 +290,7 @@ let g:syntastic_html_tidy_ignore_errors =[ " proprietary attribute \"ng-",
       \"trimming empty <", "unescaped &",
       \ "lacks \"action"]
 
-let g:syntastic_objc_config_file = '.clang_complete'
-let g:syntastic_objc_checker = 'clang'
+let g:syntastic_javascript_checkers = ['jshint']
 
 " }}} Syntastic "
 
@@ -321,17 +314,3 @@ let g:multi_cursor_prev_key = '<c-p>'
 let g:multi_cursor_skip_key = '<c-x>'
 let g:multi_cursor_quit_key = '<Esc>'
 " }}} Vim Multiple Cursors "
-
-" Clang_Complete {{{ "
-let g:clang_complete_auto = 0
-let g:clang_use_library =1
-let g:clang_periodic_quickfix = 0
-let g:clang_close_preview = 1
-
-let g:clang_snippets = 1
-
-let g:clang_snippets_engine = 'ultisnips'
-
-let g:clang_exec = '/usr/local/opt/llvm/bin/clang'
-let g:clang_library_path = '/usr/local/opt/llvm/lib/libclang.dylib'
-" }}} Clang_Complete "
