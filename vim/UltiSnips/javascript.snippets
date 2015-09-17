@@ -2,8 +2,12 @@ snippet str "use strict" b
 'use strict';$0
 endsnippet
 
-snippet re "var xx = require('xx')" b
+snippet gre "var xx = require('gulp-xx')" b
 var $1 = require('${3:${2:gulp-}${1/([a-z])([A-Z])/$1-\l$2/}}')$4;$0
+endsnippet
+
+snippet re "var xx = require('gulp-xx')" b
+var $1 = require('${2:${1/([a-z])([A-Z])/$1-\l$2/}}')$3;$0
 endsnippet
 
 snippet gulpt "gulp.task(...)" b
