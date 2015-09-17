@@ -170,7 +170,7 @@ nmap <leader>hs :split<CR>
 
 " One-Off Plugin Settings {{{ "
 " JS Library syntax highlighting
-let g:used_javascript_libs = 'jquery, angularjs, angularui, jasmine, chai, underscore'
+let g:used_javascript_libs = 'jquery, angularjs, angularui, jasmine, chai, underscore angularuirouter'
 
 " bufExplorer options
 let g:bufExplorerShowRelativePath=1
@@ -291,6 +291,7 @@ let g:syntastic_html_tidy_ignore_errors =[ " proprietary attribute \"ng-",
       \ "lacks \"action"]
 
 let g:syntastic_javascript_checkers = ['jshint']
+let g:syntastic_haml_checkers = ['haml_lint']
 
 " }}} Syntastic "
 
