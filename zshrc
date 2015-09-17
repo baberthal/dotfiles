@@ -4,6 +4,7 @@ ZSH_THEME="morgan"
 
 plugins=(git gulp brew bundler bower compleat gem lol osx rails rake-fast ruby rvm tmux tmuxinator zeus)
 setopt autonamedirs
+unset zle_bracketed_paste
 
 export EDITOR='vim'
 export VISUAL='vim'
