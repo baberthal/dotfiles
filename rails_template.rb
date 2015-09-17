@@ -1,3 +1,7 @@
+def source_paths
+  [File.expand_path(File.dirname(__FILE__))]
+end
+
 after_bundle do
   git :init
   git add: "."
@@ -33,6 +37,10 @@ end
 
 run 'bundle install'
 generate 'rspec:install'
-run 'guard init'
+directory 'rails_files', './', recursive: true
+run 'bundle exec guard init'
+# run "rvm --ruby-version use 2.2.3@#{@app_name} --create"
+
+
 
 #  vim: set ts=8 sw=2 tw=0 et :
