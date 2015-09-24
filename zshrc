@@ -1,7 +1,6 @@
 export ZSH=$HOME/.oh-my-zsh
 ZSH_THEME="morgan"
 # source $ZEXTRA_DIR/env.zsh
-
 plugins=(git gulp brew bundler bower compleat gem lol osx rails rake-fast ruby rvm tmux tmuxinator zeus)
 setopt autonamedirs
 unset zle_bracketed_paste
@@ -20,6 +19,7 @@ source ~/bin/tmuxinator.zsh
 source $ZEXTRA_DIR/aliases.zsh
 source $ZEXTRA_DIR/directories.zsh
 source $ZSH_CUSTOM/functions.zsh
+export RANGER_LOAD_DEFAULT_RC=false
 
 source $HOME/.nvm/nvm.sh
 

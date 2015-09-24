@@ -18,3 +18,5 @@ rubycocoa=/Users/morgan/projects/rubycocoa
 brew_notify_cocoa=/Users/morgan/projects/ruby/brew_notify_cocoa
 dotfiles=/Users/morgan/projects/dotfiles
 morgflix=/Users/morgan/projects/morgflix
+typescript=/Users/morgan/projects/ruby/typescript-ruby
+httparty_cooler=/Users/morgan/projects/ruby/httparty-cooler

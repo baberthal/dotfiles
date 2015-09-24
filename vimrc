@@ -94,11 +94,11 @@ set ruler
 set number
 set colorcolumn=82
 set modeline
-highlight ColorColumn ctermbg=37 guibg=cyan
 let mapleader="\<Space>"
 set mouse=nih
 
-hi search ctermfg=6 ctermbg=15 cterm=bold,reverse
+set splitbelow
+set splitright
 
 " Colors, fonts, encoding, and background setting
 syntax enable
@@ -108,6 +108,10 @@ let g:solarized_termtrans = 1
 set laststatus=2
 set noshowmode
 call togglebg#map("<F5>")
+
+hi Search ctermfg=6 ctermbg=15 cterm=bold,reverse
+hi ColorColumn ctermbg=0 guibg=cyan
+hi CursorLineNr term=bold ctermfg=2
 
 set guifont=Inconsolata\ for\ Powerline
 set encoding=utf-8
@@ -133,6 +137,7 @@ endif
 
 set fdm=marker
 set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*.png,*/node_modules/*
+set pvh=20
 
 " }}} Basics "
 
@@ -199,11 +204,9 @@ function! NumberToggle()
   if(&relativenumber == 1)
     set norelativenumber
     set number
-    highlight CursorLineNr term=bold ctermfg=4
   else
     set relativenumber
     highlight LineNr term=bold ctermfg=10
-    highlight CursorLineNr term=bold ctermfg=2
   endif
 endfunc
 nnoremap <silent><leader>\ :call NumberToggle() <CR>
@@ -266,6 +269,16 @@ endfunction
 command! ZoomToggle call s:ZoomToggle()
 nnoremap <silent> <leader>oo :ZoomToggle<CR>
 
+function! RangerExplorer()
+  exec "silent !ranger --choosefile=/tmp/vim_ranger_current_file " . expand("%:p:h")
+  if filereadable('/tmp/vim_ranger_current_file')
+    exec 'edit ' . system('cat /tmp/vim_ranger_current_file')
+    call system('rm /tmp/vim_ranger_current_file')
+  endif
+  redraw!
+endfunction
+
+map <Leader>x :call RangerExplorer()<CR>
 "
 " }}} User-Defined Functions "
 
@@ -292,6 +305,7 @@ let g:syntastic_html_tidy_ignore_errors =[ " proprietary attribute \"ng-",
 
 let g:syntastic_javascript_checkers = ['jshint']
 let g:syntastic_haml_checkers = ['haml_lint']
+let g:syntastic_ruby_checkers = ['rubocop']
 
 " }}} Syntastic "
 
