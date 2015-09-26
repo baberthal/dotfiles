@@ -20,3 +20,5 @@ dotfiles=/Users/morgan/projects/dotfiles
 morgflix=/Users/morgan/projects/morgflix
 typescript=/Users/morgan/projects/ruby/typescript-ruby
 httparty_cooler=/Users/morgan/projects/ruby/httparty-cooler
+chef_repo=/Users/morgan/projects/chef-repo
+chef_cb=/Users/morgan/projects/chef-repo/cookbooks
