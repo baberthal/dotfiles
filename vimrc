@@ -12,8 +12,9 @@ Plugin 'gmarik/Vundle.vim'
 " Pretty colors & some syntax highlighting
 Plugin 'altercation/vim-colors-solarized'
 Plugin 'scrooloose/syntastic'
-Plugin 'rodjek/vim-puppet'
 Plugin 'rdnetto/YCM-Generator'
+Plugin 'vim-scripts/bats.vim'
+Plugin 'baberthal/chefspec.vim'
 
 " HTML and various pre-processors
 Plugin 'othree/html5.vim'

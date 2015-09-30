@@ -1,7 +1,7 @@
 export ZSH=$HOME/.oh-my-zsh
 ZSH_THEME="morgan"
 # source $ZEXTRA_DIR/env.zsh
-plugins=(git gulp brew bundler bower compleat gem lol osx rails rake-fast ruby rvm tmux tmuxinator zeus)
+plugins=(git gulp brew bundler bower chef compleat gem lol osx rails rake-fast knife knife_ssl ruby rvm tmux tmuxinator zeus)
 setopt autonamedirs
 unset zle_bracketed_paste
 

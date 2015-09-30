@@ -22,3 +22,6 @@ typescript=/Users/morgan/projects/ruby/typescript-ruby
 httparty_cooler=/Users/morgan/projects/ruby/httparty-cooler
 chef_repo=/Users/morgan/projects/chef-repo
 chef_cb=/Users/morgan/projects/chef-repo/cookbooks
+chef_dev=/Users/morgan/projects/server_lab/chef
+guard_chef=/Users/morgan/projects/ruby/guard-chef
+chef_ssl=/Users/morgan/projects/ruby/oss-forks/chef-ssl-client
