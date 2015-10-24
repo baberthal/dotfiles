@@ -1,4 +1,4 @@
 snippet its "RSpec - its(:method) { is_expected.to XXX }" i
-its(${1::method}) { is_expected.to $2 }
+its(:${1:method}) { is_expected.to $2 }
 $0
 endsnippet

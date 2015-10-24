@@ -22,8 +22,6 @@ source $ZEXTRA_DIR/directories.zsh
 export RANGER_LOAD_DEFAULT_RC=false
 source $ZEXTRA_DIR/zsh-autoenv/autoenv.zsh
 
-source $HOME/.nvm/nvm.sh
-
 export LANG=en_US.UTF-8
 export LC_ALL=en_US.UTF-8
 export KEYTIMEOUT=1
