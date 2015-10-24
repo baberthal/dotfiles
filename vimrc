@@ -44,6 +44,7 @@ Plugin 'vim-ruby/vim-ruby.git'
 Plugin 'keith/rspec.vim'
 Plugin 'tpope/vim-fugitive'
 Plugin 'ecomba/vim-ruby-refactoring'
+Plugin 'tpope/vim-rvm'
 
 " Vanilla JS
 Plugin 'othree/yajs.vim'
@@ -54,6 +55,9 @@ Plugin 'walm/jshint.vim'
 
 " Node.js
 Plugin 'moll/vim-node'
+
+" Rust
+Plugin 'rust-lang/rust.vim'
 
 " AngularJS stuff
 Plugin 'burnettk/vim-angular'
@@ -93,7 +97,7 @@ filetype plugin indent on
 " Basics {{{ "
 set ruler
 set number
-set colorcolumn=82
+set colorcolumn=81
 set modeline
 let mapleader="\<Space>"
 set mouse=nih
@@ -111,7 +115,6 @@ set noshowmode
 call togglebg#map("<F5>")
 
 hi Search ctermfg=6 ctermbg=15 cterm=bold,reverse
-hi ColorColumn ctermbg=0 guibg=cyan
 hi CursorLineNr term=bold ctermfg=2
 
 set guifont=Inconsolata\ for\ Powerline
@@ -139,6 +142,11 @@ endif
 set fdm=marker
 set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*.png,*/node_modules/*
 set pvh=20
+set shell=/bin/sh
+
+" Hack for vertical line cursor when in insert mode while running in tmux
+let &t_SI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=1\x7\<Esc>\\"
+let &t_EI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=0\x7\<Esc>\\"
 
 " }}} Basics "
 
@@ -148,6 +156,14 @@ let g:airline#extensions#taboo#enabled = 1
 let g:airline#extensions#windowswap#enabled = 1
 let g:airline#extensions#syntastic#enabled = 1
 let g:airline_theme = 'jml'
+
+function! RvmStatusLine(...)
+  if &filetype == 'ruby'
+    let w:airline_section_x = '%{rvm#statusline()}'
+  endif
+endfunction
+
+call airline#add_statusline_func('RvmStatusLine')
 " }}} Airline Config "
 
 " Remaps {{{ "
@@ -167,6 +183,9 @@ noremap <leader>yy "*Y
 
 " Preserve indentation while pasting text from OS X Clipboard
 noremap <leader>p :set paste<CR>:put *<CR>:set nopaste<CR>
+
+" Use Dash instead of man for K
+nnoremap <silent><buffer> K <Esc>:Dash <C-R><C-W><CR>
 
 nmap <silent> <leader>hl :set hlsearch! hlsearch?<CR>
 nmap <leader>vs :vsplit<CR>
@@ -280,6 +299,10 @@ function! RangerExplorer()
 endfunction
 
 map <Leader>x :call RangerExplorer()<CR>
+
+" Oops! Forgot to open vim with sudo? Just use Sw !
+command! Sw :w !sudo tee %
+
 "
 " }}} User-Defined Functions "
 
@@ -306,7 +329,8 @@ let g:syntastic_html_tidy_ignore_errors =[ " proprietary attribute \"ng-",
 
 let g:syntastic_javascript_checkers = ['jshint']
 let g:syntastic_haml_checkers = ['haml_lint']
-let g:syntastic_ruby_checkers = ['rubocop']
+let g:syntastic_ruby_checkers = ['mri', 'rubocop']
+let g:systastic_ruby_exec = '/Users/morgan/.rvm/rubies/ruby-2.2.2/bin/ruby'
 
 " }}} Syntastic "
 

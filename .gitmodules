@@ -7,3 +7,12 @@
 [submodule "nvm"]
 	path = nvm
 	url = https://github.com/creationix/nvm.git
+[submodule "zsh-completions"]
+	path = zsh-completions
+	url = https://github.com/zsh-users/zsh-completions.git
+[submodule "antigen"]
+	path = antigen
+	url = https://github.com/zsh-users/antigen.git
+[submodule "zsh-autoenv"]
+	path = zsh-autoenv
+	url = https://github.com/Tarrasch/zsh-autoenv.git
