@@ -3,7 +3,6 @@ DISABLE_AUTO_TITLE="true"
 ENABLE_CORRECTION="true"
 
 bindkey -v
-export HOMEBREW_GITHUB_API_TOKEN=5aef3e59bef53a9c6eca10198b2b8198f3dff6b9
 typeset -U PATH
 
 export PATH=${HOME}/bin:/Applications/Postgres.app/Contents/Versions/9.4/bin:/usr/local/bin:/usr/local/sbin:/usr/local/heroku/bin:${PATH}
@@ -14,7 +13,14 @@ export PATH=${PATH}:${GOPATH}/bin
 export PATH=${PATH}:${GOROOT}/bin
 export ANDROID_HOME=$HOME/projects/android/sdk
 export JBOSS_HOME=/usr/local/opt/jboss-as/libexec
-export JAVA_HOME="$(/usr/libexec/java_home)"
+
+if [[ -x /usr/libexec/java_home ]]; then
+    export JAVA_HOME="$(/usr/libexec/java_home)"
+fi
+
+if [[ -f "${HOME}/.env" ]]; then
+    source "${HOME}/.env"
+fi
 
 export USE_CCACHE=1
 
