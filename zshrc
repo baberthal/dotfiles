@@ -1,7 +1,7 @@
 export ZSH=$HOME/.oh-my-zsh
 ZSH_THEME="morgan"
 # source $ZEXTRA_DIR/env.zsh
-plugins=(git gulp brew bundler bower chef compleat osx rails rake-fast ruby rvm tmux zeus)
+plugins=(git gulp brew bundler bower chef compleat knife osx rails rake-fast ruby rvm tmux zeus)
 if [[ -f "$ZEXTRA_DIR/completions.zsh" ]]; then
   source "$ZEXTRA_DIR/completions.zsh"
 fi
