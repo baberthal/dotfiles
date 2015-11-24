@@ -1,7 +1,7 @@
 export ZSH=$HOME/.oh-my-zsh
 ZSH_THEME="morgan"
 # source $ZEXTRA_DIR/env.zsh
-plugins=(git gulp brew bundler bower chef compleat knife osx rails rake-fast ruby rvm tmux zeus)
+plugins=(git gulp berkshelf bundler brew bower chef compleat knife osx rails rake-fast ruby rvm tmux zeus)
 if [[ -f "$ZEXTRA_DIR/completions.zsh" ]]; then
   source "$ZEXTRA_DIR/completions.zsh"
 fi
@@ -25,7 +25,6 @@ source $ZEXTRA_DIR/zsh-autoenv/autoenv.zsh
 export LANG=en_US.UTF-8
 export LC_ALL=en_US.UTF-8
 export KEYTIMEOUT=1
-
 export LESS='-F -g -i -M -R -S -w -X -z-4'
 
 # Set the Less input preprocessor.
@@ -36,3 +35,4 @@ fi
 
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"
 export PATH="$PATH:$HOME/.rvm/bin"
+compinit -u

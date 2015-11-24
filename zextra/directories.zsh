@@ -36,3 +36,6 @@ theforeman=/Users/morgan/projects/ruby/oss-forks/foreman
 foremanchef=/Users/morgan/projects/ruby/foreman_chef_manage
 chef_helpers=/Users/morgan/projects/ruby/chef_helpers
 ohai_plugins=/Users/morgan/projects/ruby/ohai_plugins
+chef_fog=/Users/morgan/projects/ruby/oss-forks/chef-provisioning-fog
+brew_notify=/Users/morgan/projects/ruby/brew_notify
+clink=/Users/morgan/projects/c_family/corsair/corsair_link
