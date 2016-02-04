@@ -7,10 +7,11 @@ set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 
 " Vundle manages itself
-Plugin 'gmarik/Vundle.vim'
+Plugin 'VundleVim/Vundle.vim'
 
 " Pretty colors & some syntax highlighting
-Plugin 'altercation/vim-colors-solarized'
+Plugin 'jeaye/color_coded'
+Plugin 'baberthal/vim-colors-solarized'
 Plugin 'scrooloose/syntastic'
 Plugin 'rdnetto/YCM-Generator'
 Plugin 'vim-scripts/bats.vim'
@@ -47,21 +48,15 @@ Plugin 'ecomba/vim-ruby-refactoring'
 Plugin 'tpope/vim-rvm'
 
 " Vanilla JS
-Plugin 'othree/yajs.vim'
-Plugin 'othree/javascript-libraries-syntax.vim'
-Plugin 'claco/jasmine.vim'
 Plugin 'kchmck/vim-coffee-script'
 Plugin 'walm/jshint.vim'
 
 " Node.js
 Plugin 'moll/vim-node'
+Plugin 'jelera/vim-javascript-syntax'
 
 " Rust
 Plugin 'rust-lang/rust.vim'
-
-" AngularJS stuff
-Plugin 'burnettk/vim-angular'
-Plugin 'matthewsimo/angular-vim-snippets'
 
 " Window / pane management
 Plugin 'wesQ3/vim-windowswap'
@@ -69,6 +64,7 @@ Plugin 'wesQ3/vim-windowswap'
 " File search, other good stuff
 Plugin 'kien/ctrlp.vim'
 Plugin 'scrooloose/nerdtree'
+Plugin 'Xuyuanp/nerdtree-git-plugin'
 Plugin 'jlanzarotta/bufexplorer'
 Plugin 'terryma/vim-multiple-cursors'
 Plugin 'tpope/vim-commentary'
@@ -85,10 +81,10 @@ Plugin 'SirVer/ultisnips'
 Plugin 'honza/vim-snippets'
 Plugin 'Valloric/YouCompleteMe'
 Plugin 'ervandew/supertab'
-Plugin 'chrisgillis/vim-bootstrap3-snippets'
 
 " Statusline
-Plugin 'bling/vim-airline'
+Plugin 'vim-airline/vim-airline'
+Plugin 'vim-airline/vim-airline-themes'
 
 call vundle#end()
 filetype plugin indent on
@@ -303,6 +299,12 @@ map <Leader>x :call RangerExplorer()<CR>
 " Oops! Forgot to open vim with sudo? Just use Sw !
 command! Sw :w !sudo tee %
 
+function! s:ClangFormat()
+  exec 'pyf /usr/local/Cellar/llvm/3.8.0/share/clang/clang-format.py'
+endfunction
+
+command! ClangFormat call s:ClangFormat()
+
 "
 " }}} User-Defined Functions "
 
@@ -313,7 +315,7 @@ augroup defaults
   autocmd InsertLeave,BufNewFile,VimEnter * silent! :call NumberToggle()
   " Automatically delete trailing whitespace during :w
   autocmd BufWritePre * :%s/\s\+$//e
-  autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
+  autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
   autocmd BufEnter * filetype detect
 augroup END
 
@@ -330,11 +332,20 @@ let g:syntastic_html_tidy_ignore_errors =[ " proprietary attribute \"ng-",
 let g:syntastic_javascript_checkers = ['jshint']
 let g:syntastic_haml_checkers = ['haml_lint']
 let g:syntastic_ruby_checkers = ['mri', 'rubocop']
-let g:systastic_ruby_exec = '/Users/morgan/.rvm/rubies/ruby-2.2.2/bin/ruby'
+let g:systastic_ruby_exec = '/Users/morgan/.rvm/rubies/ruby-2.3.0/bin/ruby'
+
+let g:syntastic_c_checkers = ['clang_check']
+let g:syntastic_c_clang_check_post_args = ""
+
+
 
 " }}} Syntastic "
 
 " Ultisnips / YCM / Supertab {{{ "
+
+let g:ycm_extra_conf_globlist = ['~/projects/*', '!~/*']
+
+
 let g:ycm_key_list_select_completion = ['<C-n>', '<Down>']
 let g:ycm_key_list_previous_completion = ['<C-p>', '<Up>']
 let g:ycm_path_to_python_interpreter = '/usr/local/bin/python'
@@ -344,7 +355,12 @@ let g:UltiSnipsEnableSnipMate = 1
 let g:UltiSnipsExpandTrigger = "<tab>"
 let g:UltiSnipsJumpForwardTrigger = "<tab>"
 let g:UltiSnipsJumpBackwardTrigger = "<s-tab>"
+
+
 " }}} Ultisnips / YCM / Supertab "
+
+" Clang {{{ "
+" }}} Clang "
 
 " Vim Multiple Cursors {{{ "
 let g:multi_cursor_use_default_mapping = 0
