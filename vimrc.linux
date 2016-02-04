@@ -11,7 +11,6 @@ Plugin 'gmarik/Vundle.vim'
 " Pretty colors & some syntax highlighting
 Plugin 'altercation/vim-colors-solarized'
 Plugin 'scrooloose/syntastic'
-Plugin 'rodjek/vim-puppet'
 
 " Useful tmux integration
 Plugin 'tmux-plugins/vim-tmux'
@@ -30,20 +29,10 @@ Plugin 'tpope/vim-repeat'
 
 " Ruby (on rails) development plugins
 Plugin 'tpope/vim-rails.git'
-Plugin 'tpope/vim-rvm.git'
 Plugin 'vim-ruby/vim-ruby.git'
-Plugin 'Keithbsmiley/rspec.vim'
+Plugin 'keith/rspec.vim'
 Plugin 'tpope/vim-fugitive'
 Plugin 'ecomba/vim-ruby-refactoring'
-Plugin 'tpope/vim-bundler'
-
-" AngularJS stuff
-Plugin 'burnettk/vim-angular'
-Plugin 'pangloss/vim-javascript'
-Plugin 'othree/javascript-libraries-syntax.vim'
-Plugin 'matthewsimo/angular-vim-snippets'
-Plugin 'kchmck/vim-coffee-script'
-Plugin 'claco/jasmine.vim'
 
 " Window / pane management
 Plugin 'wesQ3/vim-windowswap'
