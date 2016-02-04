@@ -1,4 +1,7 @@
 export ZEXTRA_DIR=$HOME/.zextra
 
-export SSL_CERT_FILE="${HOME}/.ca-trust/Certificates.pem"
+if [[ -f "${HOME}/.ca-trust/Certificates.pem" ]]; then
+  export SSL_CERT_FILE="${HOME}/.ca-trust/Certificates.pem"
+fi
+
 source "${ZEXTRA_DIR}/env.zsh"

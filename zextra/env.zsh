@@ -5,8 +5,10 @@ ENABLE_CORRECTION="true"
 bindkey -v
 typeset -U PATH
 
-export PATH=${HOME}/bin:/Applications/Postgres.app/Contents/Versions/9.4/bin:/usr/local/bin:/usr/local/sbin:/usr/local/heroku/bin:${PATH}
-export PATH=${PATH}:${JBOSS_HOME}/bin
+
+
+export PATH=${HOME}/bin:/Applications/Postgres.app/Contents/Versions/9.5/bin:/usr/local/bin:/usr/local/sbin:/usr/local/heroku/bin:/Applications/Xcode.app/Contents/Developer/usr/bin:${PATH}
+export PATH=${PATH}:${JBOSS_HOME}/bin:${HOME}/Library/Developer
 export GOPATH=${HOME}/golang
 export GOROOT=/usr/local/opt/go/libexec
 export PATH=${PATH}:${GOPATH}/bin
