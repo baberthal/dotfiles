@@ -322,6 +322,16 @@ augroup END
 autocmd FileType coffee set commentstring=#\ %s
 " }}} Autocommands "
 
+" Vim-Tmux-Navigator {{{ "
+let g:tmux_navigator_no_mappings = 1
+nnoremap <silent> <C-S-h> :TmuxNavigateLeft<cr>
+nnoremap <silent> <C-S-j> :TmuxNavigateDown<cr>
+nnoremap <silent> <C-S-k> :TmuxNavigateUp<cr>
+nnoremap <silent> <C-S-l> :TmuxNavigateRight<cr>
+nnoremap <silent> <C-S-\> :TmuxNavigatePrevious<cr>
+
+" }}} Vim-Tmux-Navigator "
+
 " Syntastic {{{ "
 " No warnings for ng- directives, haml bs
 let g:syntastic_html_tidy_ignore_errors =[ " proprietary attribute \"ng-",
@@ -345,16 +355,22 @@ let g:syntastic_c_clang_check_post_args = ""
 
 let g:ycm_extra_conf_globlist = ['~/projects/*', '!~/*']
 
-
 let g:ycm_key_list_select_completion = ['<C-n>', '<Down>']
 let g:ycm_key_list_previous_completion = ['<C-p>', '<Up>']
 let g:ycm_path_to_python_interpreter = '/usr/local/bin/python'
 
 let g:SuperTabDefaultCompletionType = '<C-n>'
 let g:UltiSnipsEnableSnipMate = 1
-let g:UltiSnipsExpandTrigger = "<tab>"
+let g:UltiSnipsExpandTrigger = "<C-S-j>"
 let g:UltiSnipsJumpForwardTrigger = "<tab>"
 let g:UltiSnipsJumpBackwardTrigger = "<s-tab>"
+
+let g:UltiSnipsEditSplit = "vertical"
+let g:UltiSnipsListSnippets = "<c-l>"
+
+let g:ycm_complete_in_comments = 1
+let g:ycm_seed_identifiers_with_syntax = 1
+let g:ycm_collect_identifiers_from_comments_and_strings = 1
 
 
 " }}} Ultisnips / YCM / Supertab "
