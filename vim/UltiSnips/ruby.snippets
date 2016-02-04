@@ -61,3 +61,7 @@ endsnippet
 snippet let "RSpec let" w
 let(:${1:object}) { $2 }$0
 endsnippet
+
+snippet spec "RSpec specify block" w
+specify { expect(${1:subject.}$2).to $3 }$0
+endsnippet
