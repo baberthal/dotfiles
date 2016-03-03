@@ -10,7 +10,6 @@ call vundle#begin()
 Plugin 'VundleVim/Vundle.vim'
 
 " Pretty colors & some syntax highlighting
-Plugin 'jeaye/color_coded'
 Plugin 'baberthal/vim-colors-solarized'
 Plugin 'scrooloose/syntastic'
 Plugin 'rdnetto/YCM-Generator'
@@ -46,10 +45,12 @@ Plugin 'keith/rspec.vim'
 Plugin 'tpope/vim-fugitive'
 Plugin 'ecomba/vim-ruby-refactoring'
 Plugin 'tpope/vim-rvm'
+Plugin 'ngmy/vim-rubocop'
 
 " Vanilla JS
 Plugin 'kchmck/vim-coffee-script'
 Plugin 'walm/jshint.vim'
+Plugin 'mustache/vim-mustache-handlebars'
 
 " Node.js
 Plugin 'moll/vim-node'
@@ -72,6 +73,11 @@ Plugin 'mattn/webapi-vim'
 Plugin 'mattn/gist-vim'
 Plugin 'gcmt/taboo.vim'
 Plugin 'rizzatti/dash.vim'
+
+" C
+Plugin 'baberthal/vim-syntax-extra'
+Plugin 'rhysd/vim-clang-format'
+Plugin 'jeaye/color_coded'
 
 " snipmate
 " Plugin 'MarcWeber/vim-addon-mw-utils'
@@ -164,7 +170,7 @@ call airline#add_statusline_func('RvmStatusLine')
 
 " Remaps {{{ "
 nmap <Leader>s :source $MYVIMRC<CR>
-nmap <Leader>v :e $MYVIMRC<CR>
+nmap <Leader>v :vs $MYVIMRC<CR>
 nmap <Leader>w :w<CR>
 map <F6> :NERDTreeToggle<CR>
 map <Leader>rn :TabooRename
@@ -243,20 +249,10 @@ function! AppendJSLint()
 endfunction
 nnoremap <silent> <Leader>js :call AppendJSLint()<CR>
 
+" Fix ugly tabs and inconsistent tab/spaces in a file
 command! Fixtab :set tabstop=2 | :set expandtab | :retab | :set tabstop=2
 
-" Build and run an xcode project from vim!
-if !exists("g:xcoderun_command")
-  let g:xcoderun_command = "xcoderun"
-endif
-
-function! XcodeRun()
-  silent !clear
-  execute "!" . g:xcoderun_command
-endfunction
-
-command! Xcoderun :call XcodeRun()
-
+" Edit the most recent migration created in a rails project
 function! EditLastMigration()
   :call RailsDetect()
   if exists('b:rails_root')
@@ -285,6 +281,7 @@ endfunction
 command! ZoomToggle call s:ZoomToggle()
 nnoremap <silent> <leader>oo :ZoomToggle<CR>
 
+" Explore files with Ranger
 function! RangerExplorer()
   exec "silent !ranger --choosefile=/tmp/vim_ranger_current_file " . expand("%:p:h")
   if filereadable('/tmp/vim_ranger_current_file')
@@ -299,17 +296,12 @@ map <Leader>x :call RangerExplorer()<CR>
 " Oops! Forgot to open vim with sudo? Just use Sw !
 command! Sw :w !sudo tee %
 
-function! s:ClangFormat()
-  exec 'pyf /usr/local/Cellar/llvm/3.8.0/share/clang/clang-format.py'
-endfunction
-
-command! ClangFormat call s:ClangFormat()
-
 "
 " }}} User-Defined Functions "
 
 " Autocommands {{{ "
 augroup defaults
+  au!
   " Relative and absolute line numbers
   autocmd InsertEnter * silent! :call NumberToggle()
   autocmd InsertLeave,BufNewFile,VimEnter * silent! :call NumberToggle()
@@ -341,41 +333,83 @@ let g:syntastic_html_tidy_ignore_errors =[ " proprietary attribute \"ng-",
 
 let g:syntastic_javascript_checkers = ['jshint']
 let g:syntastic_haml_checkers = ['haml_lint']
-let g:syntastic_ruby_checkers = ['mri', 'rubocop']
-let g:systastic_ruby_exec = '/Users/morgan/.rvm/rubies/ruby-2.3.0/bin/ruby'
+let g:syntastic_ruby_checkers = ['mri']
+let g:systastic_ruby_exec = $rvm_path . "/rubies/" . $RUBY_VERSION . "/bin/ruby"
 
-let g:syntastic_c_checkers = ['clang_check']
+let g:syntastic_c_checkers = ['clang_check', 'make']
 let g:syntastic_c_clang_check_post_args = ""
 
 
 
 " }}} Syntastic "
 
-" Ultisnips / YCM / Supertab {{{ "
+" Ultisnips / YCM / Supertab {{{ 1"
 
-let g:ycm_extra_conf_globlist = ['~/projects/*', '!~/*']
+" YouCompleteMe {{{ "
+let g:ycm_server_keep_logfiles = 1
 
 let g:ycm_key_list_select_completion = ['<C-n>', '<Down>']
 let g:ycm_key_list_previous_completion = ['<C-p>', '<Up>']
-let g:ycm_path_to_python_interpreter = '/usr/local/bin/python'
 
-let g:SuperTabDefaultCompletionType = '<C-n>'
-let g:UltiSnipsEnableSnipMate = 1
-let g:UltiSnipsExpandTrigger = "<C-S-j>"
-let g:UltiSnipsJumpForwardTrigger = "<tab>"
-let g:UltiSnipsJumpBackwardTrigger = "<s-tab>"
-
-let g:UltiSnipsEditSplit = "vertical"
-let g:UltiSnipsListSnippets = "<c-l>"
-
+let g:ycm_path_to_python_interpreter = '/usr/bin/python2.7'
 let g:ycm_complete_in_comments = 1
 let g:ycm_seed_identifiers_with_syntax = 1
 let g:ycm_collect_identifiers_from_comments_and_strings = 1
 
+" }}} YouCompleteMe "
+
+" UltiSnips Completion Function Hacks {{{ "
+function! g:UltiSnips_Complete()
+  call UltiSnips#ExpandSnippet()
+  if g:ulti_expand_res == 0
+    if pumvisible()
+      return "\<C-n>"
+    else
+      call UltiSnips#JumpForwards()
+      if g:ulti_jump_forwards_res == 0
+        return "\<TAB>"
+      endif
+    endif
+  endif
+  return ""
+endfunction
+
+function! g:UltiSnips_Reverse()
+  call UltiSnips#JumpBackwards()
+  if g:ulti_jump_backwards_res == 0
+    return "\<C-P>"
+  endif
+
+  return ""
+endfunction
+
+if !exists("g:UltiSnipsJumpForwardTrigger")
+  let g:UltiSnipsJumpForwardTrigger = "<tab>"
+endif
+
+if !exists("g:UltiSnipsJumpBackwardTrigger")
+  let g:UltiSnipsJumpBackwardTrigger = "<s-tab>"
+endif
+
+" }}} UltiSnips Completion Function Hacks "
+
+" UltiSnips Configuration {{{ "
+let g:SuperTabDefaultCompletionType = '<C-n>'
+let g:UltiSnipsEnableSnipMate = 1
+let g:UltiSnipsExpandTrigger = "<tab>"
+
+let g:UltiSnipsEditSplit = "horizontal"
+
+au InsertEnter * exec "inoremap <silent> " . g:UltiSnipsExpandTrigger . " <C-R>=g:UltiSnips_Complete()<cr>"
+au InsertEnter * exec "inoremap <silent> " . g:UltiSnipsJumpBackwardTrigger . " <C-R>=g:UltiSnips_Reverse()<cr>"
+
+" }}} UltiSnips Configuration "
 
 " }}} Ultisnips / YCM / Supertab "
 
 " Clang {{{ "
+let g:clang_format#command = "/usr/local/Cellar/llvm/3.8.0/bin/clang-format"
+let g:clang_format#detect_style_file = 1
 " }}} Clang "
 
 " Vim Multiple Cursors {{{ "
