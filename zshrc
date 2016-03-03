@@ -19,6 +19,7 @@ plugins=(
   rvm
   pip
   virtualenv
+  virtualenvwrapper
   tmux
   zeus
 )
