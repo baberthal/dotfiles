@@ -57,3 +57,6 @@ fi
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"
 export PATH="$PATH:$HOME/.rvm/bin"
 compinit -u
+
+# added by travis gem
+[ -f /Users/morgan/.travis/travis.sh ] && source /Users/morgan/.travis/travis.sh
