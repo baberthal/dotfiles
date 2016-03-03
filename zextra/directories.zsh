@@ -44,3 +44,8 @@ hash -d devpgk="/Users/morgan/projects/c_family/c_the_hard_way/devpkg"
 hash -d tensorflow="/Users/morgan/projects/python/tensorflow"
 
 objc_parse=/Users/morgan/projects/ruby/obj_c_parse
+jake=/Users/morgan/projects/ruby/jake
+discount=/Users/morgan/projects/apple/MorgVim/External/discount
+rust_headers=/Users/morgan/rust/util/rust_headers
+core_foundation=/Users/morgan/projects/ruby/core_foundation
+lcthw=/Users/morgan/projects/c_family/c_the_hard_way/lcthw
