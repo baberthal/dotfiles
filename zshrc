@@ -59,7 +59,8 @@ fi
 export PATH="$PATH:$HOME/.rvm/bin"
 compinit -u
 
-export WORKON_HOME="${HOME}/projects/python"
+export WORKON_HOME="${HOME}/projects/python/.virtualenv"
+export PROJECT_HOME="${HOME}/projects/python"
 
 # added by travis gem
 [ -f /Users/morgan/.travis/travis.sh ] && source /Users/morgan/.travis/travis.sh
