@@ -50,3 +50,4 @@ rust_headers=/Users/morgan/rust/util/rust_headers
 core_foundation=/Users/morgan/projects/ruby/core_foundation
 lcthw=/Users/morgan/projects/c_family/c_the_hard_way/lcthw
 python=/Users/morgan/projects/python
+rucomp=/Users/morgan/projects/ruby/rucomp
