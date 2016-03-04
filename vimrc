@@ -45,7 +45,6 @@ Plugin 'keith/rspec.vim'
 Plugin 'tpope/vim-fugitive'
 Plugin 'ecomba/vim-ruby-refactoring'
 Plugin 'tpope/vim-rvm'
-Plugin 'ngmy/vim-rubocop'
 
 " Vanilla JS
 Plugin 'kchmck/vim-coffee-script'
@@ -77,7 +76,8 @@ Plugin 'rizzatti/dash.vim'
 " C
 Plugin 'baberthal/vim-syntax-extra'
 Plugin 'rhysd/vim-clang-format'
-Plugin 'jeaye/color_coded'
+" Plugin 'jeaye/color_coded'
+Plugin 'bbchung/clighter'
 
 " snipmate
 " Plugin 'MarcWeber/vim-addon-mw-utils'
@@ -302,7 +302,7 @@ command! Sw :w !sudo tee %
 " Autocommands {{{ "
 augroup defaults
   au!
-  " Relative and absolute line numbers
+  " Relative line numbers in INSERT mode, absolute line numbers in NORMAL mode
   autocmd InsertEnter * silent! :call NumberToggle()
   autocmd InsertLeave,BufNewFile,VimEnter * silent! :call NumberToggle()
   " Automatically delete trailing whitespace during :w
@@ -333,7 +333,7 @@ let g:syntastic_html_tidy_ignore_errors =[ " proprietary attribute \"ng-",
 
 let g:syntastic_javascript_checkers = ['jshint']
 let g:syntastic_haml_checkers = ['haml_lint']
-let g:syntastic_ruby_checkers = ['mri']
+let g:syntastic_ruby_checkers = ['mri', 'rubocop']
 let g:systastic_ruby_exec = $rvm_path . "/rubies/" . $RUBY_VERSION . "/bin/ruby"
 
 let g:syntastic_c_checkers = ['clang_check', 'make']
@@ -343,10 +343,8 @@ let g:syntastic_c_clang_check_post_args = ""
 
 " }}} Syntastic "
 
-" Ultisnips / YCM / Supertab {{{ 1"
-
 " YouCompleteMe {{{ "
-let g:ycm_server_keep_logfiles = 1
+let g:ycm_server_keep_logfiles = 0
 
 let g:ycm_key_list_select_completion = ['<C-n>', '<Down>']
 let g:ycm_key_list_previous_completion = ['<C-p>', '<Up>']
@@ -405,11 +403,11 @@ au InsertEnter * exec "inoremap <silent> " . g:UltiSnipsJumpBackwardTrigger . " 
 
 " }}} UltiSnips Configuration "
 
-" }}} Ultisnips / YCM / Supertab "
-
 " Clang {{{ "
 let g:clang_format#command = "/usr/local/Cellar/llvm/3.8.0/bin/clang-format"
 let g:clang_format#detect_style_file = 1
+
+let g:clighter_libclang_file = '/usr/local/Cellar/llvm/3.8.0/lib/libclang.dylib'
 " }}} Clang "
 
 " Vim Multiple Cursors {{{ "

@@ -1,4 +1,4 @@
-syn keyword jmlBuiltInOperator typedef struct void enum case switch extern static const
+syn keyword jmlBuiltInOperator typedef struct void enum case switch extern static const NULL
 hi def link jmlBuiltInOperator Statement
 
 " DoxyGen syntax hilighting extension for c/c++/idl/java
