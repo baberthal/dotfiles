@@ -6,6 +6,7 @@ from __future__ import unicode_literals
 from prompt_toolkit.keys import Keys
 from pygments.token import Token
 from ptpython.layout import CompletionVisualisation
+from ptpython.style import default_ui_style
 
 __all__ = (
     'configure',
@@ -86,7 +87,7 @@ def configure(repl):
     repl.enable_system_bindings = True
 
     # Ask for confirmation on exit.
-    repl.confirm_exit = True
+    repl.confirm_exit = False
 
     # Enable input validation. (Don't try to execute when the input contains
     # syntax errors.)
@@ -100,10 +101,8 @@ def configure(repl):
     repl.true_color = False
 
     # Install custom colorscheme named 'my-colorscheme' and use it.
-    """
-    repl.install_ui_colorscheme('my-colorscheme', _custom_ui_colorscheme)
-    repl.use_ui_colorscheme('my-colorscheme')
-    """
+    repl.install_ui_colorscheme('solarized-ui-colorscheme', _solarized_ui_style)
+    repl.use_ui_colorscheme('solarized-ui-colorscheme')
 
     # Add custom key binding for PDB.
     @repl.add_key_binding(Keys.ControlB)
@@ -140,10 +139,27 @@ def configure(repl):
 
 # Custom colorscheme for the UI. See `ptpython/layout.py` and
 # `ptpython/style.py` for all possible tokens.
-_custom_ui_colorscheme = {
-    # Blue prompt.
+_solarized_ui_style = {}
+_solarized_ui_style.update(default_ui_style)
+_solarized_ui_style.update({
     Token.Layout.Prompt:                          'bg:#eeeeff #000000 bold',
+    Token.Toolbar.Status:                         'bg:#000000 #839496',
+    Token.Toolbar.Status.InputMode:               'bg:#000000 #2aa198',
+    Token.Toolbar.Status.Key:                     'bg:#000000 #cb4b16 bold',
+    Token.Toolbar.Status.PythonVersion:           'bg:#000000 #6c71c4',
 
-    # Make the status toolbar red.
-    Token.Toolbar.Status:                         'bg:#ff0000 #000000',
-}
+    Token.Out:                                    '#839496',
+    Token.Out.Number:                             '#2aa198',
+
+    Token.Toolbar.Search: '#22aaaa noinherit',
+    Token.Toolbar.Search.Text: 'noinherit',
+
+    Token.Toolbar.System: '#22aaaa noinherit',
+    Token.Toolbar.Arg: '#22aaaa noinherit',
+    Token.Toolbar.Arg.Text: 'noinherit',
+
+    Token.Sidebar: 'bg:#586e75 #000000',
+    Token.Sidebar.Title: 'bg:#2aa198 #ffffff',
+    Token.Sidebar.Label: 'bg:#bbbbbb #222222',
+    Token.Sidebar.Status: 'bg:#dddddd #000011',
+})
