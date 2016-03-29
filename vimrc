@@ -22,6 +22,9 @@ Plugin 'digitaltoad/vim-jade'
 Plugin 'tpope/vim-haml'
 Plugin 'curist/vim-angular-template'
 
+" Meta
+Plugin 'tpope/vim-scriptease'
+
 " Useful tmux integration
 Plugin 'tmux-plugins/vim-tmux'
 Plugin 'christoomey/vim-tmux-navigator'
@@ -57,6 +60,7 @@ Plugin 'jelera/vim-javascript-syntax'
 
 " Rust
 Plugin 'rust-lang/rust.vim'
+Plugin 'cespare/vim-toml'
 
 " Window / pane management
 Plugin 'wesQ3/vim-windowswap'
@@ -76,8 +80,8 @@ Plugin 'rizzatti/dash.vim'
 " C
 Plugin 'baberthal/vim-syntax-extra'
 Plugin 'rhysd/vim-clang-format'
-" Plugin 'jeaye/color_coded'
-Plugin 'bbchung/clighter'
+Plugin 'jeaye/color_coded'
+Plugin 'mrtazz/DoxygenToolkit.vim'
 
 " snipmate
 " Plugin 'MarcWeber/vim-addon-mw-utils'
@@ -104,7 +108,6 @@ set modeline
 let mapleader="\<Space>"
 set mouse=nih
 
-set splitbelow
 set splitright
 
 " Colors, fonts, encoding, and background setting
@@ -141,9 +144,11 @@ if has('gui_running')
     endif
 endif
 
+" Preview window
+set pvh=20
+
 set fdm=marker
 set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*.png,*/node_modules/*
-set pvh=20
 set shell=/bin/sh
 
 " Hack for vertical line cursor when in insert mode while running in tmux
@@ -159,13 +164,16 @@ let g:airline#extensions#windowswap#enabled = 1
 let g:airline#extensions#syntastic#enabled = 1
 let g:airline_theme = 'jml'
 
-function! RvmStatusLine(...)
-  if &filetype == 'ruby'
-    let w:airline_section_x = '%{rvm#statusline()}'
-  endif
-endfunction
+" function! RvmStatusLine(...)
+"   if &filetype == 'ruby'
+"     let w:airline_section_x = '%{rvm#statusline()}'
+"   endif
+" endfunction
 
-call airline#add_statusline_func('RvmStatusLine')
+" if !exists('g:rvm_statusline_added_to_airline')
+"   let g:rvm_statusline_added_to_airline = 1
+"   call airline#add_statusline_func('RvmStatusLine')
+" endif
 " }}} Airline Config "
 
 " Remaps {{{ "
@@ -178,6 +186,7 @@ nmap <silent> <Leader>= :tabmove +1<CR>
 nmap <silent> <Leader>- :tabmove -1<CR>
 nmap <silent> <Leader>] :tabnext<CR>
 nmap <silent> <Leader>[ :tabprevious<CR>
+nnoremap <silent> <C-K> <C-T>
 
 " Yank text to the OS X Clipboard
 noremap <leader>y "*y
@@ -192,6 +201,11 @@ nnoremap <silent><buffer> K <Esc>:Dash <C-R><C-W><CR>
 nmap <silent> <leader>hl :set hlsearch! hlsearch?<CR>
 nmap <leader>vs :vsplit<CR>
 nmap <leader>hs :split<CR>
+
+map <F10> :echo "hi<"
+      \ . synIDattr(synID(line("."),col("."),1),"name") . '> trans<'
+      \ . synIDattr(synID(line("."),col("."),0),"name") . "> lo<"
+      \ . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">"<CR>
 
 " }}} Remaps "
 
@@ -281,6 +295,13 @@ endfunction
 command! ZoomToggle call s:ZoomToggle()
 nnoremap <silent> <leader>oo :ZoomToggle<CR>
 
+function! s:Breakout() abort
+  let l:breakout = expand('%')
+  q | execute 'tabedit' l:breakout
+endfunction
+
+command! Breakout call s:Breakout()
+
 " Explore files with Ranger
 function! RangerExplorer()
   exec "silent !ranger --choosefile=/tmp/vim_ranger_current_file " . expand("%:p:h")
@@ -296,6 +317,13 @@ map <Leader>x :call RangerExplorer()<CR>
 " Oops! Forgot to open vim with sudo? Just use Sw !
 command! Sw :w !sudo tee %
 
+function! SynStack()
+  if !exists("*synstack")
+    return
+  endif
+  echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')
+endfunction
+
 "
 " }}} User-Defined Functions "
 
@@ -307,7 +335,8 @@ augroup defaults
   autocmd InsertLeave,BufNewFile,VimEnter * silent! :call NumberToggle()
   " Automatically delete trailing whitespace during :w
   autocmd BufWritePre * :%s/\s\+$//e
-  autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+  autocmd StdinReadPre * let s:std_in=1
+  autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
   autocmd BufEnter * filetype detect
 augroup END
 
@@ -316,11 +345,11 @@ autocmd FileType coffee set commentstring=#\ %s
 
 " Vim-Tmux-Navigator {{{ "
 let g:tmux_navigator_no_mappings = 1
-nnoremap <silent> <C-S-h> :TmuxNavigateLeft<cr>
-nnoremap <silent> <C-S-j> :TmuxNavigateDown<cr>
-nnoremap <silent> <C-S-k> :TmuxNavigateUp<cr>
-nnoremap <silent> <C-S-l> :TmuxNavigateRight<cr>
-nnoremap <silent> <C-S-\> :TmuxNavigatePrevious<cr>
+nnoremap <silent> <C-h> :TmuxNavigateLeft<cr>
+nnoremap <silent> <C-j> :TmuxNavigateDown<cr>
+nnoremap <silent> <C-k> :TmuxNavigateUp<cr>
+nnoremap <silent> <C-l> :TmuxNavigateRight<cr>
+nnoremap <silent> <C-\> :TmuxNavigatePrevious<cr>
 
 " }}} Vim-Tmux-Navigator "
 
@@ -343,71 +372,44 @@ let g:syntastic_c_clang_check_post_args = ""
 
 " }}} Syntastic "
 
-" YouCompleteMe {{{ "
+" YouCompleteMe / Ultisnips {{{ "
 let g:ycm_server_keep_logfiles = 0
 
-let g:ycm_key_list_select_completion = ['<C-n>', '<Down>']
-let g:ycm_key_list_previous_completion = ['<C-p>', '<Up>']
-
-let g:ycm_path_to_python_interpreter = '/usr/bin/python2.7'
+let g:ycm_path_to_python_interpreter = '/usr/local/bin/python'
 let g:ycm_complete_in_comments = 1
 let g:ycm_seed_identifiers_with_syntax = 1
 let g:ycm_collect_identifiers_from_comments_and_strings = 1
+let g:ycm_autoclose_preview_window_after_insertion = 1
 
-" }}} YouCompleteMe "
+let g:ycm_rust_source_path = '/opt/src/rust'
 
-" UltiSnips Completion Function Hacks {{{ "
-function! g:UltiSnips_Complete()
-  call UltiSnips#ExpandSnippet()
-  if g:ulti_expand_res == 0
-    if pumvisible()
-      return "\<C-n>"
-    else
-      call UltiSnips#JumpForwards()
-      if g:ulti_jump_forwards_res == 0
-        return "\<TAB>"
-      endif
-    endif
-  endif
-  return ""
-endfunction
-
-function! g:UltiSnips_Reverse()
-  call UltiSnips#JumpBackwards()
-  if g:ulti_jump_backwards_res == 0
-    return "\<C-P>"
-  endif
-
-  return ""
-endfunction
-
-if !exists("g:UltiSnipsJumpForwardTrigger")
-  let g:UltiSnipsJumpForwardTrigger = "<tab>"
-endif
-
-if !exists("g:UltiSnipsJumpBackwardTrigger")
-  let g:UltiSnipsJumpBackwardTrigger = "<s-tab>"
-endif
-
-" }}} UltiSnips Completion Function Hacks "
-
-" UltiSnips Configuration {{{ "
+let g:ycm_key_list_select_completion = ['<C-n>', '<Down>']
+let g:ycm_key_list_previous_completion = ['<C-p>', '<Up>']
 let g:SuperTabDefaultCompletionType = '<C-n>'
+
 let g:UltiSnipsEnableSnipMate = 1
 let g:UltiSnipsExpandTrigger = "<tab>"
+let g:UltiSnipsJumpForwardTrigger = "<tab>"
+let g:UltiSnipsJumpBackwardTrigger = "<s-tab>"
 
 let g:UltiSnipsEditSplit = "horizontal"
+let g:UltiSnipsListSnippets = "<c-l>"
 
-au InsertEnter * exec "inoremap <silent> " . g:UltiSnipsExpandTrigger . " <C-R>=g:UltiSnips_Complete()<cr>"
-au InsertEnter * exec "inoremap <silent> " . g:UltiSnipsJumpBackwardTrigger . " <C-R>=g:UltiSnips_Reverse()<cr>"
-
-" }}} UltiSnips Configuration "
+" }}} YouCompleteMe / UltiSnips "
 
 " Clang {{{ "
 let g:clang_format#command = "/usr/local/Cellar/llvm/3.8.0/bin/clang-format"
 let g:clang_format#detect_style_file = 1
-
-let g:clighter_libclang_file = '/usr/local/Cellar/llvm/3.8.0/lib/libclang.dylib'
+let g:clang_format#auto_format = 1
+let g:clang_format#style_options = {
+      \ "AccessModifierOffset": -4,
+      \ "IndentWidth": 4,
+      \ "AllowShortIfStatementsOnASingleLine": "true",
+      \ "AllowShortFunctionsOnASingleLine": "Empty",
+      \ "BreakBeforeBraces": "Stroustrup",
+      \ "BinPackParameters": "false",
+      \ "BinPackArguments": "false",
+      \ "IndentCaseLabels": "false" }
 " }}} Clang "
 
 " Vim Multiple Cursors {{{ "
