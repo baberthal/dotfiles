@@ -39,6 +39,6 @@ function name-dir() {
     echo "USAGE: name-dir DIR_NAME"
     return 1
   fi
-  echo "${dirname}=`pwd`" >> "${ZEXTRA_DIR}/directories.zsh"
+  echo "hash -d ${dirname}=\"`pwd`\"" >> "${ZEXTRA_DIR}/directories.zsh"
   source "${ZEXTRA_DIR}/directories.zsh"
 }
