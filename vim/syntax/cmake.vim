@@ -67,7 +67,6 @@ syn keyword cmakeOperators
             \ EQUAL
             \ EXISTS
             \ EXT
-            \ FALSE
             \ GREATER
             \ INTERNAL
             \ LESS
@@ -76,8 +75,6 @@ syn keyword cmakeOperators
             \ NAMES
             \ NAME_WE
             \ NOT
-            \ OFF
-            \ ON
             \ OR
             \ PATH
             \ PATHS
@@ -86,10 +83,18 @@ syn keyword cmakeOperators
             \ STRGREATER
             \ STRING
             \ STRLESS
-            \ TRUE
             \ contained
 syn keyword cmakeDeprecated ABSTRACT_FILES BUILD_NAME SOURCE_FILES SOURCE_FILES_REMOVE VTK_MAKE_INSTANTIATOR VTK_WRAP_JAVA VTK_WRAP_PYTHON VTK_WRAP_TCL WRAP_EXCLUDE_FILES
            \ nextgroup=cmakeArguments
+
+syn keyword cmakeConstants
+      \ TRUE
+      \ FALSE
+      \ ON
+      \ OFF
+
+syn keyword cmakeDanger
+      \ force
 
 " The keywords are generated as:  cmake --help-command-list | tr "\n" " " | tr "[:lower:]" "[:upper:]"
 syn keyword cmakeStatement
@@ -229,6 +234,8 @@ if version >= 508 || !exists("did_cmake_syntax_inits")
 
   HiLink cmakeStatement Statement
   HiLink cmakeComment Comment
+  HiLink cmakeConstants Constant
+  HiLink cmakeDanger PreProc
   HiLink cmakeString String
   HiLink cmakeVariableValue Type
   HiLink cmakeSystemVariables Underlined

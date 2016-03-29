@@ -66,6 +66,8 @@ fun! CMakeGetIndent(lnum)
                     \            ')\s*' .
                     \            '\(' . cmake_regex_comment . '\)\?$'
 
+  let cmake_lone_paren_regex = '^\s*)\s*$'
+
   let cmake_indent_begin_regex = '^\s*\(IF\|MACRO\|FOREACH\|ELSE\|ELSEIF\|WHILE\|FUNCTION\)\s*('
   let cmake_indent_end_regex = '^\s*\(ENDIF\|ENDFOREACH\|ENDMACRO\|ELSE\|ELSEIF\|ENDWHILE\|ENDFUNCTION\)\s*('
 
@@ -85,7 +87,12 @@ fun! CMakeGetIndent(lnum)
   if this_line =~? cmake_indent_end_regex
     let ind = ind - &sw
   endif
-  if previous_line =~? cmake_indent_close_regex
+  if this_line =~? cmake_lone_paren_regex
+    let ind = ind - &sw
+  endif
+  if previous_line =~? cmake_lone_paren_regex
+    let ind = ind
+  elseif previous_line =~? cmake_indent_close_regex
     let ind = ind - &sw
   endif
 
