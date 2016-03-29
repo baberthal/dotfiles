@@ -44,3 +44,5 @@ endfunction
 command! -complete=custom,s:RubocopSwitches -nargs=? RbFormat :call <SID>RbFormat(<q-args>)
 
 let &cpo = s:save_cpo
+
+let w:airline_section_x = '%{rvm#statusline()}'

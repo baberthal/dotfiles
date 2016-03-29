@@ -1,5 +1,7 @@
 syn keyword jmlBuiltInOperator typedef struct void enum case switch extern static const NULL
 hi def link jmlBuiltInOperator Statement
+hi link MacroInstantiation Underlined
+hi link MacroDefinition PreProc
 
 " DoxyGen syntax hilighting extension for c/c++/idl/java
 " Language:     doxygen on top of c, cpp, idl, java
@@ -543,7 +545,7 @@ if !exists("did_doxygen_syntax_inits")
     exe 'SynColor doxygenCodeWord             term=bold cterm=bold '.font
     if (exists('g:doxygen_enhanced_color') && g:doxygen_enhanced_color) || (exists('g:doxygen_enhanced_colour') && g:doxygen_enhanced_colour)
       if &background=='light'
-        SynColor doxygenComment ctermfg=DarkRed guifg=DarkRed
+        SynColor doxygenComment ctermfg=DarkGray guifg=DarkGray
         SynColor doxygenBrief cterm=bold ctermfg=Cyan guifg=DarkBlue gui=bold
         SynColor doxygenBody ctermfg=DarkBlue guifg=DarkBlue
         SynColor doxygenSpecialTypeOnelineDesc cterm=bold ctermfg=DarkRed guifg=firebrick3 gui=bold
@@ -554,7 +556,7 @@ if !exists("did_doxygen_syntax_inits")
         SynColor doxygenSpecialHeading cterm=bold ctermfg=DarkBlue guifg=DeepSkyBlue4 gui=bold
         SynColor doxygenPrev ctermfg=DarkGreen guifg=DarkGreen
       else
-        SynColor doxygenComment ctermfg=LightRed guifg=LightRed
+        SynColor doxygenComment ctermfg=LightGray guifg=LightGray
         SynColor doxygenBrief cterm=bold ctermfg=Cyan ctermbg=darkgrey guifg=LightBlue gui=Bold,Italic
         SynColor doxygenBody ctermfg=Cyan guifg=LightBlue
         SynColor doxygenSpecialTypeOnelineDesc cterm=bold ctermfg=Red guifg=firebrick3 gui=bold
