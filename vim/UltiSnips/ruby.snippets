@@ -1,24 +1,24 @@
-snippet its "RSpec - its(:method) { is_expected.to XXX }" i
+snippet its "RSpec - its(:method) { is_expected.to XXX }" w
 its(:${1:method}) { is_expected.to $2 }$0
 endsnippet
 
-snippet iiexp "RSpec - it { is_expected.to XXX }" i
+snippet iiexp "RSpec - it { is_expected.to XXX }" w
 it { is_expected.to $1 }$0
 endsnippet
 
-snippet rdLL "disable rubocop line length" i
+snippet rdLL "disable rubocop line length" w
 # rubocop:disable Metrics/LineLength
 endsnippet
 
-snippet rdAbc "disable rubocop abc size" i
+snippet rdAbc "disable rubocop abc size" w
 # rubocop:disable Metrics/AbcSize
 endsnippet
 
-snippet rdMl "rubocop:disable Metrics/MethodLength" i
+snippet rdMl "rubocop:disable Metrics/MethodLength" w
 # rubocop:disable Metrics/MethodLength
 endsnippet
 
-snippet rdAM "rubocop:disable Metrics/MethodLength,AbcSize" i
+snippet rdAM "rubocop:disable Metrics/MethodLength,AbcSize" w
 # rubocop:disable Metrics/MethodLength,AbcSize
 endsnippet
 
@@ -26,11 +26,11 @@ snippet rd "rubocop:disable" w
 # rubocop:disable $0
 endsnippet
 
-snippet rea "rubocop:enable All" i
+snippet rea "rubocop:enable All" w
 # rubocop:enable All $0
 endsnippet
 
-snippet alias "alias_method" i
+snippet aliasm "alias_method" w
 alias_method :${1:new_name}, :${2:old_name}$0
 endsnippet
 
@@ -70,4 +70,8 @@ snippet claself "class << self" w
 class << self
 	$1
 end$0
+endsnippet
+
+snippet inc "include '[Module]'" b
+include ${1:Module}$0
 endsnippet
