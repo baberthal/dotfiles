@@ -338,6 +338,7 @@ augroup defaults
   autocmd StdinReadPre * let s:std_in=1
   autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
   autocmd BufEnter * filetype detect
+  au! BufRead,BufNewFile *.ll     set filetype=llvm
 augroup END
 
 autocmd FileType coffee set commentstring=#\ %s
