@@ -1,0 +1,331 @@
+
+# 2016-03-02 20:13:23.902734
++l
+
+# 2016-03-02 20:13:25.684384
++pwd
+
+# 2016-03-02 20:13:47.446659
++ls
+
+# 2016-03-02 20:13:49.900914
++p
+
+# 2016-03-02 20:13:56.475968
++import sys
+
+# 2016-03-02 20:14:00.440800
++import clang.cindex
+
+# 2016-03-02 20:26:24.207620
++l
+
+# 2016-03-02 20:35:20.794412
++quit
+
+# 2016-03-02 20:48:37.165411
++ls
+
+# 2016-03-02 20:48:47.915388
++import sys
+
+# 2016-03-02 20:48:49.751868
++import clang.cindex
+
+# 2016-03-02 20:51:45.492150
++index = clang.cindex.Index.create()
+
+# 2016-03-02 20:52:42.002549
++import clang.cindex
+
+# 2016-03-02 20:52:47.102307
++import symbol
+
+# 2016-03-02 20:52:49.070056
++import sys
+
+# 2016-03-02 20:52:58.582401
++index = clang.cindex.Index.create()
+
+# 2016-03-02 20:53:16.285298
++tu = index.parse("bstrlib.c")
+
+# 2016-03-02 20:53:29.550513
++print 'Translation unit:', tu.spelling
+
+# 2016-03-04 04:00:24.245059
++import os
+
+# 2016-03-04 04:00:46.925890
++def PathOfThisScript():
++    os.path.abspath(__file__)
+
+# 2016-03-04 04:00:49.029751
++PathOfThisScript
+
+# 2016-03-04 04:00:52.136933
++PathOfThisScript()
+
+# 2016-03-23 00:22:14.739136
++ls
+
+# 2016-03-23 00:23:41.540861
++sys.path
+
+# 2016-03-23 00:23:44.577408
++import sys
+
+# 2016-03-23 00:23:45.906964
++sys.path
+
+# 2016-03-23 00:25:49.348454
++import os
+
+# 2016-03-23 00:25:58.640734
++os.path.dirname(__file__)
+
+# 2016-03-23 00:26:24.213266
++sys.path.append('./script')
+
+# 2016-03-23 00:26:27.718198
++sys.path
+
+# 2016-03-23 00:26:46.351335
++from jml_find_compile_commands import PossibleCompilationDatabase
+
+# 2016-03-23 00:26:48.093870
++PossibleCompilationDatabase
+
+# 2016-03-23 00:26:50.246309
++PossibleCompilationDatabase()
+
+# 2016-03-23 00:27:04.083307
++from jml_find_compile_commands import *
+
+# 2016-03-23 00:27:11.491933
++ls
+
+# 2016-03-23 00:27:24.356441
++__compile_commands_search_directories()
+
+# 2016-03-23 00:27:35.779777
++import sys
+
+# 2016-03-23 00:27:38.651829
++sys.path.append('./script')
+
+# 2016-03-23 00:27:48.421037
++import jml_find_compile_commands
+
+# 2016-03-23 00:27:55.429492
++jml_find_compile_commands.__compile_commands_search_directories()
+
+# 2016-03-23 00:28:50.989771
++import sys
+
+# 2016-03-23 00:28:52.933757
++sys.path.append('./script')
+
+# 2016-03-23 00:28:57.606296
++import jml_find_compile_commands
+
+# 2016-03-23 00:28:59.382677
++jml_find_compile_commands.__compile_commands_search_directories()
+
+# 2016-03-23 00:29:07.278755
++jml_find_compile_commands.PossibleCompilationDatabase
+
+# 2016-03-23 00:29:09.694741
++jml_find_compile_commands.PossibleCompilationDatabase()
+
+# 2016-03-23 00:30:50.859877
++sys.path.append('./script')
+
+# 2016-03-23 00:30:53.848079
++import sys
+
+# 2016-03-23 00:30:54.848005
++sys.path.append('./script')
+
+# 2016-03-23 00:30:57.945324
++import jml_find_compile_commands
+
+# 2016-03-23 00:31:37.413011
++jml_find_compile_commands.PossibleCompilationDatabase('/Users/morgan/projects/c_family/oclink/')
+
+# 2016-03-23 00:31:59.465642
++import sys
+
+# 2016-03-23 00:32:00.681942
++sys.path.append('./script')
+
+# 2016-03-23 00:32:02.106895
++import jml_find_compile_commands
+
+# 2016-03-23 00:32:03.882718
++jml_find_compile_commands.PossibleCompilationDatabase('/Users/morgan/projects/c_family/oclink/')
+
+# 2016-03-23 00:32:48.851045
++import sys
+
+# 2016-03-23 00:32:50.074901
++sys.path.append('./script')
+
+# 2016-03-23 00:32:51.188331
++import jml_find_compile_commands
+
+# 2016-03-23 00:32:52.419659
++jml_find_compile_commands.PossibleCompilationDatabase('/Users/morgan/projects/c_family/oclink/')
+
+# 2016-03-29 15:57:09.820368
++import tensorflow as tf
+
+# 2016-03-29 16:05:23.371652
++import tensorflow
+
+# 2016-03-29 16:06:37.547003
++import tensorflow as tf
+
+# 2016-03-29 16:09:29.291564
++hello = tf.constant('Hello, Tensorflow!')
+
+# 2016-03-29 16:10:45.060079
++sess = tf.Session()
+
+# 2016-03-29 16:10:51.524707
++print(sess.run(hello))
+
+# 2016-03-29 16:11:01.884059
++a = tf.constant(10)
+
+# 2016-03-29 16:11:06.310640
++b - tf.constant(32)
+
+# 2016-03-29 16:11:10.907886
++b = tf.constant(32)
+
+# 2016-03-29 16:11:16.549874
++print(sess.run(a + b))
+
+# 2016-03-30 21:32:35.968162
++import fontforge
+
+# 2016-03-30 21:33:24.439152
++import psMat
+
+# 2016-03-30 21:46:32.615284
++a
+
+# 2016-03-30 21:46:34.684148
++87
+
+# 2016-03-30 21:58:59.336838
++a
+
+# 2016-03-30 21:59:01.395702
++8
+
+# 2016-03-30 22:04:28.841269
++ls
+
+# 2016-03-30 22:04:31.463255
++help
+
+# 2016-03-30 22:04:38.698762
++help()
+
+# 2016-03-30 22:04:40.167348
++ls
+
+# 2016-03-30 22:04:43.624075
++pwd
+
+# 2016-03-30 22:04:47.103775
++ls
+
+# 2016-03-30 22:05:25.472377
++JMLPrompt()
+
+# 2016-03-30 22:05:46.809133
++import config
+
+# 2016-03-30 22:06:17.662393
++config._solarized_ui_style
+
+# 2016-03-30 22:06:51.203130
++from pygments.formatters import terminal
+
+# 2016-03-30 22:07:17.281434
++terminal.TerminalFormatter(style=config._solarized_ui_style).style
+
+# 2016-03-30 22:07:48.144961
++from pygments.formatters.terminal import TerminalFormatter
+
+# 2016-03-30 22:08:59.721297
++from ptpython.style import generate_style
+
+# 2016-03-30 22:24:09.185331
++from jml_styles import JMLCodeStyle
+
+# 2016-03-30 22:25:08.206173
++from pygments.formatters.terminal import TerminalFormatter
+
+# 2016-03-30 22:36:35.783539
++sys.path
+
+# 2016-03-30 22:36:41.444373
++os.path.dirname
+
+# 2016-03-30 22:36:44.410962
++import os
+
+# 2016-03-30 22:36:46.803375
++os.path.dirname
+
+# 2016-03-30 22:36:50.403291
++os.path.dirname('.')
+
+# 2016-03-30 22:37:01.892340
++os.path.dirname(os.path.abspath('.'))
+
+# 2016-03-30 23:41:26.310464
++import mock
+
+# 2016-03-30 23:41:39.921706
++from mock import MagicMock
+
+# 2016-03-30 23:41:43.812592
++repl
+
+# 2016-03-30 23:41:48.322000
++repl = MagicMock()
+
+# 2016-03-30 23:41:50.834027
++repl
+
+# 2016-03-30 23:42:00.074282
++repl.mock_calls
+
+# 2016-03-30 23:42:03.849954
++repl.hello
+
+# 2016-03-30 23:42:06.042081
++repl.mock_calls
+
+# 2016-03-30 23:58:56.884342
++from ptpython.python_input import PythonInput
+
+# 2016-03-30 23:59:01.902303
++PythonInput.__dir__
+
+# 2016-03-30 23:59:15.316816
++PythonInput.dr
+
+# 2016-03-30 23:59:17.196765
++PythonInput.dir
+
+# 2016-03-30 23:59:21.885460
++dir(PythonInput)
+
+# 2016-03-30 23:59:38.941123
++dir(PythonInput())

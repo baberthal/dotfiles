@@ -30,6 +30,7 @@ endif
 syn case ignore
 syn match cmakeEscaped /\(\\\\\|\\"\|\\n\|\\t\)/ contained
 syn region cmakeComment start="#" end="$" contains=cmakeTodo
+syn region cmakeBlkComment start="#\[" end="\]" contains=cmakeTodo
 syn region cmakeRegistry start=/\[/ end=/]/
             \ contained oneline contains=CONTAINED,cmakeTodo,cmakeEscaped
 syn region cmakeVariableValue start=/\${/ end=/}/
@@ -39,7 +40,7 @@ syn region cmakeEnvironment start=/\$ENV{/ end=/}/
 syn region cmakeString start=/"/ end=/"/
             \ contains=CONTAINED,cmakeTodo,cmakeOperators
 syn region cmakeArguments start=/(/ end=/)/
-            \ contains=ALLBUT,cmakeArguments,cmakeTodo
+            \ contains=ALLBUT,cmakeTodo
 syn keyword cmakeSystemVariables
             \ WIN32
             \ UNIX
@@ -234,6 +235,7 @@ if version >= 508 || !exists("did_cmake_syntax_inits")
 
   HiLink cmakeStatement Statement
   HiLink cmakeComment Comment
+  HiLink cmakeBlkComment Comment
   HiLink cmakeConstants Constant
   HiLink cmakeDanger PreProc
   HiLink cmakeString String

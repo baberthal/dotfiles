@@ -1,11 +1,119 @@
+snippet init "initialize a project" b
+cmake_minimum_required(VERSION ${1:3.2.0})
+project(${2:ProjectName})
+
+find_package(${3:library})
+
+include_directories(${$3_INCLUDE_DIRS})
+
+add_subdirectory(${0:src})
+
+add_executable($2)
+
+target_link_libraries($2 ${$3_LIBRARIES})
+endsnippet
+
+snippet proj "project" b
+project(${1:name})$0
+endsnippet
+
+snippet min "cmake_minimum_required" b
+cmake_minimum_required(VERSION ${1:3.2.0})$0
+endsnippet
+
+snippet include "include_directories" b
+include_directories(${${1:include_dir}})$0
+endsnippet
+
+snippet inc "include(Module)" b
+include(${1:Module})$0
+endsnippet
+
+snippet find "find_package" b
+find_package(${1:library} ${2:REQUIRED})$0
+endsnippet
+
+snippet glob "file(GLOB..." b
+file(GLOB ${2:srcs} *.${1:cpp})$0
+endsnippet
+
+snippet subdir "add_subdirectory" b
+add_subdirectory(${1:src})$0
+endsnippet
+
+snippet lib "add_library" b
+add_library(${2:lib} ${${1:srcs}})$0
+endsnippet
+
+snippet link "target_link_libraries" b
+target_link_libraries(${2:bin} ${1:somelib})$0
+endsnippet
+
+snippet exe "add_executable" b
+add_executable(${1:bin})$0
+endsnippet
+
+snippet set "set" b
+set(${1:var} ${2:val})$0
+endsnippet
+
+snippet dep "add_dependencies" b
+add_dependencies(${1:target}
+	${0:dep}
+)
+endsnippet
+
+snippet Ext_url "ExternalProject_Add(url)" b
+include(ExternalProject)
+ExternalProject_Add(${1:googletest}
+	URL ${2:http://googletest.googlecode.com/files/gtest-1.7.0.zip}
+	URL_HASH SHA1=${3:f85f6d2481e2c6c4a18539e391aa4ea8ab0394af}
+	SOURCE_DIR "${4:${CMAKE_BINARY_DIR}/gtest-src}"
+	BINARY_DIR "${0:${CMAKE_BINARY_DIR}/gtest-build}"
+	CONFIGURE_COMMAND ""
+	BUILD_COMMAND     ""
+	INSTALL_COMMAND   ""
+	TEST_COMMAND      ""
+)
+endsnippet
+
+snippet Ext_git "ExternalProject_Add(git)" b
+include(ExternalProject)
+ExternalProject_Add(${1:googletest}
+	GIT_REPOSITORY    ${2:https://github.com/google/googletest.git}
+	GIT_TAG           ${3:master}
+	SOURCE_DIR        "${4:${CMAKE_BINARY_DIR}/googletest-src}"
+	BINARY_DIR        "${0:${CMAKE_BINARY_DIR}/googletest-build}"
+	CONFIGURE_COMMAND ""
+	BUILD_COMMAND     ""
+	INSTALL_COMMAND   ""
+	TEST_COMMAND      ""
+)
+endsnippet
+
+snippet props "Properties " b
+set_target_properties(${1:target}
+	${2:properties} ${3:compile_flags}
+	${0:"-O3 -Wall -pedantic"}
+)
+endsnippet
+
+snippet test "add_test" b
+add_test(${1:ATestName} ${0:testCommand --options})
+endsnippet
+
 snippet if "cmake if" b
 if(${1:condition})
-	$2
+$2
 endif($1)$0
 endsnippet
 
 snippet fun "function" b
 function(${1:function_name} ${2:args})
-	$0
+$0
 endfunction($1)
+endsnippet
+
+snippet opt "option" b
+option(${1:option} "${2:docstring}" ${3:ON})$0
 endsnippet

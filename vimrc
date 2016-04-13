@@ -48,6 +48,7 @@ Plugin 'keith/rspec.vim'
 Plugin 'tpope/vim-fugitive'
 Plugin 'ecomba/vim-ruby-refactoring'
 Plugin 'tpope/vim-rvm'
+Plugin 'noprompt/vim-yardoc'
 
 " Vanilla JS
 Plugin 'kchmck/vim-coffee-script'
@@ -66,7 +67,7 @@ Plugin 'cespare/vim-toml'
 Plugin 'wesQ3/vim-windowswap'
 
 " File search, other good stuff
-Plugin 'kien/ctrlp.vim'
+Plugin 'ctrlpvim/ctrlp.vim'
 Plugin 'scrooloose/nerdtree'
 Plugin 'Xuyuanp/nerdtree-git-plugin'
 Plugin 'jlanzarotta/bufexplorer'
@@ -129,7 +130,7 @@ set t_Co=256
 set fillchars+=stl:\ ,stlnc:\
 set term=xterm-256color
 set termencoding=utf-8
-set tags=./tags,./.git/tags;
+set tags=./tags,./.git/tags,./build/tags;
 
 " No scroll bars in gvim mode
 set guioptions-=r
@@ -148,7 +149,7 @@ endif
 set pvh=20
 
 set fdm=marker
-set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*.png,*/node_modules/*
+set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*.png,*/node_modules/*,.DS_Store
 set shell=/bin/sh
 
 " Hack for vertical line cursor when in insert mode while running in tmux
@@ -402,15 +403,15 @@ let g:UltiSnipsListSnippets = "<c-l>"
 let g:clang_format#command = "/usr/local/Cellar/llvm/3.8.0/bin/clang-format"
 let g:clang_format#detect_style_file = 1
 let g:clang_format#auto_format = 1
-let g:clang_format#style_options = {
-      \ "AccessModifierOffset": -4,
-      \ "IndentWidth": 4,
-      \ "AllowShortIfStatementsOnASingleLine": "true",
-      \ "AllowShortFunctionsOnASingleLine": "Empty",
-      \ "BreakBeforeBraces": "Stroustrup",
-      \ "BinPackParameters": "false",
-      \ "BinPackArguments": "false",
-      \ "IndentCaseLabels": "false" }
+" let g:clang_format#style_options = {
+"       \ "AccessModifierOffset": -4,
+"       \ "IndentWidth": 4,
+"       \ "AllowShortIfStatementsOnASingleLine": "true",
+"       \ "AllowShortFunctionsOnASingleLine": "Empty",
+"       \ "BreakBeforeBraces": "Stroustrup",
+"       \ "BinPackParameters": "false",
+"       \ "BinPackArguments": "false",
+"       \ "IndentCaseLabels": "false" }
 " }}} Clang "
 
 " Vim Multiple Cursors {{{ "

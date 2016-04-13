@@ -7,6 +7,9 @@ from prompt_toolkit.keys import Keys
 from pygments.token import Token
 from ptpython.layout import CompletionVisualisation
 from ptpython.style import default_ui_style
+from ptpython.prompt_style import PromptStyle
+from jml_styles.jml_code_style import JMLCodeStyle
+from jml_styles.jml_prompt import JMLPrompt, jml_ui_style
 
 __all__ = (
     'configure',
@@ -18,6 +21,9 @@ def configure(repl):
     Configuration method. This is called during the start-up of ptpython.
     :param repl: `PythonRepl` instance.
     """
+
+    repl.all_prompt_styles['jml'] = JMLPrompt(repl)
+
     # Show function signature (bool).
     repl.show_signature = True
 
@@ -36,7 +42,7 @@ def configure(repl):
     repl.completion_menu_scroll_offset = 0
 
     # Show line numbers (when the input contains multiple lines.)
-    repl.show_line_numbers = True
+    repl.show_line_numbers = False
 
     # Show status bar.
     repl.show_status_bar = True
@@ -45,7 +51,7 @@ def configure(repl):
     repl.show_sidebar_help = True
 
     # Highlight matching parethesis.
-    repl.highlight_matching_parenthesis = True
+    repl.highlight_matching_parenthesis = False
 
     # Line wrapping. (Instead of horizontal scrolling.)
     repl.wrap_lines = True
@@ -64,7 +70,7 @@ def configure(repl):
     repl.paste_mode = False
 
     # Use the classic prompt. (Display '>>>' instead of 'In [1]'.)
-    repl.prompt_style = 'classic'  # 'classic' or 'ipython'
+    repl.prompt_style = 'jml'  # 'classic' or 'ipython'
 
     # History Search.
     # When True, going back in history will filter the history on the records
@@ -94,15 +100,15 @@ def configure(repl):
     repl.enable_input_validation = True
 
     # Use this colorscheme for the code.
-    repl.use_code_colorscheme('pastie')
+    repl.use_code_colorscheme('jml_code')
 
     # Enable 24bit True color. (Not all terminals support this. -- maybe check
     # $TERM before changing.)
     repl.true_color = False
 
     # Install custom colorscheme named 'my-colorscheme' and use it.
-    repl.install_ui_colorscheme('solarized-ui-colorscheme', _solarized_ui_style)
-    repl.use_ui_colorscheme('solarized-ui-colorscheme')
+    repl.install_ui_colorscheme('jml-ui-colorscheme', jml_ui_style)
+    repl.use_ui_colorscheme('jml-ui-colorscheme')
 
     # Add custom key binding for PDB.
     @repl.add_key_binding(Keys.ControlB)
@@ -142,14 +148,17 @@ def configure(repl):
 _solarized_ui_style = {}
 _solarized_ui_style.update(default_ui_style)
 _solarized_ui_style.update({
-    Token.Layout.Prompt:                          'bg:#eeeeff #000000 bold',
-    Token.Toolbar.Status:                         'bg:#000000 #839496',
-    Token.Toolbar.Status.InputMode:               'bg:#000000 #2aa198',
-    Token.Toolbar.Status.Key:                     'bg:#000000 #cb4b16 bold',
-    Token.Toolbar.Status.PythonVersion:           'bg:#000000 #6c71c4',
+    Token.Prompt.Default:                   '#93a1a1 nobold',
+    Token.Prompt.Number:                    '#6c71c4',
+    Token.Prompt.Name:                      '#b58900 nobold',
 
-    Token.Out:                                    '#839496',
-    Token.Out.Number:                             '#2aa198',
+    Token.Toolbar.Status:                   'bg:#000000 #839496',
+    Token.Toolbar.Status.InputMode:         'bg:#000000 #2aa198',
+    Token.Toolbar.Status.Key:               'bg:#000000 #cb4b16 bold',
+    Token.Toolbar.Status.PythonVersion:     'bg:#000000 #6c71c4',
+
+    Token.Out:                              '#839496',
+    Token.Out.Number:                       '#2aa198',
 
     Token.Toolbar.Search: '#22aaaa noinherit',
     Token.Toolbar.Search.Text: 'noinherit',

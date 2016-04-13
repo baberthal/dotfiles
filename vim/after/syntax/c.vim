@@ -2,6 +2,7 @@ syn keyword jmlBuiltInOperator typedef struct void enum case switch extern stati
 hi def link jmlBuiltInOperator Statement
 hi link MacroInstantiation Underlined
 hi link MacroDefinition PreProc
+syn region cBlockBlock start="\^{" end="}" contains=ALLBUT,cBadBlock,cCurlyError,@cParenGroup,cErrInParen,cCppParen,cErrInBracket,cCppBracket,@cStringGroup,@Spell fold
 
 " DoxyGen syntax hilighting extension for c/c++/idl/java
 " Language:     doxygen on top of c, cpp, idl, java
