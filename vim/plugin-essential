@@ -1,0 +1,50 @@
+#!/usr/bin/env zsh
+
+plugins=(
+baberthal/vim-colors-solarized
+scrooloose/syntastic
+godlygeek/tabular
+junegunn/vim-easy-align
+tpope/vim-endwise
+Raimondi/delimitMate
+edsono/vim-matchit
+tpope/vim-surround
+tpope/vim-sleuth
+tpope/vim-repeat
+tpope/vim-rails
+tpope/vim-bundler
+vim-ruby/vim-ruby
+keith/rspec.vim
+tpope/vim-fugitive
+ecomba/vim-ruby-refactoring
+tpope/vim-rvm
+noprompt/vim-yardoc
+ctrlpvim/ctrlp.vim
+scrooloose/nerdtree
+Xuyuanp/nerdtree-git-plugin
+jlanzarotta/bufexplorer
+terryma/vim-multiple-cursors
+tpope/vim-commentary
+christoomey/vim-tmux-navigator
+SirVer/ultisnips
+honza/vim-snippets
+Valloric/YouCompleteMe
+ervandew/supertab
+vim-airline/vim-airline
+vim-airline/vim-airline-themes
+baberthal/vim-syntax-extra
+rhysd/vim-clang-format
+jeaye/color_coded
+mrtazz/DoxygenToolkit.vim
+tpope/vim-scriptease
+rust-lang/rust.vim
+wesQ3/vim-windowswap
+cespare/vim-toml
+tmux-plugins/vim-tmux
+)
+
+for plugin in $plugins; do
+    echo "${plugin}" "===>" "bundle/${plugin##*/}"
+    git submodule add "http://github.com/${plugin}.git" "bundle/${plugin##*/}"
+    echo
+done
