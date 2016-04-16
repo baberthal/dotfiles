@@ -139,3 +139,6 @@
 [submodule "vim/bundle/vim-tmux"]
 	path = vim/bundle/vim-tmux
 	url = http://github.com/tmux-plugins/vim-tmux.git
+[submodule "vim/bundle/vim-lldb"]
+	path = vim/bundle/vim-lldb
+	url = https://github.com/gilligan/vim-lldb.git
