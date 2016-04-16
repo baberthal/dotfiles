@@ -1,3 +1,11 @@
 snippet prag "#pragma" b
 #pragma $0
 endsnippet
+
+snippet tdb "typedef block" b
+typedef ${1:return_type}(^${2:block_name})(${3:block_params});$0
+endsnippet
+
+snippet tdf "typedef function pointer" b
+typedef ${1:return_type}(*${2:type_name})(${3:func_params});$0
+endsnippet

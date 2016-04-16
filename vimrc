@@ -83,6 +83,7 @@ Plugin 'baberthal/vim-syntax-extra'
 Plugin 'rhysd/vim-clang-format'
 Plugin 'jeaye/color_coded'
 Plugin 'mrtazz/DoxygenToolkit.vim'
+" Plugin 'file:///opt/src/llvm/tools/lldb/', { 'rtp': 'utils/vim-lldb' }
 
 " snipmate
 " Plugin 'MarcWeber/vim-addon-mw-utils'
@@ -188,6 +189,8 @@ nmap <silent> <Leader>- :tabmove -1<CR>
 nmap <silent> <Leader>] :tabnext<CR>
 nmap <silent> <Leader>[ :tabprevious<CR>
 nnoremap <silent> <C-K> <C-T>
+nmap <Leader>gst :Gstatus<CR>
+nmap <Leader>gc :Gcommit<CR>
 
 " Yank text to the OS X Clipboard
 noremap <leader>y "*y
@@ -202,6 +205,8 @@ nnoremap <silent><buffer> K <Esc>:Dash <C-R><C-W><CR>
 nmap <silent> <leader>hl :set hlsearch! hlsearch?<CR>
 nmap <leader>vs :vsplit<CR>
 nmap <leader>hs :split<CR>
+
+nmap <F9> :YcmCompleter FixIt<CR>
 
 map <F10> :echo "hi<"
       \ . synIDattr(synID(line("."),col("."),1),"name") . '> trans<'

@@ -1,5 +1,5 @@
 setlocal commentstring=#\ %s
-setlocal sw=4
+setlocal sw=2
 setlocal et
 
 nmap ,hc :call OpenCmakeHelp()<CR>
