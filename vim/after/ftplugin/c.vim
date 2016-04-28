@@ -1,4 +1,4 @@
-set sw=4
-set et
-set tw=80
-set colorcolumn=101
+setlocal sw=4
+setlocal et
+setlocal tw=80
+setlocal colorcolumn=81

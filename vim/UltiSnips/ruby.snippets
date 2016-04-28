@@ -27,7 +27,7 @@ snippet rd "rubocop:disable" w
 endsnippet
 
 snippet rea "rubocop:enable All" w
-# rubocop:enable All $0
+# rubocop:enable all $0
 endsnippet
 
 snippet aliasm "alias_method" w
@@ -74,4 +74,8 @@ endsnippet
 
 snippet inc "include '[Module]'" b
 include ${1:Module}$0
+endsnippet
+
+snippet ecla "error class" b
+class ${1:MyErrorClass} < ${2:StandardError}${3:; }${3/(; )/(?1::\t)/}$4${3/(; )/(?1::\n)/}end
 endsnippet

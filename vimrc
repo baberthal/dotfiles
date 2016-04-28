@@ -138,11 +138,6 @@ let g:taboo_renamed_tab_format = "%l %m"
 
 " User-Defined Functions {{{ "
 "Toggle numbers from relative to absolute
-function! FindRubocopYml()
-  if filereadable(".rubocop.yml")
-  endif
-endfunction
-
 function! NumberToggle()
   if(&relativenumber == 1)
     set norelativenumber
@@ -244,8 +239,8 @@ augroup defaults
   autocmd BufWritePre * :%s/\s\+$//e
   autocmd StdinReadPre * let s:std_in=1
   autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
+  " autocmd BufEnter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
   autocmd BufEnter * filetype detect
-  au! BufRead,BufNewFile *.ll     set filetype=llvm
 augroup END
 
 autocmd FileType coffee set commentstring=#\ %s
@@ -291,9 +286,9 @@ let g:ycm_autoclose_preview_window_after_insertion = 1
 
 let g:ycm_rust_source_path = '/opt/src/rust'
 
-let g:ycm_key_list_select_completion = ['<C-n>', '<Down>']
+let g:ycm_key_list_select_completion = ['<C-j>', '<Down>']
 let g:ycm_key_list_previous_completion = ['<C-p>', '<Up>']
-let g:SuperTabDefaultCompletionType = '<C-n>'
+let g:SuperTabDefaultCompletionType = '<C-j>'
 
 let g:UltiSnipsEnableSnipMate = 1
 let g:UltiSnipsExpandTrigger = "<tab>"
