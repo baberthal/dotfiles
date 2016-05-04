@@ -151,3 +151,21 @@
 [submodule "vim/bundle/vim-textobj-rubyblock"]
 	path = vim/bundle/vim-textobj-rubyblock
 	url = https://github.com/nelstrom/vim-textobj-rubyblock.git
+[submodule "vim/bundle/typescript-vim"]
+	path = vim/bundle/typescript-vim
+	url = https://github.com/leafgarland/typescript-vim.git
+[submodule "vim/bundle/vim-node"]
+	path = vim/bundle/vim-node
+	url = https://github.com/moll/vim-node.git
+[submodule "vim/bundle/vim-javascript"]
+	path = vim/bundle/vim-javascript
+	url = https://github.com/pangloss/vim-javascript.git
+[submodule "vim/bundle/yajs.vim"]
+	path = vim/bundle/yajs.vim
+	url = https://github.com/othree/yajs.vim.git
+[submodule "vim/bundle/javascript-libraries-syntax.vim"]
+	path = vim/bundle/javascript-libraries-syntax.vim
+	url = https://github.com/othree/javascript-libraries-syntax.vim.git
+[submodule "vim/bundle/yats.vim"]
+	path = vim/bundle/yats.vim
+	url = https://github.com/HerringtonDarkholme/yats.vim.git
