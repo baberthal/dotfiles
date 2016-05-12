@@ -48,12 +48,16 @@ export LANG=en_US.UTF-8
 export LC_ALL=en_US.UTF-8
 export KEYTIMEOUT=1
 export LESS='-F -g -i -M -R -S -w -X -z-4'
+export HOMEBREW_BUILD_FROM_SOURCE=1
 
 # Set the Less input preprocessor.
 # Try both `lesspipe` and `lesspipe.sh` as either might exist on a system.
 if (( $#commands[(i)lesspipe(|.sh)] )); then
   export LESSOPEN="| /usr/bin/env $commands[(i)lesspipe(|.sh)] %s 2>&-"
 fi
+
+export NVMDIR="${HOME}/.nvm"
+[[ -s "${NVMDIR}/nvm.sh" ]] && . "${NVMDIR}/nvm.sh"
 
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"
 export PATH="$PATH:$HOME/.rvm/bin"

@@ -117,8 +117,6 @@ map <F10> :echo "hi<"
 " }}} Remaps "
 
 " One-Off Plugin Settings {{{ "
-" JS Library syntax highlighting
-let g:used_javascript_libs = 'jquery, angularjs, angularui, jasmine, chai, underscore angularuirouter'
 
 " bufExplorer options
 let g:bufExplorerShowRelativePath=1
@@ -135,6 +133,10 @@ let g:taboo_modified_tab_flag = "+"
 let g:taboo_renamed_tab_format = "%l %m"
 
 " }}} One-Off Plugin Settings "
+
+" Javascript {{{ "
+let g:used_javascript_libs = 'jquery,jasmine,chai,underscore,angularjs,angularui'
+" }}} Javascript "
 
 " User-Defined Functions {{{ "
 "Toggle numbers from relative to absolute
@@ -258,12 +260,12 @@ nnoremap <silent> <C-\> :TmuxNavigatePrevious<cr>
 
 " Syntastic {{{ "
 " No warnings for ng- directives, haml bs
-let g:syntastic_html_tidy_ignore_errors =[ " proprietary attribute \"ng-",
+let g:syntastic_html_tidy_ignore_errors =[ " proprietary attribute ",
       \"is not recognized!", "discarding unexpected",
       \"trimming empty <", "unescaped &",
       \ "lacks \"action"]
 
-let g:syntastic_javascript_checkers = ['jshint']
+let g:syntastic_javascript_checkers = ['eslint']
 let g:syntastic_haml_checkers = ['haml_lint']
 let g:syntastic_ruby_checkers = ['mri', 'rubocop']
 let g:systastic_ruby_exec = $rvm_path . "/rubies/" . $RUBY_VERSION . "/bin/ruby"
@@ -271,7 +273,7 @@ let g:systastic_ruby_exec = $rvm_path . "/rubies/" . $RUBY_VERSION . "/bin/ruby"
 let g:syntastic_c_checkers = ['clang_check', 'make']
 let g:syntastic_c_clang_check_post_args = ""
 
-
+let g:syntastic_typescript_checkers = ['tslint']
 
 " }}} Syntastic "
 
@@ -301,7 +303,7 @@ let g:UltiSnipsListSnippets = "<c-l>"
 " }}} YouCompleteMe / UltiSnips "
 
 " Clang {{{ "
-let g:clang_format#command = "/usr/local/Cellar/llvm/3.8.0/bin/clang-format"
+let g:clang_format#command = "/usr/local/bin/clang-format"
 let g:clang_format#detect_style_file = 1
 let g:clang_format#auto_format = 1
 " let g:clang_format#style_options = {

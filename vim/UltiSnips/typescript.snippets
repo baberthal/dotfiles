@@ -1,0 +1,35 @@
+snippet desc "describe()" w
+describe("${1:Description:string}", () => {
+	$0
+});
+endsnippet
+
+
+snippet = "() => {}" i
+($1)${2:: returnType} => {
+	$0
+}
+endsnippet
+
+snippet - "() => <T>" i
+($1) => ${2:string}
+endsnippet
+
+snippet bef "beforeEach" b
+beforeEach($1);
+$0
+endsnippet
+
+snippet it "it(...)" w
+it("${1:does something}", inject(($2) => {
+	$3
+}));$0
+endsnippet
+
+snippet exp "expect(...)" w
+expect(${1:object}).${2:toEqual}(${3:something});$0
+endsnippet
+
+snippet expn "expect(...).not" w
+expect(${1:object}).not.${2:toEqual}(${3:something});$0
+endsnippet
