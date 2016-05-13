@@ -24,9 +24,7 @@ plugins=(
   zeus
 )
 
-if [[ -f "$ZEXTRA_DIR/completions.zsh" ]]; then
-  source "$ZEXTRA_DIR/completions.zsh"
-fi
+[[ -f "$ZEXTRA_DIR/completions.zsh" ]] && source "$ZEXTRA_DIR/completions.zsh"
 setopt autonamedirs
 unset zle_bracketed_paste
 
@@ -38,11 +36,11 @@ bindkey -v
 # export MANPATH="/usr/local/man:$MANPATH"
 export PATH=$HOME/bin:$PATH
 source $ZSH/oh-my-zsh.sh
-source ~/bin/tmuxinator.zsh
+[[ -f "${HOME}/bin/tmuxinator.zsh" ]] && source "${HOME}/bin/tmuxinator.zsh"
 source $ZEXTRA_DIR/aliases.zsh
 source $ZEXTRA_DIR/directories.zsh
 export RANGER_LOAD_DEFAULT_RC=false
-source $ZEXTRA_DIR/zsh-autoenv/autoenv.zsh
+[[ -f "${ZEXTRA_DIR}/zsh-autoenv/autoenv.zsh" ]] && source "${ZEXTRA_DIR}/zsh-autoenv/autoenv.zsh"
 
 export LANG=en_US.UTF-8
 export LC_ALL=en_US.UTF-8
@@ -62,6 +60,7 @@ export NVMDIR="${HOME}/.nvm"
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"
 export PATH="$PATH:$HOME/.rvm/bin"
 compinit -u
+source "/usr/local/bin/aws_zsh_completer.sh"
 
 export WORKON_HOME="${HOME}/projects/python/.virtualenv"
 export PROJECT_HOME="${HOME}/projects/python"
