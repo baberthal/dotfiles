@@ -32,7 +32,7 @@ set t_Co=256
 set fillchars+=stl:\ ,stlnc:\
 set term=xterm-256color
 set termencoding=utf-8
-set tags=./tags,./.git/tags,./build/tags;
+set tags=./tags,./.git/tags,./build/tags,./.git/bundler.tags,./.git/stdlib.tags;
 
 " No scroll bars in gvim mode
 set guioptions-=r
@@ -120,7 +120,7 @@ map <F10> :echo "hi<"
 
 " bufExplorer options
 let g:bufExplorerShowRelativePath=1
-
+let g:VimuxUseNearest = 0
 
 " ----EASY ALIGN SETTINGS----
 vnoremap <silent> <Enter> :EasyAlign<CR>
@@ -135,8 +135,12 @@ let g:taboo_renamed_tab_format = "%l %m"
 " }}} One-Off Plugin Settings "
 
 " Javascript {{{ "
-let g:used_javascript_libs = 'jquery,jasmine,chai,underscore,angularjs,angularui'
+let g:used_javascript_libs = 'jquery,jasmine,underscore,angularjs,angularui,angularuirouter'
 " }}} Javascript "
+
+" Dart {{{ "
+let g:dart_style_guide = 1
+" }}} Dart "
 
 " User-Defined Functions {{{ "
 "Toggle numbers from relative to absolute
@@ -228,6 +232,15 @@ function! SynStack()
   echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')
 endfunction
 
+function! s:Format()
+  if !exists("g:clang_format_py")
+    let g:clang_format_py = "/usr/local/opt/llvm/share/clang/clang-format.py"
+  endif
+
+  exec "pyf " . g:clang_format_py
+endfunction
+
+command! Format call s:Format()
 "
 " }}} User-Defined Functions "
 
@@ -243,6 +256,9 @@ augroup defaults
   autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
   " autocmd BufEnter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
   autocmd BufEnter * filetype detect
+  autocmd BufEnter Guardfile set ft=ruby
+  au BufNewFile,BufEnter _clang-format set ft=yaml
+  au BufNewFile,BufEnter .clang-format set ft=yaml
 augroup END
 
 autocmd FileType coffee set commentstring=#\ %s
@@ -265,7 +281,7 @@ let g:syntastic_html_tidy_ignore_errors =[ " proprietary attribute ",
       \"trimming empty <", "unescaped &",
       \ "lacks \"action"]
 
-let g:syntastic_javascript_checkers = ['eslint']
+let g:syntastic_javascript_checkers = ['eslint', 'jshint']
 let g:syntastic_haml_checkers = ['haml_lint']
 let g:syntastic_ruby_checkers = ['mri', 'rubocop']
 let g:systastic_ruby_exec = $rvm_path . "/rubies/" . $RUBY_VERSION . "/bin/ruby"
@@ -306,15 +322,6 @@ let g:UltiSnipsListSnippets = "<c-l>"
 let g:clang_format#command = "/usr/local/bin/clang-format"
 let g:clang_format#detect_style_file = 1
 let g:clang_format#auto_format = 1
-" let g:clang_format#style_options = {
-"       \ "AccessModifierOffset": -4,
-"       \ "IndentWidth": 4,
-"       \ "AllowShortIfStatementsOnASingleLine": "true",
-"       \ "AllowShortFunctionsOnASingleLine": "Empty",
-"       \ "BreakBeforeBraces": "Stroustrup",
-"       \ "BinPackParameters": "false",
-"       \ "BinPackArguments": "false",
-"       \ "IndentCaseLabels": "false" }
 " }}} Clang "
 
 " Vim Multiple Cursors {{{ "
