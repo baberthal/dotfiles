@@ -2,8 +2,6 @@ export ZSH=$HOME/.oh-my-zsh
 ZSH_THEME="morgan"
 
 plugins=(
-  git
-  gulp
   colored-man-pages
   berkshelf
   bundler
@@ -11,16 +9,20 @@ plugins=(
   bower
   chef
   compleat
+  git
+  gulp
   knife
+  npm
   osx
   rails
   rake-fast
   ruby
   rvm
   pip
+  pow
+  tmux
   virtualenv
   virtualenvwrapper
-  tmux
   zeus
 )
 
@@ -46,7 +48,6 @@ export LANG=en_US.UTF-8
 export LC_ALL=en_US.UTF-8
 export KEYTIMEOUT=1
 export LESS='-F -g -i -M -R -S -w -X -z-4'
-export HOMEBREW_BUILD_FROM_SOURCE=1
 
 # Set the Less input preprocessor.
 # Try both `lesspipe` and `lesspipe.sh` as either might exist on a system.
@@ -57,6 +58,10 @@ fi
 export NVMDIR="${HOME}/.nvm"
 [[ -s "${NVMDIR}/nvm.sh" ]] && . "${NVMDIR}/nvm.sh"
 
+# added by travis gem
+[ -f /Users/morgan/.travis/travis.sh ] && source /Users/morgan/.travis/travis.sh
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"
 export PATH="$PATH:$HOME/.rvm/bin"
 compinit -u
@@ -64,6 +69,3 @@ source "/usr/local/bin/aws_zsh_completer.sh"
 
 export WORKON_HOME="${HOME}/projects/python/.virtualenv"
 export PROJECT_HOME="${HOME}/projects/python"
-
-# added by travis gem
-[ -f /Users/morgan/.travis/travis.sh ] && source /Users/morgan/.travis/travis.sh
