@@ -199,9 +199,3 @@
 [submodule "vim/bundle/vim-mustache-handlebars"]
 	path = vim/bundle/vim-mustache-handlebars
 	url = https://github.com/mustache/vim-mustache-handlebars.git
-[submodule "vim/bundle/vimux"]
-	path = vim/bundle/vimux
-	url = https://github.com/benmills/vimux.git
-[submodule "vim/bundle/vimux-zeus"]
-	path = vim/bundle/vimux-zeus
-	url = https://github.com/jingweno/vimux-zeus.git
