@@ -4,7 +4,6 @@ describe("${1:Description:string}", () => {
 });
 endsnippet
 
-
 snippet = "() => {}" i
 ($1)${2:: returnType} => {
 	$0
@@ -32,4 +31,32 @@ endsnippet
 
 snippet expn "expect(...).not" w
 expect(${1:object}).not.${2:toEqual}(${3:something});$0
+endsnippet
+
+snippet if "if statement" w
+if (${1:condition}) {
+	$2
+}$0
+endsnippet
+
+snippet el "else" w
+else {
+	$1
+}$0
+endsnippet
+
+snippet ret "return..." w
+return $0;
+endsnippet
+
+snippet let "let" w
+let $1${2:: ${3:Type}};$0
+endsnippet
+
+snippet xp "export ..." b
+export $0
+endsnippet
+
+snippet imp "import { } from ..." b
+import { ${1:What} } from "${2:where}";$0
 endsnippet
