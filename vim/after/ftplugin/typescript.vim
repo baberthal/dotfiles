@@ -1,4 +1,4 @@
 setlocal sw=2
 setlocal et
-setlocal colorcolumn=101
-setlocal tw=100
+setlocal colorcolumn=81
+setlocal tw=80
