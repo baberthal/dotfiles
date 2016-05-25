@@ -1,3 +1,10 @@
+PROFILE_STARTUP=false
+if [[ "$PROFILE_STARTUP" == true ]]; then
+  PS4=$'%D{%M%S%.} %N:%i> '
+  exec 3>&2 2>$HOME/tmp/startlog.$$
+  setopt xtrace prompt_subst
+fi
+
 export ZSH=$HOME/.oh-my-zsh
 ZSH_THEME="morgan"
 
@@ -69,3 +76,8 @@ source "/usr/local/bin/aws_zsh_completer.sh"
 
 export WORKON_HOME="${HOME}/projects/python/.virtualenv"
 export PROJECT_HOME="${HOME}/projects/python"
+
+if [[ "$PROFILE_STARTUP" == true ]]; then
+  unsetopt xtrace
+  exec 2>&3 3>&-
+fi
