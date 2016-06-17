@@ -135,7 +135,7 @@ let g:taboo_renamed_tab_format = "%l %m"
 " }}} One-Off Plugin Settings "
 
 " Javascript {{{ "
-let g:used_javascript_libs = 'jquery,jasmine,underscore,angularjs,angularui,angularuirouter'
+let g:used_javascript_libs = 'jquery,jasmine,underscore,angularjs,angularui,angularuirouter,react'
 " }}} Javascript "
 
 " Dart {{{ "
@@ -256,8 +256,6 @@ augroup defaults
   autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
   " autocmd BufEnter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
   autocmd BufEnter * filetype detect
-  autocmd BufEnter Guardfile set ft=ruby
-  au BufNewFile,BufEnter _clang-format set ft=yaml
   au BufNewFile,BufEnter .clang-format set ft=yaml
 augroup END
 
@@ -281,7 +279,7 @@ let g:syntastic_html_tidy_ignore_errors =[ " proprietary attribute ",
       \"trimming empty <", "unescaped &",
       \ "lacks \"action"]
 
-let g:syntastic_javascript_checkers = ['eslint', 'jshint']
+let g:syntastic_javascript_checkers = ['eslint']
 let g:syntastic_haml_checkers = ['haml_lint']
 let g:syntastic_ruby_checkers = ['mri', 'rubocop']
 let g:systastic_ruby_exec = $rvm_path . "/rubies/" . $RUBY_VERSION . "/bin/ruby"
@@ -317,6 +315,14 @@ let g:UltiSnipsEditSplit = "horizontal"
 let g:UltiSnipsListSnippets = "<c-l>"
 
 " }}} YouCompleteMe / UltiSnips "
+
+" Ruby Heredoc Syntax {{{ "
+let g:ruby_heredoc_syntax_filetypes = {
+      \ "c": {
+      \   "start": "C",
+      \ },
+      \}
+" }}} Ruby Heredoc Syntax "
 
 " Clang {{{ "
 let g:clang_format#command = "/usr/local/bin/clang-format"
