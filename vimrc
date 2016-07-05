@@ -167,7 +167,7 @@ nnoremap <silent> <Leader>ml :call AppendModeline()<CR>
 " Add js lint and use strict to nodejs files
 function! AppendJSLint()
   call append(line("0"), "'use strict';")
-  call append(line("0"), "/* jslint node: true */")
+  call append(line("0"), "/* eslint node: true */")
 endfunction
 nnoremap <silent> <Leader>js :call AppendJSLint()<CR>
 
@@ -287,7 +287,7 @@ let g:systastic_ruby_exec = $rvm_path . "/rubies/" . $RUBY_VERSION . "/bin/ruby"
 let g:syntastic_c_checkers = ['clang_check', 'make']
 let g:syntastic_c_clang_check_post_args = ""
 
-let g:syntastic_typescript_checkers = ['tslint']
+let g:syntastic_typescript_checkers = ['tslint', 'tsc']
 
 " }}} Syntastic "
 
