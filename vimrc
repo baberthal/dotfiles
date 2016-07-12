@@ -288,6 +288,7 @@ let g:syntastic_c_checkers = ['clang_check', 'make']
 let g:syntastic_c_clang_check_post_args = ""
 
 let g:syntastic_typescript_checkers = ['tslint', 'tsc']
+let g:syntastic_typescript_tsc_args = "--target ES5 --experimentalDecorators"
 
 " }}} Syntastic "
 
