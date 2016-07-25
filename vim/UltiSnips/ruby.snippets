@@ -107,3 +107,7 @@ snippet aa "attr_accessor" b
 # @!attribute [rw] $1
 attr_accessor :${1:attribute}$0
 endsnippet
+
+snippet subj: "subject(:name) { }" b
+subject(:${1:name}) { $2 }$0
+endsnippet

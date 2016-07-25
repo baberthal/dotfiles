@@ -287,6 +287,8 @@ let g:systastic_ruby_exec = $rvm_path . "/rubies/" . $RUBY_VERSION . "/bin/ruby"
 let g:syntastic_c_checkers = ['clang_check', 'make']
 let g:syntastic_c_clang_check_post_args = ""
 
+let g:syntastic_scss_checkers = ['sass-lint']
+
 let g:syntastic_typescript_checkers = ['tslint', 'tsc']
 let g:syntastic_typescript_tsc_args = "--target ES5 --experimentalDecorators"
 
@@ -294,6 +296,7 @@ let g:syntastic_typescript_tsc_args = "--target ES5 --experimentalDecorators"
 
 " YouCompleteMe / Ultisnips {{{ "
 let g:ycm_server_keep_logfiles = 0
+let g:ycm_server_log_level = 'critical'
 
 let g:ycm_path_to_python_interpreter = '/usr/local/bin/python'
 let g:ycm_complete_in_comments = 1

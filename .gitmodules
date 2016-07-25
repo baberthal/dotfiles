@@ -199,3 +199,6 @@
 [submodule "vim/bundle/vim-ruby-heredoc-syntax"]
 	path = vim/bundle/vim-ruby-heredoc-syntax
 	url = https://github.com/joker1007/vim-ruby-heredoc-syntax.git
+[submodule "vim/bundle/swift.vim"]
+	path = vim/bundle/swift.vim
+	url = https://github.com/keith/swift.vim.git

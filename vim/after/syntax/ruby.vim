@@ -9,4 +9,7 @@ syn match jmlRubyExtraAlias "\<protected_attr_accessor\>" nextgroup=rubyAliasDec
 syn match jmlRubyExtraAlias "\<protected_attr_writer\>" nextgroup=rubyAliasDeclaration
 syn match jmlRubyExtraAlias "\<protected_attr_reader\>" nextgroup=rubyAliasDeclaration
 
+syn match jmlRubyExtraKW "block_given?"
+
 hi def link jmlRubyExtraAlias Keyword
+hi def link jmlRubyExtraKW Keyword

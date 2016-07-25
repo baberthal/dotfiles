@@ -11,13 +11,11 @@ snippet = "() => {}" i
 endsnippet
 
 snippet =: "() => {}" i
-($1)${2:: returnType} => {
-	$0
-}
+= ($1) => ${2:ReturnType}$0
 endsnippet
 
 snippet - "() => <T>" i
-($1) => ${2:string}
+$1 => $2
 endsnippet
 
 snippet bef "beforeEach" b
@@ -60,5 +58,26 @@ export $0
 endsnippet
 
 snippet imp "import { } from ..." b
-import { ${1:What} } from "${2:where}";$0
+import { ${1:What} } from '${2:where}';$0
+endsnippet
+
+snippet pri "private" w
+private $0
+endsnippet
+
+priority 1
+snippet meth "class/object method" w
+${1:methodName}(${2:args}): ${3:returnType} {
+	$0
+}
+endsnippet
+
+snippet nofmt "disable clang-format for a block" b
+// clang-format off
+$0
+// clang-format on
+endsnippet
+
+snippet impl "implements ..." w
+implements ${1:Interfaces...}$0
 endsnippet
