@@ -318,6 +318,8 @@ let g:UltiSnipsJumpBackwardTrigger = "<s-tab>"
 let g:UltiSnipsEditSplit = "horizontal"
 let g:UltiSnipsListSnippets = "<c-l>"
 
+let g:EclimCompletionMethod = 'omnifunc'
+
 " }}} YouCompleteMe / UltiSnips "
 
 " Ruby Heredoc Syntax {{{ "

@@ -69,6 +69,10 @@ export NVMDIR="${HOME}/.nvm"
 [ -f /Users/morgan/.travis/travis.sh ] && source /Users/morgan/.travis/travis.sh
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
+#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
+export SDKMAN_DIR="/Users/morgan/.sdkman"
+[[ -s "/Users/morgan/.sdkman/bin/sdkman-init.sh" ]] && source "/Users/morgan/.sdkman/bin/sdkman-init.sh"
+
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"
 export PATH="$PATH:$HOME/.rvm/bin"
 compinit -u
