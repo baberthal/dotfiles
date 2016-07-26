@@ -7,6 +7,7 @@ bindkey -v
 export GOPATH=${HOME}/golang
 export GOROOT=/usr/local/opt/go/libexec
 export JBOSS_HOME=/usr/local/opt/jboss-as/libexec
+export GROOVY_HOME=/usr/local/opt/groovy/libexec
 
 typeset -gU PATH
 path=(
