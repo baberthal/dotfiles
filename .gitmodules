@@ -202,3 +202,9 @@
 [submodule "vim/bundle/swift.vim"]
 	path = vim/bundle/swift.vim
 	url = https://github.com/keith/swift.vim.git
+[submodule "vim/bundle/vim-gradle"]
+	path = vim/bundle/vim-gradle
+	url = https://github.com/tfnico/vim-gradle.git
+[submodule "vim/bundle/vim-closetag"]
+	path = vim/bundle/vim-closetag
+	url = https://github.com/alvan/vim-closetag.git
