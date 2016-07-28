@@ -208,3 +208,6 @@
 [submodule "vim/bundle/vim-closetag"]
 	path = vim/bundle/vim-closetag
 	url = https://github.com/alvan/vim-closetag.git
+[submodule "vim/bundle/vim-dispatch"]
+	path = vim/bundle/vim-dispatch
+	url = https://github.com/tpope/vim-dispatch.git
