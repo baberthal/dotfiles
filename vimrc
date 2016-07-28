@@ -54,6 +54,13 @@ set fdm=marker
 set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*.png,*/node_modules/*,.DS_Store
 set shell=/bin/sh
 
+set undodir=~/.vim/undo
+if (v:version >= 703)
+  set undofile
+  set undolevels=1000
+  set undoreload=10000
+endif
+
 " Hack for vertical line cursor when in insert mode while running in tmux
 let &t_SI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=1\x7\<Esc>\\"
 let &t_EI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=0\x7\<Esc>\\"
@@ -132,6 +139,10 @@ let g:taboo_tabline = 0
 let g:taboo_modified_tab_flag = "+"
 let g:taboo_renamed_tab_format = "%l %m"
 
+let g:closetag_filenames = "*.html,*.xhtml,*.xml,*.plist"
+
+let g:EclimFileTypeValidate = 0
+
 " }}} One-Off Plugin Settings "
 
 " Javascript {{{ "
@@ -173,6 +184,9 @@ nnoremap <silent> <Leader>js :call AppendJSLint()<CR>
 
 " Fix ugly tabs and inconsistent tab/spaces in a file
 command! Fixtab :set tabstop=2 | :set expandtab | :retab | :set tabstop=2
+
+" Remap pathogen#helptags() because it is clobbered by fzf.vim
+command! MakeHelptags :call pathogen#helptags()
 
 " Edit the most recent migration created in a rails project
 function! EditLastMigration()

@@ -8,6 +8,7 @@ export GOPATH=${HOME}/golang
 export GOROOT=/usr/local/opt/go/libexec
 export JBOSS_HOME=/usr/local/opt/jboss-as/libexec
 export GROOVY_HOME=/usr/local/opt/groovy/libexec
+export ECLIPSE_HOME="${HOME}/Applications/Eclipse.app/Contents/Eclipse"
 
 typeset -gU PATH
 path=(
@@ -53,3 +54,6 @@ man() {
                 PATH="$HOME/bin:$PATH" \
                         man "$@"
 }
+
+export NVMDIR="${HOME}/.nvm"
+[[ -s "${NVMDIR}/nvm.sh" ]] && . "${NVMDIR}/nvm.sh"

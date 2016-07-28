@@ -62,9 +62,6 @@ if (( $#commands[(i)lesspipe(|.sh)] )); then
   export LESSOPEN="| /usr/bin/env $commands[(i)lesspipe(|.sh)] %s 2>&-"
 fi
 
-export NVMDIR="${HOME}/.nvm"
-[[ -s "${NVMDIR}/nvm.sh" ]] && . "${NVMDIR}/nvm.sh"
-
 # added by travis gem
 [ -f /Users/morgan/.travis/travis.sh ] && source /Users/morgan/.travis/travis.sh
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
