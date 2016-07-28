@@ -1,4 +1,6 @@
-setl et
+set et
 setl colorcolumn=81
-setl sw=2
-setl tw=80
+set sw=2
+set tw=81
+let g:EclimJavascriptValidate = 0
+let g:EclimJavascriptLintEnabled = 0
