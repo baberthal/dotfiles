@@ -2,7 +2,15 @@ DISABLE_AUTO_UPDATE="true"
 DISABLE_AUTO_TITLE="true"
 ENABLE_CORRECTION="true"
 
+export EDITOR='vim'
+export VISUAL='vim'
+export PAGER='less'
 bindkey -v
+
+export LANG=en_US.UTF-8
+export LC_ALL=en_US.UTF-8
+export KEYTIMEOUT=1
+export LESS='-F -g -i -M -R -S -w -X -z-4'
 
 export GOPATH=${HOME}/golang
 export GOROOT=/usr/local/opt/go/libexec
@@ -13,10 +21,8 @@ export ECLIPSE_HOME="${HOME}/Applications/Eclipse.app/Contents/Eclipse"
 typeset -gU PATH
 path=(
     ${HOME}/bin
+    /usr/local/{bin,sbin,heroku/bin}
     /Applications/Postgres.app/Contents/Versions/9.5/bin
-    /usr/local/bin
-    /usr/local/sbin
-    /usr/local/heroku/bin
     /Applications/Xcode.app/Contents/Developer/usr/bin
     $path
     ${JBOSS_HOME}/bin

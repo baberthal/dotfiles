@@ -142,7 +142,8 @@ let g:taboo_renamed_tab_format = "%l %m"
 let g:closetag_filenames = "*.html,*.xhtml,*.xml,*.plist"
 
 let g:EclimFileTypeValidate = 0
-
+let g:js_indent_flat_switch = 1
+let g:js_indent_logging = 1
 " }}} One-Off Plugin Settings "
 
 " Javascript {{{ "
@@ -340,6 +341,9 @@ let g:EclimCompletionMethod = 'omnifunc'
 let g:ruby_heredoc_syntax_filetypes = {
       \ "c": {
       \   "start": "C",
+      \ },
+      \ "ruby": {
+      \   "start": "RUBY",
       \ },
       \}
 " }}} Ruby Heredoc Syntax "
