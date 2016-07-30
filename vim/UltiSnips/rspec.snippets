@@ -1,0 +1,43 @@
+snippet its "RSpec - its(:method) { is_expected.to XXX }" w
+its(:${1:method}) { is_expected.to $2 }$0
+endsnippet
+
+snippet iiexp "RSpec - it { is_expected.to XXX }" w
+it { is_expected.to $1 }$0
+endsnippet
+
+snippet alwl "allow(object).to receive(:method)" w
+allow(${1:object}).to receive(:${2:method})${3:.and_return(${4:return_value})}$0
+endsnippet
+
+snippet alww "allow(object).to receive(:method).with(args)" w
+allow(${1:object}).to receive(:${2:method}).with(${3:args}).and_return(${4:return_value})$0
+endsnippet
+
+snippet alw "allow(object).to receive(:method) { return }" w
+allow(${1:object}).to receive(:${2:method}) { ${3:return_value} }$0
+endsnippet
+
+snippet alwwb "allow(object).to receive(:method).with(args) { return }" w
+allow(${1:object}).to receive(:${2:method}).with(${3:args}) { ${4:return_value} }$0
+endsnippet
+
+snippet befb "before { block }" w
+before${1:(:${2:each})} { $3 }$0
+endsnippet
+
+snippet itb "it block invocation" w
+it { $1 }$0
+endsnippet
+
+snippet let "RSpec let" w
+let(:${1:object}) { $2 }$0
+endsnippet
+
+snippet spec "RSpec specify block" w
+specify { expect(${1:subject.}$2).to $3 }$0
+endsnippet
+
+snippet subj: "subject(:name) { }" b
+subject(:${1:name}) { $2 }$0
+endsnippet
