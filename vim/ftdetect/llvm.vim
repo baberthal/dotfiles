@@ -1,1 +1,1 @@
-au BufRead,BufNewFile *.ll set filetype=llvm
+au BufEnter,BufRead,BufNewFile *.ll set ft=llvm

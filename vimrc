@@ -274,7 +274,11 @@ augroup defaults
   au BufNewFile,BufEnter .clang-format set ft=yaml
 augroup END
 
-autocmd FileType coffee set commentstring=#\ %s
+augroup comment_overrides
+  au!
+  au FileType coffee set commentstring=#\ %s
+  au FileType dosini set commentstring=#\ %s
+augroup END
 " }}} Autocommands "
 
 " Vim-Tmux-Navigator {{{ "
@@ -304,8 +308,8 @@ let g:syntastic_c_clang_check_post_args = ""
 
 let g:syntastic_scss_checkers = ['sass-lint']
 
-let g:syntastic_typescript_checkers = ['tslint', 'tsc']
-let g:syntastic_typescript_tsc_args = "--target ES5 --experimentalDecorators"
+let g:tsuquyomi_disable_quickfix = 1
+let g:syntastic_typescript_checkers = ['tsuquyomi', 'tslint']
 
 " }}} Syntastic "
 
