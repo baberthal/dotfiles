@@ -1,27 +1,48 @@
-export ZSH=$HOME/.oh-my-zsh
-ZSH_THEME="morgan"
+if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
+  source "${ZDOTDIR:-$HOME}/.zprezto/init.zsh"
+fi
 
-plugins=(git brew bower compleat lol osx rails rake-fast ruby rvm tmux tmuxinator zeus)
-
-bindkey -v
+# plugins=(
+#   colored-man-pages
+#   berkshelf
+#   bundler
+#   brew
+#   bower
+#   chef
+#   compleat
+#   git
+#   gulp
+#   knife
+#   npm
+#   osx
+#   rails
+#   rake-fast
+#   ruby
+#   rvm
+#   pip
+#   pow
+#   tmux
+#   virtualenv
+#   virtualenvwrapper
+#   zeus
+# )
 
 # export MANPATH="/usr/local/man:$MANPATH"
-export POWERLINE_CONFIG_COMMAND=/Users/morgan/.vim/bundle/powerline/scripts/powerline-config
-export HOMEBREW_GITHUB_API_TOKEN=22a666338b8aa4ce66c3ceb0f2151c7233f8acd4
-
-source $ZSH/oh-my-zsh.sh
-source ~/bin/tmuxinator.zsh
-source ~/.nvm/nvm.sh
 source $ZEXTRA_DIR/aliases.zsh
-source $ZSH_CUSTOM/directories.zsh
-source $ZSH_CUSTOM/functions.zsh
+source $ZEXTRA_DIR/directories.zsh
+export RANGER_LOAD_DEFAULT_RC=false
+[[ -f "${ZEXTRA_DIR}/zsh-autoenv/autoenv.zsh" ]] && source "${ZEXTRA_DIR}/zsh-autoenv/autoenv.zsh"
 
-export LANG=en_US.UTF-8
-export LC_ALL=en_US.UTF-8
-export KEYTIMEOUT=1
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
-zstyle ':completion:*' accept-exact '*(N)'
-zstyle ':completion:*' use-cache on
-zstyle ':completion:*' cache-path ~/.zsh/cache
+#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
+# export SDKMAN_DIR="/Users/morgan/.sdkman"
+# [[ -s "/Users/morgan/.sdkman/bin/sdkman-init.sh" ]] && source "/Users/morgan/.sdkman/bin/sdkman-init.sh"
 
-export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
+# [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"
+# export PATH="$PATH:$HOME/.rvm/bin"
+# compinit -u
+# source "/usr/local/bin/aws_zsh_completer.sh"
+
+export WORKON_HOME="${HOME}/projects/python/.virtualenv"
+export PROJECT_HOME="${HOME}/projects/python"

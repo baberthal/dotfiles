@@ -1,79 +1,87 @@
 pmodload 'helper'
 source "${ZEXTRA_DIR}/lib/prompt_info_functions.zsh"
 
-function prompt_morgan_git_info {
-  if (( _prompt_morgan_precmd_async_pid > 0 )); then
+function prompt_jml_pwd {
+  local pwd="${PWD/#$HOME/~}"
+
+  if [[ "$pwd" == (#m)[/~] ]]
+  then
+    _prompt_jml_pwd="$MATCH"
+    unset MATCH
+  else
+    _prompt_jml_pwd="${${${${(@j:/:M)${(@s:/:)pwd}##.#?}:h}%/}//\%/%%}/${${pwd:t}//\%/%%}"
+  fi
+}
+
+function prompt_jml_git_info {
+  if (( _prompt_jml_precmd_async_pid > 0 )); then
     # Append Git status.
-    if [[ -s "$_prompt_morgan_precmd_async_data" ]]; then
+    if [[ -s "$_prompt_jml_precmd_async_data" ]]; then
       alias typeset='typeset -g'
-      source "$_prompt_morgan_precmd_async_data"
-      RPROMPT+='${rvm_prompt_info}'
-      # RPROMPT+='${git_info:+${(e)git_info[status]}}'
+      source "$_prompt_jml_precmd_async_data"
+      # RPROMPT+='${rvm_prompt_info}'
+      RPROMPT+='${git_info:+${(e)git_info[status]}}'
       unalias typeset
     fi
 
     # Reset PID.
-    _prompt_morgan_precmd_async_pid=0
+    _prompt_jml_precmd_async_pid=0
 
     # Redisplay prompt.
     zle && zle reset-prompt
   fi
 }
 
-function prompt_morgan_precmd_async {
+function prompt_jml_precmd_async {
 # Get Git repository information.
   if (( $+functions[git-info] )); then
     git-info
-    typeset -p git_info >! "$_prompt_morgan_precmd_async_data"
+    typeset -p git_info >! "$_prompt_jml_precmd_async_data"
   fi
 
   # Signal completion to parent process.
   kill -WINCH $$
 }
 
-function prompt_morgan_rvm_info {
-  local pmpt=$(rvm_prompt_info)
-
-}
-
-function prompt_morgan_precmd {
+function prompt_jml_precmd {
   setopt LOCAL_OPTIONS
   unsetopt XTRACE KSH_ARRAYS
+
+  prompt_jml_pwd
 
   # Define prompts.
   RPROMPT='${editor_info[overwrite]}%(?:: %F{1}⏎%f)${VIM:+" %B%F{6}V%f%b"}'
 
   # Kill the old process of slow commands if it is still running.
-  if (( _prompt_morgan_precmd_async_pid > 0 )); then
-    kill -KILL "$_prompt_morgan_precmd_async_pid" &>/dev/null
+  if (( _prompt_jml_precmd_async_pid > 0 )); then
+    kill -KILL "$_prompt_jml_precmd_async_pid" &>/dev/null
   fi
 
   # Compute slow commands in the background.
-  trap prompt_morgan_git_info WINCH
-  prompt_morgan_precmd_async &!
-  _prompt_morgan_precmd_async_pid=$!
+  trap prompt_jml_git_info WINCH
+  prompt_jml_precmd_async &!
+  _prompt_jml_precmd_async_pid=$!
 }
 
-function prompt_morgan_setup {
+function prompt_jml_setup {
   setopt LOCAL_OPTIONS
   unsetopt XTRACE KSH_ARRAYS
   prompt_opts=(cr percent subst)
-  _prompt_morgan_precmd_async_pid=0
-  _prompt_morgan_precmd_async_data="${TMPPREFIX}-prompt_morgan_data"
+  _prompt_jml_precmd_async_pid=0
+  _prompt_jml_precmd_async_data="${TMPPREFIX}-prompt_jml_data"
 
   # Load required functions.
   autoload -Uz add-zsh-hook
-
-  _prompt_morgan_colors=(
-    "%F{cyan}"
-    "%F{yellow}"
-    "%F{magenta}"
-    "%F{red}"
-    "%F{green}"
-  )
-
   # Add hook for calling git-info before each command.
-  add-zsh-hook precmd prompt_morgan_precmd
+  add-zsh-hook precmd prompt_jml_precmd
+
+  _prompt_jml_colors=(
+    "%F{cyan}"    # 6
+    "%F{yellow}"  # 3
+    "%F{magenta}" # 5
+    "%F{red}"     # 1
+    "%F{green}"   # 2
+  )
 
   # Set editor-info parameters.
   zstyle ':prezto:module:editor:info:completing' format '%B%F{7}...%f%b'
@@ -82,7 +90,7 @@ function prompt_morgan_setup {
   zstyle ':prezto:module:editor:info:keymap:alternate' format ' %B%F{2}❮%F{3}❮%F{1}❮%f%b'
 
   # Set git-info parameters.
-  # zstyle ':prezto:module:git:info' verbose 'yes'
+  zstyle ':prezto:module:git:info' verbose 'yes'
   zstyle ':prezto:module:git:info:action' format '%F{7}:%f%%B%F{9}%s%f%%b'
   zstyle ':prezto:module:git:info:added' format ' %%B%F{2}✚%f%%b'
   zstyle ':prezto:module:git:info:ahead' format ' %%B%F{13}⬆%f%%b'
@@ -100,20 +108,20 @@ function prompt_morgan_setup {
     'status' '$(coalesce "%b" "%p" "%c")%s%A%B%S%a%d%m%r%U%u'
 
   # Define prompts.
-  PROMPT="${_prompt_morgan_colors[3]}%n%f at ${_prompt_morgan_colors[2]}%m%f in ${_prompt_morgan_colors[5]}%~%f $ "
+  PROMPT="%F{6}%n%f at %F{3}%m%f in %F{2}${_prompt_jml_pwd} %(!. %B%F{1}#%f%b.)${editor_info[keymap]} "
   RPROMPT=''
   SPROMPT='zsh: correct %F{1}%R%f to %F{2}%r%f [nyae]? '
 }
 
-function prompt_morgan_preview {
+function prompt_jml_preview {
   local +h PROMPT=''
   local +h RPROMPT=''
   local +h SPROMPT=''
 
   editor-info 2>/dev/null
-  prompt_preview_theme 'morgan'
+  prompt_preview_theme 'jml'
 }
 
-prompt_morgan_setup "$@"
+prompt_jml_setup "$@"
 
 #  vim: set ts=8 sw=2 tw=0 ft=zsh noet :

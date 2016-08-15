@@ -1,7 +1,3 @@
-export ZEXTRA_DIR=$HOME/.zextra
-
-# if [[ -f "${HOME}/.ca-trust/Certificates.pem" ]]; then
-#   export SSL_CERT_FILE="${HOME}/.ca-trust/Certificates.pem"
-# fi
-
-source "$ZEXTRA_DIR/env.zsh"
+if [[ "$SHLLVL" -eq 1 && ! -o LOGIN && -s "${ZDOTDIR:-$HOME}/.zprofile" ]]; then
+	source "${ZDOTDIR:-$HOME}/.zprofile"
+fi
