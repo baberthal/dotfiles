@@ -18,12 +18,14 @@ export JBOSS_HOME=/usr/local/opt/jboss-as/libexec
 export GROOVY_HOME=/usr/local/opt/groovy/libexec
 export ECLIPSE_HOME="${HOME}/Applications/Eclipse.app/Contents/Eclipse"
 
+# [[ -d /Applications/Xcode-beta.app ]] && export PATH="/Applications/Xcode-beta.app/Contents/Developer/usr/bin:${PATH}"
+
 typeset -gU PATH
 path=(
     ${HOME}/bin
     /usr/local/{bin,sbin,heroku/bin}
     /Applications/Postgres.app/Contents/Versions/9.5/bin
-    /Applications/Xcode.app/Contents/Developer/usr/bin
+    # /Applications/Xcode.app/Contents/Developer/usr/bin
     $path
     ${JBOSS_HOME}/bin
     ${HOME}/Library/Developer
