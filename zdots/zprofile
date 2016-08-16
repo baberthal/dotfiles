@@ -2,17 +2,14 @@ export ZEXTRA_DIR="${ZEXTRA_DIR:=${HOME}/.zextra}"
 # [[ -s "${ZEXTRA_DIR}/env.zsh" ]] && source "$ZEXTRA_DIR/env.zsh"
 [[ -s "${ZEXTRA_DIR}/directories.zsh" ]] && source "$ZEXTRA_DIR/directories.zsh"
 
-autoload -U colors && colors
-export LSCOLORS="Gxfxcxdxbxegedabagacad"
-
 export TIMEFMT=$'\nreal\t%E\nuser\t%U\nsys\t%S'
 
-autoload zmv
-DISABLE_AUTO_UPDATE="true"
-DISABLE_AUTO_TITLE="true"
-ENABLE_CORRECTION="true"
-setopt autonamedirs
-unset zle_bracketed_paste
+unsetopt autonamedirs
+setopt auto_pushd
+setopt pushd_ignore_dups
+setopt pushdminus
+
+# unset zle_bracketed_paste
 
 export BROWSER='open'
 export EDITOR='vim'
@@ -75,28 +72,17 @@ fi
 
 TMPPREFIX="${TMPDIR%/}/zsh"
 
-man() {
-  env \
-    LESS_TERMCAP_mb=$(printf "\e[1;35m") \
-    LESS_TERMCAP_md=$(printf "\e[1;34m") \
-    LESS_TERMCAP_me=$(printf "\e[0m") \
-    LESS_TERMCAP_se=$(printf "\e[0m") \
-    LESS_TERMCAP_so=$(printf "\e[1;43;37m") \
-    LESS_TERMCAP_ue=$(printf "\e[0m") \
-    LESS_TERMCAP_us=$(printf "\e[1;4;36m") \
-    PAGER="${commands[less]:-$PAGER}" \
-    _NROFF_U=1 \
-    PATH="$HOME/bin:$PATH" \
-    man "$@"
-}
+# start typing + [Up-Arrow] - fuzzy find history forward
+if [[ "${terminfo[kcuu1]}" != "" ]]; then
+  autoload -U up-line-or-beginning-search
+  zle -N up-line-or-beginning-search
+  bindkey "${terminfo[kcuu1]}" up-line-or-beginning-search
+fi
 
-[[ -s "${NVMDIR}/nvm.sh" ]] && . "${NVMDIR}/nvm.sh"
-
-#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
-export SDKMAN_DIR="/Users/morgan/.sdkman"
-[[ -s "/Users/morgan/.sdkman/bin/sdkman-init.sh" ]] && source "/Users/morgan/.sdkman/bin/sdkman-init.sh"
-
-export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
-[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
-
+# start typing + [Down-Arrow] - fuzzy find history backward
+if [[ "${terminfo[kcud1]}" != "" ]]; then
+  autoload -U down-line-or-beginning-search
+  zle -N down-line-or-beginning-search
+  bindkey "${terminfo[kcud1]}" down-line-or-beginning-search
+fi
 #  vim: set ts=8 sw=2 tw=0 ft=zsh et :

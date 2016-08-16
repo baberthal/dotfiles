@@ -32,7 +32,11 @@ zstyle ':prezto:load' pmodule \
   'spectrum' \
   'utility' \
   'completion' \
-  'prompt'
+  'prompt' \
+  'homebrew' \
+  'osx' \
+  'node' \
+  'ruby'
 
 #
 # Autosuggestions
@@ -92,7 +96,7 @@ zstyle ':prezto:module:editor' dot-expansion 'yes'
 # Set the prompt theme to load.
 # Setting it to 'random' loads a random theme.
 # Auto set to 'off' on dumb terminals.
-zstyle ':prezto:module:prompt' theme 'sorin'
+zstyle ':prezto:module:prompt' theme 'jml'
 
 #
 # Screen
@@ -163,3 +167,4 @@ zstyle ':prezto:module:prompt' theme 'sorin'
 
 # Auto switch the Ruby version on directory change.
 zstyle ':prezto:module:ruby:rvm' auto-switch 'yes'
+#  vim: set ts=8 sw=2 tw=0 ft=zsh et :

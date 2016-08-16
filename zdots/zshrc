@@ -1,12 +1,19 @@
 if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
   source "${ZDOTDIR:-$HOME}/.zprezto/init.zsh"
+else
+  echo "SHIT HAPPENED!"
 fi
 
+alias be="bundle exec"
+alias bl="bundle list"
+alias bp="bundle package"
+alias bo="bundle open"
+alias bu="bundle update"
+alias bi="bundle install"
+alias bcn="bundle clean"
+
 # plugins=(
-#   colored-man-pages
-#   berkshelf
 #   bundler
-#   brew
 #   bower
 #   chef
 #   compleat
@@ -28,8 +35,8 @@ fi
 # )
 
 # export MANPATH="/usr/local/man:$MANPATH"
-source $ZEXTRA_DIR/aliases.zsh
-source $ZEXTRA_DIR/directories.zsh
+[[ -s "${ZEXTRA_DIR}/aliases.zsh" ]] && source "${ZEXTRA_DIR}/aliases.zsh"
+[[ -s "${ZEXTRA_DIR}/directories.zsh" ]] && source "${ZEXTRA_DIR}/directories.zsh"
 export RANGER_LOAD_DEFAULT_RC=false
 [[ -f "${ZEXTRA_DIR}/zsh-autoenv/autoenv.zsh" ]] && source "${ZEXTRA_DIR}/zsh-autoenv/autoenv.zsh"
 
@@ -44,5 +51,7 @@ export RANGER_LOAD_DEFAULT_RC=false
 # compinit -u
 # source "/usr/local/bin/aws_zsh_completer.sh"
 
-export WORKON_HOME="${HOME}/projects/python/.virtualenv"
-export PROJECT_HOME="${HOME}/projects/python"
+# export WORKON_HOME="${HOME}/projects/python/.virtualenv"
+# export PROJECT_HOME="${HOME}/projects/python"
+
+echo "end zshrc"

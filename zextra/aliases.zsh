@@ -1,24 +1,5 @@
-alias zshrc="vim ~/.zshrc"
-alias vimrc="vim ~/.vimrc"
-alias tmuxconf="vim ~/.tmux.conf"
-alias gclone="git clone --recursive"
-alias nest="nest -u j.morgan.lieberthal@gmail.com -p kbner7xL@"
-alias beg="bundle exec guard"
-alias npmD="npm install --save-dev"
-alias npmS="npm install --save"
-alias npmG="npm install -g"
-alias nr="repl.history"
-alias bubc="brew upgrade --all && brew cleanup"
-alias cop="rubocop --rails --format progress --format html -o rubocop.html"
-alias bower="noglob bower"
-alias pipup="pip freeze --local | grep -v '^\-e' | cut -d = -f 1  | xargs pip install -U"
-alias brews='brew list -1'
-alias bubo='brew update && brew outdated'
-alias bubc='brew upgrade --all && brew cleanup'
-alias bubu='bubo && bubc'
-
 alias g='git'
-
+alias gclone="git clone --recursive"
 alias ga='git add'
 alias gaa='git add --all'
 alias gapa='git add --patch'
@@ -52,7 +33,6 @@ alias gcm='git checkout master'
 alias gcmsg='git commit -m'
 alias gco='git checkout'
 alias gcount='git shortlog -sn'
-compdef gcount=git
 alias gcp='git cherry-pick'
 alias gcs='git commit -S'
 
@@ -61,71 +41,16 @@ alias gdca='git diff --cached'
 alias gdct='git describe --tags `git rev-list --tags --max-count=1`'
 alias gdt='git diff-tree --no-commit-id --name-only -r'
 gdv() { git diff -w "$@" | view - }
-compdef _git gdv=git-diff
 alias gdw='git diff --word-diff'
 
 alias gf='git fetch'
 alias gfa='git fetch --all --prune'
 function gfg() { git ls-files | grep $@ }
-compdef _grep gfg
 alias gfo='git fetch origin'
 
-alias gg='git gui citool'
-alias gga='git gui citool --amend'
-ggf() {
-[[ "$#" != 1 ]] && local b="$(git_current_branch)"
-git push --force origin "${b:=$1}"
-}
-compdef _git ggf=git-checkout
-ggl() {
-if [[ "$#" != 0 ]] && [[ "$#" != 1 ]]; then
-git pull origin "${*}"
-else
-[[ "$#" == 0 ]] && local b="$(git_current_branch)"
-git pull origin "${b:=$1}"
-fi
-}
-compdef _git ggl=git-checkout
-alias ggpull='git pull origin $(git_current_branch)'
-compdef _git ggpull=git-checkout
-ggp() {
-if [[ "$#" != 0 ]] && [[ "$#" != 1 ]]; then
-git push origin "${*}"
-else
-[[ "$#" == 0 ]] && local b="$(git_current_branch)"
-git push origin "${b:=$1}"
-fi
-}
-compdef _git ggp=git-checkout
-alias ggpush='git push origin $(git_current_branch)'
-compdef _git ggpush=git-checkout
-ggpnp() {
-if [[ "$#" == 0 ]]; then
-ggl && ggp
-else
-ggl "${*}" && ggp "${*}"
-fi
-}
-compdef _git ggpnp=git-checkout
-alias ggsup='git branch --set-upstream-to=origin/$(git_current_branch)'
-ggu() {
-[[ "$#" != 1 ]] && local b="$(git_current_branch)"
-git pull --rebase origin "${b:=$1}"
-}
-compdef _git ggu=git-checkout
-alias ggpur='ggu'
-compdef _git ggpur=git-checkout
-
-alias gignore='git update-index --assume-unchanged'
-alias gignored='git ls-files -v | grep "^[[:lower:]]"'
-alias git-svn-dcommit-push='git svn dcommit && git push github master:svntrunk'
-compdef git-svn-dcommit-push=git
-
-alias gk='\gitk --all --branches'
-compdef _git gk='gitk'
-alias gke='\gitk --all $(git log -g --pretty=format:%h)'
-compdef _git gke='gitk'
-
+alias ggpull='git pull origin $(git-branch-current)'
+alias ggpush='git push origin $(git-branch-current)'
+alias ggsup='git branch --set-upstream-to=origin/$(git-branch-current)'
 alias gl='git pull'
 alias glg='git log --stat'
 alias glgp='git log --stat -p'
@@ -133,12 +58,9 @@ alias glgg='git log --graph'
 alias glgga='git log --graph --decorate --all'
 alias glgm='git log --graph --max-count=10'
 alias glo='git log --oneline --decorate'
-alias glol="git log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit"
-alias glola="git log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --all"
 alias glog='git log --oneline --decorate --graph'
 alias gloga='git log --oneline --decorate --graph --all'
 alias glp="_git_log_prettily"
-compdef _git glp=git-log
 
 alias gm='git merge'
 alias gmom='git merge origin/master'
@@ -149,7 +71,6 @@ alias gmum='git merge upstream/master'
 alias gp='git push'
 alias gpd='git push --dry-run'
 alias gpoat='git push origin --all && git push origin --tags'
-compdef _git gpoat=git-push
 alias gpu='git push upstream'
 alias gpv='git push -v'
 
@@ -197,3 +118,86 @@ alias glum='git pull upstream master'
 
 alias gwch='git whatchanged -p --abbrev-commit --pretty=medium'
 alias gwip='git add -A; git rm $(git ls-files --deleted) 2> /dev/null; git commit -m "--wip--"'
+
+alias devlog='tail -f log/development.log'
+alias prodlog='tail -f log/production.log'
+alias testlog='tail -f log/test.log'
+
+alias -g RED='RAILS_ENV=development'
+alias -g REP='RAILS_ENV=production'
+alias -g RET='RAILS_ENV=test'
+
+# Rails aliases
+alias rc='rails console'
+alias rd='rails destroy'
+alias rdb='rails dbconsole'
+alias rg='rails generate'
+alias rgm='rails generate migration'
+alias rp='rails plugin'
+alias ru='rails runner'
+alias rs='rails server'
+alias rsd='rails server --debugger'
+
+# Rake aliases
+alias rdm='rake db:migrate'
+alias rdms='rake db:migrate:status'
+alias rdr='rake db:rollback'
+alias rdc='rake db:create'
+alias rds='rake db:seed'
+alias rdd='rake db:drop'
+alias rdrs='rake db:reset'
+alias rdtc='rake db:test:clone'
+alias rdtp='rake db:test:prepare'
+alias rdmtc='rake db:migrate db:test:clone'
+
+alias rlc='rake log:clear'
+alias rn='rake notes'
+alias rr='rake routes'
+
+alias -g ...='../..'
+alias -g ....='../../..'
+alias -g .....='../../../..'
+alias -g ......='../../../../..'
+
+alias -- -='cd -'
+alias 1='cd -'
+alias 2='cd -2'
+alias 3='cd -3'
+alias 4='cd -4'
+alias 5='cd -5'
+alias 6='cd -6'
+alias 7='cd -7'
+alias 8='cd -8'
+alias 9='cd -9'
+
+alias md='mkdir -p'
+alias rd=rmdir
+alias d='dirs -v | head -10'
+
+# List directory contents
+alias lsa='ls -lah'
+alias l='ls -lah'
+alias ll='ls -lh'
+alias la='ls -lAh'
+
+# Push and pop directories on directory stack
+alias pu='pushd'
+alias po='popd'
+
+alias zshrc="vim ~/.zshrc"
+alias vimrc="vim ~/.vimrc"
+alias tmuxconf="vim ~/.tmux.conf"
+alias nest="nest -u j.morgan.lieberthal@gmail.com -p kbner7xL@"
+alias beg="bundle exec guard"
+alias npmD="npm install --save-dev"
+alias npmS="npm install --save"
+alias npmG="npm install -g"
+alias nr="repl.history"
+alias bubc="brew upgrade --all && brew cleanup"
+alias cop="rubocop --rails --format progress --format html -o rubocop.html"
+alias pipup="pip freeze --local | grep -v '^\-e' | cut -d = -f 1  | xargs pip install -U"
+alias brews='brew list -1'
+alias bubo='brew update && brew outdated'
+alias bubc='brew upgrade --all && brew cleanup'
+alias bubu='bubo && bubc'
+
