@@ -336,6 +336,7 @@ let g:UltiSnipsJumpBackwardTrigger = "<s-tab>"
 
 let g:UltiSnipsEditSplit = "horizontal"
 let g:UltiSnipsListSnippets = "<c-l>"
+let g:UltiSnipsListSnippetsDir = "~/.vim/UltiSnips"
 
 let g:EclimCompletionMethod = 'omnifunc'
 
