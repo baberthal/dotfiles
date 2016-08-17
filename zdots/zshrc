@@ -4,54 +4,10 @@ else
   echo "SHIT HAPPENED!"
 fi
 
-alias be="bundle exec"
-alias bl="bundle list"
-alias bp="bundle package"
-alias bo="bundle open"
-alias bu="bundle update"
-alias bi="bundle install"
-alias bcn="bundle clean"
-
-# plugins=(
-#   bundler
-#   bower
-#   chef
-#   compleat
-#   git
-#   gulp
-#   knife
-#   npm
-#   osx
-#   rails
-#   rake-fast
-#   ruby
-#   rvm
-#   pip
-#   pow
-#   tmux
-#   virtualenv
-#   virtualenvwrapper
-#   zeus
-# )
-
-# export MANPATH="/usr/local/man:$MANPATH"
-[[ -s "${ZEXTRA_DIR}/aliases.zsh" ]] && source "${ZEXTRA_DIR}/aliases.zsh"
+[[ -s "$ZEXTRA_DIR/aliases.zsh" ]] && source "${ZEXTRA_DIR}/aliases.zsh"
 [[ -s "${ZEXTRA_DIR}/directories.zsh" ]] && source "${ZEXTRA_DIR}/directories.zsh"
 export RANGER_LOAD_DEFAULT_RC=false
+
 [[ -f "${ZEXTRA_DIR}/zsh-autoenv/autoenv.zsh" ]] && source "${ZEXTRA_DIR}/zsh-autoenv/autoenv.zsh"
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-
-#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
-# export SDKMAN_DIR="/Users/morgan/.sdkman"
-# [[ -s "/Users/morgan/.sdkman/bin/sdkman-init.sh" ]] && source "/Users/morgan/.sdkman/bin/sdkman-init.sh"
-
-# [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"
-# export PATH="$PATH:$HOME/.rvm/bin"
-# compinit -u
-# source "/usr/local/bin/aws_zsh_completer.sh"
-
-# export WORKON_HOME="${HOME}/projects/python/.virtualenv"
-# export PROJECT_HOME="${HOME}/projects/python"
-
-echo "end zshrc"

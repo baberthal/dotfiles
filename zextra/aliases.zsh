@@ -1,3 +1,6 @@
+# I DO THIS ALL THE FUCKING TIME
+alias ivm='vim'
+
 alias g='git'
 alias gclone="git clone --recursive"
 alias ga='git add'
@@ -154,39 +157,6 @@ alias rlc='rake log:clear'
 alias rn='rake notes'
 alias rr='rake routes'
 
-alias -g ...='../..'
-alias -g ....='../../..'
-alias -g .....='../../../..'
-alias -g ......='../../../../..'
-
-alias -- -='cd -'
-alias 1='cd -'
-alias 2='cd -2'
-alias 3='cd -3'
-alias 4='cd -4'
-alias 5='cd -5'
-alias 6='cd -6'
-alias 7='cd -7'
-alias 8='cd -8'
-alias 9='cd -9'
-
-alias md='mkdir -p'
-alias rd=rmdir
-alias d='dirs -v | head -10'
-
-# List directory contents
-alias lsa='ls -lah'
-alias l='ls -lah'
-alias ll='ls -lh'
-alias la='ls -lAh'
-
-# Push and pop directories on directory stack
-alias pu='pushd'
-alias po='popd'
-
-alias zshrc="vim ~/.zshrc"
-alias vimrc="vim ~/.vimrc"
-alias tmuxconf="vim ~/.tmux.conf"
 alias nest="nest -u j.morgan.lieberthal@gmail.com -p kbner7xL@"
 alias beg="bundle exec guard"
 alias npmD="npm install --save-dev"
@@ -196,8 +166,11 @@ alias nr="repl.history"
 alias bubc="brew upgrade --all && brew cleanup"
 alias cop="rubocop --rails --format progress --format html -o rubocop.html"
 alias pipup="pip freeze --local | grep -v '^\-e' | cut -d = -f 1  | xargs pip install -U"
-alias brews='brew list -1'
-alias bubo='brew update && brew outdated'
-alias bubc='brew upgrade --all && brew cleanup'
-alias bubu='bubo && bubc'
 
+alias be="bundle exec"
+alias bl="bundle list"
+alias bp="bundle package"
+alias bo="bundle open"
+alias bu="bundle update"
+alias bi="bundle install"
+alias bcn="bundle clean"

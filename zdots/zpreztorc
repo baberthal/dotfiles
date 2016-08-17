@@ -32,11 +32,13 @@ zstyle ':prezto:load' pmodule \
   'spectrum' \
   'utility' \
   'completion' \
-  'prompt' \
+  'git' \
   'homebrew' \
   'osx' \
   'node' \
-  'ruby'
+  'history-substring-search' \
+  'ruby' \
+  'prompt'
 
 #
 # Autosuggestions
@@ -168,3 +170,4 @@ zstyle ':prezto:module:prompt' theme 'jml'
 # Auto switch the Ruby version on directory change.
 zstyle ':prezto:module:ruby:rvm' auto-switch 'yes'
 #  vim: set ts=8 sw=2 tw=0 ft=zsh et :
+
