@@ -43,7 +43,6 @@ path=(
   ${HOME}/Library/Developer
   ${GOPATH}/bin
   ${GOROOT}/bin
-  /System/Library/Frameworks
 )
 
 fpath=(
