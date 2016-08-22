@@ -7,6 +7,8 @@ filetype plugin indent on
 set ruler
 set number
 set colorcolumn=81
+set sw=2
+set et
 set modeline
 let mapleader="\<Space>"
 set mouse=nih
@@ -124,6 +126,9 @@ map <F10> :echo "hi<"
 " }}} Remaps "
 
 " One-Off Plugin Settings {{{ "
+" vim-ruby complete
+let g:rubycomplete_buffer_loading = 1
+let g:rubycomplete_classes_in_global = 1
 
 " bufExplorer options
 let g:bufExplorerShowRelativePath=1
