@@ -50,6 +50,7 @@ fpath=(
   ${HOME}/.zextra/functions
   $fpath
 )
+autoload gi man mount-android unmount-android name-dir pygless rails take
 
 [[ -x /usr/libexec/java_home ]] && export JAVA_HOME="$(/usr/libexec/java_home)"
 [[ -f "${HOME}/.env" ]] && source "${HOME}/.env"
