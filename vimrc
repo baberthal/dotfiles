@@ -355,6 +355,9 @@ let g:ruby_heredoc_syntax_filetypes = {
       \ "ruby": {
       \   "start": "RUBY",
       \ },
+      \ "sh": {
+      \   "start": "SHELL",
+      \ },
       \}
 " }}} Ruby Heredoc Syntax "
 
