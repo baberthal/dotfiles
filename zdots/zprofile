@@ -2,7 +2,7 @@ export ZEXTRA_DIR="${ZEXTRA_DIR:=${HOME}/.zextra}"
 # [[ -s "${ZEXTRA_DIR}/env.zsh" ]] && source "$ZEXTRA_DIR/env.zsh"
 [[ -s "${ZEXTRA_DIR}/directories.zsh" ]] && source "$ZEXTRA_DIR/directories.zsh"
 
-export TIMEFMT=$'\nreal\t%E\nuser\t%U\nsys\t%S'
+export TIMEFMT=$'%J:\nreal\t%*E\nuser\t%U\nsys\t%S\n'
 
 unset zle_bracketed_paste
 
@@ -24,19 +24,12 @@ export ECLIPSE_HOME="${HOME}/Applications/Eclipse.app/Contents/Eclipse"
 export ANDROID_HOME=$HOME/projects/android/sdk
 export USE_CCACHE=1
 
-# [[ -d /Applications/Xcode-beta.app ]] && export PATH="/Applications/Xcode-beta.app/Contents/Developer/usr/bin:${PATH}"
-
 typeset -gU cdpath fpath mailpath path
-cdpath=(
-  ${HOME}/projects
-  $cdpath
-)
 
 path=(
   ${HOME}/bin
   /usr/local/{bin,sbin,heroku/bin}
   /Applications/Postgres.app/Contents/Versions/9.5/bin
-  /Applications/Xcode.app/Contents/Developer/usr/bin
   $path
   ${JBOSS_HOME}/bin
   ${HOME}/Library/Developer
@@ -49,7 +42,9 @@ fpath=(
   ${HOME}/.zextra/functions
   $fpath
 )
-autoload gi man mount-android unmount-android name-dir pygless rails take
+autoload gi clean-compiled-funcs man mount-android umount-android name-dir \
+  pygless recompile-funcs take use-ruby
+alias 'umount-android'='umount-android'
 
 [[ -x /usr/libexec/java_home ]] && export JAVA_HOME="$(/usr/libexec/java_home)"
 [[ -f "${HOME}/.env" ]] && source "${HOME}/.env"

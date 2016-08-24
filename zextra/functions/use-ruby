@@ -1,3 +1,5 @@
 function use-ruby {
-  rvm --ruby-version use $1 --create
+  local version="$1"
+  shift
+  command rvm --ruby-version use $version --create $@
 }
