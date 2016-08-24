@@ -1,19 +1,12 @@
 runtime bundle/vim-pathogen/autoload/pathogen.vim
 execute pathogen#infect()
-syntax on
+syn on
 filetype plugin indent on
 
 " Basics {{{ "
-set ruler
-set number
-set colorcolumn=81
-set sw=2
-set et
-set modeline
+set ru nu cc=81 tw=80 sw=2 et ml spr
 let mapleader="\<Space>"
 set mouse=nih
-
-set splitright
 
 " Colors, fonts, encoding, and background setting
 syntax enable

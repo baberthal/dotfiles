@@ -35,6 +35,7 @@ path=(
   ${HOME}/Library/Developer
   ${GOPATH}/bin
   ${GOROOT}/bin
+  /opt/chefdk/bin
 )
 
 fpath=(
