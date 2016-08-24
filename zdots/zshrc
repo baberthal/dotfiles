@@ -4,10 +4,13 @@ else
   echo "SHIT HAPPENED!"
 fi
 
-[[ -s "$ZEXTRA_DIR/aliases.zsh" ]] && source "${ZEXTRA_DIR}/aliases.zsh"
+alias ivm='vim' # I DO THIS ALL THE FUCKING TIME
+alias nest="nest -u j.morgan.lieberthal@gmail.com -p kbner7xL@"
+alias beg="bundle exec guard"
+alias nr="repl.history"
+alias pipup="pip freeze --local | grep -v '^\-e' | cut -d = -f 1  | xargs pip install -U"
+
 [[ -s "${ZEXTRA_DIR}/directories.zsh" ]] && source "${ZEXTRA_DIR}/directories.zsh"
 export RANGER_LOAD_DEFAULT_RC=false
-
-[[ -f "${ZEXTRA_DIR}/zsh-autoenv/autoenv.zsh" ]] && source "${ZEXTRA_DIR}/zsh-autoenv/autoenv.zsh"
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh

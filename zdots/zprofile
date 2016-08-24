@@ -22,7 +22,6 @@ export JBOSS_HOME=/usr/local/opt/jboss-as/libexec
 export GROOVY_HOME=/usr/local/opt/groovy/libexec
 export ECLIPSE_HOME="${HOME}/Applications/Eclipse.app/Contents/Eclipse"
 export ANDROID_HOME=$HOME/projects/android/sdk
-export NVMDIR="${HOME}/.nvm"
 export USE_CCACHE=1
 
 # [[ -d /Applications/Xcode-beta.app ]] && export PATH="/Applications/Xcode-beta.app/Contents/Developer/usr/bin:${PATH}"
