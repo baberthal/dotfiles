@@ -1,0 +1,13 @@
+#!/usr/bin/env zsh
+
+setopt EXTENDED_GLOB
+
+THISDIR="${0:h}"
+
+ln -s "${THISDIR}/zprezto" "${ZDOTDIR:-$HOME}/.zprezto" || exit 1
+
+for rcfile in "${ZDOTDIR:-$HOME}"/.zprezto/runcoms/^README.md(.N); do
+  ln -s "$rcfile" "${ZDOTDIR:-$HOME}/.${rcfile:t}"
+done
+
+#  vim: set ts=8 sw=2 tw=0 ft=zsh et :
