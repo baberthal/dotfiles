@@ -309,6 +309,9 @@ let g:syntastic_scss_checkers = ['sass-lint']
 let g:tsuquyomi_disable_quickfix = 1
 let g:syntastic_typescript_checkers = ['tsuquyomi', 'tslint']
 
+let g:syntastic_swift_checkers = ['swiftpm']
+let g:syntastic_swift_swiftpm_executable = '/Library/Developer/Toolchains/swift-latest.xctoolchain/usr/bin/swift'
+
 " }}} Syntastic "
 
 " YouCompleteMe / Ultisnips {{{ "
@@ -334,7 +337,7 @@ let g:UltiSnipsJumpBackwardTrigger = "<s-tab>"
 
 let g:UltiSnipsEditSplit = "horizontal"
 let g:UltiSnipsListSnippets = "<c-l>"
-let g:UltiSnipsListSnippetsDir = "~/.vim/UltiSnips"
+let g:UltiSnipsSnippetsDir = "~/.vim/UltiSnips"
 
 let g:EclimCompletionMethod = 'omnifunc'
 

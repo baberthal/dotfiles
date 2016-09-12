@@ -1,0 +1,4 @@
+#  vim: set ts=8 sw=2 tw=80 ft=zsh et :
+
+function dvm {
+}
