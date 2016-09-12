@@ -177,7 +177,7 @@
 	url = https://github.com/jason0x43/vim-js-indent.git
 [submodule "vim/bundle/yajs.vim"]
 	path = vim/bundle/yajs.vim
-	url = https://github.com/othree/yajs.vim.git
+	url = https://github.com/baberthal/yajs.vim.git
 [submodule "vim/bundle/dart-vim-plugin"]
 	path = vim/bundle/dart-vim-plugin
 	url = https://github.com/dart-lang/dart-vim-plugin.git
