@@ -153,7 +153,7 @@
 	url = https://github.com/moll/vim-node.git
 [submodule "vim/bundle/javascript-libraries-syntax.vim"]
 	path = vim/bundle/javascript-libraries-syntax.vim
-	url = https://github.com/othree/javascript-libraries-syntax.vim.git
+	url = https://github.com/baberthal/javascript-libraries-syntax.vim.git
 [submodule "vim/bundle/vim-json"]
 	path = vim/bundle/vim-json
 	url = https://github.com/helino/vim-json.git
@@ -216,7 +216,7 @@
 	url = https://github.com/Shougo/vimproc.vim.git
 [submodule "zprezto"]
 	path = zprezto
-	url = https://github.com/sorin-ionescu/prezto.git
+	url = https://github.com/baberthal/prezto.git
 [submodule "vim/bundle/vim-rake"]
 	path = vim/bundle/vim-rake
 	url = git://github.com/tpope/vim-rake.git
