@@ -4,6 +4,8 @@ else
   echo "SHIT HAPPENED!"
 fi
 
+(( $+TMUX )) && unset zle_bracketed_paste
+
 alias ivm='vim' # I DO THIS ALL THE FUCKING TIME
 alias nest="nest -u j.morgan.lieberthal@gmail.com -p kbner7xL@"
 alias beg="bundle exec guard"
