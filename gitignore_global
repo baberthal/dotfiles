@@ -20,6 +20,8 @@
 *.log
 *.sql
 *.sqlite
+*.zwc
+*.zwc.old
 .DS_Store
 .DS_Store?
 ._*
@@ -101,3 +103,5 @@ Session.vim
 .netrwhist
 *~
 */doc/tags
+doc/tags
+

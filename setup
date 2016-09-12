@@ -1,13 +1,44 @@
 #!/usr/bin/env zsh
 
+THISDIR="${0:A}"
+
+: ${DRY_RUN:=}
+if [[ "$1" == "-n" || "$1" == "--dry-run" ]]; then
+  DRY_RUN="-n"
+  shift
+fi
+
+function quoted_print {
+  python -c 'import pipes; import sys; print(" ".join(pipes.quote(arg) for arg in sys.argv[1:]))' "$@"
+}
+
+function call {
+  if [[ ${DRY_RUN} ]]; then
+    echo "> "$(quoted_print "$@")
+  else
+    { set -x; } 2>/dev/null
+    "$@"
+    { set +x; } 2>/dev/null
+  fi
+}
+
+function makelink {
+  local target="${1}"
+  local dest="${ZDOTDIR:-$HOME}/.${target:t}"
+  call ln -s "${target}" "${dest}"
+  echo "${target} -> ${dest}"
+}
+
+if [[ -d "${ZDOTDIR:-$HOME}/.zprezto" ]]; then
+  echo "${ZDOTDIR:-$HOME}/.zprezto already exists"
+else
+  makelink "${THISDIR}/zprezto"
+fi
+
 setopt EXTENDED_GLOB
-
-THISDIR="${0:h}"
-
-ln -s "${THISDIR}/zprezto" "${ZDOTDIR:-$HOME}/.zprezto" || exit 1
-
 for rcfile in "${ZDOTDIR:-$HOME}"/.zprezto/runcoms/^README.md(.N); do
-  ln -s "$rcfile" "${ZDOTDIR:-$HOME}/.${rcfile:t}"
+  makelink "$rcfile"
 done
+unsetopt EXTENDED_GLOB
 
 #  vim: set ts=8 sw=2 tw=0 ft=zsh et :
