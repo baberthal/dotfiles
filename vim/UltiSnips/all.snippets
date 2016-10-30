@@ -3,22 +3,13 @@ Copyright (c) `date +%Y` `git config user.name` <`git config user.email`>
 endsnippet
 
 global !p
-def commentout(str = None):
-    fmt = vim.eval("&commentstring")
-    if str == None:
-	return fmt % ""
-    else:
-	return fmt % str
+from vimsnippets import foldmarker, make_box, get_comment_format
+# def commentout(str = None):
+#     fmt = vim.eval("&commentstring")
+#     if str == None:
+# 	return fmt % ""
+#     else:
+# 	return fmt % str
+# snip += commentout("  ")`Created by `contacts -Hm -f '%n' | sed 's/^[ \t]*//;s/[ \t]*$//'` on `date +%d/%m/%y``!p
+# snip += blankln
 endglobal
-
-snippet hdr "Source File Header" b
-`!p
-blankln = commentout("")
-snip.rv = blankln
-snip += commentout("  %s" % fn)
-snip += commentout("  ")`${1:Project Name}`!p
-snip += blankln
-snip += commentout("  ")`Created by `contacts -Hm -f '%n' | sed 's/^[ \t]*//;s/[ \t]*$//'` on `date +%d/%m/%y``!p
-snip += blankln
-`
-endsnippet
