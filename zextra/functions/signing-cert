@@ -1,0 +1,48 @@
+# Returns the name of a certificate in the keychain
+
+function signing-cert {
+  local kindstring
+  local fullname="${FULL_NAME}"
+  local certid="${APPLE_DEV_ID}"
+
+  while [[ $# > 1 ]]; do
+    local key="$1"
+    shift
+
+    case key in
+      -d | --dev-id )
+        kindstring="Developer ID Application"
+        ;;
+
+      -i | --dev-installer | --installer )
+        kindstring="Developer ID Installer"
+        ;;
+
+      -t | --third-party | --third-party-app )
+        kindstring="3rd Party Mac Developer Application"
+        ;;
+
+      --third-party-installer )
+        kindstring="3rd Party Mac Developer Installer"
+        ;;
+
+      --full-name | --name )
+        fullname="$1"
+        shift # past the argument
+        ;;
+
+      --cert-id )
+        certid="$1"
+        shift # past the argument
+        ;;
+    esac
+  done
+
+  : ${fullname:?You must supply your full name!}
+
+  : ${kindstring:="Developer ID Application"}
+
+  echo "${kindstring}: ${fullname} (${certid})"
+}
+
+#  vim: set ts=8 sw=2 tw=80 ft=zsh et :

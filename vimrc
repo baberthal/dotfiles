@@ -339,7 +339,9 @@ let g:UltiSnipsEditSplit = "horizontal"
 let g:UltiSnipsListSnippets = "<c-l>"
 let g:UltiSnipsSnippetsDir = "~/.vim/UltiSnips"
 
-let g:EclimCompletionMethod = 'omnifunc'
+let g:snips_author = 'J. Morgan Lieberthal'
+let g:snips_email = 'morgan@jmorgan.org'
+let g:snips_github = 'https://github.com/baberthal'
 
 " }}} YouCompleteMe / UltiSnips "
 

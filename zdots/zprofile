@@ -44,9 +44,8 @@ fpath=(
   ${HOME}/.zextra/functions
   $fpath
 )
-autoload gi clean-compiled-funcs man mount-android umount-android name-dir \
-  pygless recompile-funcs take use-ruby
-alias 'umount-android'='umount-android'
+autoload gi clean-compiled-funcs signing-cert man mount-android umount-android \
+  name-dir pygless recompile-funcs take use-ruby
 
 [[ -x /usr/libexec/java_home ]] && export JAVA_HOME="$(/usr/libexec/java_home)"
 [[ -f "${HOME}/.env" ]] && source "${HOME}/.env"
