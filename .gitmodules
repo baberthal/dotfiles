@@ -36,7 +36,7 @@
 	url = http://github.com/Raimondi/delimitMate.git
 [submodule "vim/bundle/vim-matchit"]
 	path = vim/bundle/vim-matchit
-	url = http://github.com/edsono/vim-matchit.git
+	url = http://github.com/geoffharcourt/vim-matchit.git
 [submodule "vim/bundle/vim-surround"]
 	path = vim/bundle/vim-surround
 	url = http://github.com/tpope/vim-surround.git
