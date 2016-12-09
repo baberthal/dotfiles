@@ -120,8 +120,8 @@ map <F10> :echo "hi<"
 
 " One-Off Plugin Settings {{{ "
 " vim-ruby complete
-let g:rubycomplete_buffer_loading = 1
-let g:rubycomplete_classes_in_global = 1
+" let g:rubycomplete_buffer_loading = 1
+" let g:rubycomplete_classes_in_global = 1
 
 " bufExplorer options
 let g:bufExplorerShowRelativePath=1
@@ -143,6 +143,11 @@ let g:EclimFileTypeValidate = 0
 let g:js_indent_flat_switch = 1
 let g:js_indent_logging = 1
 " }}} One-Off Plugin Settings "
+
+" Custom Syntax Hacks {{{ "
+hi link NERDTreeOpenable PreProc
+hi link NERDTreeClosable PreProc
+" }}} Custom Syntax Hacks "
 
 " Javascript {{{ "
 let g:used_javascript_libs = 'jquery,jasmine,underscore,angularjs,angularui,angularuirouter,react'
