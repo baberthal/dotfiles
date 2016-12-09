@@ -42,8 +42,10 @@ path=(
 fpath=(
   ${HOME}/.zextra/completions
   ${HOME}/.zextra/functions
+  /usr/local/share/zsh/functions
   $fpath
 )
+
 autoload gi clean-compiled-funcs signing-cert man mount-android umount-android \
   name-dir pygless recompile-funcs take use-ruby
 

@@ -8,9 +8,11 @@ fi
 
 # random aliases
 alias ivm='vim' # I DO THIS ALL THE FUCKING TIME
+alias iv='vi' # See above
 alias nest="nest -u j.morgan.lieberthal@gmail.com -p kbner7xL@"
 alias beg="bundle exec guard"
 alias nr="repl.history"
+alias mux='tmuxinator'
 
 # pip aliases
 alias pipup="pip freeze --local | grep -v '^\-e' | cut -d = -f 1  | xargs pip install -U"
