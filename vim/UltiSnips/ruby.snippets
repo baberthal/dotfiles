@@ -22,6 +22,10 @@ snippet rea "rubocop:enable All" w
 # rubocop:enable all $0
 endsnippet
 
+snippet re "rubocop:enable" w
+# rubocop:enable $0
+endsnippet
+
 snippet aliasm "alias_method" w
 alias_method :${1:new_name}, :${2:old_name}$0
 endsnippet
@@ -72,22 +76,67 @@ endsnippet
 
 snippet ar: "attr_reader (with documentation)" b
 # @!attribute [r] $1
-${2:#   @return [${3:Type}]}
+${2:#   @return [${3:Type}]} $4
 attr_reader :${1:attribute}$0
 endsnippet
 
 snippet aw: "attr_writer (with documentation)" b
 # @!attribute [w] $1
-${2:#   @return [${3:Type}]}
+${2:#   @return [${3:Type}]} $4
 attr_writer :${1:attribute}$0
 endsnippet
 
 snippet aa: "attr_accessor (with documentation)" b
 # @!attribute [rw] $1
-${2:#   @return [${3:Type}]}
+${2:#   @return [${3:Type}]} $4
 attr_accessor :${1:attribute}$0
 endsnippet
 
 snippet au "autoload" b
 autoload :${1:Constant}, '${2:path}'$0
+endsnippet
+
+snippet group "Yard Group/End Group Block" b
+# @!group ${1:name}
+$0
+# @!endgroup $1
+endsnippet
+
+snippet @p "@param [Type] {docstring}" w
+@param ${1:name} [${2:Type}] $0
+endsnippet
+
+snippet #p "@param [Type] {docstring}" b
+# @param ${1:name} [${2:Type}] $0
+endsnippet
+
+snippet mod "module ... end" b
+module ${1:`!v substitute(vim_snippets#Filename(), '\(_\|^\)\(.\)', '\u\2', 'g')`}
+	$0
+end
+endsnippet
+
+snippet modc "module ... end" b
+module ${1:`!v substitute(vim_snippets#Filename(), '\(_\|^\)\(.\)', '\u\2', 'g')`}
+	$0
+
+	module ClassMethods
+	$4
+	end
+end
+endsnippet
+
+snippet concern "ActiveSupport::Concern" b
+module ${1:`!v substitute(vim_snippets#Filename(), '\(_\|^\)\(.\)', '\u\2', 'g')`}
+	extend ActiveSupport::Concern
+	${2:
+	included do
+		$3
+	end
+	}$0
+
+	module ClassMethods
+	$4
+	end
+end
 endsnippet
