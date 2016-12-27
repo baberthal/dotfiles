@@ -199,6 +199,12 @@ command! -range=% RemoveRockets silent execute <line1>.','.<line2>.'s/:\(\w\+\)\
 
 let w:airline_section_x = '%{rvm#statusline()}'
 
+if match(expand('%:t'), '_spec\.rb') != -1
+  if !exists('did_plugin_ultisnips')
+    runtime! plugin/UltiSnips.vim
+    call UltiSnips#AddFiletypes('rspec')
+  endif
+endif
 
 let &cpo = s:save_cpo
 
