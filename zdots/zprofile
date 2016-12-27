@@ -30,7 +30,7 @@ typeset -gU cdpath fpath mailpath path
 path=(
   ${HOME}/bin
   /usr/local/{bin,sbin,heroku/bin}
-  /Applications/Postgres.app/Contents/Versions/9.5/bin
+  /Applications/Postgres.app/Contents/Versions/latest/bin
   $path
   ${JBOSS_HOME}/bin
   ${HOME}/Library/Developer
