@@ -25,12 +25,14 @@ export ANDROID_HOME=$HOME/projects/android/sdk
 export XML_CATALOG_FILES=/usr/local/etc/xml/catalog
 export USE_CCACHE=1
 
+export MAKEFLAGS="-j8"
+
 typeset -gU cdpath fpath mailpath path
 
 path=(
   ${HOME}/bin
   /usr/local/{bin,sbin,heroku/bin}
-  /Applications/Postgres.app/Contents/Versions/latest/bin
+  $(yarn global bin)
   $path
   ${JBOSS_HOME}/bin
   ${HOME}/Library/Developer
