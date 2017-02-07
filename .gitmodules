@@ -154,9 +154,6 @@
 [submodule "vim/bundle/javascript-libraries-syntax.vim"]
 	path = vim/bundle/javascript-libraries-syntax.vim
 	url = https://github.com/baberthal/javascript-libraries-syntax.vim.git
-[submodule "vim/bundle/vim-json"]
-	path = vim/bundle/vim-json
-	url = https://github.com/helino/vim-json.git
 [submodule "vim/bundle/html5-syntax.vim"]
 	path = vim/bundle/html5-syntax.vim
 	url = https://github.com/othree/html5-syntax.vim.git
