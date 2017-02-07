@@ -88,3 +88,23 @@ constructor($1) {
 	$2
 }$0
 endsnippet
+
+snippet elif "else if" w
+else if (${1:condition}) {
+	$0
+}
+endsnippet
+
+priority 1
+snippet exp "export" w
+export $0
+endsnippet
+
+priority 1
+snippet cla "class .." w
+class ${1:ClassName}${2: extends ${3:ParentClass}} {
+	${4: constructor(${5:args}) {
+    ${6://code...}
+  }}
+}
+endsnippet

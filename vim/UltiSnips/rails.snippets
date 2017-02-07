@@ -1,0 +1,107 @@
+snippet rea "redirect_to (action)"
+redirect_to action: "${1:index}"
+endsnippet
+
+snippet reai "redirect_to (action, id)"
+redirect_to action: "${1:show}", id: ${0:@item}
+endsnippet
+
+snippet rec "redirect_to (controller)"
+redirect_to controller: "${1:items}"
+endsnippet
+
+snippet reca "redirect_to (controller, action)"
+redirect_to controller: "${1:items}", action: "${2:list}"
+endsnippet
+
+snippet recai "redirect_to (controller, action, id)"
+redirect_to controller: "${1:items}", action: "${2:show}", id: ${0:@item}
+endsnippet
+
+snippet renpp "redirect_to (nested path plural)"
+redirect_to(${2:${10:parent}_${11:child}_path(${12:@}${13:$10})})
+endsnippet
+
+snippet renp "redirect_to (nested path)"
+redirect_to(${2:${12:parent}_${13:child}_path(${14:@}${15:$12}, ${16:@}${17:$13})})
+endsnippet
+
+snippet repp "redirect_to (path plural)"
+redirect_to(${2:${10:model}s_path})
+endsnippet
+
+snippet rep "redirect_to (path)"
+redirect_to(${2:${12:model}_path(${13:@}${14:$12})})
+endsnippet
+
+snippet reb "redirect_to :back"
+redirect_to :back
+endsnippet
+
+snippet ra "render (action)... (ra)"
+render action: "${1:action}"
+endsnippet
+
+snippet ral "render (action,layout) (ral)"
+render action: "${1:action}", layout: "${2:layoutname}"
+endsnippet
+
+snippet rf "render (file) (rf)"
+render file: "${1:filepath}"
+endsnippet
+
+snippet rfu "render (file,use_full_path) (rfu)"
+render file: "${1:filepath}", use_full_path: ${2:false}
+endsnippet
+
+snippet ri "render (inline) (ri)"
+render inline: "${1:<%= 'hello' %>}"
+endsnippet
+
+snippet ril "render (inline,locals) (ril)"
+render inline: "${1:<%= 'hello' %>}", locals: { ${2::name} => "${3:value}"$4 }
+endsnippet
+
+snippet rit "render (inline,type) (rit)"
+render inline: "${1:<%= 'hello' %>}", type: ${2::rxml}
+endsnippet
+
+snippet rl "render (layout) (rl)"
+render layout: "${1:layoutname}"
+endsnippet
+
+snippet rn "render (nothing) (rn)"
+render nothing: ${1:true}
+endsnippet
+
+snippet rns "render (nothing,status) (rns)"
+render nothing: ${1:true}, status: ${2:401}
+endsnippet
+
+snippet rt "render (text) (rt)"
+render text: "${1:text to render...}"
+endsnippet
+
+snippet rtl "render (text,layout) (rtl)"
+render text: "${1:text to render...}", layout: "${2:layoutname}"
+endsnippet
+
+snippet rtlt "render (text,layout => true) (rtlt)"
+render text: "${1:text to render...}", layout: ${2:true}
+endsnippet
+
+snippet rts "render (text,status) (rts)"
+render text: "${1:text to render...}", status: ${2:401}
+endsnippet
+
+snippet ru "render (update)"
+render :update do |${2:page}|
+	$2.$0
+end
+endsnippet
+
+snippet rest "respond_to"
+respond_to do |format|
+	format.${1:html}${2: { $0 }}
+end
+endsnippet

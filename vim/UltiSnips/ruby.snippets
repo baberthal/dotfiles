@@ -110,6 +110,10 @@ snippet #p "@param [Type] {docstring}" b
 # @param ${1:name} [${2:Type}] $0
 endsnippet
 
+snippet @r "@return" w
+@return [${1:Type}] $0
+endsnippet
+
 snippet mod "module ... end" b
 module ${1:`!v substitute(vim_snippets#Filename(), '\(_\|^\)\(.\)', '\u\2', 'g')`}
 	$0
@@ -134,9 +138,13 @@ module ${1:`!v substitute(vim_snippets#Filename(), '\(_\|^\)\(.\)', '\u\2', 'g')
 		$3
 	end
 	}$0
-
 	module ClassMethods
 	$4
 	end
 end
+endsnippet
+
+snippet @attr "Attribute documentation" w
+# @!attribute [${1:r|w|rw}] ${2:attribute_name}
+${3:#   @return [${4:Type}]} $5
 endsnippet
