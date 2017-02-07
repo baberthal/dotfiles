@@ -56,6 +56,12 @@ if (v:version >= 703)
   set undoreload=10000
 endif
 
+" Enable project-specific vimrc
+set exrc
+
+" Don't allow Autocommands in the project-specific vimrc
+set secure
+
 " Hack for vertical line cursor when in insert mode while running in tmux
 let &t_SI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=1\x7\<Esc>\\"
 let &t_EI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=0\x7\<Esc>\\"
@@ -228,6 +234,11 @@ endfunction
 
 command! Breakout call s:Breakout()
 
+fun! FindConfig(prefix, what, where)
+  let cfg = findfile(a:what, escape(a:where, ' ') . ';')
+  return cfg !=# '' ? ' ' . a:prefix . ' ' . shellescape(cfg) : ''
+endf
+
 " Explore files with Ranger
 function! RangerExplorer()
   exec "silent !ranger --choosefile=/tmp/vim_ranger_current_file " . expand("%:p:h")
@@ -309,7 +320,7 @@ let g:systastic_ruby_exec = $rvm_path . "/rubies/" . $RUBY_VERSION . "/bin/ruby"
 let g:syntastic_c_checkers = ['clang_check', 'make']
 let g:syntastic_c_clang_check_post_args = ""
 
-let g:syntastic_scss_checkers = ['sass-lint']
+let g:syntastic_scss_checkers = ['sass_lint']
 
 let g:tsuquyomi_disable_quickfix = 1
 let g:syntastic_typescript_checkers = ['tsuquyomi', 'tslint']
@@ -365,7 +376,7 @@ let g:ruby_heredoc_syntax_filetypes = {
 " }}} Ruby Heredoc Syntax "
 
 " Clang {{{ "
-let g:clang_format#command = "/usr/local/bin/clang-format"
+let g:clang_format#command = "/usr/local/opt/llvm/bin/clang-format"
 let g:clang_format#detect_style_file = 1
 let g:clang_format#auto_format = 1
 " }}} Clang "
