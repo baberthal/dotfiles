@@ -235,3 +235,6 @@
 [submodule "vim/bundle/taboo.vim"]
 	path = vim/bundle/taboo.vim
 	url = git://github.com/baberthal/taboo.vim.git
+[submodule "vim/bundle/vim-json"]
+	path = vim/bundle/vim-json
+	url = git://github.com/elzr/vim-json.git
