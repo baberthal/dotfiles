@@ -1,5 +1,5 @@
 snippet desc "describe()" w
-describe("${1:Description:string}", () => {
+describe("${1:Description:string}", () =>
 	$0
 });
 endsnippet
@@ -61,10 +61,6 @@ snippet imp "import { } from ..." b
 import { ${1:What} } from '${2:where}';$0
 endsnippet
 
-snippet pri "private" w
-private $0
-endsnippet
-
 priority 1
 snippet meth "class/object method" w
 ${1:methodName}(${2:args}): ${3:returnType} {
@@ -102,9 +98,79 @@ endsnippet
 
 priority 1
 snippet cla "class .." w
-class ${1:ClassName}${2: extends ${3:ParentClass}} {
-	${4: constructor(${5:args}) {
+class ${1:`!v substitute(vim_snippets#Filename(), '\(-\|_\|\.\|^\)\(.\)', '\u\2', 'g')`}${2: extends ${3:ParentClass}} {
+	${4:constructor(${5:args}) {
     ${6://code...}
   }}
 }
+endsnippet
+
+snippet ns "namespace" w
+namespace ${1:Name} {
+	$0
+}
+endsnippet
+
+snippet attr "attribute" w
+${1:attribute}: ${2:Type};$0
+endsnippet
+
+snippet pub "public" w
+public $0
+endsnippet
+
+snippet pro "protected" w
+protected $0
+endsnippet
+
+snippet prot "protected" w
+protected $0
+endsnippet
+
+snippet pri "private" w
+private $0
+endsnippet
+
+snippet priv "private" w
+private $0
+endsnippet
+
+snippet st "static" w
+static $0
+endsnippet
+
+snippet wh "while loop" b
+while (${1:condition}) {
+	$0
+}
+endsnippet
+
+snippet fori "for in" w
+for (var ${1:varname} in ${2:object}) {
+	$0
+}
+endsnippet
+
+snippet iface "interface" w
+interface ${1:Name} {
+	$0
+}
+endsnippet
+
+snippet sw "switch (...)" w
+switch (${1:variable}) {
+case ${2:variable_case}:
+	$3
+	${4:break;}$5
+$6
+default:
+	$7
+}$0
+endsnippet
+
+snippet case "case..." w
+case ${1:variable_case}:
+	$2
+	${3:${4:break;}}
+$0
 endsnippet

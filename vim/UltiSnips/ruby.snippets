@@ -93,7 +93,7 @@ attr_accessor :${1:attribute}$0
 endsnippet
 
 snippet au "autoload" b
-autoload :${1:Constant}, '${2:path}'$0
+autoload :${1:Constant}${2:, '${3:path}'}$0
 endsnippet
 
 snippet group "Yard Group/End Group Block" b
@@ -146,5 +146,17 @@ endsnippet
 
 snippet @attr "Attribute documentation" w
 # @!attribute [${1:r|w|rw}] ${2:attribute_name}
-${3:#   @return [${4:Type}]} $5
+${3:#   @return [${4:Type}]} $0
+endsnippet
+
+snippet @o "option documentation" w
+@option ${1:options} [${2:Type}] :${3:option_name} $0
+endsnippet
+
+snippet #o "option documentation, with commentstring" w
+# @option ${1:options} [${2:Type}] :${3:option_name} $0
+endsnippet
+
+snippet mf "module_function" b
+module_function $0
 endsnippet
