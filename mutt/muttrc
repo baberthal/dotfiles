@@ -1,0 +1,119 @@
+source vim-keys.rc
+
+set realname  = "J. Morgan Lieberthal"
+
+# Paths ----------------------------------------------
+set folder           = ~/.mail
+set alias_file       = ~/.mutt/alias
+set header_cache     = ~/.mutt/cache/headers
+set message_cachedir = ~/.mutt/cache/bodies
+set certificate_file = ~/.mutt/certificates
+set mailcap_path     = ~/.mutt/mailcap
+set tmpdir           = ~/.mutt/temp
+set signature        = ~/.mutt/sig
+
+# Basic Options --------------------------------------
+set wait_key = no
+set mbox_type = Maildir
+set timeout = 3
+set mail_check = 0
+unset move
+set delete
+unset confirmappend
+set quit
+unset mark_old
+set beep_new
+set pipe_decode
+set thorough_search
+
+# Header Options -------------------------------------
+ignore *
+unignore from: to: cc: date: subject:
+unhdr_order *
+hdr_order from: to: cc: date: subject:
+
+# Sidebar Settings -----------------------------------
+set sidebar_visible = yes
+set sidebar_width = 24
+set sidebar_short_path = yes
+set sidebar_delim_chars = '/.'
+set sidebar_divider_char = '|'
+color indicator cyan black
+color sidebar_new color221 color233
+
+
+# Status Bar -----------------------------------------
+
+set status_chars = " *%A"
+set status_format = "───[ Folder: %f ]───[%r%m messages%?n? (%n new)?%?d? (%d to delete)?%?t? (%t tagged)? ]───%>─%?p?( %p postponed )?───"
+
+# Account Settings -----------------------------------
+
+# Default inbox
+set spoolfile = "+jmorganlieberthal-gmail.com/INBOX"
+
+mailboxes +jmorganlieberthal-gmail.com/INBOX \
+          +jmorganlieberthal-gmail.com/archive \
+          +jmorganlieberthal-gmail.com/sent \
+          +jmorganlieberthal-gmail.com/drafts \
+
+# other special folders
+set mbox = "+jmorganlieberthal-gmail.com/archive"
+set postponed = "+jmorganlieberthal-gmail.com/drafts"
+
+# Index View Options ---------------------------------
+
+set date_format = "%m/%d"
+set index_format = "[%Z]  %D  - %-20.20F  %s"
+set sort = threads
+set sort_aux = reverse-last-date-received
+set uncollapse_jump
+set sort_re
+set reply_regexp = "^(([Rr][Ee]?(\[[0-9]+\])?: *)?(\[[^]]+\] *)?)*"
+
+# Index Key Bindings ---------------------------------
+bind index gg first-entry
+bind index G last-entry
+
+bind index R group-reply
+bind index <tab> sync-mailbox
+bind index <space> collapse-thread
+
+# Ctrl-R marks as read
+macro index \Cr "T~U<enter><tag-prefix><clear-flag>N<untag-pattern>.<enter>" "mark all messages as read"
+
+# Sync email
+macro index O "<shell-escape>offlineimap<enter>"           "run offlineimap to sync all mail"
+macro index o "<shell-escape>offlineimap -qf INBOX<enter>" "run offlineimap to sync inbox"
+
+# Saner copy/move dialogs
+macro index C "<copy-message>?<toggle-mailboxes>" "copy a message to a mailbox"
+macro index M "<save-message>?<toggle-mailboxes>" "move a message to a mailbox"
+
+# Sidebar Navigation ---------------------------------
+
+bind index,pager <down>   sidebar-next
+bind index,pager <up>     sidebar-prev
+bind index,pager <right>  sidebar-open
+
+# Pager View Options ---------------------------------
+set pager_index_lines = 10 # number of index lines to show
+set pager_context = 3      # number of context lines to show
+set pager_stop             # don't go to next message automatically
+set menu_scroll            # scroll in menus
+set tilde                  # show tildes like in vim
+unset markers              # no ugly plus signs
+
+set quote_regexp = "^( {0,4}[>|:#%]| {0,4}[a-z0-9]+[>|]+)+"
+alternative_order text/plain text/enriched text/html
+
+# Pager Key Bindings ---------------------------------
+bind pager k  previous-line
+bind pager j  next-line
+bind pager gg top
+bind pager G  bottom
+
+bind pager R  group-reply
+
+# View attachments properly.
+bind attach <return> view-mailcap

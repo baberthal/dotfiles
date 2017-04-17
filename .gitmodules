@@ -238,3 +238,6 @@
 [submodule "vim/bundle/vim-json"]
 	path = vim/bundle/vim-json
 	url = git://github.com/elzr/vim-json.git
+[submodule "vim/bundle/vim-capslock"]
+	path = vim/bundle/vim-capslock
+	url = git://github.com/tpope/vim-capslock.git
