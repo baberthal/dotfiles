@@ -45,6 +45,9 @@ endif
 " Preview window
 set pvh=20
 
+" Split new verts to the right
+set splitright
+
 set fdm=marker
 set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*.png,*/node_modules/*,.DS_Store
 set shell=/bin/sh
@@ -155,9 +158,14 @@ hi link NERDTreeOpenable PreProc
 hi link NERDTreeClosable PreProc
 " }}} Custom Syntax Hacks "
 
-" Javascript {{{ "
+" Javascript/JSON {{{ "
 let g:used_javascript_libs = 'jquery,jasmine,underscore,angularjs,angularui,angularuirouter,react'
-" }}} Javascript "
+let g:vim_json_syntax_conceal = 0
+
+hi link jsonBoolean Constant
+hi link jsonBraces  Function
+hi link jsonQuote   Delimiter
+" }}} Javascript/JSON "
 
 " Dart {{{ "
 let g:dart_style_guide = 1
@@ -288,6 +296,12 @@ augroup defaults
   au BufNewFile,BufEnter .clang-format set ft=yaml
 augroup END
 
+augroup rcfiles
+  au!
+  " this one is which you're most likely to use?
+  au BufRead,BufNewFile .babelrc set ft=json
+augroup end
+
 augroup comment_overrides
   au!
   au FileType coffee set commentstring=#\ %s
@@ -332,7 +346,8 @@ let g:syntastic_swift_swiftpm_executable = '/Library/Developer/Toolchains/swift-
 
 " YouCompleteMe / Ultisnips {{{ "
 let g:ycm_server_keep_logfiles = 0
-let g:ycm_server_log_level = 'critical'
+let g:ycm_global_ycm_extra_conf = '~/.ycm_extra_conf.py'
+let g:ycm_server_log_level = 'info'
 
 let g:ycm_path_to_python_interpreter = '/usr/local/bin/python'
 let g:ycm_complete_in_comments = 1
@@ -376,7 +391,7 @@ let g:ruby_heredoc_syntax_filetypes = {
 " }}} Ruby Heredoc Syntax "
 
 " Clang {{{ "
-let g:clang_format#command = "/usr/local/opt/llvm/bin/clang-format"
+let g:clang_format#command = "/usr/local/bin/clang-format"
 let g:clang_format#detect_style_file = 1
 let g:clang_format#auto_format = 1
 " }}} Clang "
