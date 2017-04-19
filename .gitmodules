@@ -244,3 +244,6 @@
 [submodule "vim/bundle/scss-syntax.vim"]
 	path = vim/bundle/scss-syntax.vim
 	url = git://github.com/cakebaker/scss-syntax.vim.git
+[submodule "vim/bundle/ale"]
+	path = vim/bundle/ale
+	url = git://github.com/w0rp/ale.git
