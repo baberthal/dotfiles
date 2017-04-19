@@ -244,3 +244,6 @@
 [submodule "vim/bundle/vim-angular2-snippets"]
 	path = vim/bundle/vim-angular2-snippets
 	url = git://github.com/mhartington/vim-angular2-snippets.git
+[submodule "vim/bundle/scss-syntax.vim"]
+	path = vim/bundle/scss-syntax.vim
+	url = git://github.com/cakebaker/scss-syntax.vim.git
