@@ -320,11 +320,16 @@ nnoremap <silent> <C-\> :TmuxNavigatePrevious<cr>
 " }}} Vim-Tmux-Navigator "
 
 " Syntastic {{{ "
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 0
+let g:syntastic_check_on_wq = 0
+
 " No warnings for ng- directives, haml bs
 let g:syntastic_html_tidy_ignore_errors =[ " proprietary attribute ",
       \"is not recognized!", "discarding unexpected",
       \"trimming empty <", "unescaped &",
-      \ "lacks \"action"]
+      \ "lacks \"action", "is invalid"]
 
 let g:syntastic_javascript_checkers = ['eslint']
 let g:syntastic_haml_checkers = ['haml_lint']
