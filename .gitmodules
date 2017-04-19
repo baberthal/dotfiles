@@ -241,3 +241,6 @@
 [submodule "vim/bundle/vim-capslock"]
 	path = vim/bundle/vim-capslock
 	url = git://github.com/tpope/vim-capslock.git
+[submodule "vim/bundle/vim-angular2-snippets"]
+	path = vim/bundle/vim-angular2-snippets
+	url = git://github.com/mhartington/vim-angular2-snippets.git
