@@ -72,10 +72,7 @@
 #
 # Always use ASCII characters only.
 #
-# ui = TTY.TTYUI
 accounts = JMorganLieberthal-Gmail
-# pythonfile = ~/.mutt/offlineimap.py
-# fsync = False
 
 # This option stands in the [general] section.
 #
