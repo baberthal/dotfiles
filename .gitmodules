@@ -247,3 +247,6 @@
 [submodule "vim/bundle/ale"]
 	path = vim/bundle/ale
 	url = git://github.com/w0rp/ale.git
+[submodule "spacemacs"]
+	path = spacemacs
+	url = git://github.com/syl20bnr/spacemacs.git
