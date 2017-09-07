@@ -166,6 +166,10 @@ zstyle ':prezto:module:prompt' theme 'jml'
 # zstyle ':prezto:module:tmux:iterm' integrate 'yes'
 
 #
+# Python
+#
+
+#
 # Ruby
 #
 

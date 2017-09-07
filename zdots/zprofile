@@ -6,6 +6,8 @@ export TIMEFMT=$'%J:\nreal\t%*E\nuser\t%U\nsys\t%S\n'
 
 unset zle_bracketed_paste
 
+export GL_ENABLE_DEBUG_ATTACH=1
+export VIRTUALENVWRAPPER_PYTHON="/usr/local/bin/python"
 export BROWSER='open'
 export EDITOR='vim'
 export VISUAL='vim'
@@ -22,8 +24,11 @@ export JBOSS_HOME=/usr/local/opt/jboss-as/libexec
 export GROOVY_HOME=/usr/local/opt/groovy/libexec
 export ECLIPSE_HOME="${HOME}/Applications/Eclipse.app/Contents/Eclipse"
 export ANDROID_HOME=$HOME/projects/android/sdk
-export XML_CATALOG_FILES=/usr/local/etc/xml/catalog
+export XML_CATALOG_FILES="/usr/local/etc/xml/catalog"
 export USE_CCACHE=1
+# export DYLD_LIBRARY_PATH=/Developer/NVIDIA/CUDA-8.0/lib${DYLD_LIBRARY_PATH:+:${DYLD_LIBRARY_PATH}}
+export PYENV_VIRTUALENVWRAPPER_PREFER_PYVENV="true"
+export STEAM_LIBRARY="/Volumes/SSD3/SteamLibrary/steamapps"
 
 export MAKEFLAGS="-j8"
 
@@ -32,12 +37,14 @@ typeset -gU cdpath fpath mailpath path
 path=(
   ${HOME}/bin
   /usr/local/{bin,sbin,heroku/bin}
+  /Developer/NVIDIA/CUDA-8.0/bin
   $(yarn global bin)
   $path
   ${JBOSS_HOME}/bin
   ${HOME}/Library/Developer
   ${GOPATH}/bin
   ${GOROOT}/bin
+  ${HOME}/.local/bin
   /opt/chefdk/bin
 )
 

@@ -48,8 +48,6 @@ endfunction
 
 command! -complete=custom,s:RubocopSwitches -nargs=? RbFormat :call <SID>RbFormat(<q-args>)
 
-command! -range=% RemoveRockets silent execute <line1>.','.<line2>.'s/:\(\w\+\)\s*=>\s*/\1: /g'
-
 function! s:BracketsToDoEnd()
   let char = getline('.')[col('.')-1]
   if char=='}'
@@ -195,6 +193,16 @@ augroup rbs
   exec 'autocmd FileType ruby map <buffer> ' . g:blocktoggle_mapping . ' <Plug>BlockToggle'
 augroup END
 
+function! s:HashRocketsTo19Syntax()
+endfunction
+
+function! s:Ruby19ToHashRockets()
+endfunction
+
+function! s:ToggleHashStyle()
+endfunction
+
+
 command! -range=% RemoveRockets silent execute <line1>.','.<line2>.'s/:\(\w\+\)\s*=>\s*/\1: /g'
 
 let w:airline_section_x = '%{rvm#statusline()}'
@@ -207,4 +215,3 @@ if match(expand('%:t'), '_spec\.rb') != -1
 endif
 
 let &cpo = s:save_cpo
-

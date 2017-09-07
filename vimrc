@@ -22,12 +22,11 @@ hi CursorLineNr term=bold ctermfg=2
 
 set guifont=Inconsolata\ for\ Powerline
 set encoding=utf-8
-let g:airline_powerline_fonts = 1
 set t_Co=256
 set fillchars+=stl:\ ,stlnc:\
 set term=xterm-256color
 set termencoding=utf-8
-set tags=./tags,./.git/tags,./build/tags,./.git/bundler.tags,./.git/stdlib.tags;
+set tags=.git/tags,./.git/tags/,.git/bundler.tags,.git/stdlib.tags,tags,./tags,./build/tags,./.git/bundler.tags,./.git/stdlib.tags;
 
 " No scroll bars in gvim mode
 set guioptions-=r
@@ -75,8 +74,14 @@ let &t_EI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=0\x7\<Esc>\\"
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#taboo#enabled = 1
 let g:airline#extensions#windowswap#enabled = 1
-let g:airline#extensions#syntastic#enabled = 1
+" let g:airline#extensions#syntastic#enabled = 1
+let g:airline#extensions#ycm#enabled = 1
 let g:airline_theme = 'jml'
+let g:airline_powerline_fonts = 1
+let g:airline_skip_empty_sections = 1
+if !exists('g:airline_symbols')
+  let g:airline_symbols = {}
+endif
 
 " function! RvmStatusLine(...)
 "   if &filetype == 'ruby'
@@ -320,6 +325,9 @@ nnoremap <silent> <C-\> :TmuxNavigatePrevious<cr>
 " }}} Vim-Tmux-Navigator "
 
 " Syntastic {{{ "
+let g:ale_sign_warning = 'W>'
+let g:ale_warn_about_trailing_whitespace = 0
+
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 0
@@ -354,7 +362,7 @@ let g:ycm_server_keep_logfiles = 0
 let g:ycm_global_ycm_extra_conf = '~/.ycm_extra_conf.py'
 let g:ycm_server_log_level = 'info'
 
-let g:ycm_path_to_python_interpreter = '/usr/local/bin/python'
+let g:ycm_path_to_python_interpreter = '/usr/bin/python'
 let g:ycm_complete_in_comments = 1
 let g:ycm_seed_identifiers_with_syntax = 1
 let g:ycm_collect_identifiers_from_comments_and_strings = 1
@@ -391,6 +399,9 @@ let g:ruby_heredoc_syntax_filetypes = {
       \ },
       \ "sh": {
       \   "start": "SHELL",
+      \ },
+      \ "vim": {
+      \ "start": "VIM",
       \ },
       \}
 " }}} Ruby Heredoc Syntax "
