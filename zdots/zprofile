@@ -38,7 +38,6 @@ path=(
   ${HOME}/bin
   /usr/local/{bin,sbin,heroku/bin}
   /Developer/NVIDIA/CUDA-8.0/bin
-  $(yarn global bin)
   $path
   ${JBOSS_HOME}/bin
   ${HOME}/Library/Developer
@@ -46,6 +45,7 @@ path=(
   ${GOROOT}/bin
   ${HOME}/.local/bin
   /opt/chefdk/bin
+  $(yarn global bin)
 )
 
 fpath=(

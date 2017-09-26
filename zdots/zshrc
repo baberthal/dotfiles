@@ -35,6 +35,4 @@ alias tkss='tmux kill-session -t'
 [[ -s "${ZEXTRA_DIR}/directories.zsh" ]] && source "${ZEXTRA_DIR}/directories.zsh"
 export RANGER_LOAD_DEFAULT_RC=false
 
-export PATH="$PATH:`yarn global bin`"
-
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
