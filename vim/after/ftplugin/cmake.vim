@@ -1,6 +1,8 @@
 setlocal commentstring=#\ %s
+setlocal comments=:#
 setlocal sw=2
 setlocal et
+setlocal formatoptions=croql
 
 nmap ,hc :call OpenCmakeHelp()<CR>
 
@@ -24,3 +26,10 @@ endfunction
 
 autocmd FileType cmake nmap <F1> :call OpenCmakeHelp()<CR>
 
+let b:match_words = '\<if\>:\<elseif\>:\<else\>:\<endif\>,'
+            \ . '\<foreach\>:\<endwhile\>:\<break\>:\<endforeach\>,'
+            \ . '\<while\>:\<continue\>:\<break\>:\<endwhile\>,'
+            \ . '\<function\>:\<endfunction\>,'
+            \ . '\<macro\>:\<endmacro\>'
+
+let b:match_ignorecase = 1
