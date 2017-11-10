@@ -19,7 +19,7 @@ snippet rd "rubocop:disable" w
 endsnippet
 
 snippet rea "rubocop:enable All" w
-# rubocop:enable all $0
+# rubocop:enable all$0
 endsnippet
 
 snippet re "rubocop:enable" w
@@ -50,11 +50,6 @@ endsnippet
 
 snippet ecla "error class" b
 class ${1:MyErrorClass} < ${2:StandardError}${3:; }${3/(; )/(?1::\t)/}$4${3/(; )/(?1::\n)/}end
-endsnippet
-
-snippet frozen "frozen_string_literal: true" b
-# frozen_string_literal: true
-$0
 endsnippet
 
 snippet fsl "frozen_string_literal: true" b

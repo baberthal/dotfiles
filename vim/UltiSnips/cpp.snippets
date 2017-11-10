@@ -1,40 +1,41 @@
+global !p
+from cxx_snippets import *
+endglobal
+
 snippet tdb "typedef block" b
 typedef ${1:return_type}(^${2:block_name})(${3:block_params});$0
 endsnippet
-
 snippet tdf "typedef function pointer" b
 typedef ${1:return_type}(*${2:type_name})(${3:func_params});$0
-endsnippet
-
-snippet fhead "File Header" b
-//===--- `!v expand('%:t')` -------------------------------------*- C++ -*-===//
-//
-// This source file is part of the ${1:Project} open source project
-//
-// Copyright (c) 2014 - 2016 $1
-// Licensed under Apache License v2.0 with Runtime Library Exception
-//
-//===----------------------------------------------------------------------===//
-//
-//  $2
-//
-//===----------------------------------------------------------------------===//
-$0
 endsnippet
 
 snippet ns "namespace" b
 namespace ${1:name} {
 $0
-} /* end namespace $1 */
+} // namespace $1
 endsnippet
 
-snippet header "Header boilerplace" b
-#ifndef ${1:SYMBOL}_H
+snippet headerguard "Header boilerplace" b
+#ifndef ${1:`!p snip.rv = MakeHeaderGuardIdentifier()`}_H
 #define $1_H
 $0
-#endif /* $1_H */
+#endif /* ifndef $1_H */
 endsnippet
 
 snippet tmpl "template <type...>" b
-template <${1:typename}>
+template <${1:typename}$2>
+$0
+endsnippet
+
+snippet line "test line" b
+`!p
+if not snip.c:
+    width = int(vim.eval("&textwidth")) or 80
+filename = vim.eval("expand('%')")
+header = MakeFileHeader(filename, len(t[1]), width)
+snip.rv = header[0]
+`${1:${VISUAL:Brief Description}}`!p
+header = MakeFileHeader(filename, len(t[1]), width)
+snip.rv = header[1]
+`
 endsnippet

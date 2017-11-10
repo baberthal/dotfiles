@@ -1,3 +1,7 @@
+global !p
+from vimsnippets import foldmarker, make_box, get_comment_format
+endglobal
+
 snippet init "initialize a project" b
 cmake_minimum_required(VERSION ${1:3.2.0})
 project(${2:ProjectName})
@@ -109,11 +113,46 @@ endif($1)$0
 endsnippet
 
 snippet fun "function" b
-function(${1:function_name} ${2:args})
+function(${1:function_name} ${2:args...})
 	$0
 endfunction($1)
 endsnippet
 
 snippet opt "option" b
 option(${1:option} "${2:docstring}" ${3:ON})$0
+endsnippet
+
+snippet macro "macro definition" bs
+macro(${1:macro_name}${2: ${3:args...}})
+	$0
+endmacro($1)
+endsnippet
+
+snippet for "foreach..." b
+foreach(${1:var} ${${2:list}})
+	$0
+endforeach()
+endsnippet
+
+snippet str "string(...)" b
+string(${1:action} $2)$0
+endsnippet
+
+snippet message "message" b
+message(${1:STATUS|FATAL_ERROR} ${2:text})$0
+endsnippet
+
+snippet module "Module Header" b
+`!p
+if not snip.c:
+	width = int(vim.eval("&textwidth")) or 71
+box = make_box(len(t[1]), width)
+snip.rv = box[0]
+snip += box[1]
+`${1:`!v expand('%:t')`}`!p
+box = make_box(len(t[1]), width)
+snip.rv = box[2]
+snip += box[3]`
+#
+# ${2:${VISUAL:Module Description}}$0
 endsnippet

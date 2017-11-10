@@ -13,3 +13,22 @@ from vimsnippets import foldmarker, make_box, get_comment_format
 # snip += commentout("  ")`Created by `contacts -Hm -f '%n' | sed 's/^[ \t]*//;s/[ \t]*$//'` on `date +%d/%m/%y``!p
 # snip += blankln
 endglobal
+
+global !p
+def make_line(width):
+    beg, mid, end, i = (s.strip() for s in get_comment_format())
+    width_inner = width - 3 - max(len(beg), len(i + end))
+
+    line = beg + mid + width_inner * mid[0] + 2 * mid[0]
+    return line
+endglobal
+
+# So they can be specialized
+priority -5
+snippet section "Section Line" b
+`!p
+width = int(vim.eval("&textwidth - (virtcol('.') == 1 ? 0 : virtcol('.'))")) or 71
+parts = make_line(width)
+snip.rv = "".join(parts)
+`
+endsnippet
