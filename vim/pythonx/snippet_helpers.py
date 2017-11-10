@@ -1,9 +1,10 @@
 """Helper methods for UltiSnips snippets"""
 
-import string, vim, re
 
-def dasherizedSelector(filename):
-    pass
+def MakeCXXFileHeader(textwidth):
+    head = '//===---'
+    tail = '-*- C++ -*-===//'
 
-def camelizedSelector(filename):
-    pass
+    middle = '-' * textwidth
+
+    return ''.join(head, tail, middle)
