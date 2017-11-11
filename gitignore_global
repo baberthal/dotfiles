@@ -105,3 +105,4 @@ Session.vim
 */doc/tags
 doc/tags
 
+*.pyc

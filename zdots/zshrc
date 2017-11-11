@@ -8,8 +8,6 @@ fi
 
 (( $+TMUX )) && unset zle_bracketed_paste
 
-export PROJECT_HOME="${HOME}/projects"
-
 # random aliases
 alias ivm='vim' # I DO THIS ALL THE FUCKING TIME
 alias iv='vi' # See above

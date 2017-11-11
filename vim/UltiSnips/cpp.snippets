@@ -39,3 +39,10 @@ header = MakeFileHeader(filename, len(t[1]), width)
 snip.rv = header[1]
 `
 endsnippet
+
+snippet doxblock "doxygen block" b
+/// @name ${1:name}
+/// @{
+$0
+/// @}
+endsnippet

@@ -38,6 +38,7 @@ zstyle ':prezto:load' pmodule \
   'osx' \
   'node' \
   'history-substring-search' \
+  'python' \
   'rails' \
   'ruby' \
   'prompt'
@@ -168,6 +169,9 @@ zstyle ':prezto:module:prompt' theme 'jml'
 #
 # Python
 #
+
+# Auto switch the python virtualenv on directory change
+zstyle ':prezto:module:python:virtualenv' auto-switch 'yes'
 
 #
 # Ruby

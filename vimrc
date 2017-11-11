@@ -8,6 +8,14 @@ set ru nu cc=81 tw=80 sw=2 et ml spr
 let mapleader="\<Space>"
 set mouse=nih
 
+" Format Options {{{ "
+set formatoptions=q " allow gq to work in comments
+set formatoptions+=r " enter extends comments
+set formatoptions+=n " format numbered lists using 'formatlistpat'
+set formatoptions+=1 " don't break after one-letter words
+set formatoptions+=j " Remove comment leader when joining comments
+" }}} Format Options "
+
 " Colors, fonts, encoding, and background setting
 syntax enable
 colorscheme solarized
@@ -33,7 +41,6 @@ set guioptions-=r
 set guioptions-=l
 set guioptions-=L
 
-" Silly hack for gvim... who uses that anyway?
 if has('gui_running')
     let s:uname = system("uname")
     if s:uname == "Darwin\n"
@@ -158,10 +165,37 @@ let g:js_indent_flat_switch = 1
 let g:js_indent_logging = 1
 " }}} One-Off Plugin Settings "
 
+" DoxygenToolkit Settings {{{ "
+let g:DoxygenToolkit_commentType = 'C++'
+" }}} DoxygenToolkit Settings "
+
 " Custom Syntax Hacks {{{ "
 hi link NERDTreeOpenable PreProc
 hi link NERDTreeClosable PreProc
+
+augroup SyntaxHacks
+  " this one is which you're most likely to use?
+  autocmd Syntax * syntax keyword NB containedin=.*Comment
+augroup end
 " }}} Custom Syntax Hacks "
+
+" CtrlP {{{ "
+" Use RipGrep for fuzzy file finding. It is faster.
+let g:ctrlp_user_command = 'rg %s --files --color=never --glob ""'
+" RipGrep is so fast, caching actually slows it down
+let g:ctrlp_use_caching = 0
+" Better matches with CPSM
+let g:ctrlp_match_func = { 'match': 'cpsm#CtrlPMatch' }
+" CtrlP Funky is a CtrlP extension that provides simple fuzzy function finding
+" without the need for ctags
+let g:ctrlp_funky_syntax_highlight = 1
+nnoremap <leader>f :CtrlPFunky<CR>
+" }}} CtrlP "
+
+" Ruby {{{ "
+let g:ruby_indent_access_modifier_style = 'outdent'
+let g:ruby_indent_assignment_style = 'variable'
+" }}} Ruby "
 
 " Javascript/JSON {{{ "
 let g:used_javascript_libs = 'jquery,jasmine,underscore,angularjs,angularui,angularuirouter,react'
@@ -312,6 +346,12 @@ augroup comment_overrides
   au FileType coffee set commentstring=#\ %s
   au FileType dosini set commentstring=#\ %s
 augroup END
+
+augroup CONFIG_HEADERS
+  autocmd FileType c,cpp ClangFormatAutoEnable
+  autocmd BufRead,BufNewFile *.h.in ClangFormatAutoDisable
+augroup end
+
 " }}} Autocommands "
 
 " Vim-Tmux-Navigator {{{ "
@@ -324,9 +364,51 @@ nnoremap <silent> <C-\> :TmuxNavigatePrevious<cr>
 
 " }}} Vim-Tmux-Navigator "
 
-" Syntastic {{{ "
+" ALE {{{ "
+
 let g:ale_sign_warning = 'W>'
+let g:ale_echo_msg_format = '[%severity%] %s (%linter%)'
 let g:ale_warn_about_trailing_whitespace = 0
+let g:ale_fix_on_save = 1
+
+" let g:ale_linters = {
+" \   'c': ['clangtidy'],
+" \   'cpp': ['clangtidy', 'clangcheck']
+" \ }
+
+let g:ale_pattern_options = {
+      \ '\.c$': {'ale_enabled': 0},
+      \ '\.cpp$': {'ale_enabled': 0},
+      \ '\.h$': {'ale_enabled': 0},
+      \ '\.hpp$': {'ale_enabled': 0}
+      \}
+
+let g:ale_fixers = {
+\   'python': [
+\       'autopep8',
+\       'isort',
+\       'yapf'
+\   ],
+\   'ruby': [
+\       'remove_trailing_lines',
+\       'rubocop'
+\   ]
+\ }
+
+" C/C++
+if !executable('clang-tidy')
+  let g:ale_c_clangtidy_executable = '/usr/local/opt/llvm/bin/clang-tidy'
+  let g:ale_cpp_clangtidy_executable = '/usr/local/opt/llvm/bin/clang-tidy'
+endif
+
+if !executable('clang-check')
+  let g:ale_cpp_clangcheck_executable = '/usr/local/opt/llvm/bin/clang-check'
+endif
+
+let g:ale_cpp_clangtidy_checks = [] " use the .clang-tidy file for checks config
+
+"  Python
+let g:ale_python_autopep8_options = '--max-line-length 80'
 
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
@@ -355,11 +437,11 @@ let g:syntastic_typescript_checkers = ['tsuquyomi', 'tslint']
 let g:syntastic_swift_checkers = ['swiftpm']
 let g:syntastic_swift_swiftpm_executable = '/Library/Developer/Toolchains/swift-latest.xctoolchain/usr/bin/swift'
 
-" }}} Syntastic "
+" }}} ALE "
 
 " YouCompleteMe / Ultisnips {{{ "
 let g:ycm_server_keep_logfiles = 0
-let g:ycm_global_ycm_extra_conf = '~/.ycm_extra_conf.py'
+" let g:ycm_global_ycm_extra_conf = '~/.ycm_extra_conf.py'
 let g:ycm_server_log_level = 'info'
 
 let g:ycm_path_to_python_interpreter = '/usr/bin/python'

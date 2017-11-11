@@ -66,7 +66,7 @@ def MakeHeaderGuardIdentifier(filename):
 def _GetFileHeaderParts(fullpath):
     mode = _GetFTMode() or 'C++'
     filepath = RelativeFilePath(fullpath)
-    leader = '//===--- {0} - '.format(filepath)
+    leader = '//===- {0} - '.format(filepath)
     trailer = '-*- {0} -*-===//'.format(mode)
 
     return [leader, trailer]
