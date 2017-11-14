@@ -8,7 +8,8 @@
 "=============================================================================="
 
 augroup JML_DEFAULTS
-  au! " Clear the group if already loaded
+  " Clear the group if already loaded
+  au!
   " These next two commands switch between relativenumber and norelativenumber
   " when entering and leaving insert mode. We want relativenumber in Normal
   " mode, but we don't care in insert mode.
@@ -29,7 +30,8 @@ augroup END
 
 " This group sets filetypes with non-standard extensions
 augroup JML_FILETYPES
-  au! " Clear
+  " Clear
+  au!
   au BufRead,BufNewFile,BufEnter .clang-format set ft=yaml
   au BufRead,BufNewFile,BufEnter .babelrc set ft=json
 
