@@ -121,9 +121,6 @@
 [submodule "vim/bundle/vim-windowswap"]
 	path = vim/bundle/vim-windowswap
 	url = http://github.com/wesQ3/vim-windowswap.git
-[submodule "vim/bundle/vim-toml"]
-	path = vim/bundle/vim-toml
-	url = http://github.com/cespare/vim-toml.git
 [submodule "vim/bundle/vim-tmux"]
 	path = vim/bundle/vim-tmux
 	url = http://github.com/tmux-plugins/vim-tmux.git
@@ -139,66 +136,27 @@
 [submodule "vim/bundle/typescript-vim"]
 	path = vim/bundle/typescript-vim
 	url = https://github.com/leafgarland/typescript-vim.git
-[submodule "vim/bundle/vim-node"]
-	path = vim/bundle/vim-node
-	url = https://github.com/moll/vim-node.git
-[submodule "vim/bundle/javascript-libraries-syntax.vim"]
-	path = vim/bundle/javascript-libraries-syntax.vim
-	url = https://github.com/baberthal/javascript-libraries-syntax.vim.git
-[submodule "vim/bundle/html5-syntax.vim"]
-	path = vim/bundle/html5-syntax.vim
-	url = https://github.com/othree/html5-syntax.vim.git
-[submodule "vim/bundle/html5.vim"]
-	path = vim/bundle/html5.vim
-	url = https://github.com/othree/html5.vim.git
-[submodule "vim/bundle/yats.vim"]
-	path = vim/bundle/yats.vim
-	url = https://github.com/HerringtonDarkholme/yats.vim.git
-[submodule "vim/bundle/vim-pug"]
-	path = vim/bundle/vim-pug
-	url = https://github.com/digitaltoad/vim-pug.git
-[submodule "vim/bundle/vim-coffee-script"]
-	path = vim/bundle/vim-coffee-script
-	url = https://github.com/kchmck/vim-coffee-script
-[submodule "vim/bundle/vim-js-indent"]
-	path = vim/bundle/vim-js-indent
-	url = https://github.com/jason0x43/vim-js-indent.git
-[submodule "vim/bundle/yajs.vim"]
-	path = vim/bundle/yajs.vim
-	url = https://github.com/baberthal/yajs.vim.git
 [submodule "vim/bundle/dart-vim-plugin"]
 	path = vim/bundle/dart-vim-plugin
 	url = https://github.com/dart-lang/dart-vim-plugin.git
-[submodule "vim/bundle/vim-slim"]
-	path = vim/bundle/vim-slim
-	url = https://github.com/slim-template/vim-slim.git
 [submodule "fzf"]
 	path = fzf
 	url = https://github.com/junegunn/fzf.git
 [submodule "vim/bundle/fzf.vim"]
 	path = vim/bundle/fzf.vim
 	url = https://github.com/junegunn/fzf.vim.git
-[submodule "vim/bundle/vim-mustache-handlebars"]
-	path = vim/bundle/vim-mustache-handlebars
-	url = https://github.com/mustache/vim-mustache-handlebars.git
 [submodule "vim/bundle/vim-ruby-heredoc-syntax"]
 	path = vim/bundle/vim-ruby-heredoc-syntax
 	url = https://github.com/joker1007/vim-ruby-heredoc-syntax.git
 [submodule "vim/bundle/swift.vim"]
 	path = vim/bundle/swift.vim
 	url = https://github.com/keith/swift.vim.git
-[submodule "vim/bundle/vim-gradle"]
-	path = vim/bundle/vim-gradle
-	url = https://github.com/tfnico/vim-gradle.git
 [submodule "vim/bundle/vim-closetag"]
 	path = vim/bundle/vim-closetag
 	url = https://github.com/alvan/vim-closetag.git
 [submodule "vim/bundle/vim-dispatch"]
 	path = vim/bundle/vim-dispatch
 	url = https://github.com/tpope/vim-dispatch.git
-[submodule "vim/bundle/tsuquyomi"]
-	path = vim/bundle/tsuquyomi
-	url = https://github.com/Quramy/tsuquyomi.git
 [submodule "vim/bundle/vimproc.vim"]
 	path = vim/bundle/vimproc.vim
 	url = https://github.com/Shougo/vimproc.vim.git
@@ -214,12 +172,6 @@
 [submodule "vim/bundle/dash.vim"]
 	path = vim/bundle/dash.vim
 	url = git://github.com/rizzatti/dash.vim.git
-[submodule "vim/bundle/vim-jsx"]
-	path = vim/bundle/vim-jsx
-	url = git://github.com/mxw/vim-jsx.git
-[submodule "vim/bundle/vim-css3-syntax"]
-	path = vim/bundle/vim-css3-syntax
-	url = git://github.com/hail2u/vim-css3-syntax.git
 [submodule "vim/bundle/vim-cucumber"]
 	path = vim/bundle/vim-cucumber
 	url = git://github.com/tpope/vim-cucumber.git
@@ -232,12 +184,6 @@
 [submodule "vim/bundle/vim-capslock"]
 	path = vim/bundle/vim-capslock
 	url = git://github.com/tpope/vim-capslock.git
-[submodule "vim/bundle/vim-angular2-snippets"]
-	path = vim/bundle/vim-angular2-snippets
-	url = git://github.com/mhartington/vim-angular2-snippets.git
-[submodule "vim/bundle/scss-syntax.vim"]
-	path = vim/bundle/scss-syntax.vim
-	url = git://github.com/cakebaker/scss-syntax.vim.git
 [submodule "vim/bundle/ale"]
 	path = vim/bundle/ale
 	url = git://github.com/w0rp/ale.git
