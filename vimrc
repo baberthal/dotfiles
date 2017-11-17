@@ -37,6 +37,7 @@ let mapleader="\<Space>"
 nnoremap <leader>f :CtrlPFunky<CR>
 nnoremap <Leader>gc :Gcommit<CR>
 nnoremap <Leader>gst :Gstatus<CR>
+nnoremap <Leader>ml :AppendModeline<CR>
 nnoremap <leader>p :set paste<CR>:put *<CR>:set nopaste<CR>
 nmap <Leader>w :w<CR>
 nnoremap <leader>y "*y
@@ -81,6 +82,7 @@ source $HOME/.vim/config/settings.vim
 source $HOME/.vim/config/autocmds.vim
 source $HOME/.vim/config/commands.vim
 source $HOME/.vim/config/highlights.vim
+source $HOME/.vim/config/plugins.vim
 source $HOME/.vim/config/programs.vim
 source $HOME/.vim/config/statusline.vim
 
@@ -91,7 +93,7 @@ let g:bufExplorerShowRelativePath=1
 " Taboo.vim settings
 let g:taboo_tabline = 0
 let g:taboo_modified_tab_flag = "+"
-let g:taboo_renamed_tab_format = "%l %m"
+let g:taboo_renamed_tab_format = "%lm"
 
 let g:closetag_filenames = "*.html,*.xhtml,*.xml,*.plist"
 
@@ -103,9 +105,6 @@ let g:js_indent_logging = 1
 let g:DoxygenToolkit_commentType = 'C++'
 " }}} DoxygenToolkit Settings "
 
-" CtrlP {{{ "
-" }}} CtrlP "
-
 " Ruby {{{ "
 let g:ruby_indent_access_modifier_style = 'outdent'
 let g:ruby_indent_assignment_style = 'variable'
@@ -115,9 +114,6 @@ let g:ruby_indent_assignment_style = 'variable'
 let g:used_javascript_libs = 'jquery,jasmine,underscore,angularjs,angularui,angularuirouter,react'
 let g:vim_json_syntax_conceal = 0
 
-hi link jsonBoolean Constant
-hi link jsonBraces  Function
-hi link jsonQuote   Delimiter
 " }}} Javascript/JSON "
 
 " Dart {{{ "
