@@ -21,3 +21,4 @@ hi link Member Identifier
 syn region cBlockBlock start="\^{" end="}" contains=TOP,cBadBlock,cCurlyError,@cParenGroup,cErrInParen,cCppParen,cErrInBracket,cCppBracket,@cStringGroup,@Spell fold
 
 source $VIMRUNTIME/syntax/doxygen.vim
+syn keyword doxygenTODO containedin=doxygenCommentL

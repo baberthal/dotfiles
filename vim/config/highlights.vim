@@ -21,3 +21,9 @@ hi CursorLineNr term=bold ctermfg=2 guifg=Green
 " Highlight NERDTreeClosable and NERDTreeOpenable as PreProc
 hi link NERDTreeOpenable PreProc
 hi link NERDTreeClosable PreProc
+
+" Some links in the json syntax file are non-standard
+hi link JsonNumber Number
+hi link jsonBoolean Constant
+hi link jsonBraces  Function
+hi link jsonQuote   Delimiter

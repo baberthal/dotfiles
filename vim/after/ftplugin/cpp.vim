@@ -16,3 +16,11 @@ if isdirectory(s:builddir)
     let b:compilation_db_path = s:builddir
     let g:clang_rename_extra_args = ['-p', s:builddir]
 endif
+
+
+" We remove the // comment setting, so we can add ///, and _then_ add //.
+set comments-=://
+set comments+=:///,://
+
+" Match <> in template declarations
+set matchpairs+=<:>

@@ -18,3 +18,5 @@ command! Sw :w !sudo tee %
 command! ZoomToggle :call jml#ZoomToggle()
 
 command! DeleteTrailingWhitespace :call jml#DeleteTrailingWhitespace()
+
+command! AppendModeline :call jml#AppendModeline()

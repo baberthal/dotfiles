@@ -1,3 +1,9 @@
+# We want to override the parent snippets, so we do this:
+priority -10
+extends c
+
+priority 0
+
 global !p
 from cxx_snippets import *
 endglobal
@@ -16,15 +22,18 @@ $0
 endsnippet
 
 snippet headerguard "Header boilerplace" b
-#ifndef ${1:`!p snip.rv = MakeHeaderGuardIdentifier()`}_H
+#ifndef ${1:`!p
+filename = vim.eval("expand('%')")
+snip.rv = MakeHeaderGuardIdentifier(filename)`}_H
 #define $1_H
+
 $0
+
 #endif /* ifndef $1_H */
 endsnippet
 
 snippet tmpl "template <type...>" b
-template <${1:typename}$2>
-$0
+template <${1:typename $2}> $0
 endsnippet
 
 snippet line "test line" b
@@ -43,6 +52,45 @@ endsnippet
 snippet doxblock "doxygen block" b
 /// @name ${1:name}
 /// @{
-$0
+${0:${VISUAL}}
 /// @}
+endsnippet
+
+snippet clf "Class Forward Declaration" b
+class ${1:Name};$0
+endsnippet
+##
+## Preprocessor
+# #include <...>
+
+## Input/Output
+
+snippet cout "std::cout << $1 << std::endl" b
+std::cout << $1 << std::endl;$0
+endsnippet
+
+snippet cerr "std::cerr << $2 << std::endl" b
+std::cerr << $1 << std::endl;$0
+endsnippet
+
+snippet cin "std::cin >> $1;" b
+std::cin >> $1;$0
+endsnippet
+
+## Casts
+
+snippet sca "static_cast<>" w
+static_cast<${1:Type}>(${2:expr})$0
+endsnippet
+
+snippet dca "dynamic_cast<>" w
+dynamic_cast<${1:Type}>(${2:expr})$0
+endsnippet
+
+snippet rca "reinterpret_cast<>" w
+reinterpret_cast<${1:Type}>(${2:expr})$0
+endsnippet
+
+snippet cca "const_cast<>" w
+const_cast<${1:Type}>(${2:expr})$0
 endsnippet

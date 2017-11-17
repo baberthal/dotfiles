@@ -41,20 +41,19 @@ set previewheight=20            " 20 rows in preview window
 set secure                      " Don't allow Autocommands in the project-specific vimrc
 set shiftround                  " Rounds up shift to nearest multiple of 'sw'
 set shiftwidth=2                " 2 spaces in every language
-
 let &showbreak = '>>> '         " We do it like this to avoid fuckups with the trailing space
 set showcmd
 set smartcase
 set softtabstop=-1              " use 'shiftwidth'
+set nospell
+set spelllang=en_us
 set splitright                  " Split on RHS
 set tags=./tags,tags,.git/tags; " Look in .git/ for tags files as well
 set tags+=.git/bundler.tags,.git/stdlib.tags;
-set term=xterm-256color
 set termencoding=utf-8
 set textwidth=80                " Pedantic, but worth it
 set title                       " mess with title
 set t_vb=                       " Seriously, that fucking bell
-set t_Co=256                    " Force 256 color term
 set undodir=~/.vim/undo         " put undo files here
 set undofile
 set undolevels=1000             " persistent undo

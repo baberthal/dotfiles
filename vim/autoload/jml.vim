@@ -23,18 +23,15 @@ endf
 
 " Delete trailing whitespace, but not in binmode or diffmode
 function jml#DeleteTrailingWhitespace()
-  " FIXME: Figure out how to get back to where we started. Marks maybe?
-  if !&binary && &filetype !=? 'diff'
-    %s/\s\+%//e
-  endif
+  %s/\s\+$//e
 endf
 
 " Append modeline after last line in buffer.
-function! jml#AppendModeline() abort
+function! jml#AppendModeline()
   let l:modeline = printf(" vim: set ts=%d sw=%d tw=%d ft=%s %set :",
         \ &tabstop, &shiftwidth, &textwidth, &filetype, &expandtab ? '' : 'no')
   let l:modeline = substitute(&commentstring, "%s", l:modeline, "")
-  call append(line("$"), l:modeline)
+  call append(line("$"), ["", l:modeline])
 endf
 
 " Zoom a window, or restore

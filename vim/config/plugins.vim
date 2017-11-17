@@ -37,7 +37,7 @@ let g:ale_fix_on_save = 0
 " Use these fixers
 let g:ale_fixers = {
 \   'python': [
-\       'autopep8',
+\       'yapf',
 \       'isort'
 \   ],
 \
@@ -48,15 +48,17 @@ let g:ale_fixers = {
 \ }
 
 " Disable for c, cpp and header files. YCM is better.
+" FIXME: This could be one regex, but it would be UGLY
 let g:ale_pattern_options = {
 \   '\.c$': { 'ale_enabled': 0 },
 \   '\.cpp$': { 'ale_enabled': 0 },
+\   '\.cc$': { 'ale_enabled': 0 },
 \   '\.h$': { 'ale_enabled': 0 },
 \   '\.hpp$': { 'ale_enabled': 0 },
 \ }
 
 " 79, really?
-let g:ale_python_autopep8_options = '--max-line-length 80'
+" let g:ale_python_autopep8_options = '--max-line-length 80'
 
 let g:ale_sign_warning = 'W>'  " Sign in gutter to denote warning
 
@@ -67,7 +69,7 @@ let g:ale_warn_about_trailing_whitespace = 0
 
 " CtrlP Settings {{{ "
 
-let g:ctrlp_user_command = 'rg %s --files --color=never --glob ""' " Use RipGrep
+let g:ctrlp_user_command = 'rgs --files --color=never --glob ""' " Use RipGrep
 let g:ctrlp_use_caching = 0 " RipGrep is so fast, caching slows it down
 let g:ctrlp_match_func = {'match': 'cpsm#CtrlPMatch'} " Better matches with CPSM
 let g:ctrlp_funky_syntax_highlight = 1 " Simple highlights w/o ctags
@@ -137,19 +139,25 @@ let g:ycm_autoclose_preview_window_after_insertion = 1
 let g:ycm_collect_identifiers_from_comments_and_strings = 1
 
 " Complete in comments
-let g:ycm_complete_in_comments = 1 " Autocomplete in comments
+let g:ycm_complete_in_comments = 1
+
+" And in strings
+let g:ycm_complete_in_strings = 1
 
 " TODO: Set up the global config to be smarter
 " let g:ycm_global_ycm_extra_conf = '~/.ycm_extra_conf.py'
 
 " Use <C-j>, <C-n> or <Down> to move to next selection in autocomplete menu
-let g:ycm_key_list_select_completion ['<C-j>', '<C-n>, <Down>']
+let g:ycm_key_list_select_completion = ['<C-j>', '<C-n>, <Down>']
 
 " Use <C-k>, <C-p> or <Up> to select previous entry in completion menu
 let g:ycm_key_list_previous_completion = ['<C-k>', '<C-p>', '<Up>']
 
 " Use system python for YCM server
-let g:ycm_path_to_python_interpreter = '/usr/bin/python'
+let g:ycm_path_to_python_interpreter = '/usr/local/bin/python3'
+
+" But use python3 for jedi
+let g:ycm_python_binary_path = 'python'
 
 " Path to rust source, for rust stdlib completions
 let g:ycm_rust_source_path = '/opt/src/rust'
