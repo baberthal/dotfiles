@@ -12,42 +12,6 @@ let g:loaded_custom_ftplugin = 1
 let s:save_cpo = &cpo
 set cpo&vim
 
-if !exists('g:rbformat_rubocop_cmd')
-    let g:rbformat_rubocop_cmd = 'rubocop '
-endif
-
-if !exists('g:rbformat_config')
-    let g:rbformat_config = ''
-endif
-
-if !exists('g:rbformat_rubocop_extra_args')
-    let g:rbformat_rubocop_extra_args = ''
-endif
-
-let s:rbformat_rubocop_switches = ['-l', '--lint', '-R', '--rails', '-f', '--format']
-
-function! s:RubocopSwitches(...)
-    return join(s:rbformat_rubocop_switches, "\n")
-endfunction
-
-function! s:RbFormat(current_args)
-    let l:extra_args = g:rbformat_rubocop_extra_args
-    let l:filename   = @%
-    echom "Filename is ".l:filename
-    let l:rubocop_cmd = g:rbformat_rubocop_cmd
-    echom "Rubocop cmd is ".g:rbformat_rubocop_cmd
-    let l:rubocop_opts = ' '.a:current_args.' '.l:extra_args.' --auto-correct'
-    echom "Running rubocop with ".l:rubocop_opts
-    if g:rbformat_config != ''
-        let l:rubocop_opts = ' '.l:rubocop_opts.' --config '.g:rbformat_config
-    endif
-
-    let l:rubocop_output = system(l:rubocop_cmd.l:rubocop_opts.' '.l:filename)
-    edit
-endfunction
-
-command! -complete=custom,s:RubocopSwitches -nargs=? RbFormat :call <SID>RbFormat(<q-args>)
-
 function! s:BracketsToDoEnd()
   let char = getline('.')[col('.')-1]
   if char=='}'
@@ -150,7 +114,7 @@ function! s:FindNearestBlockBounds()
   elseif searchpair('{', '', '}', 'bcW') > 0
     return getline('.')[col('.')-1]
   elseif searchpair('\<do\>', '', '\<end\>\zs', 'bcW',
-        \ 'synIDattr(synID(line("."), col("."), 0), "name") =~? "string"') > 0
+	\ 'synIDattr(synID(line("."), col("."), 0), "name") =~? "string"') > 0
     return expand('<cword>')
   endif
 
@@ -182,7 +146,7 @@ function! s:ToggleBlockStyle()
   silent! call repeat#set("\<Plug>BlockToggle", -1)
 endfunction
 
-nnoremap <silent> <Plug>BlockToggle :<C-U>call <SID>ToggleBlockStyle()<CR>
+" nnoremap <silent> <Plug>BlockToggle :<C-U>call <SID>ToggleBlockStyle()<CR>
 command! BlockToggle silent call s:ToggleBlockStyle()<CR>
 if !exists('g:blocktoggle_mapping')
   let g:blocktoggle_mapping = '<leader>b'
@@ -202,10 +166,16 @@ endfunction
 function! s:ToggleHashStyle()
 endfunction
 
+function! s:GetRubyLoadPath()
+ruby << EOF
+load_path = $:.map { |p| File.expand_path(p) }.uniq.join(',')
+::Vim.set_option "path+=#{load_path}"
+::Vim.command 'return 1'
+EOF
+return 0
+endf
 
 command! -range=% RemoveRockets silent execute <line1>.','.<line2>.'s/:\(\w\+\)\s*=>\s*/\1: /g'
-
-let w:airline_section_x = '%{rvm#statusline()}'
 
 if match(expand('%:t'), '_spec\.rb') != -1
   if !exists('did_plugin_ultisnips')
