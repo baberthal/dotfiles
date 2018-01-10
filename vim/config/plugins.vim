@@ -69,7 +69,9 @@ let g:ale_warn_about_trailing_whitespace = 0
 
 " CtrlP Settings {{{ "
 
-let g:ctrlp_user_command = 'rgs --files --color=never --glob ""' " Use RipGrep
+if executable('rg')
+  let g:ctrlp_user_command = 'rg %s --files --color=never --glob ""' " Use RipGrep
+endif
 let g:ctrlp_use_caching = 0 " RipGrep is so fast, caching slows it down
 let g:ctrlp_match_func = {'match': 'cpsm#CtrlPMatch'} " Better matches with CPSM
 let g:ctrlp_funky_syntax_highlight = 1 " Simple highlights w/o ctags
@@ -96,7 +98,7 @@ let g:SuperTabDefaultCompletionType = '<C-j>'
 " Ultisnips Settings {{{ "
 
 " :UltiSnipsEdit opens a horizontal split
-let g:UltiSnipsEditSplit = "horizontal"
+let g:UltiSnipsEditSplit = "context"
 
 " Also parse any snipmate snippets found
 let g:UltiSnipsEnableSnipMate = 1
@@ -115,6 +117,9 @@ let g:UltiSnipsListSnippets = "<C-l>"
 
 " Load custom snippets from ~/.vim/UltiSnips
 let g:UltiSnipsSnippetsDir = "~/.vim/UltiSnips"
+
+" Use jedi-style docstrings for python
+let g:ultisnips_python_style = 'jedi'
 
 " }}} Ultisnips Settings "
 

@@ -11,5 +11,5 @@ if executable('ag')
 endif
 
 if executable('rg') " ripgrep
-  set grepprg=rg\ --vimgrep\ --no-heading
+  set grepprg=rg\ --vimgrep\ --no-heading\ --color=never
 endif

@@ -10,6 +10,7 @@
 " Basic Settings "
 "================"
 
+set autoread                    " Autoread
 set belloff=all                 " Don't ring the bell, yo!
 set breakindent                 " best patch ever
 set colorcolumn=81
@@ -25,7 +26,6 @@ set incsearch                   " incsearch
 set laststatus=2                " always show status line
 set modeline                    " Dangerous, but useful
 set mouse=nih
-set noautoread                  " Don't autoread
 set noautowrite                 " Don't autowrite
 set noautowriteall              " Don't autowrite
 set nocursorcolumn              " Don't highlight cursor column, but do highlight line
@@ -89,11 +89,10 @@ set formatoptions+=j " Remove comment leader when joining comments
 " ShortMess "
 "==========="
 
-set shortmess=a   " filmnrwx
-set shortmess+=O  " File read message overwrites previous
-set shortmess+=s  " Don't warn about 'search hit bottom'
-set shortmess+=f  " Though this should be included with the 'a' option above
-set shortmess+=t  " Truncate at the start
-set shortmess+=T  " Truncate in the middle
-set shortmess+=I  " No intro message
-set shortmess+=c  " Don't show ins-completion message
+" set shortmess=a   " filmnrwx
+" set shortmess+=O  " File read message overwrites previous
+" set shortmess+=s  " Don't warn about 'search hit bottom'
+" set shortmess+=f  " Though this should be included with the 'a' option above
+" set shortmess+=t  " Truncate at the start
+" set shortmess+=T  " Truncate in the middle
+" set shortmess+=c  " Don't show ins-completion message
