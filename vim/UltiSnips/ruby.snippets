@@ -1,3 +1,39 @@
+# Global Snippet Helpers
+
+global !p
+
+CONSTANTIZE_REGEX = re.compile(r'(_|^)(.)')
+
+RUBOCOP_COP_NAME_REGEX = re.compile(r'\[(.+)\]')
+
+def Classify(basename):
+    def do_transform(match):
+      return match.group(2).upper()
+
+    return CONSTANTIZE_REGEX.sub(do_transform, basename)
+
+def ExtractCopName(details):
+    match = RUBOCOP_COP_NAME_REGEX.search(details)
+    if match:
+        return match.group(1)
+    return ''
+
+def GetCopName():
+    bufnr = vim.current.buffer.number
+    cursor = vim.current.window.cursor
+
+    loclist = vim.bindeval('ale#engine#GetLoclist({0})'.format(bufnr))
+    if loclist is None:
+        return 'unknown'
+    matches = [e for e in loclist if e['lnum'] == cursor[0]]
+    if matches:
+        messages = [str(m['text']) for m in matches]
+        cops = [ExtractCopName(text) for text in messages]
+        return ' '.join(cops)
+    return 'unknown'
+
+endglobal
+
 snippet rdLL "disable rubocop line length" w
 # rubocop:disable Metrics/LineLength
 endsnippet
@@ -15,7 +51,7 @@ snippet rdAM "rubocop:disable Metrics/MethodLength,AbcSize" w
 endsnippet
 
 snippet rd "rubocop:disable" w
-# rubocop:disable $0
+# rubocop:disable ${1:`!p snip.rv = GetCopName()`}$0
 endsnippet
 
 snippet rea "rubocop:enable All" w
@@ -92,9 +128,9 @@ autoload :${1:Constant}${2:, '${3:path}'}$0
 endsnippet
 
 snippet group "Yard Group/End Group Block" b
-# @!group ${1:name}
-$0
-# @!endgroup $1
+# @!group ${1:name} {{{
+${VISUAL:Contents}$0
+# @!endgroup }}}
 endsnippet
 
 snippet @p "@param [Type] {docstring}" w
@@ -109,8 +145,17 @@ snippet @r "@return" w
 @return [${1:Type}] $0
 endsnippet
 
+snippet @ex "@example" w
+@example
+endsnippet
+
+# old impl
+# module ${1:`!v substitute(vim_snippets#Filename(), '\(_\|^\)\(.\)', '\u\2', 'g')`}
+# 	$0
+# end
+
 snippet mod "module ... end" b
-module ${1:`!v substitute(vim_snippets#Filename(), '\(_\|^\)\(.\)', '\u\2', 'g')`}
+module ${1:`!p snip.rv = Classify(snip.basename)`}
 	$0
 end
 endsnippet
@@ -154,4 +199,33 @@ endsnippet
 
 snippet mf "module_function" b
 module_function $0
+endsnippet
+
+snippet cl "class ... end" b
+class ${1:`!p snip.rv = Classify(snip.basename)`}
+	$0
+end
+endsnippet
+
+snippet cla "class ... end" b
+class ${1:`!p snip.rv = Classify(snip.basename)`}
+	$0
+end
+endsnippet
+
+snippet clai "class ... def initialize(...) ... end" b
+class ${1:`!p snip.rv = Classify(snip.basename)`}
+	def initialize(${2:args})
+		$0
+	end
+end
+endsnippet
+
+snippet cla< "class ... < ParentClass ... def initialize(...) ... end" b
+class ${1:`!p snip.rv = Classify(snip.basename)`} < ${2:ParentClass}
+	def initialize(${3:args})
+		${4:super}
+		$0
+	end
+end
 endsnippet
