@@ -184,12 +184,6 @@
 [submodule "vim/bundle/ale"]
 	path = vim/bundle/ale
 	url = git://github.com/w0rp/ale.git
-[submodule "spacemacs"]
-	path = spacemacs
-	url = git://github.com/syl20bnr/spacemacs.git
-[submodule "emacs.d"]
-	path = emacs.d
-	url = git://github.com/syl20bnr/spacemacs.git
 [submodule "vim/bundle/cpsm"]
 	path = vim/bundle/cpsm
 	url = git://github.com/nixprime/cpsm.git
@@ -199,3 +193,6 @@
 [submodule "vim/bundle/vim-rails"]
 	path = vim/bundle/vim-rails
 	url = git://github.com/tpope/vim-rails.git
+[submodule "vim/bundle/yats.vim"]
+	path = vim/bundle/yats.vim
+	url = git://github.com/HerringtonDarkholme/yats.vim.git
