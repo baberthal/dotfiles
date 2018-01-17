@@ -48,6 +48,9 @@ path=(
   /opt/chefdk/bin
 )
 
+# this is separate so we can use programs installed in /usr/local/bin
+path+=($(yarn global bin))
+
 fpath=(
   ${HOME}/.zextra/completions
   ${HOME}/.zextra/functions

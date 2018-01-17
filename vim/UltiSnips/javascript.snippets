@@ -3,11 +3,11 @@ snippet str "use strict" b
 endsnippet
 
 snippet gre "var xx = require('gulp-xx')" b
-const $1 = require('${2:gulp-}${1/([a-z])([A-Z])/$1-\l$2/g}')$3;$0
+const $1 = require("${2:gulp-}${1/([a-z])([A-Z])/$1-\l$2/g}")$3;$0
 endsnippet
 
 snippet re "var xx = require('xx')" b
-const $1 = require('${2:${1/([a-z])([A-Z])/$1-\l$2/g}}')$3;$0
+const $1 = require("${2:${1/([a-z])([A-Z])/$1-\l$2/g}}")$3;$0
 endsnippet
 
 snippet gulpt "gulp.task(...)" b
@@ -46,4 +46,26 @@ endsnippet
 
 snippet ifi "inline if" w
 if (${1:condition}) $2;$0
+endsnippet
+
+snippet // "'/* */' comment" b
+/* $1 */$0
+endsnippet
+
+snippet /// "/// comment" b
+/// $0
+endsnippet
+
+snippet d// "/** ... */ documentation comment" b
+/**
+ * $1
+ */$0
+endsnippet
+
+snippet f// "File header" b
+/* ${1:`!v expand('%')`}$0 */
+endsnippet
+
+snippet //es "/* eslint disable statement" w
+/* eslint ${1:no-console}:${2:0} */
 endsnippet

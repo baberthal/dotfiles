@@ -44,7 +44,17 @@ let g:ale_fixers = {
 \   'ruby': [
 \       'remove_trailing_lines',
 \       'rubocop'
-\   ]
+\   ],
+\
+\   'css': [ 'prettier' ],
+\
+\   'scss': [ 'prettier' ],
+\
+\   'javascript': [ 'prettier' ],
+\
+\   'json': [ 'prettier' ],
+\
+\   'typescript': [ 'prettier' ],
 \ }
 
 " Disable for c, cpp and header files. YCM is better.
@@ -55,6 +65,14 @@ let g:ale_pattern_options = {
 \   '\.cc$': { 'ale_enabled': 0 },
 \   '\.h$': { 'ale_enabled': 0 },
 \   '\.hpp$': { 'ale_enabled': 0 },
+\ }
+
+let g:ale_linters = {
+  \ 'css': ['stylelint'],
+  \ 'scss': ['stylelint'],
+  \ 'eruby': ['erubis'],
+  \ 'typescript': ['tslint'],
+  \ 'javascript': ['eslint'],
 \ }
 
 " 79, really?

@@ -1,13 +1,17 @@
-setlocal sw=2
+" Basics
 setlocal et
 setlocal tw=80
 setlocal colorcolumn=81
 
-if exists('g:loaded_custom_ftplugin') || &cp
+" Rubycomplete
+let g:rubycomplete_buffer_loading = 1
+let g:rubycomplete_classes_in_global = 1
+
+if exists('g:loaded_custom_ruby_ftplugin') || &cp
   finish
 endif
 
-let g:loaded_custom_ftplugin = 1
+let g:loaded_custom_ruby_ftplugin = 1
 
 let s:save_cpo = &cpo
 set cpo&vim
@@ -178,6 +182,7 @@ endf
 command! -range=% RemoveRockets silent execute <line1>.','.<line2>.'s/:\(\w\+\)\s*=>\s*/\1: /g'
 
 if match(expand('%:t'), '_spec\.rb') != -1
+  echom "This is a spec file"
   if !exists('did_plugin_ultisnips')
     runtime! plugin/UltiSnips.vim
     call UltiSnips#AddFiletypes('rspec')

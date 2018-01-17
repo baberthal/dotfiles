@@ -33,9 +33,9 @@ augroup JML_FILETYPES
   " Clear
   au!
   au BufRead,BufNewFile,BufEnter .clang-format set ft=yaml
-  au BufRead,BufNewFile,BufEnter .babelrc set ft=json
+  au BufRead,BufNewFile,BufEnter .babelrc,.eslintrc set ft=json
 
-  au FileType ruby,python let b:ale_fix_on_save = 1
+  au FileType ruby,python,javascript,typescript,css,scss let b:ale_fix_on_save = 1
   au FileType ruby Rvm
 
   " Broken built-in commentstring settings
@@ -44,6 +44,8 @@ augroup JML_FILETYPES
 
   " Enable clang-format in c and c++
   au FileType c,cpp :ClangFormatAutoEnable
+  " Not in JS
+  au FileType javascript,typescript :ClangFormatAutoDisable
   " But not in .in files
   au BufNewFile,BufEnter *.h.in :ClangFormatAutoDisable
 
