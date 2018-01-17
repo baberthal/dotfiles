@@ -196,3 +196,6 @@
 [submodule "vim/bundle/yats.vim"]
 	path = vim/bundle/yats.vim
 	url = git://github.com/HerringtonDarkholme/yats.vim.git
+[submodule "vim/bundle/yajs.vim"]
+	path = vim/bundle/yajs.vim
+	url = git://github.com/baberthal/yajs.vim.git
