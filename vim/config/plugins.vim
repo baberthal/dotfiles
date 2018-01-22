@@ -85,6 +85,13 @@ let g:ale_warn_about_trailing_whitespace = 0
 
 " }}} ALE (Asyncronous Lint Engine) "
 
+" Dash Integration {{{ "
+
+" This disables dash from autofocusing when searching (saves lots of <Cmd>-Tab)
+let g:dash_activate = 0
+
+" }}} Dash Integration "
+
 " CtrlP Settings {{{ "
 
 if executable('rg')

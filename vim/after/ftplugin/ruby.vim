@@ -1,7 +1,8 @@
 " Basics
-setlocal et
-setlocal tw=80
-setlocal colorcolumn=81
+set et
+set sw=2
+set tw=80
+set colorcolumn=81
 
 " Rubycomplete
 let g:rubycomplete_buffer_loading = 1
