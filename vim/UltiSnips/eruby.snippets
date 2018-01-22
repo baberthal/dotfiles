@@ -30,3 +30,13 @@ endsnippet
 snippet rps "render (partial,status) (rps)"
 render partial: "${1:item}", status: ${2:500}
 endsnippet
+
+snippet c "component" b
+<%= component('${1:name}') do %>
+	$0
+<% end %>
+endsnippet
+
+snippet //f "file header" b
+<!-- ${1:`!v expand('%')`} -->
+endsnippet

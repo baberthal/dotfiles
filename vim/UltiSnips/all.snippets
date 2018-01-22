@@ -4,6 +4,7 @@ endsnippet
 
 global !p
 from vimsnippets import foldmarker, make_box, get_comment_format
+from uuid import uuid4
 # def commentout(str = None):
 #     fmt = vim.eval("&commentstring")
 #     if str == None:
@@ -30,5 +31,11 @@ snippet section "Section Line" b
 width = int(vim.eval("&textwidth - (virtcol('.') == 1 ? 0 : virtcol('.'))")) or 71
 parts = make_line(width)
 snip.rv = "".join(parts)
+`
+endsnippet
+
+snippet uuid "generate a random uuid" w
+`!p
+if not snip.c: snip.rv = str(uuid4())
 `
 endsnippet

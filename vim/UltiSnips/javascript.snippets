@@ -52,20 +52,20 @@ snippet // "'/* */' comment" b
 /* $1 */$0
 endsnippet
 
-snippet /// "/// comment" b
-/// $0
-endsnippet
-
-snippet d// "/** ... */ documentation comment" b
+snippet //d "/** ... */ documentation comment" b
 /**
  * $1
  */$0
 endsnippet
 
 snippet f// "File header" b
-/* ${1:`!v expand('%')`}$0 */
+// ${1:`!v expand('%')`}$0
+endsnippet
+
+snippet f/* "/* file header */" b
+/* ${1:`!v expand('%')`} */$0
 endsnippet
 
 snippet //es "/* eslint disable statement" w
-/* eslint ${1:no-console}:${2:0} */
+/* eslint ${1:no-console}:${2:0} */$0
 endsnippet
