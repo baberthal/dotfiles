@@ -47,13 +47,9 @@ let g:ale_fixers = {
 \   ],
 \
 \   'css': [ 'prettier' ],
-\
 \   'scss': [ 'prettier' ],
-\
 \   'javascript': [ 'prettier' ],
-\
 \   'json': [ 'prettier' ],
-\
 \   'typescript': [ 'prettier' ],
 \ }
 
@@ -193,7 +189,7 @@ let g:ycm_python_binary_path = 'python'
 let g:ycm_rust_source_path = '/opt/src/rust'
 
 " Automatically add syntax keywords to the autocomplete menu
-let g:ycm_seed_identifiers_with_syntax = 1
+let g:ycm_seed_identifiers_with_syntax = 0
 
 " Don't keep logfiles after we quit vim
 let g:ycm_server_keep_logfiles = 0   " Don't keep logs after we quit

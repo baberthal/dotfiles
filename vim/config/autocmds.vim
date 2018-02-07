@@ -35,7 +35,7 @@ augroup JML_FILETYPES
   au BufRead,BufNewFile,BufEnter .clang-format set ft=yaml
   au BufRead,BufNewFile,BufEnter .babelrc,.eslintrc set ft=json
 
-  au FileType ruby,python,javascript,typescript,css,scss let b:ale_fix_on_save = 1
+  au FileType ruby,python,javascript,typescript,css,scss,json let b:ale_fix_on_save = 1
   au FileType ruby Rvm
 
   " Broken built-in commentstring settings
