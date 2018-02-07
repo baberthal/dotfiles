@@ -6,11 +6,8 @@ import os
 import vim
 
 __all__ = [
-    "InferProjectName",
-    "MakeSectionLine",
-    "RelativeFilePath",
-    "MakeHeaderGuardIdentifier",
-    "MakeFileHeader"
+    "InferProjectName", "MakeSectionLine", "RelativeFilePath",
+    "MakeHeaderGuardIdentifier", "MakeFileHeader"
 ]
 
 
@@ -32,10 +29,9 @@ def _GetFTMode():
     if not ft:
         return None
 
-    mode = {
-        'cpp': 'C++',
-        'c': 'C'
-    }[ft.lower()]
+    MODE_MAP = {'cpp': 'C++', 'c': 'C'}
+
+    mode = MODE_MAP[ft.lower()] if ft.lower() in MODE_MAP else ft.lower()
 
     return mode if mode else ft.lower()
 
