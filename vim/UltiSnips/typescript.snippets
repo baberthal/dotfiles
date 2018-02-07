@@ -1,5 +1,12 @@
 # vim: set ts=8 sw=8 tw=80 ft=snippets noet :
 
+global !p
+from cxx_snippets import *
+from javascript_snippets import (
+	semi, space_before_function_paren, keyword_spacing
+)
+endglobal
+
 snippet desc "describe()" w
 describe("${1:Description:string}", () =>
 	$0
@@ -185,10 +192,40 @@ case ${1:variable_case}:
 $0
 endsnippet
 
-snippet //ts "disable tslint rule" b
-/* tslint:${1:disable}${2::rule1$3} */$0
+snippet //ts "disable tslint rule" w
+/* tslint:${1:disable}:${2:rule1$3} */$0
 endsnippet
 
 snippet //tsl "disable tslint next-line" b
 /* tslint:disable-next-line${1::rule1$2} */$0
+endsnippet
+
+snippet fhead "File Header" b
+`!p
+if not snip.c:
+    width = int(vim.eval("&textwidth")) or 80
+
+filename = vim.eval("expand('%')")
+header = MakeFileHeader(filename, len(t[1]), width)
+snip.rv = header[0]
+`${1:${VISUAL:Brief Description}}`!p
+header = MakeFileHeader(filename, len(t[1]), width)
+snip.rv = header[1]
+`
+//
+// Copyright (c) `date +%Y` J. Morgan Lieberthal
+// Licensed under Apache License, Version 2.0
+//
+//===----------------------------------------------------------------------===//
+///
+/// $4
+///
+//===----------------------------------------------------------------------===//
+$0
+endsnippet
+
+snippet iife "Immediately-Invoked Function Expression (iife)"
+(`!p snip.rv = space_before_function_paren(snip)`(${1:window}) => {
+	${VISUAL}$0
+})(${2:$1})`!p snip.rv = semi(snip)`
 endsnippet

@@ -34,8 +34,16 @@ snip.rv = "".join(parts)
 `
 endsnippet
 
+snippet //f "file header" b
+`!p
+b, m, e, i = (s.strip() for s in get_comment_format())
+snip.rv = b
+` ${1:`!v expand('%')`}
+endsnippet
+
 snippet uuid "generate a random uuid" w
 `!p
 if not snip.c: snip.rv = str(uuid4())
 `
 endsnippet
+

@@ -106,20 +106,20 @@ attr_accessor :${0:attribute}
 endsnippet
 
 snippet ar: "attr_reader (with documentation)" b
-# @!attribute [r] $1
-${2:#   @return [${3:Type}]} $4
+# $1
+${2:# @return [${3:Type}]} $4
 attr_reader :${1:attribute}$0
 endsnippet
 
 snippet aw: "attr_writer (with documentation)" b
-# @!attribute [w] $1
-${2:#   @return [${3:Type}]} $4
+# $1
+${2:# @return [${3:Type}]} $4
 attr_writer :${1:attribute}$0
 endsnippet
 
 snippet aa: "attr_accessor (with documentation)" b
-# @!attribute [rw] $1
-${2:#   @return [${3:Type}]} $4
+# $1
+${2:# @return [${3:Type}]} $4
 attr_accessor :${1:attribute}$0
 endsnippet
 
@@ -142,7 +142,7 @@ snippet #p "@param [Type] {docstring}" b
 endsnippet
 
 snippet @r "@return" w
-@return [${1:Type}] $0
+@return [${1:Type}]${0: }
 endsnippet
 
 snippet @ex "@example" w

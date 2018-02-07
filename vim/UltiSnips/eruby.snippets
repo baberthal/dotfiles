@@ -32,9 +32,9 @@ render partial: "${1:item}", status: ${2:500}
 endsnippet
 
 snippet c "component" b
-<%= component('${1:name}') do %>
+<%= component('${1:name}') ${2:do %>
 	$0
-<% end %>
+<% end }%>
 endsnippet
 
 snippet //f "file header" b
