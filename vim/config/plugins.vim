@@ -81,13 +81,6 @@ let g:ale_warn_about_trailing_whitespace = 0
 
 " }}} ALE (Asyncronous Lint Engine) "
 
-" Dash Integration {{{ "
-
-" This disables dash from autofocusing when searching (saves lots of <Cmd>-Tab)
-let g:dash_activate = 0
-
-" }}} Dash Integration "
-
 " CtrlP Settings {{{ "
 
 if executable('rg')
@@ -98,6 +91,19 @@ let g:ctrlp_match_func = {'match': 'cpsm#CtrlPMatch'} " Better matches with CPSM
 let g:ctrlp_funky_syntax_highlight = 1 " Simple highlights w/o ctags
 
 " }}} CtrlP Settings "
+
+" Dash Integration {{{ "
+
+" This disables dash from autofocusing when searching (saves lots of <Cmd>-Tab)
+let g:dash_activate = 0
+
+" }}} Dash Integration "
+
+" Tagbar Settings {{{ "
+
+nmap <F8> :TagbarToggle<CR>
+
+" }}} Tagbar Settings "
 
 " Ruby Heredoc Syntax Settings (Highlights other languages in heredoc) {{{ "
 
