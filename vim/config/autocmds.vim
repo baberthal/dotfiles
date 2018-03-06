@@ -32,8 +32,6 @@ augroup END
 augroup JML_FILETYPES
   " Clear
   au!
-  au BufRead,BufNewFile,BufEnter .clang-format set ft=yaml
-  au BufRead,BufNewFile,BufEnter .babelrc,.eslintrc set ft=json
 
   au FileType ruby,python,javascript,typescript,css,scss,json let b:ale_fix_on_save = 1
   au FileType ruby Rvm
@@ -52,3 +50,8 @@ augroup JML_FILETYPES
   " Tabs are syntactic in makefiles
   au FileType make set noexpandtab
 augroup END
+
+augroup JML_ULTISNIPS_ADDITIONS
+  au!
+  autocmd Syntax rspec UltiSnipsAddFiletypes rspec
+augroup end

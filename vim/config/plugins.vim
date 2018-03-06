@@ -67,7 +67,7 @@ let g:ale_linters = {
   \ 'css': ['stylelint'],
   \ 'scss': ['stylelint'],
   \ 'eruby': ['erubis'],
-  \ 'typescript': ['tslint'],
+  \ 'typescript': ['tslint', 'tsserver'],
   \ 'javascript': ['eslint'],
 \ }
 
