@@ -5,14 +5,12 @@ C++ Snippet Helpers
 import os
 import vim
 
+from skeleton_snippets import GetProjectName, GetProjectNamespace
+
 __all__ = [
-    "InferProjectName", "MakeSectionLine", "RelativeFilePath",
-    "MakeHeaderGuardIdentifier", "MakeFileHeader"
+    "GetProjectName", "GetProjectNamespace", "MakeSectionLine",
+    "RelativeFilePath", "MakeHeaderGuardIdentifier", "MakeFileHeader"
 ]
-
-
-def InferProjectName():
-    return vim.eval("fnamemodify(getcwd(), ':t')")
 
 
 def MakeSectionLine(twidth, tail=None):
@@ -62,7 +60,7 @@ def MakeHeaderGuardIdentifier(filename):
 def _GetFileHeaderParts(fullpath):
     mode = _GetFTMode() or 'C++'
     filepath = RelativeFilePath(fullpath)
-    leader = '//===- {0} - '.format(filepath)
+    leader = '//===- {0} - '.format(_RemoveTopLevelInclude(filepath))
     trailer = '-*- {0} -*-===//'.format(mode)
 
     return [leader, trailer]
@@ -74,3 +72,7 @@ def MakeFileHeader(path, twidth, bwidth=None):
     ndashes = (bwidth_inner - twidth) - len(e)
     eline = ' ' + ndashes * '-' + e
     return b, eline
+
+
+def _RemoveTopLevelInclude(filename):
+    return '/'.join(filename.split('/')[1:])

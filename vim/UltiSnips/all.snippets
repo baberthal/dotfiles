@@ -5,6 +5,8 @@ endsnippet
 global !p
 from vimsnippets import foldmarker, make_box, get_comment_format
 from uuid import uuid4
+from skeleton_snippets import GetCommentFormat
+
 # def commentout(str = None):
 #     fmt = vim.eval("&commentstring")
 #     if str == None:
@@ -47,3 +49,20 @@ if not snip.c: snip.rv = str(uuid4())
 `
 endsnippet
 
+snippet fold "Insert a vim fold marker" wsm
+`!p snip.rv = get_comment_format()[0]` ${1:Fold description} `!p snip.rv = foldmarker()[0]`${2:1} `!p snip.rv = get_comment_format()[2]`
+endsnippet
+
+snippet foldc "Insert a vim fold close marker" wsm
+`!p snip.rv = get_comment_format()[0]` ${2:1}`!p snip.rv = foldmarker()[1]` `!p snip.rv = get_comment_format()[2]`
+endsnippet
+
+snippet foldp "Insert a vim fold marker pair" wsm
+`!p snip.rv = get_comment_format()[0]` ${1:Fold description} `!p snip.rv = foldmarker()[0]` `!p snip.rv = get_comment_format()[2]`
+${2:${VISUAL:Content}}
+`!p snip.rv = get_comment_format()[0]` `!p snip.rv = foldmarker()[1]` $1 `!p snip.rv = get_comment_format()[2]`
+endsnippet
+
+snippet cf "" b
+(`!p fmt = GetCommentFormat(); snip.rv =  fmt[0]`, `!p snip.rv = fmt[1]`, `!p snip.rv = fmt[2]`, `!p snip.rv = fmt[3]`)
+endsnippet

@@ -1,0 +1,26 @@
+{
+  "brief-tag": {
+    "pre": "@brief",
+    "post": ""
+  },
+  "param-tag": {
+    "pre": "@param",
+    "post": ""
+  },
+  "return-tag": "@return",
+  "block-header": "",
+  "block-footer": "",
+  "license-tag": "",
+  "file-tag": "@file",
+  "author-tag": "@author",
+  "date-tag": "@date",
+  "version-tag": "@version",
+  "undoc-tag": "DOX_SKIP_BLOCK",
+  "block-tag": "@name",
+  "class-tag": "@class",
+  "cinoptions": "c1C1",
+  "start-comment": {
+    "tag": "/**",
+    "block": "/*"
+  }
+}

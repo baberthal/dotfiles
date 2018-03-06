@@ -1,0 +1,32 @@
+snippet add "add rule" b
+${1:out}: $1.o
+	$(CC) $(CFLAGS) -o $@ $+
+endsnippet
+
+snippet print "Print % rule" b
+print-%: ; @echo $*=$($*)
+endsnippet
+
+snippet if "ifeq..." b
+ifeq (${1:cond0}, ${2:cond1})
+	${0:${VISUAL}}
+endif
+endsnippet
+
+snippet ife "ifeq...else" b
+ifeq (${1:cond0}, ${2:cond1})
+	${3:${VISUAL}}
+else
+	$0
+endif
+endsnippet
+
+snippet el "else..." b
+else
+	${0:${VISUAL}}
+endsnippet
+
+snippet help "Help target for self-documented Makefile" b
+help: ## Prints help for targets with comments
+	@cat $(MAKEFILE_LIST) | grep -E '^[a-zA-Z_-]+:.*?## .*$$' | awk 'BEGIN {FS = ":.*?## "}; {printf "\033[36m%-30s\033[0m %s\n", $\$1, $\$2}'
+endsnippet

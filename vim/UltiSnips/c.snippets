@@ -12,7 +12,7 @@ endsnippet
 
 snippet section "section line" wb
 //===----------------------------------------------------------------------===//
-// ${1:Name}
+//    ${1:Name}
 //===----------------------------------------------------------------------===//
 endsnippet
 
@@ -44,7 +44,7 @@ global !p
 from cxx_snippets import *
 endglobal
 
-snippet fhead "File Header" b
+snippet _skel "File Header" b
 `!p
 if not snip.c:
     width = int(vim.eval("&textwidth")) or 80
@@ -57,7 +57,7 @@ header = MakeFileHeader(filename, len(t[1]), width)
 snip.rv = header[1]
 `
 //
-// This source file is part of the ${3:`!p snip.rv = InferProjectName()`} open source project
+// This source file is part of the ${3:`!p snip.rv = GetProjectName()`} open source project.
 //
 // Copyright (c) `date +%Y` J. Morgan Lieberthal and the $3 authors
 // Licensed under Apache License, Version 2.0
@@ -70,7 +70,7 @@ snip.rv = header[1]
 $0
 endsnippet
 
-snippet header "Header Boilerplate" b
+snippet _header "Header Boilerplate" b
 `!p
 if not snip.c:
     width = int(vim.eval("&textwidth")) or 80
@@ -83,7 +83,7 @@ header = MakeFileHeader(filename, len(t[1]), width)
 snip.rv = header[1]
 `
 //
-// This source file is part of the ${2:`!p snip.rv = InferProjectName()`} open source project
+// This source file is part of the ${2:`!p snip.rv = GetProjectName()`} open source project.
 //
 // Copyright (c) `date +%Y` J. Morgan Lieberthal and the $2 authors
 // Licensed under Apache License, Version 2.0

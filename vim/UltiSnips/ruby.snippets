@@ -170,7 +170,7 @@ module ${1:`!v substitute(vim_snippets#Filename(), '\(_\|^\)\(.\)', '\u\2', 'g')
 end
 endsnippet
 
-snippet concern "ActiveSupport::Concern" b
+snippet concern "ActiveSupport::Concern" bm
 module ${1:`!v substitute(vim_snippets#Filename(), '\(_\|^\)\(.\)', '\u\2', 'g')`}
 	extend ActiveSupport::Concern
 	${2:
@@ -228,4 +228,16 @@ class ${1:`!p snip.rv = Classify(snip.basename)`} < ${2:ParentClass}
 		$0
 	end
 end
+endsnippet
+
+snippet priv "private " m
+`!p snip.unshift`private
+
+$0
+endsnippet
+
+snippet prot "protected" m
+`!p snip.unshift`protected
+
+$0
 endsnippet
