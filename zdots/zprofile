@@ -33,6 +33,9 @@ export STEAM_LIBRARY="/Volumes/SSD3/SteamLibrary/steamapps"
 
 export MAKEFLAGS="-j8"
 
+# POW config
+export POW_DOMAINS=test,local
+
 typeset -gU cdpath fpath mailpath path
 
 path=(
