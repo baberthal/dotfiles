@@ -103,6 +103,9 @@ let g:js_indent_logging = 1
 
 " DoxygenToolkit Settings {{{ "
 let g:DoxygenToolkit_commentType = 'C++'
+let g:DoxygenToolkit_briefTag_pre = "\\brief "
+let g:DoxygenToolkit_paramTag_pre = "\\param "
+  let g:DoxygenToolkit_returnTag = "\\return "
 " }}} DoxygenToolkit Settings "
 
 " Ruby {{{ "
