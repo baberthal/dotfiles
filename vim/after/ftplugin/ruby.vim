@@ -8,6 +8,8 @@ set colorcolumn=81
 let g:rubycomplete_buffer_loading = 1
 let g:rubycomplete_classes_in_global = 0
 
+hi link rubyCapitalizedMethod	rubyConstant
+
 if exists('g:loaded_custom_ruby_ftplugin') || &cp
   finish
 endif
@@ -17,7 +19,7 @@ let g:loaded_custom_ruby_ftplugin = 1
 let s:save_cpo = &cpo
 set cpo&vim
 
-function! s:BracketsToDoEnd()
+function! s:BracketsToDoEnd() " {{{1
   let char = getline('.')[col('.')-1]
   if char=='}'
     norm %
@@ -70,9 +72,9 @@ function! s:BracketsToDoEnd()
     norm! send
     call setpos('.', begin_pos)
   endif
-endfunction
+endfunction " 1}}}
 
-function! s:DoEndToBrackets()
+function! s:DoEndToBrackets() " {{{1
   let char = getline('.')[col('.')-1]
   let w = expand('<cword>')
   if w=='end'
@@ -106,9 +108,9 @@ function! s:DoEndToBrackets()
     " if search('  \+', 'c', begin_num) | :.s/\([^ ]\)  \+/\1 /g | endif
     call setpos('.', do_pos)
   endif
-endfunction
+endfunction " 1}}}
 
-function! s:FindNearestBlockBounds()
+function! s:FindNearestBlockBounds() " {{{1
   let char = getline('.')[col('.')-1]
   if char == '{' || char == '}'
     return char
@@ -124,9 +126,9 @@ function! s:FindNearestBlockBounds()
   endif
 
   return ''
-endfunction
+endfunction " 1}}}
 
-function! s:ToggleBlockStyle()
+function! s:ToggleBlockStyle() " {{{1
   " Save anonymous register and clipboard settings
   let reg = getreg('"', 1)
   let regtype = getregtype('"')
@@ -149,7 +151,7 @@ function! s:ToggleBlockStyle()
   let &paste = paste_mode
 
   silent! call repeat#set("\<Plug>BlockToggle", -1)
-endfunction
+endfunction " 1}}}
 
 " nnoremap <silent> <Plug>BlockToggle :<C-U>call <SID>ToggleBlockStyle()<CR>
 command! BlockToggle silent call s:ToggleBlockStyle()<CR>
@@ -181,13 +183,5 @@ return 0
 endf
 
 command! -range=% RemoveRockets silent execute <line1>.','.<line2>.'s/:\(\w\+\)\s*=>\s*/\1: /g'
-
-if match(expand('%:t'), '_spec\.rb') != -1
-  echom "This is a spec file"
-  if !exists('did_plugin_ultisnips')
-    runtime! plugin/UltiSnips.vim
-    call UltiSnips#AddFiletypes('rspec')
-  endif
-endif
 
 let &cpo = s:save_cpo
