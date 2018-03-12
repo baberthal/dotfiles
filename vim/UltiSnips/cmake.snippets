@@ -164,3 +164,11 @@ endsnippet
 snippet list "List Actions" b
 list(${1:ACTION} $2)$0
 endsnippet
+
+snippet gp "get_property" b
+get_property(${1:variable} ${2:scope} PROPERTY ${3:$1})$0
+endsnippet
+
+snippet gpg "get_property GLOBAL" b
+get_property(${1:variable} GLOBAL PROPERTY ${2:$1})$0
+endsnippet

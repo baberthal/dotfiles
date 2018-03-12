@@ -4,6 +4,7 @@ C++ Snippet Helpers
 
 import os
 import vim
+import re
 
 from skeleton_snippets import GetProjectName, GetProjectNamespace
 
@@ -52,9 +53,7 @@ def RelativeFilePath(filename):
 def MakeHeaderGuardIdentifier(filename):
     filename = os.path.splitext(filename)[0]
     relpath = RelativeFilePath(filename)
-    parts = relpath.split(os.path.sep)  # type: List[str]
-    ident = [p.upper() for p in parts]
-    return '_'.join(ident)
+    return _to_c_ident(relpath).upper()
 
 
 def _GetFileHeaderParts(fullpath):
@@ -75,4 +74,20 @@ def MakeFileHeader(path, twidth, bwidth=None):
 
 
 def _RemoveTopLevelInclude(filename):
-    return '/'.join(filename.split('/')[1:])
+    parts = filename.split('/')
+    if len(parts) == 1:
+        return filename
+    return '/'.join(parts[1:])
+
+
+VALID_IDENT_REGEXP = re.compile('[^A-Z0-9_]', re.IGNORECASE)
+
+
+def _to_c_ident(name):
+    """Convert `name` to a valid C-style identifer
+
+    :type name: str
+    :rtype: str
+
+    """
+    return VALID_IDENT_REGEXP.sub('_', name)

@@ -1,0 +1,19 @@
+snippet fun-sh "sh-style function" b
+#===  FUNCTION  ================================================================
+#         NAME:  ${1:function_name}
+#  DESCRIPTION:  ${2:Function description}
+#===============================================================================
+$1() {
+	${0:#function_body}
+}    # ---------- end of function $1 ----------
+endsnippet
+
+snippet fun "bash-style function" b
+#===  FUNCTION  ================================================================
+#         NAME:  ${1:function_name}
+#  DESCRIPTION:  ${2:Function description}
+#===============================================================================
+function $1() {
+	${0:#function_body}
+}    # ---------- end of function $1 ----------
+endsnippet

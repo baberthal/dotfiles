@@ -19,7 +19,13 @@ endsnippet
 snippet ns "namespace" b
 namespace ${1:`!p snip.rv = GetProjectNamespace()`} {
 ${VISUAL}$0
-} // namespace $1
+} // end namespace $1
+endsnippet
+
+snippet ans "anonymous namespace" b
+namespace {
+${VISUAL}$0
+} // end anonymous namespace
 endsnippet
 
 snippet headerguard "Header boilerplace" b
