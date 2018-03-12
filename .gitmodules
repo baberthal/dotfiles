@@ -14,7 +14,7 @@
 	path = zsh-autoenv
 	url = https://github.com/Tarrasch/zsh-autoenv.git
 [submodule "vim/bundle/vim-pathogen"]
-	path = vim/bundle/vim-pathogen
+	path = vim-pathogen
 	url = https://github.com/tpope/vim-pathogen.git
 [submodule "vim/bundle/vim-colors-solarized"]
 	path = vim/bundle/vim-colors-solarized
