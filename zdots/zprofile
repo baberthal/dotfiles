@@ -10,8 +10,16 @@ export GL_ENABLE_DEBUG_ATTACH=1
 export PROJECT_HOME="${HOME}/projects"
 export VIRTUALENVWRAPPER_PYTHON="/usr/local/bin/python3"
 export BROWSER='open'
-export EDITOR='vim'
+# Set up GIT_EDITOR so git can properly use mvim for commit messages.
+#
+# Explanation:
+#   * `-f` ensures the mvim script does not return before vim closes
+#   * `--nomru` ensures that the commit message is not added to the Most
+#     Recently Used file menu
+#   * `-c ...` ensures the terminal program gets focus after closing the window
+export GIT_EDITOR='mvim -f --nomru -c "au VimLeave * !open -a iTerm"'
 export VISUAL='mvim'
+export EDITOR='vim'
 export PAGER='less'
 bindkey -v
 
