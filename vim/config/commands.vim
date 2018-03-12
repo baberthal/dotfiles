@@ -8,7 +8,10 @@
 "=============================================================================="
 
 " Remap pathogen#helptags() because it can be clobbered by fzf.vim
-command! GenerateHelptags :call pathogen#helptags()
+command! -bar GenerateHelptags :call pathogen#helptags()
+
+" Make sure `Helptags` calls the fzf version
+command! -bar -bang Helptags :call fzf#vim#helptags(<bang>0)
 
 " Oops! Forgot to open vim with sudo? Just use Sw !
 command! Sw :w !sudo tee %
