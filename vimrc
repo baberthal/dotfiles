@@ -11,11 +11,11 @@
 set encoding=utf-8
 scriptencoding utf-8
 
-runtime bundle/vim-pathogen/autoload/pathogen.vim
+" runtime bundle/vim-pathogen/autoload/pathogen.vim
 execute pathogen#infect()
 
 filetype plugin indent on
-syntax enable
+syntax on
 
 if $DEBUG
   echohl WarningMsg | echo "Debugging Startup" | echohl None
