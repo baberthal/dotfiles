@@ -1,8 +1,8 @@
 # We want to override the parent snippets, so we do this:
-priority -10
+priority -20
 extends c
 
-priority 0
+priority 10
 
 global !p
 from cxx_snippets import *
@@ -29,31 +29,16 @@ ${VISUAL}$0
 endsnippet
 
 snippet headerguard "Header boilerplace" b
-#ifndef ${1:`!p
-filename = vim.eval("expand('%')")
-snip.rv = MakeHeaderGuardIdentifier(filename)`}_H
-#define $1_H
+#ifndef ${1:`!p snip.rv = HeaderGuard()`}
+#define $1
 
 $0
 
-#endif /* ifndef $1_H */
+#endif /* ifndef $1 */
 endsnippet
 
 snippet tmpl "template <type...>" b
 template <${1:typename $2}> $0
-endsnippet
-
-snippet line "test line" b
-`!p
-if not snip.c:
-    width = int(vim.eval("&textwidth")) or 80
-filename = vim.eval("expand('%')")
-header = MakeFileHeader(filename, len(t[1]), width)
-snip.rv = header[0]
-`${1:${VISUAL:Brief Description}}`!p
-header = MakeFileHeader(filename, len(t[1]), width)
-snip.rv = header[1]
-`
 endsnippet
 
 snippet clf "Class Forward Declaration" b
@@ -142,4 +127,95 @@ endsnippet
 
 snippet exp "explicit ..." b
 explicit $0
+endsnippet
+
+snippet _testskel "Test skeleton" b
+`!p
+if not snip.c:
+    width = int(vim.eval("&textwidth")) or 80
+
+header = MakeFileHeader(snip, t, width, pad=False)
+snip.rv = ''.join(header)
+`
+//
+// This source file is part of the ${1:`!p snip.rv = GetProjectName()`} open source project.
+//
+// Copyright (c) `date +%Y` J. Morgan Lieberthal and the $1 authors
+// Licensed under Apache License, Version 2.0
+//
+//===----------------------------------------------------------------------===//
+
+#include "gtest/gtest.h"
+
+$0
+endsnippet
+
+snippet test "gtest test" b
+TEST(${1:`!p snip.rv = snip.basename or "name"`}, ${2:TestName}) {
+	$0
+}
+endsnippet
+
+snippet etrue "EXPECT_TRUE" b
+EXPECT_TRUE(${1:expr});$0
+endsnippet
+
+snippet efalse "EXPECT_FALSE" b
+EXPECT_FALSE(${1:expr});$0
+endsnippet
+
+snippet eeq "EXPECT_EQ" b
+EXPECT_EQ(${1:expr}, ${2:expr});$0
+endsnippet
+
+snippet ene "EXPECT_NE" b
+EXPECT_NE(${1:expr}, ${2:expr});$0
+endsnippet
+
+snippet elt "EXPECT_LT" b
+EXPECT_LT(${1:expr}, ${2:expr});$0
+endsnippet
+
+snippet ele "EXPECT_LE" b
+EXPECT_LE(${1:expr}, ${2:expr});$0
+endsnippet
+
+snippet egt "EXPECT_GT" b
+EXPECT_GT(${1:expr}, ${2:expr});$0
+endsnippet
+
+snippet ege "EXPECT_GE" b
+EXPECT_GE(${1:expr}, ${2:expr});$0
+endsnippet
+
+snippet atrue "ASSERT_TRUE" b
+ASSERT_TRUE(${1:expr});$0
+endsnippet
+
+snippet afalse "ASSERT_FALSE" b
+ASSERT_FALSE(${1:expr});$0
+endsnippet
+
+snippet aeq "ASSERT_EQ" b
+ASSERT_EQ(${1:expr}, ${2:expr});$0
+endsnippet
+
+snippet ane "ASSERT_NE" b
+ASSERT_NE(${1:expr}, ${2:expr});$0
+endsnippet
+
+snippet alt "ASSERT_LT" b
+ASSERT_LT(${1:expr}, ${2:expr});$0
+endsnippet
+
+snippet ale "ASSERT_LE" b
+ASSERT_LE(${1:expr}, ${2:expr});$0
+endsnippet
+
+snippet agt "ASSERT_GT" b
+ASSERT_GT(${1:expr}, ${2:expr});$0
+endsnippet
+
+snippet age "ASSERT_GE" b
+ASSERT_GE(${1:expr}, ${2:expr});$0
 endsnippet
