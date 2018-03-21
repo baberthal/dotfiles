@@ -21,3 +21,5 @@ endif
 " We remove the // comment setting, so we can add ///, and _then_ add //.
 set comments-=://
 set comments+=:///,://
+
+set commentstring=//\ %s
