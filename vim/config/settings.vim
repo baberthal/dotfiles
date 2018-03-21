@@ -48,8 +48,8 @@ set softtabstop=-1              " use 'shiftwidth'
 set nospell
 set spelllang=en_us
 set splitright                  " Split on RHS
-set tags=./tags,tags,.git/tags; " Look in .git/ for tags files as well
-set tags+=.git/bundler.tags,.git/stdlib.tags;
+" set tags=./tags,tags,.git/tags; " Look in .git/ for tags files as well
+" set tags+=.git/bundler.tags,.git/stdlib.tags;
 set termencoding=utf-8
 set textwidth=80                " Pedantic, but worth it
 set title                       " mess with title

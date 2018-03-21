@@ -103,6 +103,37 @@ let g:dash_activate = 0
 
 nmap <F8> :TagbarToggle<CR>
 
+if executable('ripper-tags')
+  let g:tagbar_type_ruby = {
+        \   'kinds': [
+        \     'm:modules',
+        \     'c:classes',
+        \     'C:constants',
+        \     'F:singleton methods',
+        \     'f:methods',
+        \     'a:aliases'
+        \   ],
+        \   'kind2scope': {
+        \     'c': 'class',
+        \     'm': 'class'
+        \   },
+        \   'scope2kind': { 'class' : 'c' },
+        \   'ctagsbin': 'ripper-tags',
+        \   'ctagsargs': ['-f', '-']
+        \ }
+else
+  let g:tagbar_type_ruby = {
+        \   'kinds': [
+        \     'm:modules',
+        \     'c:classes',
+        \     'd:describes',
+        \     'C:contexts',
+        \     'f:methods',
+        \     'F:singleton methods'
+        \   ]
+        \ }
+endif
+
 " }}} Tagbar Settings "
 
 " Ruby Heredoc Syntax Settings (Highlights other languages in heredoc) {{{ "
@@ -177,7 +208,7 @@ let g:ycm_complete_in_comments = 1
 let g:ycm_complete_in_strings = 1
 
 " TODO: Set up the global config to be smarter
-" let g:ycm_global_ycm_extra_conf = '~/.ycm_extra_conf.py'
+let g:ycm_global_ycm_extra_conf = '~/.vim/ycm_extra_conf.py'
 
 " Use <C-j>, <C-n> or <Down> to move to next selection in autocomplete menu
 let g:ycm_key_list_select_completion = ['<C-j>', '<C-n>, <Down>']
