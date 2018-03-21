@@ -6,7 +6,28 @@ Github: https://github.com/baberthal
 Description: Support Functions for Vim Integration
 """
 
+import os
 import vim
+
+
+def GetCurrentBufferFilepath():
+    """TODO: Docstring for GetCurrentBufferFilepath.
+    :returns: str
+    """
+    return (GetBufferFilepath(vim.current.buffer)
+            or GetVariableValue('expand("%")'))
+
+
+def GetBufferFilepath(buffer_object):
+    """TODO: Docstring for GetBufferFilepath.
+
+    :type buffer_object: vim.Buffer
+    :returns: str
+
+    """
+    if buffer_object.name:
+        return os.path.normpath(ToUnicode(buffer_object.name))
+    return None
 
 
 def ToUnicode(value):

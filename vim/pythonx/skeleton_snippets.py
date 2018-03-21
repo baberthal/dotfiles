@@ -11,7 +11,26 @@
 
 from helpers.comment_parser import CommentParser
 from helpers.vimsupport import GetVariableValue, VariableExists
+from helpers.file_header import FileHeader
 import vim
+
+###############################################################################
+#                           File Skeleton Functions                           #
+###############################################################################
+
+
+def MakeFileHeader(snip, t, width):
+    """
+
+    :type snip: TODO
+    :type t: TODO
+    :type width: TODO
+    :returns: TODO
+
+    """
+    header = FileHeader(snip)
+    header.render(t, width)
+
 
 ###############################################################################
 #                          Project Helper Functions                           #
