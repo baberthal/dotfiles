@@ -2,7 +2,8 @@
 
 global !p
 
-CONSTANTIZE_REGEX = re.compile(r'(_|^)(.)')
+from helpers.path_utils import RelativeFilePath
+from helpers.vimsupport import GetCurrentBufferFilepath, GetIntValue
 
 RUBOCOP_COP_NAME_REGEX = re.compile(r'\[(.+)\]')
 
@@ -10,7 +11,7 @@ def Classify(basename):
     def do_transform(match):
       return match.group(2).upper()
 
-    return CONSTANTIZE_REGEX.sub(do_transform, basename)
+    return re.sub(r'(_|^)(.)', do_transform, basename)
 
 def ExtractCopName(details):
     match = RUBOCOP_COP_NAME_REGEX.search(details)
@@ -161,7 +162,7 @@ end
 endsnippet
 
 snippet modc "module ... end" b
-module ${1:`!v substitute(vim_snippets#Filename(), '\(_\|^\)\(.\)', '\u\2', 'g')`}
+module ${1:`!p snip.rv = Classify(snip.basename)`}
 	$0
 
 	module ClassMethods
@@ -171,7 +172,7 @@ end
 endsnippet
 
 snippet concern "ActiveSupport::Concern" bm
-module ${1:`!v substitute(vim_snippets#Filename(), '\(_\|^\)\(.\)', '\u\2', 'g')`}
+module ${1:`!p snip.rv = Classify(snip.basename)`}
 	extend ActiveSupport::Concern
 	${2:
 	included do
@@ -246,8 +247,63 @@ endsnippet
 #  Skeleton Snippets  #
 #######################
 
+global !p
+
+def ExtractPathParts(filename=None):
+    filename =  filename if filename else GetCurrentBufferFilepath()
+    filename = RelativeFilePath(os.path.splitext(filename)[0])
+    return list(filter(bool, os.path.split(filename)))[0:-1]
+
+endglobal
+
 snippet _skel "Default Skeleton" b
 # frozen_string_literal: true
+`!p
+i = 0
+for component in ExtractPathParts(path):
+    snip += ('module %s' % Classify(component))
+    snip.shift()
+    i += 1
+snip += ''`${VISUAL}$0`!p
+snip.shift(i - 1)
+for j in range(i, 0, -1):
+    snip += 'end'
+    snip.unshift()
+`
+endsnippet
 
-$0
+snippet _class "Class Skeleton" b
+# frozen_string_literal: true
+`!p
+i = 0
+for component in ExtractPathParts(path):
+    snip += ('module %s' % Classify(component))
+    snip.shift()
+    i += 1
+snip += ''`class ${1:`!p
+snip.rv = Classify(snip.basename)
+snip += '' `}end`!p
+snip.shift(i - 1)
+for j in range(i, 0, -1):
+    snip += 'end'
+    snip.unshift()
+`
+endsnippet
+
+snippet _module "Module Skeleton" b
+# frozen_string_literal: true
+`!p
+i = 0
+for component in ExtractPathParts(path):
+    snip += ('module %s' % Classify(component))
+    snip.shift()
+    i += 1
+snip += ''`module ${1:`!p
+snip.rv = Classify(snip.basename)
+snip += '' `}end`!p
+snip.shift(i - 1)
+for j in range(i, 0, -1):
+    snip += 'end'
+    snip.unshift()
+`
 endsnippet

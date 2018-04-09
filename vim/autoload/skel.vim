@@ -16,7 +16,7 @@ function! skel#InsertSkeleton() abort
   let l:filename = expand('%')
 
   " Abort on non-empty buffer
-  if !(line('$') == 1 && getline('$') == '')
+  if !(line('$') == 1 && getline('$') == '') || filereadable(filename)
     echom "Aborting Skeleton..."
     return
   endif

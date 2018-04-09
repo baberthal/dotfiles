@@ -10,4 +10,4 @@ endf
 
 " Clang Format
 
-au BufNewFile,BufRead .clang-format,_clang-format call s:setf('yaml')
+au BufNewFile,BufRead,BufEnter .clang-format,_clang-format call s:setf('yaml')
