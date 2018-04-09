@@ -71,6 +71,29 @@ set background=dark
 let g:solarized_termtrans = 1
 call togglebg#map("<F5>")
 
+"==============="
+" Projectionist "
+"==============="
+
+let g:projectionist_heuristics = {
+      \   "include/*.h": {
+      \     "type": "header",
+      \     "skeleton": "header",
+      \     "alternate": ["src/{}.cpp", "lib/{}.cpp"]
+      \   },
+      \   "lib/*.cpp": {
+      \     "type": "source",
+      \     "skeleton": "skel",
+      \     "alternate": ["include/{}.h"]
+      \   },
+      \   "src/*.cpp": {
+      \     "type": "source",
+      \     "skeleton": "skel",
+      \     "alternate": ["include/{}.h"]
+      \   },
+      \ }
+
+
 "==========="
 " Sub Files "
 "==========="

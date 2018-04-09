@@ -36,7 +36,7 @@ alias tkss='tmux kill-session -t'
 # This mashes the rtags daemon
 unalias rdm
 
-[[ -s "${ZEXTRA_DIR}/directories.zsh" ]] && source "${ZEXTRA_DIR}/directories.zsh"
+# [[ -s "${ZEXTRA_DIR}/directories.zsh" ]] && source "${ZEXTRA_DIR}/directories.zsh"
 export RANGER_LOAD_DEFAULT_RC=false
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh

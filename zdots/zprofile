@@ -1,6 +1,6 @@
 export ZEXTRA_DIR="${ZEXTRA_DIR:=${HOME}/.zextra}"
 # [[ -s "${ZEXTRA_DIR}/env.zsh" ]] && source "$ZEXTRA_DIR/env.zsh"
-[[ -s "${ZEXTRA_DIR}/directories.zsh" ]] && source "${ZEXTRA_DIR}/directories.zsh"
+# [[ -s "${ZEXTRA_DIR}/directories.zsh" ]] && source "${ZEXTRA_DIR}/directories.zsh"
 
 export TIMEFMT=$'%J:\nreal\t%*E\nuser\t%U\nsys\t%S\n'
 
@@ -32,11 +32,13 @@ export GOROOT=/usr/local/opt/go/libexec
 export JBOSS_HOME=/usr/local/opt/jboss-as/libexec
 export GROOVY_HOME=/usr/local/opt/groovy/libexec
 export ECLIPSE_HOME="${HOME}/Applications/Eclipse.app/Contents/Eclipse"
-export ANDROID_HOME=$HOME/projects/android/sdk
+export ANDROID_HOME="${HOME}/projects/android/sdk"
 export XML_CATALOG_FILES="/usr/local/etc/xml/catalog"
 export USE_CCACHE=1
 # export DYLD_LIBRARY_PATH=/Developer/NVIDIA/CUDA-8.0/lib${DYLD_LIBRARY_PATH:+:${DYLD_LIBRARY_PATH}}
 # export PYENV_VIRTUALENVWRAPPER_PREFER_PYVENV="true"
+
+export CIV6_DIR="${HOME}/Library/Application Support/Sid Meier's Civilization VI"
 export STEAM_LIBRARY="/Volumes/SSD3/SteamLibrary/steamapps"
 
 export MAKEFLAGS="-j8"
