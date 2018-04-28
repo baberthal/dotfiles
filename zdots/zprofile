@@ -58,11 +58,10 @@ path=(
   ${GOPATH}/bin
   ${GOROOT}/bin
   ${HOME}/.local/bin
-  /opt/chefdk/bin
 )
 
 # this is separate so we can use programs installed in /usr/local/bin
-path+=($(yarn global bin))
+path+=($(yarn global bin 2>/dev/null))
 
 fpath=(
   ${HOME}/.zextra/completions
