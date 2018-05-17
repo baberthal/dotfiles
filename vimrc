@@ -14,6 +14,10 @@ scriptencoding utf-8
 " runtime bundle/vim-pathogen/autoload/pathogen.vim
 execute pathogen#infect()
 
+let g:sqlfmt_command = "sqlformat"
+let g:sqlfmt_options = "-r -a -s -k upper --wrap_after 79"
+
+
 filetype plugin indent on
 syntax on
 
