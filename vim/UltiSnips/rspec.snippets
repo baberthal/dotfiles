@@ -6,7 +6,7 @@ snippet iiexp "RSpec - it { is_expected.to XXX }" w
 it { is_expected.to $1 }$0
 endsnippet
 
-snippet alwl "allow(object).to receive(:method)" w
+snippet alw "allow(object).to receive(:method)" w
 allow(${1:object}).to receive(:${2:method})${3:.and_return(${4:return_value})}$0
 endsnippet
 
@@ -14,7 +14,11 @@ snippet alww "allow(object).to receive(:method).with(args)" w
 allow(${1:object}).to receive(:${2:method}).with(${3:args}).and_return(${4:return_value})$0
 endsnippet
 
-snippet alw "allow(object).to receive(:method) { return }" w
+snippet alwo "allow(object).to receive(:method).and_return(value)" b
+allow(${1:object}).to receive(:${2:method}).and_call_original$0
+endsnippet
+
+snippet alwb "allow(object).to receive(:method) { return }" w
 allow(${1:object}).to receive(:${2:method}) { ${3:return_value} }$0
 endsnippet
 
@@ -24,6 +28,12 @@ endsnippet
 
 snippet befb "before { block }" w
 before${1:(:${2:each})} { $3 }$0
+endsnippet
+
+snippet bef "before" w
+before ${1::${2:each} }do
+	$0
+end
 endsnippet
 
 snippet itb "it block invocation" w

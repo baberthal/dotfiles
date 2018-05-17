@@ -30,6 +30,17 @@ def splitparts(path):
     return parts
 
 
+def RelativePath(filename, to=None):
+    parts = splitparts(filename)
+
+    if to in parts:
+        idx = parts.index(to)
+        print("found '%{0}'. Index: %{1}".format(to, idx))
+        return os.path.join(*parts[idx + 1:])
+
+    return os.path.spilt(filename)[-1]
+
+
 def RelativeFilePath(filename):
     """Compute the relative path of `filename`, from the closest 'include',
     'lib', or 'src' directory.
