@@ -99,11 +99,21 @@ let g:dash_activate = 0
 
 " }}} Dash Integration "
 
+" Gutentags Settings {{{ "
+
+let g:gutentags_file_list_command = {
+      \   'markers': {
+      \     '.git': 'git ls-files'
+      \   },
+      \ }
+
+" }}} Gutentags Settings "
+
 " Tagbar Settings {{{ "
 
 nmap <F8> :TagbarToggle<CR>
 
-if executable('ripper-tags')
+if 0 " executable('ripper-tags')
   let g:tagbar_type_ruby = {
         \   'kinds': [
         \     'm:modules',
