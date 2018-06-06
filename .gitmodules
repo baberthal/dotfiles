@@ -205,3 +205,6 @@
 [submodule "vim/bundle/YouCompleteMe"]
 	path = vim/bundle/YouCompleteMe
 	url = git://github.com/Valloric/YouCompleteMe.git
+[submodule "vim/pythonx/inflection"]
+	path = vim/pythonx/inflection
+	url = git://github.com/jpvanhal/inflection.git
