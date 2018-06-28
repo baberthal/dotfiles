@@ -12,11 +12,11 @@ set encoding=utf-8
 scriptencoding utf-8
 
 " runtime bundle/vim-pathogen/autoload/pathogen.vim
+runtime bundle/fzf/plugin/fzf.vim
 execute pathogen#infect()
 
 let g:sqlfmt_command = "sqlformat"
 let g:sqlfmt_options = "-r -a -s -k upper --wrap_after 79"
-
 
 filetype plugin indent on
 syntax on
@@ -30,6 +30,8 @@ if $DEBUG
     au SourcePre * echom "Sourcing " . expand('<sfile>')
   augroup end
 endif
+
+call glaive#Install()
 
 "=========="
 " Mappings "
@@ -60,11 +62,12 @@ nnoremap <F9> :YcmCompleter FixIt<CR>
 " Plugin Mappings
 vnoremap <silent> <CR> :EasyAlign<CR>
 vmap <CR> <Plug>(EasyAlign)
-nmap ga <Plug>(EasyAlign)
 nnoremap <silent><buffer> K <Esc>:Dash <C-R><C-W><CR>
 
 " FIXME: What the fuck does this do?
 nnoremap <silent> <C-K> <C-T>
+
+digraphs oh 629
 
 "=============="
 " Color Scheme "
@@ -112,6 +115,11 @@ source $HOME/.vim/config/highlights.vim
 source $HOME/.vim/config/plugins.vim
 source $HOME/.vim/config/programs.vim
 source $HOME/.vim/config/statusline.vim
+
+let g:pyindent_open_paren = '&sw'
+let g:pyindent_nested_paren = '&sw'
+let g:pyindent_continue = '&sw'
+let g:no_google_python_recursive_indent = 1
 
 " One-Off Plugin Settings {{{ "
 " bufExplorer option

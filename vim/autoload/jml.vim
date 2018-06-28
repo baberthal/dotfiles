@@ -22,7 +22,7 @@ function! jml#NumberToggle()
 endf
 
 " Delete trailing whitespace, but not in binmode or diffmode
-function jml#DeleteTrailingWhitespace()
+function! jml#DeleteTrailingWhitespace()
   %s/\s\+$//e
 endf
 
@@ -44,6 +44,19 @@ function! jml#ZoomToggle() abort
     resize | vertical resize
     let t:zoomed = 1
   endif
+endf
+
+function! s:PrettierParserFor(filetype_name)
+  return a:filetype_name
+endf
+
+function! jml#Prettier(...) abort range
+  let l:invocation = '' . a:firstline . "," . a:lastline . "!prettier --stdin"
+  for s in a:000
+    let l:invocation .= ' ' . s
+  endfor
+  let l:invocation .= ' --parser ' . s:PrettierParserFor(&filetype)
+  exec l:invocation
 endf
 
 " vim: set ts=8 sw=2 tw=80 ft=vim et :

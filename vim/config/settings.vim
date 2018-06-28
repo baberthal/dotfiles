@@ -14,6 +14,7 @@ set autoread                    " Autoread
 set belloff=all                 " Don't ring the bell, yo!
 set breakindent                 " best patch ever
 set colorcolumn=81
+set completeopt-=preview
 set expandtab                   " SPACES ALWAYS (queue flame war...)
 set exrc                        " Source local (i.e. project-specific) vimrc files
 set fileencoding=utf-8          " UTF-8 Always FIXME: Check the macvim docs re: this

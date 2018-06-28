@@ -29,28 +29,20 @@ let g:ale_cpp_clangtidy_checks = []
 " rule. Stupid rules include, but are not limited to:
 "   * Python textwidth of 79 vs 80
 "   * Ruby no assignment in conditional
-let g:ale_echo_msg_format = '[%severity%] %s (%linter%)'
+let g:ale_echo_msg_format = '[%severity%]% (code) %%s (%linter%)'
 
 " Don't fix on save by default. This is changed for certain filetypes.
 let g:ale_fix_on_save = 0
 
 " Use these fixers
 let g:ale_fixers = {
-\   'python': [
-\       'yapf',
-\       'isort'
-\   ],
-\
-\   'ruby': [
-\       'remove_trailing_lines',
-\       'rubocop'
-\   ],
-\
 \   'css': [ 'prettier' ],
-\   'scss': [ 'prettier' ],
 \   'javascript': [ 'prettier' ],
 \   'json': [ 'prettier' ],
-\   'typescript': [ 'prettier' ],
+\   'python': ['yapf', 'isort'],
+\   'ruby': ['remove_trailing_lines', 'rubocop'],
+\   'scss': [ 'prettier' ],
+\   'typescript': [ 'tslint', 'prettier' ],
 \ }
 
 " Disable for c, cpp and header files. YCM is better.
@@ -65,10 +57,15 @@ let g:ale_pattern_options = {
 
 let g:ale_linters = {
   \ 'css': ['stylelint'],
-  \ 'scss': ['stylelint'],
   \ 'eruby': ['erubis'],
-  \ 'typescript': ['tslint', 'tsserver'],
   \ 'javascript': ['eslint'],
+  \ 'python': ['pylint'],
+  \ 'scss': ['stylelint'],
+  \ 'typescript': ['tslint'],
+\ }
+
+" Alias filetypes
+let g:ale_linter_aliases = {
 \ }
 
 " 79, really?
@@ -108,6 +105,11 @@ let g:gutentags_file_list_command = {
       \ }
 
 " }}} Gutentags Settings "
+
+" NERDTree Settings {{{ "
+let g:NERDTreeCaseSensitiveSort = 1
+let g:NERDTreeRespectWildIgnore = 1
+" }}} NERDTree Settings "
 
 " Tagbar Settings {{{ "
 
@@ -207,6 +209,7 @@ let g:multi_cursor_quit_key = '<Esc>'
 " Autoclose the preview window after we leave insert mode. We don't need to
 " know the function signature after we call it.
 let g:ycm_autoclose_preview_window_after_insertion = 1
+let g:ycm_autoclose_preview_window_after_completion = 1
 
 " Collect autocomplete suggestions from comments and strings
 let g:ycm_collect_identifiers_from_comments_and_strings = 1

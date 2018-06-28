@@ -54,4 +54,5 @@ augroup END
 augroup JML_ULTISNIPS_ADDITIONS
   au!
   autocmd Syntax rspec UltiSnipsAddFiletypes rspec
+  autocmd FileType bzl UltiSnipsAddFiletypes python
 augroup end
