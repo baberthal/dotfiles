@@ -1,13 +1,20 @@
 snippet = "<%= %>" w
-<%= $1 %>$0
+<%= ${1:${VISUAL}} %>$0
 endsnippet
+
 snippet - "<%- %>" w
-<%- $1 %>$0
+<%- ${1:${VISUAL}} %>$0
+endsnippet
+
+snippet =b "<%= ... do %> ... <% end %>" b
+<%= ${1} do ${2:|${3:variable}|} %>
+	${0:${VISUAL}}
+<% end %>
 endsnippet
 
 snippet if "if" w
 <%- if $1 %>
-	$0
+	${0:${VISUAL}}
 <% end -%>
 endsnippet
 

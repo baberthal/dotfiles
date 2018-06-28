@@ -1,14 +1,20 @@
 # vim: set ts=8 sw=8 tw=80 ft=snippets noet :
 
 global !p
-from cxx_snippets import *
 from javascript_snippets import (
 	semi, space_before_function_paren, keyword_spacing
 )
+from helpers.file_header import FileHeader
+import tshelpers
+
+def MakeFileHeader(snip, t, width, pad=True):
+    header = FileHeader(snip, suffix="---===//")
+    return header.render(t, width=width, pad=pad)
+
 endglobal
 
 snippet desc "describe()" w
-describe("${1:Description:string}", () =>
+describe("${1:description}", () => {
 	$0
 });
 endsnippet
@@ -29,6 +35,11 @@ endsnippet
 
 snippet bef "beforeEach" b
 beforeEach($1);
+$0
+endsnippet
+
+snippet aft "afterEach" b
+afterEach($1);
 $0
 endsnippet
 
@@ -66,8 +77,16 @@ snippet xp "export ..." b
 export $0
 endsnippet
 
+snippet expd "export default ..." b
+export default $0
+endsnippet
+
 snippet imp "import { } from ..." b
 import { ${1:What} } from "${2:where}";$0
+endsnippet
+
+snippet imp* "import * as ... from ..." b
+import * as ${1:name} from "${2:$1}";$0
 endsnippet
 
 priority 1
@@ -132,6 +151,10 @@ snippet attr "attribute" w
 ${1:attribute}: ${2:Type};$0
 endsnippet
 
+snippet ro "readonly" w
+readonly $0
+endsnippet
+
 snippet pub "public" w
 public $0
 endsnippet
@@ -163,7 +186,7 @@ while (${1:condition}) {
 endsnippet
 
 snippet fori "for in" w
-for (var ${1:varname} in ${2:object}) {
+for (${1:const} ${2:varname} in ${3:object}) {
 	$0
 }
 endsnippet
@@ -205,22 +228,20 @@ snippet fhead "File Header" b
 if not snip.c:
     width = int(vim.eval("&textwidth")) or 80
 
-filename = vim.eval("expand('%')")
-header = MakeFileHeader(filename, len(t[1]), width)
+header = MakeFileHeader(snip, t, width)
 snip.rv = header[0]
 `${1:${VISUAL:Brief Description}}`!p
-header = MakeFileHeader(filename, len(t[1]), width)
 snip.rv = header[1]
 `
 //
 // Copyright (c) `date +%Y` J. Morgan Lieberthal
-// Licensed under Apache License, Version 2.0
+// Licensed under the MIT License
 //
-//===----------------------------------------------------------------------===//
+//===-----------------------------------------------------------------------===//
+${2:///
+/// $3
 ///
-/// $4
-///
-//===----------------------------------------------------------------------===//
+//===-----------------------------------------------------------------------===//}
 $0
 endsnippet
 
@@ -228,4 +249,96 @@ snippet iife "Immediately-Invoked Function Expression (iife)"
 (`!p snip.rv = space_before_function_paren(snip)`(${1:window}) => {
 	${VISUAL}$0
 })(${2:$1})`!p snip.rv = semi(snip)`
+endsnippet
+
+snippet psf "public static function" b
+public static ${1:function_name}(${2:args}) {
+	$0
+}
+endsnippet
+
+snippet get "Property getter" w
+get ${1:property}(): ${2:Type} {
+	$0
+}
+endsnippet
+
+################################################################################
+#                              Skeleton Snippets                               #
+################################################################################
+
+snippet _skel "Default Skeleton" b
+`!p
+if not snip.c:
+    width = int(vim.eval("&textwidth")) or 80
+
+header = MakeFileHeader(snip, t, width)
+snip.rv = header[0]
+`${1:${VISUAL:Brief Description}}`!p
+snip.rv = header[1]
+`
+//
+// Copyright (c) `date +%Y` J. Morgan Lieberthal
+// Licensed under the MIT License
+//
+//===-----------------------------------------------------------------------===//
+${2:///
+/// $3
+///
+//===-----------------------------------------------------------------------===//}
+$0
+endsnippet
+
+snippet _class "Class File Skeleton" b
+`!p
+if not snip.c:
+    width = int(vim.eval("&textwidth")) or 80
+
+header = MakeFileHeader(snip, t, width)
+snip.rv = header[0]
+`${1:${VISUAL:Brief Description}}`!p
+snip.rv = header[1]
+`
+//
+// Copyright (c) `date +%Y` J. Morgan Lieberthal
+// Licensed under the MIT License
+//
+//===-----------------------------------------------------------------------===//
+${2:///
+/// $3
+///
+//===-----------------------------------------------------------------------===//}
+
+export class ${4:`!p snip.rv = tshelpers.Classify(snip.basename)`}${5: extends ${6:ParentClass}} {
+	${7:constructor(${8:args}) {
+    ${9://code...}$0
+  }}
+}
+endsnippet
+
+snippet _func "Function File Skeleton" b
+`!p
+if not snip.c:
+    width = int(vim.eval("&textwidth")) or 80
+
+header = MakeFileHeader(snip, t, width)
+snip.rv = header[0]
+`${1:${VISUAL:Brief Description}}`!p
+snip.rv = header[1]
+`
+//
+// Copyright (c) `date +%Y` J. Morgan Lieberthal
+// Licensed under the MIT License
+//
+//===-----------------------------------------------------------------------===//
+${2:///
+/// $3
+///
+//===-----------------------------------------------------------------------===//}
+
+export function ${4:`!p snip.rv = tshelpers.Functionify(snip.basename)`}(${5:argument}) {
+	${VISUAL}$0
+}
+
+export default $4;
 endsnippet

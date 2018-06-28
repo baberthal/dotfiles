@@ -69,6 +69,6 @@ class FileHeader(object):
         """
         ft = CurrentFiletypes()[0].lower()
         if ft in self.MODE_MAP:
-            return self.MODE_MAP[ft]
+            return ' {0} '.format(self.MODE_MAP[ft])
         else:
-            return ft
+            return '-'

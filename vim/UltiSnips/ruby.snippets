@@ -28,6 +28,11 @@ def GetCopName():
         return ' '.join(cops)
     return 'unknown'
 
+def undent(snip, string):
+    snip.unshift()
+    snip += "{0}".format(string)
+
+
 endglobal
 
 snippet rdLL "disable rubocop line length" w
@@ -227,19 +232,25 @@ end
 endsnippet
 
 snippet priv "private " m
-`!p snip.unshift`private
+`!p undent(snip, "private")`
 
 $0
 endsnippet
 
 snippet prot "protected" m
-`!p snip.unshift`protected
+`!p undent(snip, "protected")`
 
 $0
 endsnippet
 
 snippet ret "return {}" b
 return $0
+endsnippet
+
+snippet memo "memoized property getter" b
+def ${1:name}
+	@$1 ||= ${2:value}
+end$0
 endsnippet
 
 #######################
@@ -294,4 +305,24 @@ for j in range(i + 1, 0, -1):
     snip += 'end'
     snip << 1
 `
+endsnippet
+
+snippet _spec "Spec snippet" b
+# frozen_string_literal: true
+
+require 'spec_helper'
+
+RSpec.describe ${1:`!p snip.rv = rbsnips.ClassifySpec(path)`} do
+	$0
+end
+endsnippet
+
+snippet _spec_support "Spec support module Skeleton" b
+# frozen_string_literal: true
+
+module Spec
+	module ${1:`!p snip.rv = rbsnips.Classify(snip.basename)`}
+		${VISUAL}$0
+	end
+end
 endsnippet
