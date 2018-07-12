@@ -42,6 +42,7 @@ let g:ale_fixers = {
 \   'python': ['yapf', 'isort'],
 \   'ruby': ['remove_trailing_lines', 'rubocop'],
 \   'scss': [ 'prettier' ],
+\   'sh': [ 'shfmt' ],
 \   'typescript': [ 'tslint', 'prettier' ],
 \ }
 
@@ -70,6 +71,8 @@ let g:ale_linter_aliases = {
 
 " 79, really?
 " let g:ale_python_autopep8_options = '--max-line-length 80'
+
+let g:ale_sh_shfmt_options = '-i 2 -ci'
 
 let g:ale_sign_warning = 'W>'  " Sign in gutter to denote warning
 

@@ -33,7 +33,7 @@ augroup JML_FILETYPES
   " Clear
   au!
 
-  au FileType ruby,python,javascript,typescript,css,scss,json let b:ale_fix_on_save = 1
+  au FileType ruby,python,javascript,typescript,css,scss,sh,json let b:ale_fix_on_save = 1
   au FileType ruby Rvm
 
   " Broken built-in commentstring settings
