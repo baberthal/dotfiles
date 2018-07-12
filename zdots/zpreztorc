@@ -39,7 +39,6 @@ zstyle ':prezto:load' pmodule \
   'autoenv' \
   'homebrew' \
   'osx' \
-  'node' \
   'history-substring-search' \
   'rails' \
   'ruby' \
@@ -136,6 +135,13 @@ zstyle ':prezto:module:prompt' theme 'jml'
 # Auto switch the Ruby version on directory change.
 # zstyle ':prezto:module:ruby:chruby' auto-switch 'yes'
 zstyle ':prezto:module:ruby:rvm' auto-switch 'yes'
+
+#
+# Node
+#
+
+# Node.js version in prompt
+zstyle ':prezto:module:node:info:version' format '%v'
 
 #
 # Python

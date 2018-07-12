@@ -121,6 +121,8 @@ let g:pyindent_nested_paren = '&sw'
 let g:pyindent_continue = '&sw'
 let g:no_google_python_recursive_indent = 1
 
+let g:python_highlight_all = 1
+
 " One-Off Plugin Settings {{{ "
 " bufExplorer option
 let g:bufExplorerShowRelativePath=1
