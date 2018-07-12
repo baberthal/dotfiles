@@ -1,46 +1,64 @@
-def source_paths
-  [File.expand_path(File.dirname(__FILE__))]
-end
+# frozen_string_literal: true
 
-after_bundle do
-  git :init
-  git add: "."
-  git commit: %Q{ -m 'Initial commit' }
-end
-
-gem 'pg'
-gem 'postgres_ext'
-gem 'pg_search'
-gem 'puma'
+# def source_paths
+#   [File.expand_path('./templates', __dir__)]
+# end
 
 gem_group :development, :test do
-  gem 'colorize'
-  gem 'rspec-rails'
-  gem 'pry-rails'
-  gem 'pry-theme'
-  gem 'factory_girl_rails'
-  gem 'rb-fsevent', require: false if RUBY_PLATFORM =~ /darwin/i
+  gem 'rspec-rails', '~> 3.7'
+
+  gem 'guard', require: false
   gem 'guard-rspec', require: false
-  gem 'guard-livereload', require: false
-  gem 'guard-bundler', require: false
   gem 'guard-rubocop', require: false
-  gem 'ruby_gntp'
-  gem 'capybara'
-  gem 'database_cleaner'
-  gem 'selenium-webdriver'
-  gem 'phantomjs'
-  gem 'poltergeist'
+  gem 'guard-yard', require: false
+
+  # Rubocop
+  gem 'rubocop', '~> 0.55', require: false
+  gem 'rubocop-rspec', require: false
+
+  # Coverage
   gem 'simplecov', require: false
-  gem 'rubocop', require: false
+
+  # Pry is a better console than IRB
+  # install_if -> { !defined?(::Vim) } do
+  #   gem 'pry-byebug'
+  #   gem 'pry-rails'
+  # end
+
+  gem 'colorize', require: false
+end
+
+gem_group :development do
+  gem 'better_errors'
+  gem 'binding_of_caller'
+
+  # Thin is for the YARD server
+  # gem 'thin', require: false
+  gem 'yard', require: false
+end
+
+gem_group :test do
+  gem 'database_cleaner'
+  gem 'factory_bot_rails', '~> 4.8'
+
+  gem 'rails-controller-testing'
+
   gem 'faker'
 end
 
-run 'bundle install'
-generate 'rspec:install'
-directory 'rails_files', './', recursive: true
-run 'bundle exec guard init'
-# run "rvm --ruby-version use 2.2.3@#{@app_name} --create"
+after_bundle do
+  generate 'rspec:install'
 
+  run 'bundle exec guard init'
 
+  in_root do
+    %w[Gemfile Gemfile.lock Guardfile].each do |file|
+      run "mv #{file} config/"
+      run "ln -s config/#{file}"
+    end
+  end
 
-#  vim: set ts=8 sw=2 tw=0 et :
+  # git :init
+  # git add: '.'
+  # git commit: %(-m "Initial commit")
+end
