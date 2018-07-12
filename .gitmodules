@@ -181,9 +181,6 @@
 [submodule "vim/bundle/cpsm"]
 	path = vim/bundle/cpsm
 	url = git://github.com/nixprime/cpsm.git
-[submodule "vim/bundle/ctrlp-funky"]
-	path = vim/bundle/ctrlp-funky
-	url = git://github.com/tacahiroy/ctrlp-funky.git
 [submodule "vim/bundle/vim-rails"]
 	path = vim/bundle/vim-rails
 	url = git://github.com/tpope/vim-rails.git
