@@ -127,9 +127,6 @@
 [submodule "vim/bundle/vim-textobj-rubyblock"]
 	path = vim/bundle/vim-textobj-rubyblock
 	url = https://github.com/nelstrom/vim-textobj-rubyblock.git
-[submodule "vim/bundle/dart-vim-plugin"]
-	path = vim/bundle/dart-vim-plugin
-	url = https://github.com/dart-lang/dart-vim-plugin.git
 [submodule "fzf"]
 	path = fzf
 	url = https://github.com/junegunn/fzf.git
