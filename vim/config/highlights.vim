@@ -27,3 +27,8 @@ hi link JsonNumber Number
 hi link jsonBoolean Constant
 hi link jsonBraces  Function
 hi link jsonQuote   Delimiter
+
+hi link sprocketsPreProc Comment
+hi link sprocketsInclude Comment
+hi link sprocketsIncludedDir Comment
+hi link sprocketsIncluded Comment

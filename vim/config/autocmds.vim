@@ -56,3 +56,8 @@ augroup JML_ULTISNIPS_ADDITIONS
   autocmd Syntax rspec UltiSnipsAddFiletypes rspec
   autocmd FileType bzl UltiSnipsAddFiletypes python
 augroup end
+
+augroup JML_SYNTAX_EXTRA
+  au!
+  au Syntax * syntax keyword Todo NOTE Note NB containedin=.*Comment
+augroup end

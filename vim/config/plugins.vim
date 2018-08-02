@@ -37,13 +37,14 @@ let g:ale_fix_on_save = 0
 " Use these fixers
 let g:ale_fixers = {
 \   'css': [ 'prettier' ],
+\   'html': [ 'tidy' ],
 \   'javascript': [ 'prettier' ],
 \   'json': [ 'prettier' ],
 \   'python': ['yapf', 'isort'],
 \   'ruby': ['remove_trailing_lines', 'rubocop'],
 \   'scss': [ 'prettier' ],
 \   'sh': [ 'shfmt' ],
-\   'typescript': [ 'tslint', 'prettier' ],
+\   'typescript': [ 'tslint' ],
 \ }
 
 " Disable for c, cpp and header files. YCM is better.
