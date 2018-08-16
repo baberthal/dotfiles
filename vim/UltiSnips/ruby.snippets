@@ -6,7 +6,7 @@ from helpers.path_utils import RelativeFilePath
 from helpers.vimsupport import GetCurrentBufferFilepath, GetIntValue
 import ruby_snippet_helpers as rbsnips
 
-RUBOCOP_COP_NAME_REGEX = re.compile(r'\[(.+)\]')
+RUBOCOP_COP_NAME_REGEX = re.compile(r'\((.+)\)')
 
 def ExtractCopName(details):
     match = RUBOCOP_COP_NAME_REGEX.search(details)

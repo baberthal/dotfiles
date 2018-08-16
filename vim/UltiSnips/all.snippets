@@ -58,9 +58,9 @@ snippet foldc "Insert a vim fold close marker" wsm
 endsnippet
 
 snippet foldp "Insert a vim fold marker pair" wsm
-`!p snip.rv = get_comment_format()[0]` ${1:Fold description} `!p snip.rv = foldmarker()[0]` `!p snip.rv = get_comment_format()[2]`
-${2:${VISUAL:Content}}
-`!p snip.rv = get_comment_format()[0]` `!p snip.rv = foldmarker()[1]` $1 `!p snip.rv = get_comment_format()[2]`
+`!p snip.rv = get_comment_format()[0]` ${1:Fold description} `!p snip.rv = ("{0} {1}".format(foldmarker()[0], get_comment_format()[2])).rstrip()`
+${0:${VISUAL:Content}}
+`!p snip.rv = get_comment_format()[0]` `!p snip.rv = foldmarker()[1]` $1 `!p snip.rv = ("{0}".format(get_comment_format()[2])).strip()`
 endsnippet
 
 snippet cf "" b

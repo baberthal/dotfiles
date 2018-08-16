@@ -13,15 +13,18 @@ import logging
 import os
 import re
 
-from helpers import path_utils
 import inflector
+from helpers import path_utils
 
 DIR_OF_THIS_SCRIPT = os.path.abspath(os.path.dirname(__file__))
 DEFAULT_LOG_DIR = os.path.realpath(
-    os.path.join(DIR_OF_THIS_SCRIPT, '..', 'logs'))
+    os.path.join(DIR_OF_THIS_SCRIPT, '..', 'logs')
+)
 
 logging.basicConfig(
-    filename=os.path.join(DEFAULT_LOG_DIR, 'pysnips.log'), level=logging.DEBUG)
+    filename = os.path.join(DEFAULT_LOG_DIR, 'pysnips.log'),
+    level = logging.DEBUG
+)
 
 SPEC_DIRECTORY_MAPPINGS = {
     'controller': ['spec', 'controllers'],
@@ -38,77 +41,92 @@ SPEC_DIRECTORY_MAPPINGS = {
 
 
 def Classify(basename):
-    """TODO: Docstring for Classify.
+  """TODO: Docstring for Classify.
 
     :type basename: TODO
     :returns: TODO
 
     """
-    # return re.sub(r'(_|^)(.)', lambda m: m.group(2).upper(), basename)
-    return inflector.camelize(basename)
+  # return re.sub(r'(_|^)(.)', lambda m: m.group(2).upper(), basename)
+  return inflector.camelize(basename)
 
 
 def ClassifySpec(filepath):
-    """TODO: Docstring for ClassifySpec.
+  """TODO: Docstring for ClassifySpec.
 
     :type filepath: TODO
     :returns: str
 
     """
-    basename = re.sub(r'spec/(?:\w+)/(.+)_spec(?:\.rb)?', '\\1', filepath)
-    return Classify(basename)
+  basename = re.sub(r'spec/(?:\w+)/(.+)_spec(?:\.rb)?', '\\1', filepath)
+  return Classify(basename)
 
 
 def InferSpecType(filepath):
-    """TODO: Docstring for InferSpecType.
+  """TODO: Docstring for InferSpecType.
 
     :type filepath: TODO
     :returns: TODO
 
     """
-    pass
+  parts = path_utils.splitparts(filepath)
+  spec_type = None
+
+  if parts[0] == 'spec':
+    spec_type = parts[1]
+  elif 'spec' in parts:
+    idx = parts.index('spec')
+    spec_type = parts[idx + 1]
+  else:
+    spec_type = 'unknown'
+
+  return _sym(spec_type)
 
 
 def ExtractClassPath(filename):
-    """TODO: Docstring for ExtractClassPath.
+  """TODO: Docstring for ExtractClassPath.
 
     :type filename: TODO
     :returns: TODO
 
     """
-    parts = _ExtractRelativePathParts(filename)
-    return [os.path.splitext(p)[0] for p in parts]
+  parts = _ExtractRelativePathParts(filename)
+  return [os.path.splitext(p)[0] for p in parts]
 
 
 def RelativePathFromNearestLibDirectory(filename):
-    """TODO: Docstring for RelativePathFromNearestLibDirectory.
+  """TODO: Docstring for RelativePathFromNearestLibDirectory.
 
     :type filename: TODO
     :returns: TODO
 
     """
-    return os.path.join(*_ExtractRelativePathParts(filename, topdir='lib'))
+  return os.path.join(*_ExtractRelativePathParts(filename, topdir = 'lib'))
 
 
 def SpecPathForFilename(filename):
-    """TODO: Docstring for SpecPathForFilename.
+  """TODO: Docstring for SpecPathForFilename.
 
     :type filename: TODO
     :returns: TODO
 
     """
-    relative_parts = _ExtractRelativePathParts(filename, topdir='spec')
-    return os.path.join(*relative_parts[1:])
+  relative_parts = _ExtractRelativePathParts(filename, topdir = 'spec')
+  return os.path.join(*relative_parts[1:])
 
 
-def _ExtractRelativePathParts(filename, topdir='lib'):
-    parts = path_utils.splitparts(filename)
-    if topdir in parts:
-        index = parts.index(topdir)
-        logging.debug("Index of '{1}' in parts: {0}".format(index, topdir))
-        subset = parts[index + 1:]
-        logging.debug("New subset after slice: {0}".format(subset))
-        return subset
+def _ExtractRelativePathParts(filename, topdir = 'lib'):
+  parts = path_utils.splitparts(filename)
+  if topdir in parts:
+    index = parts.index(topdir)
+    logging.debug("Index of '{1}' in parts: {0}".format(index, topdir))
+    subset = parts[index + 1:]
+    logging.debug("New subset after slice: {0}".format(subset))
+    return subset
 
-    logging.warning("Unable to find '{1}' in parts: {0}".format(parts, topdir))
-    return [os.path.split(filename)[-1]]
+  logging.warning("Unable to find '{1}' in parts: {0}".format(parts, topdir))
+  return [os.path.split(filename)[-1]]
+
+
+def _sym(string):
+  return ':{0}'.format(string)

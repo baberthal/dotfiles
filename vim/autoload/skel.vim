@@ -16,10 +16,25 @@ function! skel#InsertSkeleton() abort
   let l:filename = expand('%')
 
   " Abort on non-empty buffer
-  if !(line('$') == 1 && getline('$') == '') || filereadable(filename)
-    echom "Aborting Skeleton..."
+  if filereadable(filename)
+    if !(line('$') == 1 && getline('$') == '')
+      echom 'File readable and has contents, aborting skeleton.'
+      return
+    endif
+  endif
+
+  if line('$') != 1
+    echom 'abort: line("$") != 1'
     return
   endif
+
+  if getline('$') != ''
+    echom 'abort: getline("$") != ""'
+  endif
+  " if !(line('$') == 1 && getline('$') == '')
+  "   echom "Aborting Skeleton..."
+  "   return
+  " endif
 
   if !empty('b:projectionist')
     for [root, value] in projectionist#query('skeleton')
