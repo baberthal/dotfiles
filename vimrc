@@ -152,7 +152,7 @@ let g:rubycomplete_use_bundler = 1
 " }}} Ruby "
 
 " Javascript/JSON {{{ "
-let g:used_javascript_libs = 'jquery,jasmine,underscore,angularjs,angularui,angularuirouter,react'
+let g:used_javascript_libs = ''
 let g:vim_json_syntax_conceal = 0
 
 " }}} Javascript/JSON "
