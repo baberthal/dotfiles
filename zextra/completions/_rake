@@ -43,7 +43,7 @@ _rake() {
 __rake_setup_application_directory() {
   application_directory="$(pwd)"
 
-  while [ -n "$application_directory"]; do
+  while [ -n "$application_directory" ]; do
     if [ -f "${application_directory}/Rakefile" ]; then
       return
     fi

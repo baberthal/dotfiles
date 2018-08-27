@@ -148,7 +148,9 @@ let g:DoxygenToolkit_paramTag_pre = "\\param "
 " Ruby {{{ "
 let g:ruby_indent_access_modifier_style = 'outdent'
 let g:ruby_indent_assignment_style = 'variable'
-let g:rubycomplete_use_bundler = 1
+let g:rubycomplete_buffer_loading = 0
+let g:rubycomplete_use_bundler = 0
+let g:rubycomplete_load_gemfile = 0
 " }}} Ruby "
 
 " Javascript/JSON {{{ "

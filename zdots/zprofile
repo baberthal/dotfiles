@@ -73,7 +73,7 @@ fpath=(
 autoload gi clean-compiled-funcs signing-cert man mount-android umount-android \
   name-dir pygless recompile-funcs take use-ruby
 
-[[ -x /usr/libexec/java_home ]] && export JAVA_HOME="$(/usr/libexec/java_home)"
+[[ -x /usr/libexec/java_home ]] && export JAVA_HOME="$(/usr/libexec/java_home -v 1.8 2>/dev/null)"
 [[ -f "${HOME}/.env" ]] && source "${HOME}/.env"
 
 export LESS='-F -g -i -M -R -S -w -X -z-4'
