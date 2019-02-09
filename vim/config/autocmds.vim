@@ -55,6 +55,7 @@ augroup JML_ULTISNIPS_ADDITIONS
   au!
   autocmd Syntax rspec UltiSnipsAddFiletypes rspec
   autocmd FileType bzl UltiSnipsAddFiletypes python
+  autocmd BufRead,BufNewFile *_spec.ts,*.spec.ts UltiSnipsAddFiletypes js_test
 augroup end
 
 augroup JML_SYNTAX_EXTRA

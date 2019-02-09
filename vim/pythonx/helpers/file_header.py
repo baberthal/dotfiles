@@ -25,13 +25,14 @@ class FileHeader(object):
     DEFAULT_SUFFIX = '-*- %(mode)s -*-===//'
     DEFAULT_FORMAT = '%(prefix)s %(desc)s %(dashes)s%(suffix)s'
 
-    def __init__(self, snip=None, prefix=None, suffix=None, bar_format=None):
+    def __init__(self, snip=None, filename=None, prefix=None, suffix=None, bar_format=None):
         """
         :type snip: UltiSnips.TextObjects.SnippetUtil
         """
         super(FileHeader, self).__init__()
         self.snip = snip
         self._width = GetIntValue('&textwidth') or 80
+        self._filename = filename
 
         self.prefix_format = prefix or self.DEFAULT_PREFIX
         self.suffix_format = suffix or self.DEFAULT_SUFFIX
@@ -60,7 +61,9 @@ class FileHeader(object):
         :returns: str
 
         """
-        return RelativeFilePath(GetCurrentBufferFilepath())
+        if self._filename is None:
+          return RelativeFilePath(GetCurrentBufferFilepath())
+        return self._filename
 
     @property
     def mode(self):

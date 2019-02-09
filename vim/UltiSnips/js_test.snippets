@@ -1,0 +1,36 @@
+priority 50
+
+snippet exp "expect" b
+expect($1)$2;$0
+endsnippet
+
+snippet bef "beforeEach" b
+beforeEach($1);
+$0
+endsnippet
+
+snippet aft "afterEach" b
+afterEach($1);
+$0
+endsnippet
+
+snippet it "it(...)" w
+it("${1:does something}", () => {
+	$2
+});$0
+endsnippet
+
+snippet ait "async it(...)" w
+it("${1:does something}", async () => {
+	$2
+});$0
+endsnippet
+
+snippet exp "expect(...)" w
+expect(${1:object}).${2:toEqual}(${3:something});$0
+endsnippet
+
+snippet expn "expect(...).not" w
+expect(${1:object}).not.${2:toEqual}(${3:something});$0
+endsnippet
+

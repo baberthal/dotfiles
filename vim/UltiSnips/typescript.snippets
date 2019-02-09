@@ -7,14 +7,29 @@ from javascript_snippets import (
 from helpers.file_header import FileHeader
 import tshelpers
 
-def MakeFileHeader(snip, t, width, pad=True):
-    header = FileHeader(snip, suffix="---===//")
+def MakeFileHeader(snip, t, width, pad=True, filename=None):
+    header = FileHeader(snip, suffix="---===//", filename=filename)
     return header.render(t, width=width, pad=pad)
 
 endglobal
 
+snippet ///p "import reference (path)" b
+/// <reference path="${1: file}" />
+$0
+endsnippet
+
+snippet /// "import reference (types)" b
+/// <reference types="${1:types}" />
+endsnippet
+
 snippet desc "describe()" w
 describe("${1:description}", () => {
+	$0
+});
+endsnippet
+
+snippet descm "describe(#method)" w
+describe("#${1:method}", () => {
 	$0
 });
 endsnippet
@@ -25,36 +40,18 @@ snippet = "() => {}" i
 }
 endsnippet
 
+snippet a= "async () => {}" i
+async ($1) => {
+	$2
+}$0
+endsnippet
+
 snippet =: "() => {}" i
 = ($1) => ${2:ReturnType}$0
 endsnippet
 
 snippet - "() => <T>" i
 $1 => $2
-endsnippet
-
-snippet bef "beforeEach" b
-beforeEach($1);
-$0
-endsnippet
-
-snippet aft "afterEach" b
-afterEach($1);
-$0
-endsnippet
-
-snippet it "it(...)" w
-it("${1:does something}", ($2) => {
-	$3
-});$0
-endsnippet
-
-snippet exp "expect(...)" w
-expect(${1:object}).${2:toEqual}(${3:something});$0
-endsnippet
-
-snippet expn "expect(...).not" w
-expect(${1:object}).not.${2:toEqual}(${3:something});$0
 endsnippet
 
 snippet if "if statement" w
@@ -87,6 +84,10 @@ endsnippet
 
 snippet imp* "import * as ... from ..." b
 import * as ${1:name} from "${2:$1}";$0
+endsnippet
+
+snippet impd "import Whatever from ..." b
+import ${1:What} from "${2:where}";$0
 endsnippet
 
 priority 1
@@ -358,4 +359,35 @@ export function ${4:`!p snip.rv = tshelpers.Functionify(snip.basename)`}(${5:arg
 }
 
 export default $4;
+endsnippet
+
+snippet _component "Component Skeleton" b
+`!p
+if not snip.c:
+    width = int(vim.eval("&textwidth")) or 80
+
+name = snip.basename.replace(".component", "")
+header = MakeFileHeader(snip, t, width, filename=snip.basename)
+snip.rv = header[0]
+`${1:${VISUAL:Brief Description}}`!p
+snip.rv = header[1]
+`
+//
+// Copyright (c) `date +%Y` J. Morgan Lieberthal
+// Licensed under the MIT License
+//
+//===-----------------------------------------------------------------------===//
+
+import { Component, Vue } from "@app/core";
+
+import template from "./${2:`!p snip.rv = name`}.template.html";
+
+@Component({
+	template
+})
+export class ${3:`!p snip.rv = tshelpers.Classify(name)`} extends Vue {
+	${4}
+}
+
+export default $3;
 endsnippet

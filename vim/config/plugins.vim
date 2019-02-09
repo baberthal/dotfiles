@@ -44,7 +44,7 @@ let g:ale_fixers = {
 \   'ruby': ['remove_trailing_lines', 'rubocop'],
 \   'scss': [ 'prettier' ],
 \   'sh': [ 'shfmt' ],
-\   'typescript': [ 'tslint' ],
+\   'typescript': [ 'tslint', 'prettier' ],
 \ }
 
 " Disable for c, cpp and header files. YCM is better.
@@ -104,9 +104,15 @@ let g:dash_activate = 0
 
 let g:gutentags_file_list_command = {
       \   'markers': {
-      \     '.git': 'git ls-files'
+      \     '.git': 'git ls-files',
+      \     'tsconfig.json': 'tsc --noEmit --listFiles',
       \   },
       \ }
+
+let g:gutentags_project_info = [
+      \ { "type": "typescript", "file": "tsconfig.json" }
+      \ ]
+
 
 " }}} Gutentags Settings "
 
