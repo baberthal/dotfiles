@@ -46,9 +46,6 @@
 [submodule "vim/bundle/vim-ruby"]
 	path = vim/bundle/vim-ruby
 	url = http://github.com/vim-ruby/vim-ruby.git
-[submodule "vim/bundle/rspec.vim"]
-	path = vim/bundle/rspec.vim
-	url = http://github.com/keith/rspec.vim.git
 [submodule "vim/bundle/vim-fugitive"]
 	path = vim/bundle/vim-fugitive
 	url = http://github.com/tpope/vim-fugitive.git
