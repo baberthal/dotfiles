@@ -1,3 +1,3 @@
 setl sw=2
-setl tw=100
-setl colorcolumn=101
+setl tw=80
+setl colorcolumn=81

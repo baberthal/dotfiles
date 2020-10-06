@@ -34,7 +34,7 @@ augroup JML_FILETYPES
   au!
 
   au FileType ruby,python,javascript,typescript,css,scss,sh,json let b:ale_fix_on_save = 1
-  au FileType ruby Rvm
+  " au FileType ruby Rvm
 
   " Broken built-in commentstring settings
   au FileType coffee set commentstring=#\ %s
@@ -58,7 +58,7 @@ augroup JML_ULTISNIPS_ADDITIONS
   autocmd BufRead,BufNewFile *_spec.ts,*.spec.ts UltiSnipsAddFiletypes js_test
 augroup end
 
-augroup JML_SYNTAX_EXTRA
-  au!
-  au Syntax * syntax keyword Todo NOTE Note NB containedin=.*Comment
-augroup end
+" augroup JML_SYNTAX_EXTRA
+"   au!
+"   au Syntax * syntax keyword Todo NOTE Note NB containedin=.*Comment
+" augroup end

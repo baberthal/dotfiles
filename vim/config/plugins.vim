@@ -53,6 +53,8 @@ let g:ale_pattern_options = {
 \   '\.c$': { 'ale_enabled': 0 },
 \   '\.cpp$': { 'ale_enabled': 0 },
 \   '\.cc$': { 'ale_enabled': 0 },
+\   '\.m$': { 'ale_enabled': 0 },
+\   '\.mm$': { 'ale_enabled': 0 },
 \   '\.h$': { 'ale_enabled': 0 },
 \   '\.hpp$': { 'ale_enabled': 0 },
 \ }
@@ -81,6 +83,17 @@ let g:ale_sign_warning = 'W>'  " Sign in gutter to denote warning
 let g:ale_warn_about_trailing_whitespace = 0
 
 " }}} ALE (Asyncronous Lint Engine) "
+
+" Closetag Settings {{{ "
+
+let g:closetag_filenames = '*.html,*.xhtml,*.phtml,*.xml,*.modinfo'
+let g:closetag_xhtml_filenames = '*.xml,*.xhtml,*.modinfo'
+let g:closetag_filetypes = 'html,xhtml,phtml,xml'
+let g:closetag_xhtml_filetypes = 'xhtml,xml'
+
+" let g:closetag_
+
+" }}} Closetag Settings "
 
 " CtrlP Settings {{{ "
 

@@ -1,3 +1,27 @@
+snippet desc "" b
+describe ${1:`!v substitute(substitute(vim_snippets#Filename(), '_spec$', '', ''), '\(_\|^\)\(.\)', '\u\2', 'g')`} do
+	${0:${VISUAL}}
+end
+endsnippet
+
+snippet descm "desribe method" b
+describe "${1:#method}" do
+	${0:pending "Not implemented"}
+end
+endsnippet
+
+snippet cont "" b
+context "${1:message}" do
+	${0}
+end
+endsnippet
+
+snippet it "test" b
+it "${1:spec_name}" do
+	$0
+end
+endsnippet
+
 snippet its "RSpec - its(:method) { is_expected.to XXX }" w
 its(:${1:method}) { is_expected.to $2 }$0
 endsnippet
@@ -53,5 +77,5 @@ subject(:${1:name}) { $2 }$0
 endsnippet
 
 snippet pend "Pending" b
-pending "Add some examples to, or delete #{__FILE__}"$0
+pending "${1:Add some examples to, or delete #\{__FILE__\}}"$0
 endsnippet

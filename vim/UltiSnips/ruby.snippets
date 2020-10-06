@@ -35,6 +35,14 @@ def undent(snip, string):
 
 endglobal
 
+snippet req "require" b
+require "$1"$0
+endsnippet
+
+snippet reqr "require_relative" b
+require_relative "$1"$0
+endsnippet
+
 snippet rdLL "disable rubocop line length" w
 # rubocop:disable Metrics/LineLength
 endsnippet
@@ -107,28 +115,28 @@ attr_accessor :${0:attribute}
 endsnippet
 
 snippet ar: "attr_reader (with documentation)" b
-# $1
-${2:# @return [${3:Type}]} $4
+# $4
+${2:# @return [${3:Type}]}
 attr_reader :${1:attribute}$0
 endsnippet
 
 snippet aw: "attr_writer (with documentation)" b
-# $1
-${2:# @return [${3:Type}]} $4
+# $4
+${2:# @return [${3:Type}]}
 attr_writer :${1:attribute}$0
 endsnippet
 
 snippet aa: "attr_accessor (with documentation)" b
-# $1
-${2:# @return [${3:Type}]} $4
+# $4
+${2:# @return [${3:Type}]}
 attr_accessor :${1:attribute}$0
 endsnippet
 
 snippet au "autoload" b
-autoload :${1:Constant}${2:, '${3:path}'}$0
+autoload :${1:Constant}${2:, "${3:path}"}$0
 endsnippet
 
-snippet group "Yard Group/End Group Block" b
+snippet group "Yard Group/End Group Block" bm
 # @!group ${1:name} {{{
 ${VISUAL:Contents}$0
 # @!endgroup }}}
@@ -140,6 +148,12 @@ endsnippet
 
 snippet #p "@param [Type] {docstring}" b
 # @param ${1:name} [${2:Type}] $0
+endsnippet
+
+snippet @ov "@overload ..." mb
+# @overload ${1:signature($2)}
+#   @p$3
+$4
 endsnippet
 
 snippet @r "@return" w
@@ -155,13 +169,13 @@ endsnippet
 # 	$0
 # end
 
-snippet mod "module ... end" b
+snippet mod "module ... end" mb
 module ${1:`!p snip.rv = rbsnips.Classify(snip.basename)`}
 	${VISUAL}$0
 end
 endsnippet
 
-snippet modc "module ... end" b
+snippet modc "module ... end" mb
 module ${1:`!p snip.rv = rbsnips.Classify(snip.basename)`}
 	$0
 
@@ -231,13 +245,13 @@ class ${1:`!p snip.rv = rbsnips.Classify(snip.basename)`} < ${2:ParentClass}
 end
 endsnippet
 
-snippet priv "private " m
+snippet priv "private " ms
 `!p undent(snip, "private")`
 
 $0
 endsnippet
 
-snippet prot "protected" m
+snippet prot "protected" ms
 `!p undent(snip, "protected")`
 
 $0
@@ -257,7 +271,7 @@ endsnippet
 #  Skeleton Snippets  #
 #######################
 
-snippet _skel "Default Skeleton" b
+snippet _skel "Default Skeleton" mb
 # frozen_string_literal: true
 `!p
 i = 0
@@ -273,7 +287,7 @@ for j in range(i, 0, -1):
 `
 endsnippet
 
-snippet _class "Class Skeleton" b
+snippet _class "Class Skeleton" mb
 # frozen_string_literal: true
 `!p
 i = 0
@@ -310,14 +324,12 @@ endsnippet
 snippet _spec "Spec snippet" b
 # frozen_string_literal: true
 
-require 'spec_helper'
-
 RSpec.describe ${1:`!p snip.rv = rbsnips.ClassifySpec(path)`} do
 	$0
 end
 endsnippet
 
-snippet _spec_support "Spec support module Skeleton" b
+snippet _spec_support "Spec support module Skeleton" mb
 # frozen_string_literal: true
 
 module Spec
@@ -326,3 +338,5 @@ module Spec
 	end
 end
 endsnippet
+
+# vim: set ts=8 sw=8 tw=80 ft=snippets noet :

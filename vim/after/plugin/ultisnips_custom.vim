@@ -9,7 +9,6 @@ if !exists('did_plugin_ultisnips')
 endif
 
 augroup UltiSnips_Custom
-  " this one is which you're most likely to use?
   au!
   au User ProjectionistActivate silent! call skel#InsertSkeleton()
   autocmd BufRead,BufNewFile * silent! call skel#InsertSkeleton()

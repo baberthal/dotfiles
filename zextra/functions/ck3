@@ -1,0 +1,7 @@
+# Launches CK3
+
+function ck3 {
+  open steam://run/1158310
+}
+
+#  vim: set ts=8 sw=2 tw=80 ft=zsh et :

@@ -1,0 +1,16 @@
+function ytdl(){
+        youtube-dl -i \
+    --verbose \
+    --extract-audio \
+    --audio-format mp3 \
+    --audio-quality 0 "$1"
+}
+function ytdlpl(){
+        youtube-dl -ict \
+    --verbose \
+    --yes-playlist \
+    --extract-audio \
+    --audio-format mp3 \
+    --audio-quality 0 "$1"
+}
+

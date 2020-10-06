@@ -19,7 +19,7 @@ set expandtab                   " SPACES ALWAYS (queue flame war...)
 set exrc                        " Source local (i.e. project-specific) vimrc files
 set fileencoding=utf-8          " UTF-8 Always FIXME: Check the macvim docs re: this
 set foldenable                  " Folding on by default
-set foldlevel=0                 " Fold everything by default
+set foldlevel=1                 " Fold everything by default
 set foldmethod=marker           " Fold by markers
 set fillchars+=stl:\ ,stlnc:\ ,vert:\|,fold:=,diff:-
 set history=9999                " big history
@@ -97,3 +97,14 @@ set formatoptions+=j " Remove comment leader when joining comments
 " set shortmess+=t  " Truncate at the start
 " set shortmess+=T  " Truncate in the middle
 " set shortmess+=c  " Don't show ins-completion message
+
+"============="
+" Executables "
+"============="
+
+if executable('rg') " ripgrep
+  set grepprg=rg\ --vimgrep\ --no-heading\ --color=never
+elseif  executable('ag')
+  set grepprg=ag\ --nogroup\ --nocolor
+endif
+

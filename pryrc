@@ -27,7 +27,7 @@ def prompt_setup(options = {})
   end
 
   pry_proc = Proc.new do |pry_obj|
-    "#{linob}#{colorize_object(pry_obj.input_array.size, options[:pry_color])}#{lincb}"
+    "#{linob}#{colorize_object(pry_obj.input_ring.size, options[:pry_color])}#{lincb}"
   end
 
   main_prompt = Proc.new do |target_self, nest_level, pry|

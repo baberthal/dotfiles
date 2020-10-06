@@ -75,8 +75,11 @@ digraphs oh 629
 
 colorscheme solarized
 set background=dark
-let g:solarized_termtrans = 1
-call togglebg#map("<F5>")
+
+" Don't show bold text (it looks a bit strange)
+let g:solarized_bold = 0
+
+" call togglebg#map("<F5>")
 
 "==============="
 " Projectionist "
@@ -101,6 +104,25 @@ let g:projectionist_heuristics = {
       \ }
 
 
+let g:terminal_ansi_colors = [
+      \ "#073642",
+      \ "#dc322f",
+      \ "#859900",
+      \ "#b58900",
+      \ "#268bd2",
+      \ "#d33682",
+      \ "#2aa198",
+      \ "#eee8d5",
+      \ "#002b36",
+      \ "#cb4b16",
+      \  "#586e75",
+      \  "#657b83",
+      \  "#839496",
+      \  "#6c71c4",
+      \  "#93a1a1",
+      \  "#fdf6e3",
+    \ ]
+
 "==========="
 " Sub Files "
 "==========="
@@ -113,7 +135,6 @@ source $HOME/.vim/config/autocmds.vim
 source $HOME/.vim/config/commands.vim
 source $HOME/.vim/config/highlights.vim
 source $HOME/.vim/config/plugins.vim
-source $HOME/.vim/config/programs.vim
 source $HOME/.vim/config/statusline.vim
 
 let g:pyindent_open_paren = '&sw'
@@ -159,10 +180,6 @@ let g:vim_json_syntax_conceal = 0
 
 " }}} Javascript/JSON "
 
-" Dart {{{ "
-let g:dart_style_guide = 1
-" }}} Dart "
-
 " User-Defined Functions {{{ "
 
 fun! FindConfig(prefix, what, where)
@@ -200,30 +217,7 @@ nnoremap <silent> <C-\> :TmuxNavigatePrevious<cr>
 
 " }}} Vim-Tmux-Navigator "
 
-" Legacy Syntastic Settings (Unused for now) {{{ "
-
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_open = 0
-let g:syntastic_check_on_wq = 0
-
-let g:syntastic_javascript_checkers = ['eslint']
-let g:syntastic_haml_checkers = ['haml_lint']
-let g:syntastic_ruby_checkers = ['mri', 'rubocop']
-let g:systastic_ruby_exec = $rvm_path . "/rubies/" . $RUBY_VERSION . "/bin/ruby"
-
-let g:syntastic_c_checkers = ['clang_check', 'make']
-let g:syntastic_c_clang_check_post_args = ""
-
-let g:syntastic_scss_checkers = ['sass_lint']
-
-let g:tsuquyomi_disable_quickfix = 1
-let g:syntastic_typescript_checkers = ['tsuquyomi', 'tslint']
-
-let g:syntastic_swift_checkers = ['swiftpm']
-let g:syntastic_swift_swiftpm_executable = '/Library/Developer/Toolchains/swift-latest.xctoolchain/usr/bin/swift'
-
-" }}} Legacy Syntastic Settings (Unused for now) "
+nnoremap <leader>g :silent execute "grep! -R " . shellescape(expand("<cWORD>")) . " ."<cr>:copen<cr>
 
 " YouCompleteMe / Ultisnips {{{ "
 

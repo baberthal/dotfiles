@@ -32,3 +32,5 @@ hi link sprocketsPreProc Comment
 hi link sprocketsInclude Comment
 hi link sprocketsIncludedDir Comment
 hi link sprocketsIncluded Comment
+
+hi link rubyBlockParameter rubyIdentifier

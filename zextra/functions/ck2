@@ -1,0 +1,7 @@
+# Launches CK2
+
+function ck2 {
+  open steam://run/203770
+}
+
+#  vim: set ts=8 sw=2 tw=80 ft=zsh et :
