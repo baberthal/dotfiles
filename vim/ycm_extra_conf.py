@@ -2,8 +2,8 @@
 #
 
 import os
-import ycm_core
 import logging
+import os.path as p
 
 #  Base Flag Constants {{{ #
 
@@ -48,7 +48,7 @@ BASE_INCLUDE_FLAGS = [
     '-isystem',
     '/usr/local/include',
     '-isystem',
-    '{0}/usr/lib/clang/9.0.0/include'.format(XCTOOLCHAIN_PATH),
+    '{0}/usr/lib/clang/10.0.0/include'.format(XCTOOLCHAIN_PATH),
     '-isystem',
     '{0}/usr/include'.format(XCTOOLCHAIN_PATH),
     '-isystem',
@@ -82,19 +82,63 @@ HEADER_DIRECTORIES = ['include']
 
 #  }}} Base Flag Constants #
 
+# Settings - Where the magic happens.
+def Settings(**kwargs):
+    import ycm_core
 
-# FlagsForFile - Where the magic happens.
-def FlagsForFile(filename):
-    root = os.path.realpath(filename)
-    compilation_db_flags = FlagsForCompilationDatabase(root, filename)
-    if compilation_db_flags:
-        final_flags = compilation_db_flags
-    else:
-        final_flags = BuildGenericFlagsForFile(filename)
-        include_flags = FlagsForInclude(root)
-        if include_flags:
-            final_flags += include_flags
-    return {'flags': final_flags, 'do_cache': True}
+    filename = kwargs["filename"]
+    root     = p.realpath(filename)
+    db_dir   = TryToFindCompilationDatabase(root)
+    database = None
+
+    if db_dir is not None:
+        database = ycm_core.CompilationDatabase(compdb_dir)
+
+    language = kwargs["language"]
+
+    if language == "cfamily":
+        filename = FindCorrespondingSourceFile(filename)
+
+        if not database:
+            return {
+                "flags": BuildGenericFlagsForFile(filename),
+                "include_paths_relative_to_dir": root,
+                "override_filename": filename
+            }
+
+        compilation_info = database.GetCompilationInfoForFile(filename)
+        if not compilation_info.compiler_flags_:
+            return {}
+
+        final_flags = list(compilation_info.compiler_flags_)
+
+        return {
+            "flags": final_flags,
+            "include_paths_relative_to_dir": compilation_info.compiler_working_dir_,
+            "override_filename": filename
+        }
+
+    if language == "python":
+        return {
+          "interpreter_path": PathToSystemPython()
+        }
+
+
+# def FlagsForFile(filename):
+#     root = os.path.realpath(filename)
+#     compilation_db_flags = FlagsForCompilationDatabase(root, filename)
+#     if compilation_db_flags:
+#         final_flags = compilation_db_flags
+#     else:
+#         final_flags = BuildGenericFlagsForFile(filename)
+#         include_flags = FlagsForInclude(root)
+#         if include_flags:
+#             final_flags += include_flags
+#     return {'flags': final_flags, 'do_cache': True}
+
+
+def PathToSystemPython():
+    return "/usr/local/bin/python3"
 
 
 #  File Predicate Methods {{{ #
@@ -121,6 +165,17 @@ def isObjCXXFile(filename):
 #  }}} File Predicate Methods #
 
 #  CompilationDatabase Query Functions {{{ #
+
+
+def TryToFindCompilationDatabase(root):
+    logging.info("Trying to find compilation database in {0}".format(root))
+    try:
+        db_path = FindNearest(root, "compile_commands.json", "build")
+        db_dir  = p.dirname(db_path)
+        logging.info("Setting compilation database dir to {0}".format(db_dir))
+        return db_dir
+    except Exception:
+        return None
 
 
 def GetCompilationInfoForFile(database, filename):
@@ -188,36 +243,46 @@ def BuildGenericFlagsForFile(filename):
 #  Flags for Header Files {{{ #
 
 
-def GetFlagsForHeaderFile(database, filename):
-    basename = os.path.splitext(filename)[0]
-    for extension in SOURCE_EXTENSIONS:
-        replacement_file = basename + extension
-        # Get the info from source files by replacing the extension
-        compilation_info = GetFlagsForHeaderFromReplacementFile(
-            database, replacement_file) or GetFlagsForHeaderFromSourceDir(
-                database, replacement_file)
-
-        if compilation_info is not None:
-            return compilation_info
+def FindCorrespondingSourceFile(filename):
+    if isHeaderFile(filename):
+        basename = p.splitext(filename)[0]
+        for extension in SOURCE_EXTENSIONS:
+            replacement_file = basename + extension
+            if p.exists(replacement_file):
+                return replacement_file
+    return filename
 
 
-def GetFlagsForHeaderFromReplacementFile(database, replacement):
-    if os.path.exists(replacement):
-        compilation_info = database.GetCompilationInfoForFile(replacement)
-        if compilation_info.compiler_flags_:
-            return compilation_info
-    return None
+# def GetFlagsForHeaderFile(database, filename):
+#     basename = os.path.splitext(filename)[0]
+#     for extension in SOURCE_EXTENSIONS:
+#         replacement_file = basename + extension
+#         # Get the info from source files by replacing the extension
+#         compilation_info = GetFlagsForHeaderFromReplacementFile(
+#             database, replacement_file) or GetFlagsForHeaderFromSourceDir(
+#                 database, replacement_file)
+
+#         if compilation_info is not None:
+#             return compilation_info
 
 
-def GetFlagsForHeaderFromSourceDir(database, replacement):
-    for header_dir in HEADER_DIRECTORIES:
-        for source_dir in SOURCE_DIRECTORIES:
-            src_file = replacement.replace(header_dir, source_dir)
-            if os.path.exists(src_file):
-                compilation_info = database.GetCompilationInfoForFile(src_file)
-                if compilation_info.compiler_flags_:
-                    return compilation_info
-    return None
+# def GetFlagsForHeaderFromReplacementFile(database, replacement):
+#     if os.path.exists(replacement):
+#         compilation_info = database.GetCompilationInfoForFile(replacement)
+#         if compilation_info.compiler_flags_:
+#             return compilation_info
+#     return None
+
+
+# def GetFlagsForHeaderFromSourceDir(database, replacement):
+#     for header_dir in HEADER_DIRECTORIES:
+#         for source_dir in SOURCE_DIRECTORIES:
+#             src_file = replacement.replace(header_dir, source_dir)
+#             if os.path.exists(src_file):
+#                 compilation_info = database.GetCompilationInfoForFile(src_file)
+#                 if compilation_info.compiler_flags_:
+#                     return compilation_info
+#     return None
 
 
 #  }}} Flags for Header Files #
