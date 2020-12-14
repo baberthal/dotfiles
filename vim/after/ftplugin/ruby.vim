@@ -5,7 +5,7 @@ setlocal tw=80
 setlocal colorcolumn=81
 
 " Rubycomplete
-let g:rubycomplete_buffer_loading = 1
+" let g:rubycomplete_buffer_loading = 1
 " let g:rubycomplete_classes_in_global = 1
 
 hi link rubyCapitalizedMethod	rubyConstant
