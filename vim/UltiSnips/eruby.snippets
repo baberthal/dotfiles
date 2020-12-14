@@ -47,3 +47,7 @@ endsnippet
 snippet //f "file header" b
 <!-- ${1:`!v expand('%')`} -->
 endsnippet
+
+snippet jspt "javascript_pack_tag" b
+<%= javascript_pack_tag "${1:name}"${2:, "data-turbolinks-track": "${3:reload}"} %>
+endsnippet

@@ -118,7 +118,7 @@ priority 20
 snippet _spec "Spec snippet" b
 # frozen_string_literal: true
 
-require 'rails_helper'
+require "rails_helper"
 
 RSpec.describe ${1:`!p snip.rv = rbsnips.ClassifySpec(path)`}, type: `!p
 snip.rv = rbsnips.InferSpecType(path)` do
