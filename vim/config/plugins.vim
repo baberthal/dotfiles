@@ -36,18 +36,19 @@ let g:ale_fix_on_save = 0
 
 " Use these fixers
 let g:ale_fixers = {
-\   'css': [ 'prettier' ],
-\   'html': [ 'tidy' ],
-\   'javascript': [ 'prettier' ],
-\   'json': [ 'prettier' ],
+\   'css': ['prettier'],
+\   'html': ['tidy'],
+\   'javascript': ['prettier'],
+\   'json': ['prettier'],
 \   'python': ['yapf', 'isort'],
-\   'ruby': ['remove_trailing_lines', 'rubocop'],
-\   'scss': [ 'prettier' ],
-\   'sh': [ 'shfmt' ],
-\   'typescript': [ 'tslint', 'prettier' ],
+\   'ruby': ['rubocop'],
+\   'scss': ['prettier'],
+\   'sh': ['shfmt'],
+\   'typescript': ['tslint', 'prettier'],
 \ }
 
 " Disable for c, cpp and header files. YCM is better.
+" Also disable for ruby, because YCM has an LSP completer that does it.
 " FIXME: This could be one regex, but it would be UGLY
 let g:ale_pattern_options = {
 \   '\.c$': { 'ale_enabled': 0 },
@@ -81,6 +82,10 @@ let g:ale_sign_warning = 'W>'  " Sign in gutter to denote warning
 
 " Don't warn about trailing whitespace. Autocommands take care of that.
 let g:ale_warn_about_trailing_whitespace = 0
+
+" Don't use ale's LSP integration. YCM is much better and faster. Also, talk
+" about feature creep!
+let g:ale_disable_lsp = 1
 
 " }}} ALE (Asyncronous Lint Engine) "
 
@@ -269,5 +274,22 @@ let g:ycm_server_keep_logfiles = 0   " Don't keep logs after we quit
 
 " Log at 'info' level always
 let g:ycm_server_log_level = 'info'  " Log at 'info' level
+
+" Path to the clangd executable
+let g:ycm_clangd_binary_path = '/usr/local/opt/llvm/bin/clangd'
+
+" Path to the solargraph executable
+if executable("solargraph")
+  let g:rbenv_solargraph_path = exepath("solargraph")
+
+  let g:ycm_language_server = [
+        \ {
+        \   'name': 'ruby',
+        \   'cmdline': [expand(g:rbenv_solargraph_path), 'stdio'],
+        \   'filetypes': ['ruby'],
+        \   'project_root_files': ['Gemfile']
+        \ },
+        \ ]
+endif
 
 " }}} YouCompleteMe Settings "
