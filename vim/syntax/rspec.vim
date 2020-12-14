@@ -175,6 +175,11 @@ syntax keyword rspecMessageExpectation
       \ verify_messages_received
       \ with
 
+" Rails-specific rspec matchers
+syntax keyword rspecRailsMatchers
+      \ render_template
+      \ redirect_to
+
 syntax match rspecMatchers /\<\(be\|have\)_\w\+\>/
 syntax match rspecGroupMethods /\.describe/
 
@@ -185,5 +190,10 @@ highlight link rspecMockMethods Function
 highlight link rspecKeywords Constant
 highlight link rspecMatchers Function
 highlight link rspecMessageExpectation Function
+
+" Only highlight rails-specific if we're in a rails application
+if exists('*RailsDetect') && RailsDetect()
+  highlight link rspecRailsMatchers rspecMatchers
+endif
 
 let b:current_syntax = 'rspec'
