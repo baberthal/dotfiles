@@ -14,3 +14,5 @@ syn match jmlRubyExtraKW "block_given?"
 hi def link jmlRubyExtraAlias Keyword
 hi def link jmlRubyExtraKW Keyword
 hi link rubyCapitalizedMethod rubyConstant
+hi link yardGenericTag rubyTodo
+hi link yardGenericDirective rubyTodo
