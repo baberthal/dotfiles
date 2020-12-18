@@ -92,7 +92,7 @@ def Settings(**kwargs):
     database = None
 
     if db_dir is not None:
-        database = ycm_core.CompilationDatabase(compdb_dir)
+        database = ycm_core.CompilationDatabase(db_dir)
 
     language = kwargs["language"]
 
