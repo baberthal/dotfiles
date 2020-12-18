@@ -97,9 +97,6 @@
 [submodule "vim/bundle/vim-clang-format"]
 	path = vim/bundle/vim-clang-format
 	url = http://github.com/rhysd/vim-clang-format.git
-[submodule "vim/bundle/color_coded"]
-	path = vim/bundle/color_coded
-	url = http://github.com/jeaye/color_coded.git
 [submodule "vim/bundle/DoxygenToolkit.vim"]
 	path = vim/bundle/DoxygenToolkit.vim
 	url = http://github.com/mrtazz/DoxygenToolkit.vim.git
