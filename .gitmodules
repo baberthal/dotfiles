@@ -175,9 +175,6 @@
 [submodule "vim/bundle/vim-rails"]
 	path = vim/bundle/vim-rails
 	url = git://github.com/tpope/vim-rails.git
-[submodule "vim/bundle/yats.vim"]
-	path = vim/bundle/yats.vim
-	url = git://github.com/HerringtonDarkholme/yats.vim.git
 [submodule "vim/bundle/tagbar"]
 	path = vim/bundle/tagbar
 	url = git://github.com/majutsushi/tagbar.git
