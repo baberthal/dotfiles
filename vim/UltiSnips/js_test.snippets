@@ -1,4 +1,4 @@
-priority 50
+priority 51
 
 snippet exp "expect" b
 expect($1)$2;$0
@@ -24,10 +24,6 @@ snippet ait "async it(...)" w
 it("${1:does something}", async () => {
 	$2
 });$0
-endsnippet
-
-snippet exp "expect(...)" w
-expect(${1:object}).${2:toEqual}(${3:something});$0
 endsnippet
 
 snippet expn "expect(...).not" w

@@ -11,5 +11,5 @@ endif
 augroup UltiSnips_Custom
   au!
   au User ProjectionistActivate silent! call skel#InsertSkeleton()
-  autocmd BufRead,BufNewFile * silent! call skel#InsertSkeleton()
+  autocmd BufNewFile * silent! call skel#InsertSkeleton()
 augroup end

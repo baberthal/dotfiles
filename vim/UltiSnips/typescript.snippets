@@ -4,13 +4,13 @@ global !p
 from javascript_snippets import (
 	semi, space_before_function_paren, keyword_spacing
 )
-from helpers.file_header import FileHeader
 import tshelpers
+from skeleton_snippets import (
+	MakeFileHeader as _MakeFileHeader, GetProjectLicense, GetProjectName
+)
 
 def MakeFileHeader(snip, t, width, pad=True, filename=None):
-    header = FileHeader(snip, suffix="---===//", filename=filename)
-    return header.render(t, width=width, pad=pad)
-
+    return _MakeFileHeader(snip, t, width=width, pad=pad, suffix="---===//", filename=filename)
 endglobal
 
 snippet ///p "import reference (path)" b
@@ -296,12 +296,14 @@ snip.rv = header[0]
 snip.rv = header[1]
 `
 //
-// Copyright (c) `date +%Y` J. Morgan Lieberthal
-// Licensed under the MIT License
+// This file is part of the ${2:`!p snip.rv = GetProjectName()`} project.
+//
+// Copyright (c) `date +%Y` J. Morgan Lieberthal and the $2 authors
+// ${3:`!p snip.rv = GetProjectLicense().text_desc`}
 //
 //===-----------------------------------------------------------------------===//
-${2:///
-/// $3
+${4:///
+/// $5
 ///
 //===-----------------------------------------------------------------------===//}
 $0

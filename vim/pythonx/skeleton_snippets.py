@@ -12,6 +12,7 @@
 from helpers.comment_parser import CommentParser
 from helpers.vimsupport import GetVariableValue, VariableExists
 from helpers.file_header import FileHeader
+from helpers.license import License
 import vim
 
 ###############################################################################
@@ -19,17 +20,9 @@ import vim
 ###############################################################################
 
 
-def MakeFileHeader(snip, t, width):
-    """
-
-    :type snip: TODO
-    :type t: TODO
-    :type width: TODO
-    :returns: TODO
-
-    """
-    header = FileHeader(snip)
-    header.render(t, width)
+def MakeFileHeader(snip, t, width, pad=True, **kwargs):
+  header = FileHeader(snip, **kwargs)
+  return header.render(t, width=width, pad=pad)
 
 
 ###############################################################################
@@ -62,6 +55,28 @@ def InferProjectName():
 
     """
     return vim.eval("fnamemodify(getcwd(), ':t')")
+
+
+def _GetProjectLicenseName():
+    """Returns the project license name, either by querying vim for the
+    variable ('g:snips_project_license'), or defaulting to MIT.
+
+    :rtype: str
+
+    """
+    if VariableExists('g:snips_project_license'):
+      return GetVariableValue('g:snips_project_license')
+    return "MIT"
+
+
+def GetProjectLicense():
+    """Returns the project license, either by querying vim for the
+    variable ('g:snips_project_license'), or defaulting to MIT.
+
+    :rtype: str
+
+    """
+    return License.lookup(_GetProjectLicenseName())
 
 
 ###############################################################################

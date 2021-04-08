@@ -2,7 +2,7 @@
 C++ Snippet Helpers
 """
 
-from skeleton_snippets import GetProjectName, GetProjectNamespace
+from skeleton_snippets import MakeFileHeader, GetProjectName, GetProjectNamespace
 from helpers.file_header import FileHeader
 from helpers.path_utils import RelativeFilePath
 from helpers.util import ToCIdentifier

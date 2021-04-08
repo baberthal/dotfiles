@@ -85,6 +85,10 @@ class << self
 end$0
 endsnippet
 
+snippet claself; "class << self; ...; end" w
+class << self; $1; end$0
+endsnippet
+
 snippet inc "include '[Module]'" b
 include ${1:Module}$0
 endsnippet
@@ -102,15 +106,15 @@ snippet fsl "frozen_string_literal: true" b
 $0
 endsnippet
 
-snippet ar "attr_reader" b
+snippet ar "attr_reader" w
 attr_reader :${0:attribute}
 endsnippet
 
-snippet aw "attr_writer" b
+snippet aw "attr_writer" w
 attr_writer :${0:attribute}
 endsnippet
 
-snippet aa "attr_accessor" b
+snippet aa "attr_accessor" w
 attr_accessor :${0:attribute}
 endsnippet
 

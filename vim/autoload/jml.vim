@@ -23,6 +23,10 @@ endf
 
 " Delete trailing whitespace, but not in binmode or diffmode
 function! jml#DeleteTrailingWhitespace()
+  " Only striop if the b:no_strip_whitespace variable isn't set
+  if exists('b:no_strip_whitespace')
+    return
+  endif
   %s/\s\+$//e
 endf
 
