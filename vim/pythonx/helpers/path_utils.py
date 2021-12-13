@@ -55,3 +55,7 @@ def RelativeFilePath(filename):
             idx = parts.index(src_dir)
             result = os.path.join(*parts[idx + 1:])
     return result or os.path.split(filename)[-1]
+
+
+def ShortPath(filename):
+    return os.path.split(filename)[-1]

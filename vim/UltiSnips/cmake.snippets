@@ -38,7 +38,7 @@ find_package(${1:library} ${2:REQUIRED})$0
 endsnippet
 
 snippet glob "file(GLOB..." b
-file(GLOB ${2:srcs} *.${1:cpp})$0
+file(GLOB ${1:srcs} *.${2:cpp})$0
 endsnippet
 
 snippet subdir "add_subdirectory" b
@@ -46,11 +46,11 @@ add_subdirectory(${1:src})$0
 endsnippet
 
 snippet lib "add_library" b
-add_library(${2:lib} ${${1:srcs}})$0
+add_library(${1:lib} ${${2:srcs}})$0
 endsnippet
 
 snippet link "target_link_libraries" b
-target_link_libraries(${2:bin} ${1:somelib})$0
+target_link_libraries(${1:bin} ${2:somelib})$0
 endsnippet
 
 snippet exe "add_executable" b
@@ -62,8 +62,8 @@ set(${1:var} ${2:val})$0
 endsnippet
 
 snippet dep "add_dependencies" b
-add_dependencies(${1:target}
-	${0:dep}
+add_dependencies(${0:target}
+	${1:dep}
 )
 endsnippet
 

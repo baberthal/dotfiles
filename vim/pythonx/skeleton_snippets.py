@@ -45,6 +45,8 @@ def GetProjectName():
     """
     if VariableExists('g:snips_project'):
         return GetVariableValue('g:snips_project')
+    if VariableExists('g:snips_project_name'):
+        return GetVariableValue('g:snips_project_name')
     return InferProjectName()
 
 
@@ -77,6 +79,16 @@ def GetProjectLicense():
 
     """
     return License.lookup(_GetProjectLicenseName())
+
+
+def GetProjectCopyright(default_value='J. Morgan Lieberthal'):
+    """TODO: Docstring for GetProjectCopyright.
+    :returns: TODO
+
+    """
+    if VariableExists('g:snips_project_copyright'):
+      return GetVariableValue('g:snips_project_copyright')
+    return default_value
 
 
 ###############################################################################

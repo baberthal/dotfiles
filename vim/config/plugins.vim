@@ -36,6 +36,7 @@ let g:ale_fix_on_save = 0
 
 " Use these fixers
 let g:ale_fixers = {
+\   'cpp': ['clangtidy'],
 \   'css': ['prettier'],
 \   'html': ['tidy'],
 \   'javascript': ['prettier'],
@@ -44,7 +45,9 @@ let g:ale_fixers = {
 \   'ruby': ['rubocop'],
 \   'scss': ['prettier'],
 \   'sh': ['shfmt'],
-\   'typescript': ['tslint', 'prettier'],
+\   'typescript': ['eslint', 'prettier'],
+\   'typescriptreact': ['eslint', 'prettier'],
+\   'vue': ['prettier']
 \ }
 
 " Disable for c, cpp and header files. YCM is better.
@@ -66,7 +69,7 @@ let g:ale_linters = {
   \ 'javascript': ['eslint'],
   \ 'python': ['pylint'],
   \ 'scss': ['stylelint'],
-  \ 'typescript': ['tslint'],
+  \ 'typescript': [],
 \ }
 
 " Alias filetypes
@@ -88,6 +91,19 @@ let g:ale_warn_about_trailing_whitespace = 0
 let g:ale_disable_lsp = 1
 
 " }}} ALE (Asyncronous Lint Engine) "
+
+" BufExplorer Settings {{{ "
+
+" bufExplorer option
+let g:bufExplorerShowRelativePath=1
+
+" }}} BufExplorer Settings "
+
+" coc.nvim settings {{{ "
+
+source $HOME/.vim/config/coc-config.vim
+
+" }}} coc.nvim settings "
 
 " Closetag Settings {{{ "
 
@@ -120,12 +136,12 @@ let g:dash_activate = 0
 
 " Gutentags Settings {{{ "
 
-let g:gutentags_file_list_command = {
-      \   'markers': {
-      \     '.git': 'git ls-files',
-      \     'tsconfig.json': 'tsc --noEmit --listFiles',
-      \   },
-      \ }
+" let g:gutentags_file_list_command = {
+"       \   'markers': {
+"       \     '.git': 'git ls-files',
+"       \     'tsconfig.json': 'tsc --noEmit --listFiles',
+"       \   },
+"       \ }
 
 let g:gutentags_project_info = [
       \ { "type": "typescript", "file": "tsconfig.json" }
@@ -138,6 +154,14 @@ let g:gutentags_project_info = [
 let g:NERDTreeCaseSensitiveSort = 1
 let g:NERDTreeRespectWildIgnore = 1
 " }}} NERDTree Settings "
+
+" Taboo Settings {{{ "
+
+let g:taboo_tabline = 0
+let g:taboo_modified_tab_flag = "+"
+let g:taboo_renamed_tab_format = "%lm"
+
+" }}} Taboo Settings "
 
 " Tagbar Settings {{{ "
 
@@ -174,6 +198,85 @@ else
         \ }
 endif
 
+let g:tagbar_type_typescript = {
+    \ 'ctagstype': 'typescript',
+    \ 'kinds': [
+      \ 'c:class',
+      \ 'n:namespace',
+      \ 'f:function',
+      \ 'G:generator',
+      \ 'v:variable',
+      \ 'm:method',
+      \ 'p:property',
+      \ 'i:interface',
+      \ 'g:enum',
+      \ 't:type',
+      \ 'a:alias',
+    \ ],
+    \'sro': '.',
+      \ 'kind2scope' : {
+      \ 'c' : 'class',
+      \ 'n' : 'namespace',
+      \ 'i' : 'interface',
+      \ 'f' : 'function',
+      \ 'G' : 'generator',
+      \ 'm' : 'method',
+      \ 'p' : 'property',
+      \},
+\ }
+" let g:tagbar_type_typescript = {
+"   \ 'ctagstype': 'typescript',
+"   \ 'kinds': [
+"     \ 'c:classes',
+"     \ 'n:modules',
+"     \ 'f:functions',
+"     \ 'v:variables',
+"     \ 'v:varlambdas',
+"     \ 'm:members',
+"     \ 'i:interfaces',
+"     \ 'e:enums',
+"   \ ]
+" \ }
+
+" let g:tagbar_type_typescript = {
+"       \  'ctagstype': 'typescript',
+"       \  'kinds': [
+"       \    'c:classes',
+"       \    'a:abstract classes',
+"       \    't:types',
+"       \    'n:modules',
+"       \    'f:functions',
+"       \    'v:variables',
+"       \    'l:varlambdas',
+"       \    'm:members',
+"       \    'i:interfaces',
+"       \    'e:enums'
+"       \  ],
+"       \  'sro': '.',
+"       \  'kind2scope': {
+"       \    'c': 'classes',
+"       \    'a': 'abstract classes',
+"       \    't': 'types',
+"       \    'f': 'functions',
+"       \    'v': 'variables',
+"       \    'l': 'varlambdas',
+"       \    'm': 'members',
+"       \    'i': 'interfaces',
+"       \    'e': 'enums'
+"       \  },
+"       \  'scope2kind': {
+"       \    'classes': 'c',
+"       \    'abstract classes': 'a',
+"       \    'types': 't',
+"       \    'functions': 'f',
+"       \    'variables': 'v',
+"       \    'varlambdas': 'l',
+"       \    'members': 'm',
+"       \    'interfaces': 'i',
+"       \    'enums': 'e'
+"       \  }
+"       \ }
+
 " }}} Tagbar Settings "
 
 " Ruby Heredoc Syntax Settings (Highlights other languages in heredoc) {{{ "
@@ -198,7 +301,7 @@ let g:SuperTabDefaultCompletionType = '<C-j>'
 " :UltiSnipsEdit opens a horizontal split
 let g:UltiSnipsEditSplit = "context"
 
-" Also parse any snipmate snippets found
+" Automatically parse any snipmate snippets found
 let g:UltiSnipsEnableSnipMate = 1
 
 " Expand snippets with <tab>
@@ -231,6 +334,12 @@ let g:multi_cursor_skip_key = '<c-x>'
 let g:multi_cursor_quit_key = '<Esc>'
 
 " }}} Vim Multiple Cursors Settings "
+
+" Vue Settings {{{ "
+
+let g:vue_pre_processors = ['typescript', 'scss']
+
+" }}} Vue Settings "
 
 " YouCompleteMe Settings {{{ "
 
@@ -273,10 +382,27 @@ let g:ycm_seed_identifiers_with_syntax = 0
 let g:ycm_server_keep_logfiles = 0   " Don't keep logs after we quit
 
 " Log at 'info' level always
-let g:ycm_server_log_level = 'info'  " Log at 'info' level
+let g:ycm_server_log_level = 'debug'  " Log at 'info' level
 
 " Path to the clangd executable
-let g:ycm_clangd_binary_path = '/usr/local/opt/llvm/bin/clangd'
+let g:ycm_clangd_binary_path = '/usr/local/opt/llvm@12/bin/clangd'
+
+" Path to the tsserver executable
+"
+" First, check if there is a locally-installed version
+let s:yarn_tsserver_bin = trim(system('yarn bin tsserver'))
+" If there is one and it's executable, use it
+if executable(s:yarn_tsserver_bin)
+  let g:ycm_tsserver_binary_path = s:yarn_tsserver_bin
+else
+  " Otherwise, fall back to yarn global bin
+  let s:yarn_global_bin = trim(system('yarn global bin'))
+  let s:tsserver_path = s:yarn_global_bin . '/tsserver'
+  if executable(s:tsserver_path)
+    let g:ycm_tsserver_binary_path = s:tsserver_path
+  endif
+endif
+
 
 " Path to the solargraph executable
 if executable("solargraph")

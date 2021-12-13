@@ -7,3 +7,4 @@ augroup JMLtypescriptExtras
   autocmd BufEnter * :syntax sync fromstart
 augroup end
 let g:ale_javascript_prettier_options = ""
+hi link typescriptReserved Macro

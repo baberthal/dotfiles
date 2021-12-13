@@ -15,7 +15,7 @@ def GetCurrentBufferFilepath():
     :returns: str
     """
     return (GetBufferFilepath(vim.current.buffer)
-            or GetVariableValue('expand("%")'))
+            or GetVariableValue('expand("%:t")'))
 
 
 def GetBufferFilepath(buffer_object):

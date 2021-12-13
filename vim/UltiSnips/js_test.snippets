@@ -1,32 +1,37 @@
 priority 51
 
 snippet exp "expect" b
-expect($1)$2;$0
+expect($1)$0
 endsnippet
 
 snippet bef "beforeEach" b
-beforeEach($1);
+beforeEach($1)
+$0
+endsnippet
+
+snippet befa "beforeAll" b
+beforeAll($1)
 $0
 endsnippet
 
 snippet aft "afterEach" b
-afterEach($1);
+afterEach($1)
 $0
 endsnippet
 
 snippet it "it(...)" w
-it("${1:does something}", () => {
+it('${1:does something}', () => {
 	$2
-});$0
+})$0
 endsnippet
 
 snippet ait "async it(...)" w
-it("${1:does something}", async () => {
+it('${1:does something}', async () => {
 	$2
-});$0
+})$0
 endsnippet
 
 snippet expn "expect(...).not" w
-expect(${1:object}).not.${2:toEqual}(${3:something});$0
+expect(${1:object}).not.${2:toEqual}(${3:something})$0
 endsnippet
 

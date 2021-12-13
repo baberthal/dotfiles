@@ -31,8 +31,6 @@ if $DEBUG
   augroup end
 endif
 
-call glaive#Install()
-
 "=========="
 " Mappings "
 "=========="
@@ -62,10 +60,14 @@ nnoremap <F9> :YcmCompleter FixIt<CR>
 " Plugin Mappings
 vnoremap <silent> <CR> :EasyAlign<CR>
 vmap <CR> <Plug>(EasyAlign)
-nnoremap <silent><buffer> K <Esc>:Dash <C-R><C-W><CR>
+" nnoremap <silent><buffer> K <Esc>:Dash <C-R><C-W><CR>
 
 " FIXME: What the fuck does this do?
 nnoremap <silent> <C-K> <C-T>
+
+" Sync syntax using F12
+noremap <F12> <Esc>:syntax sync fromstart<CR>
+inoremap <F12> <C-o>:syntax sync fromstart<CR>
 
 digraphs oh 629
 
@@ -101,6 +103,10 @@ let g:projectionist_heuristics = {
       \     "skeleton": "skel",
       \     "alternate": ["include/{}.h"]
       \   },
+      \  "src/*.ts": {
+      \     "type": "source",
+      \     "skeleton": "skel",
+      \  },
       \ }
 
 
@@ -145,13 +151,6 @@ let g:no_google_python_recursive_indent = 1
 let g:python_highlight_all = 1
 
 " One-Off Plugin Settings {{{ "
-" bufExplorer option
-let g:bufExplorerShowRelativePath=1
-
-" Taboo.vim settings
-let g:taboo_tabline = 0
-let g:taboo_modified_tab_flag = "+"
-let g:taboo_renamed_tab_format = "%lm"
 
 let g:closetag_filenames = "*.html,*.xhtml,*.xml,*.plist"
 
@@ -193,16 +192,6 @@ function! SynStack()
   endif
   echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')
 endfunction
-
-function! s:Format()
-  if !exists("g:clang_format_py")
-    let g:clang_format_py = "/usr/local/opt/llvm/share/clang/clang-format.py"
-  endif
-
-  exec "pyf " . g:clang_format_py
-endfunction
-
-command! Format call s:Format()
 
 "
 " }}} User-Defined Functions "

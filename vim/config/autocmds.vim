@@ -17,6 +17,7 @@ augroup JML_DEFAULTS
   au InsertLeave,BufNewFile * silent! :call jml#NumberToggle()
   " Automatically deletes trailing whitespace. See the function definition in
   " autoload/jml.vim for details.
+  au FileType ck3 let b:no_strip_whitespace = 1
   au BufWritePre * :call jml#DeleteTrailingWhitespace()
   " The next two commands stop NERDTree from automatically opening when vim
   " reads a file through stdin
@@ -33,7 +34,7 @@ augroup JML_FILETYPES
   " Clear
   au!
 
-  au FileType ruby,python,javascript,typescript,css,scss,sh,json let b:ale_fix_on_save = 1
+  au FileType ruby,python,javascript,typescript,typescriptreact,css,scss,sh,json,vue let b:ale_fix_on_save = 1
   " au FileType ruby Rvm
 
   " Broken built-in commentstring settings
@@ -54,8 +55,9 @@ augroup END
 augroup JML_ULTISNIPS_ADDITIONS
   au!
   autocmd Syntax rspec UltiSnipsAddFiletypes rspec
+  autocmd Syntax typescriptreact UltiSnipsAddFiletypes typescript
   autocmd FileType bzl UltiSnipsAddFiletypes python
-  autocmd BufRead,BufNewFile *_spec.ts,*.spec.ts UltiSnipsAddFiletypes js_test
+  autocmd BufRead,BufNewFile *_spec.ts,*.spec.ts,*_test.ts,*.test.ts,*.test.tsx,*.e2e-spec.ts UltiSnipsAddFiletypes js_test
 augroup end
 
 " augroup JML_SYNTAX_EXTRA

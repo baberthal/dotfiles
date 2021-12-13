@@ -1,0 +1,6 @@
+{
+  "languageserver": {},
+  "clangd.semanticHighlighting": true,
+  "clangd.path": "/usr/local/opt/llvm@12/bin/clangd",
+  "coc.preferences.semanticTokensHighlights": false
+}

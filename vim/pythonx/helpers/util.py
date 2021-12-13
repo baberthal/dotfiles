@@ -9,6 +9,23 @@ Description: General Utility Functions
 import re
 
 
+def pad_with_suffix(prefix_str, desired_width=1, suffix=''):
+    """Pad `prefix_str` to `desired_width` by adding spaces, accounting for and
+    appending `suffix`.
+
+    :type prefix_str: str
+    :type desired_width: int
+    :type suffix: str
+    :returns: TODO
+
+    """
+    total_len = len(prefix_str) + len(suffix)
+    spaces_needed = desired_width - total_len
+    if spaces_needed < 0:
+        return prefix_str + suffix
+    return prefix_str + (' ' * n) + suffix
+
+
 def lpad(string, n=1):
     """Pad `string` with `n` spaces, on the left side only
 

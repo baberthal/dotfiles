@@ -40,6 +40,10 @@ snippet mark "mark" b
 //===----------------------------------------------------------------------===//
 endsnippet
 
+snippet in "inline" w
+inline $0
+endsnippet
+
 global !p
 from cxx_snippets import MakeFileHeader, GetProjectName, HeaderGuard
 endglobal
@@ -49,22 +53,18 @@ snippet _skel "File Header" b
 if not snip.c:
     width = int(vim.eval("&textwidth")) or 80
 
-header = MakeFileHeader(snip, t, width)
+header = MakeFileHeader(snip, t, width, short=True, comment_style='c')
 snip.rv = header[0]
 `${1:Brief Description}`!p
 snip.rv = header[1]
 `
-//
-// This source file is part of the ${2:`!p snip.rv = GetProjectName()`} open source project.
-//
-// Copyright (c) `date +%Y` J. Morgan Lieberthal and the $2 authors
-// Licensed under Apache License, Version 2.0
-//
-//===----------------------------------------------------------------------===//
-${3:///
-/// $4
-///
-//===----------------------------------------------------------------------===//}
+|*                                                                            *|
+|* This source file is part of the ${2:`!p snip.rv = GetProjectName()`} open source project.            *|
+|*                                                                            *|
+|* Copyright (c) `date +%Y` J. Morgan Lieberthal and the $2 authors           *|
+|* Licensed under Apache License, Version 2.0                                 *|
+|*                                                                            *|
+\*===----------------------------------------------------------------------===*/
 $0
 endsnippet
 
@@ -73,27 +73,23 @@ snippet _header "Header Boilerplate" b
 if not snip.c:
     width = int(vim.eval("&textwidth")) or 80
 
-header = MakeFileHeader(snip, t, width)
+header = MakeFileHeader(snip, t, width, short=True, comment_style="c")
 snip.rv = header[0]
 `${1:Brief Description}`!p
 snip.rv = header[1]
 `
-//
-// This source file is part of the ${2:`!p snip.rv = GetProjectName()`} open source project.
-//
-// Copyright (c) `date +%Y` J. Morgan Lieberthal and the $2 authors
-// Licensed under Apache License, Version 2.0
-//
-//===----------------------------------------------------------------------===//
-${3:///
-/// $4
-///
-//===----------------------------------------------------------------------===//}
+|*                                                                            *|
+|* This source file is part of the ${2:`!p snip.rv = GetProjectName()`} open source project.            *|
+|*                                                                            *|
+|* Copyright (c) `date +%Y` J. Morgan Lieberthal and the $2 authors           *|
+|* Licensed under Apache License, Version 2.0                                 *|
+|*                                                                            *|
+\*===----------------------------------------------------------------------===*/
 
-#ifndef ${5:`!p snip.rv = HeaderGuard()`}
-#define $5
+#ifndef ${3:`!p snip.rv = HeaderGuard()`}
+#define $3
 
 $0
 
-#endif /* ifndef $5 */
+#endif /* $3 */
 endsnippet

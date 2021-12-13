@@ -34,7 +34,7 @@ snippet headerguard "Header boilerplace" b
 
 $0
 
-#endif /* ifndef $1 */
+#endif // $1
 endsnippet
 
 snippet tmpl "template <type...>" b
@@ -43,6 +43,10 @@ endsnippet
 
 snippet clf "Class Forward Declaration" b
 class ${1:Name};$0
+endsnippet
+
+snippet virt "virtual " w
+virtual $0
 endsnippet
 ##
 ## Preprocessor
@@ -106,6 +110,11 @@ endsnippet
 #  Data Structures  #
 #####################
 
+global !p
+def current_class(snip):
+    return FindContainingClassName(snip.buffer, vim.current.window.cursor[0]) or "name"
+endglobal
+
 snippet cl "class .. (class)"
 class ${1:`!p snip.rv = snip.basename or "name"`} {
 public:
@@ -118,11 +127,35 @@ private:
 endsnippet
 
 snippet ctor "constructor definition" b
-${1:`!p snip.rv = snip.basename or "name"`}(${2:arguments}) ${3:: $4 {$5}}$0
+${1:`!p snip.rv = current_class(snip)`}(${2:arguments}) ${3:: $4 {$5}}$0
+endsnippet
+
+snippet dtor "destructor definition" b
+~${1:`!p snip.rv = current_class(snip)`}() { $2 }
+endsnippet
+
+snippet nocopy "delete copy constructor and operator" b
+${1:`!p snip.rv = current_class(snip)`}(const $1 &) = delete;
+$1 &operator=(const $1 &) = delete;
+$0
+endsnippet
+
+snippet op== "boolean equality operator definition" b
+bool operator==(const ${1:`!p snip.rv = current_class(snip)`} &rhs) const${2: { $3 } }
+bool operator!=(const $1 &rhs) const${4: { ${5:return !(*this == rhs); } } }
+endsnippet
+
+snippet op= "copy and move assinment operators" b
+${1:`!p snip.rv = current_class(snip)`} &operator=(const $1 &rhs) { $3 }
+${2:$1 &operator=($1 &&rhs) { $4 }}$0
 endsnippet
 
 snippet tp "template <typename ..> (template)"
 template <typename ${1:_InputIter}>$0
+endsnippet
+
+snippet tpc "template <class ...>()"
+template <class ${1:ClassName}>$0
 endsnippet
 
 snippet exp "explicit ..." b
@@ -226,4 +259,68 @@ endsnippet
 
 snippet ce "constexpr" w
 constexpr $0
+endsnippet
+
+#######################
+#  Skeleton Snippets  #
+#######################
+# NB: These are different from the 'c' snippets as they use the c++ '//' comment
+# format, rather than the '/* */' format.
+
+global !p
+from cxx_snippets import MakeFileHeader, GetProjectName, HeaderGuard
+endglobal
+
+snippet _skel "File Header" b
+`!p
+if not snip.c:
+    width = int(vim.eval("&textwidth")) or 80
+
+header = MakeFileHeader(snip, t, width, short=True)
+snip.rv = header[0]
+`${1:Brief Description}`!p
+snip.rv = header[1]
+`
+//
+// This source file is part of the ${2:`!p snip.rv = GetProjectName()`} open source project.
+//
+// Copyright (c) `date +%Y` J. Morgan Lieberthal and the $2 authors
+// Licensed under Apache License, Version 2.0
+//
+//===----------------------------------------------------------------------===//
+${3:///
+/// $4
+///
+//===----------------------------------------------------------------------===//}
+$0
+endsnippet
+
+snippet _header "Header Boilerplate" b
+`!p
+if not snip.c:
+    width = int(vim.eval("&textwidth")) or 80
+
+header = MakeFileHeader(snip, t, width, short=True)
+snip.rv = header[0]
+`${1:Brief Description}`!p
+snip.rv = header[1]
+`
+//
+// This source file is part of the ${2:`!p snip.rv = GetProjectName()`} open source project.
+//
+// Copyright (c) `date +%Y` J. Morgan Lieberthal and the $2 authors
+// Licensed under Apache License, Version 2.0
+//
+//===----------------------------------------------------------------------===//
+${3:///
+/// $4
+///
+//===----------------------------------------------------------------------===//}
+
+#ifndef ${5:`!p snip.rv = HeaderGuard()`}
+#define $5
+
+$0
+
+#endif // $5
 endsnippet
