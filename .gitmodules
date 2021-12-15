@@ -163,9 +163,6 @@
 [submodule "vim/bundle/vim-capslock"]
 	path = vim/bundle/vim-capslock
 	url = git://github.com/tpope/vim-capslock.git
-[submodule "vim/bundle/ale"]
-	path = vim/bundle/ale
-	url = git://github.com/w0rp/ale.git
 [submodule "vim/bundle/cpsm"]
 	path = vim/bundle/cpsm
 	url = git://github.com/nixprime/cpsm.git
