@@ -16,7 +16,8 @@ __all__ = [
     "MakeFileHeader",
     "HeaderGuard",
     "HasContainingClass",
-    "FindContainingClassName"
+    "FindContainingClassName",
+    "WriteDocstringArgs"
 ]
 
 
@@ -26,7 +27,7 @@ __all__ = [
 #   * it assumes the name of the class is the last identifier before the `{`
 #     or before the `:` if the class is a descendant of another.
 CLASS_DEFINITION_RE = re.compile(
-    r'(?:class|struct) (?:\s|[A-Z_])*(\w+)(?:\s+:\s+[\w\s]*)?\s*{'
+    r'(?:class|struct) (?:\s*)(\w+)(?:\s+:\s+[\w\s]*)?\s*{'
 )
 
 
@@ -97,6 +98,28 @@ def FindContainingClassName(buffer, cursor_line):
 def MakeFileHeader(snip, t, width, pad=True, short=False, comment_style='cpp'):
     header = FileHeader(snip, short=short, comment_style=comment_style)
     return header.render(t, width=width, pad=pad)
+
+
+def WriteDocstringArgs(arglist, snip):
+    """Extract the list of comma-separated arguments in `arglist`, and write
+    them as doxygen markup to `snip`
+
+    :type arglist: str
+    :type snip: UltiSnips.TextObjects.SnippetUtil
+    :returns: None
+
+    """
+    args = str(arglist).split(",")
+    if len(args) > 1:
+        c = 0
+        for arg in args:
+            if c == 0:
+                snip.rv += arg
+                c = 1
+            else:
+                snip += '*       : %s' % arg.strip()
+    else:
+        snip.rv = args[0]
 
 
 def _RemoveTopLevelInclude(filename):

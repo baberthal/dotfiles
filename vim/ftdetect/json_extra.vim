@@ -8,6 +8,9 @@ function! s:setf(filetype)
 endf
 " }}} support functions "
 
+" tsconfig.json
+au BufNewFile,BufRead tsconfig*.json,*buildit.json,*workspace.json call s:setf('jsonc')
+
 " Babel
 au BufNewFile,BufRead .babelrc call s:setf('json')
 

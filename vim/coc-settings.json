@@ -1,6 +1,34 @@
 {
   "languageserver": {},
+
+  "codeLens.enable": true,
+
+  "coc.preferences.semanticTokensHighlights": false,
+  "coc.preferences.formatOnSaveFiletypes": [
+    "css",
+    "javascript",
+    "json",
+    "jsonc",
+    "ruby",
+    "typescript"
+  ],
+  "diagnostic.floatConfig": {
+    "highlight": "JmlFloating"
+  },
+
   "clangd.semanticHighlighting": true,
   "clangd.path": "/usr/local/opt/llvm@12/bin/clangd",
-  "coc.preferences.semanticTokensHighlights": false
+
+  "solargraph.useBundler": true,
+  "solargraph.formatting": true,
+  "solargraph.diagnostics": true,
+
+  "json.schemas": [
+    {
+      "fileMatch": ["tsconfig.*.json"],
+      "url": "https://json.schemastore.org/tsconfig"
+    }
+  ],
+
+  "html.filetypes": ["html", "handlebars", "htmldjango", "blade", "eruby"]
 }

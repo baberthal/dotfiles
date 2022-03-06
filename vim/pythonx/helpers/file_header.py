@@ -31,8 +31,8 @@ class FileHeader(object):
         'end': '*\\'
       }
     }
-    DEFAULT_PREFIX = '%(comment_start)s===- %(filename)s -'
-    DEFAULT_SUFFIX = '-*- %(mode)s -*-===%(comment_end)s'
+    DEFAULT_PREFIX = '%(comment_start)s===--- %(filename)s -'
+    DEFAULT_SUFFIX = '-*-%(mode)s-*-===%(comment_end)s'
     DEFAULT_FORMAT = '%(prefix)s %(desc)s %(dashes)s%(suffix)s'
 
     def __init__(self, snip=None, filename=None, prefix=None, suffix=None, bar_format=None, short=False, comment_style='cpp'):
