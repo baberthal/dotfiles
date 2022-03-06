@@ -136,16 +136,16 @@ let g:dash_activate = 0
 
 " Gutentags Settings {{{ "
 
-" let g:gutentags_file_list_command = {
-"       \   'markers': {
-"       \     '.git': 'git ls-files',
-"       \     'tsconfig.json': 'tsc --noEmit --listFiles',
-"       \   },
-"       \ }
+" Set up project info for gutentags
+let g:gutentags_project_info = []
+call add(g:gutentags_project_info, { 'type': 'typescript', 'file': 'tsconfig.json' })
 
-let g:gutentags_project_info = [
-      \ { "type": "typescript", "file": "tsconfig.json" }
-      \ ]
+" Tell gutentags how to list files
+let g:gutentags_file_list_command = {
+      \   'markers': {
+      \     '.git': 'git ls-files',
+      \   },
+      \ }
 
 
 " }}} Gutentags Settings "
@@ -285,6 +285,7 @@ let g:ruby_heredoc_syntax_filetypes = {
 \   "c": { "start": "C" },
 \   "ruby": { "start": "RUBY" },
 \   "sh": { "start": "SHELL" },
+\   "graphql": { "start": "GQL" },
 \   "vim": { "start": "VIM" },
 \}
 
@@ -302,7 +303,7 @@ let g:SuperTabDefaultCompletionType = '<C-j>'
 let g:UltiSnipsEditSplit = "context"
 
 " Automatically parse any snipmate snippets found
-let g:UltiSnipsEnableSnipMate = 1
+let g:UltiSnipsEnableSnipMate = 0
 
 " Expand snippets with <tab>
 let g:UltiSnipsExpandTrigger = "<tab>"
@@ -321,6 +322,14 @@ let g:UltiSnipsSnippetsDir = "~/.vim/UltiSnips"
 
 " Use jedi-style docstrings for python
 let g:ultisnips_python_style = 'jedi'
+
+" Default settings for javascript
+
+let g:ultisnips_javascript = {
+      \ 'keyword-spacing': 'always',
+      \ 'semi': 'always',
+      \ 'space-before-function-paren': 'never'
+      \ }
 
 " }}} Ultisnips Settings "
 

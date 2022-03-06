@@ -16,7 +16,7 @@ function! s:check_backspace() abort
 endf
 
 " Use <C-Space> to trigger completion
-inoremap <silent><expr> <c-@> coc#refresh()
+inoremap <silent><expr> <c-space> coc#refresh()
 
 " Make <CR> auto-select the first completion item and notify coc.nvim to
 " format on enter, <cr> could be remapped by other vim plugin
@@ -107,7 +107,8 @@ command! -nargs=0 Format :call     CocAction('format')
 command! -nargs=? Fold   :call     CocAction('fold', <f-args>)
 
 " Add `:OR` command for organize imports of the current buffer.
-command! -nargs=0 OR     :call     CocAction('runCommand', 'editor.action.organizeImport')
+command! -nargs=0 OR     :call     CocAction('runCommand', 'editor.action.organizeImport') |
+      \                   call     CocAction('format')
 
 " Add (Neo)Vim's native statusline support.
 " NOTE: Please see `:h coc-status` for integrations with external plugins that

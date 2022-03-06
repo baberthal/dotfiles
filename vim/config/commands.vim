@@ -24,4 +24,4 @@ command! DeleteTrailingWhitespace :call jml#DeleteTrailingWhitespace()
 
 command! AppendModeline :call jml#AppendModeline()
 
-command! -range=% -nargs=* Prettier <line1>,<line2>call jml#Prettier(<f-args>)
+" command! -range=% -nargs=* Prettier <line1>,<line2>call jml#Prettier(<f-args>)

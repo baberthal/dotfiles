@@ -41,7 +41,7 @@ snippet tmpl "template <type...>" b
 template <${1:typename $2}> $0
 endsnippet
 
-snippet clf "Class Forward Declaration" b
+snippet clf "Class Forward Declaration" w
 class ${1:Name};$0
 endsnippet
 
@@ -126,6 +126,12 @@ private:
 };
 endsnippet
 
+snippet ecl "enum class ..." b
+enum class ${1:name}${2: : uint8_t} {
+	$3
+};$0
+endsnippet
+
 snippet ctor "constructor definition" b
 ${1:`!p snip.rv = current_class(snip)`}(${2:arguments}) ${3:: $4 {$5}}$0
 endsnippet
@@ -160,6 +166,23 @@ endsnippet
 
 snippet exp "explicit ..." b
 explicit $0
+endsnippet
+
+snippet get "property getter" b
+${1:ReturnType} ${2:function_name}() const { $3 }$0
+endsnippet
+
+snippet fn "Basic c++ doxygen function template" b
+/**
+* @brief: ${4:brief}
+*
+* @param: `!p WriteDocstringArgs(t[3],snip)`
+*
+* @return: `!p snip.rv = t[1]`
+*/
+${1:ReturnType} ${2:FunctionName}(${3:param}) {
+	${0:FunctionBody}
+}
 endsnippet
 
 snippet _testskel "Test skeleton" b
@@ -270,6 +293,14 @@ endsnippet
 global !p
 from cxx_snippets import MakeFileHeader, GetProjectName, HeaderGuard
 endglobal
+
+# Not technically a "skeleton" snippet, but uses the python module so it's down
+# here
+snippet section "section line" wb
+//===----------------------------------------------------------------------===//
+//    ${1:${VISUAL:Name}}
+//===----------------------------------------------------------------------===//$0
+endsnippet
 
 snippet _skel "File Header" b
 `!p

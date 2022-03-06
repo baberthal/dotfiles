@@ -1,5 +1,6 @@
 global !p
 from helpers.file_header import FileHeader
+from javascript_snippets import semi
 
 def MakeFileHeader(snip, t, width, pad=True):
     header = FileHeader(snip, suffix="---===//")
@@ -83,12 +84,6 @@ snippet // "'/* */' comment" b
 /* $1 */$0
 endsnippet
 
-snippet //d "/** ... */ documentation comment" b
-/**
- * $1
- */$0
-endsnippet
-
 snippet f// "File header" b
 // `!v expand('%')`$0
 endsnippet
@@ -99,4 +94,15 @@ endsnippet
 
 snippet //es "/* eslint disable statement" w
 /* eslint ${1:no-console}:${2:0} */$0
+endsnippet
+
+#
+# Documentation
+#
+
+snippet /** "docstring" b
+/**
+ * $0
+ *
+ */
 endsnippet

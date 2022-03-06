@@ -6,28 +6,6 @@ from helpers.path_utils import RelativeFilePath
 from helpers.vimsupport import GetCurrentBufferFilepath, GetIntValue
 import ruby_snippet_helpers as rbsnips
 
-RUBOCOP_COP_NAME_REGEX = re.compile(r'\((.+)\)')
-
-def ExtractCopName(details):
-    match = RUBOCOP_COP_NAME_REGEX.search(details)
-    if match:
-        return match.group(1)
-    return ''
-
-def GetCopName():
-    bufnr = vim.current.buffer.number
-    cursor = vim.current.window.cursor
-
-    loclist = vim.bindeval('ale#engine#GetLoclist({0})'.format(bufnr))
-    if loclist is None:
-        return 'unknown'
-    matches = [e for e in loclist if e['lnum'] == cursor[0]]
-    if matches:
-        messages = [str(m['text']) for m in matches]
-        cops = [ExtractCopName(text) for text in messages]
-        return ' '.join(cops)
-    return 'unknown'
-
 def undent(snip, string):
     snip.unshift()
     snip += "{0}".format(string)
@@ -60,7 +38,7 @@ snippet rdAM "rubocop:disable Metrics/MethodLength,AbcSize" w
 endsnippet
 
 snippet rd "rubocop:disable" w
-# rubocop:disable ${1:`!p snip.rv = GetCopName()`}$0
+# rubocop:disable ${1}$0
 endsnippet
 
 snippet rea "rubocop:enable All" w
@@ -269,6 +247,58 @@ snippet memo "memoized property getter" b
 def ${1:name}
 	@$1 ||= ${2:value}
 end$0
+endsnippet
+
+snippet if
+if ${1:condition}
+	${0:${VISUAL}}
+end
+endsnippet
+snippet ife
+if ${1:condition}
+	${2:${VISUAL}}
+else
+	${0}
+end
+endsnippet
+snippet eif
+elsif ${1:condition}
+	${0:${VISUAL}}
+endsnippet
+snippet ifee
+if ${1:condition}
+	$2
+elsif ${3:condition}
+	$4
+else
+	$0
+end
+endsnippet
+snippet unless
+unless ${1:condition}
+	${0:${VISUAL}}
+end
+endsnippet
+snippet unlesse
+unless ${1:condition}
+	$2
+else
+	$0
+end
+endsnippet
+snippet unlesee
+unless ${1:condition}
+	$2
+elsif ${3:condition}
+	$4
+else
+	$0
+end
+endsnippet
+snippet wh
+while ${1:condition}
+	${0:${VISUAL}}
+end
 endsnippet
 
 #######################

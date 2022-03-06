@@ -2,7 +2,7 @@
 setlocal et
 setlocal sw=2
 setlocal tw=80
-setlocal colorcolumn=81
+setlocal colorcolumn=101
 
 " Rubycomplete
 " let g:rubycomplete_buffer_loading = 1

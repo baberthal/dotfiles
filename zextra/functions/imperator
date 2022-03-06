@@ -1,0 +1,7 @@
+# Launches Imperator: Rome
+
+function imperator {
+  open steam://run/859580
+}
+
+#  vim: set ts=8 sw=2 tw=80 ft=zsh et :

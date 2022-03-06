@@ -34,7 +34,7 @@ augroup JML_FILETYPES
   " Clear
   au!
 
-  au FileType ruby,python,javascript,typescript,typescriptreact,css,scss,sh,json,vue let b:ale_fix_on_save = 1
+  " au FileType ruby,python,javascript,typescript,typescriptreact,css,scss,sh,json,vue let b:ale_fix_on_save = 1
   " au FileType ruby Rvm
 
   " Broken built-in commentstring settings
@@ -56,6 +56,7 @@ augroup JML_ULTISNIPS_ADDITIONS
   au!
   autocmd Syntax rspec UltiSnipsAddFiletypes rspec
   autocmd Syntax typescriptreact UltiSnipsAddFiletypes typescript
+  autocmd Syntax javascript,typescript UltiSnipsAddFiletypes javascript-node
   autocmd FileType bzl UltiSnipsAddFiletypes python
   autocmd BufRead,BufNewFile *_spec.ts,*.spec.ts,*_test.ts,*.test.ts,*.test.tsx,*.e2e-spec.ts UltiSnipsAddFiletypes js_test
 augroup end

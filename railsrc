@@ -1,1 +1,1 @@
--d postgresql --skip-test-unit
+-d postgresql -T

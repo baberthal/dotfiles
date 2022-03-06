@@ -55,7 +55,7 @@ nnoremap <silent><leader>\ :call jml#NumberToggle()<CR>
 
 " Function Key Mappings
 nnoremap <F6> :NERDTreeToggle<CR>
-nnoremap <F9> :YcmCompleter FixIt<CR>
+nnoremap <F9> :CocFix<CR>
 
 " Plugin Mappings
 vnoremap <silent> <CR> :EasyAlign<CR>

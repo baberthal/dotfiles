@@ -1,3 +1,559 @@
+# Some useful Unicode entities
+# Non-Breaking Space
+snippet nbs
+&nbsp;
+endsnippet
+# ←
+snippet left
+&#x2190;
+endsnippet
+# →
+snippet right
+&#x2192;
+endsnippet
+# ↑
+snippet up
+&#x2191;
+endsnippet
+# ↓
+snippet down
+&#x2193;
+endsnippet
+# ↩
+snippet return
+&#x21A9;
+endsnippet
+# ⇤
+snippet backtab
+&#x21E4;
+endsnippet
+# ⇥
+snippet tab
+&#x21E5;
+endsnippet
+# ⇧
+snippet shift
+&#x21E7;
+endsnippet
+# ⌃
+snippet ctrl
+&#x2303;
+endsnippet
+# ⌅
+snippet enter
+&#x2305;
+endsnippet
+# ⌘
+snippet cmd
+&#x2318;
+endsnippet
+# ⌥
+snippet option
+&#x2325;
+endsnippet
+# ⌦
+snippet delete
+&#x2326;
+endsnippet
+# ⌫
+snippet backspace
+&#x232B;
+endsnippet
+# ⎋
+snippet esc
+&#x238B;
+endsnippet
+# comment
+snippet //
+<!-- ${1} -->${0}
+endsnippet
+# Attributes
+snippet attr
+${1:attribute}="${0:property}"
+endsnippet
+snippet attr+
+${1:attribute}="${2:property}" attr+
+endsnippet
+snippet .
+class="${1}"
+endsnippet
+snippet #
+id="${1}"
+endsnippet
+snippet alt
+alt="${1}"
+endsnippet
+snippet charset
+charset="${1:utf-8}"
+endsnippet
+snippet data
+data-${1}="${2:$1}"
+endsnippet
+snippet for
+for="${1}"
+endsnippet
+snippet height
+height="${1}"
+endsnippet
+snippet href
+href="${1:#}"
+endsnippet
+snippet lang
+lang="${1:en}"
+endsnippet
+snippet media
+media="${1}"
+endsnippet
+snippet name
+name="${1}"
+endsnippet
+snippet rel
+rel="${1}"
+endsnippet
+snippet scope
+scope="${1:row}"
+endsnippet
+snippet src
+src="${1}"
+endsnippet
+snippet title=
+title="${1}"
+endsnippet
+snippet type
+type="${1}"
+endsnippet
+snippet value
+value="${1}"
+endsnippet
+snippet width
+width="${1}"
+endsnippet
+# Elements
+snippet a
+<a href="${1:#}">${0:$1}</a>
+endsnippet
+snippet a.
+<a class="${1}" href="${2:#}">${0:$1}</a>
+endsnippet
+snippet a#
+<a id="${1}" href="${2:#}">${0:$1}</a>
+endsnippet
+snippet a:ext
+<a href="http://${1:example.com}">${0:$1}</a>
+endsnippet
+snippet a:mail
+<a href="mailto:${1:joe@example.com}?subject=${2:feedback}">${0:email me}</a>
+endsnippet
+snippet ac
+<a href="`@+`">${0:`@+`}</a>
+endsnippet
+snippet abbr
+<abbr title="${1}">${0}</abbr>
+endsnippet
+snippet address
+<address>
+	${0}
+</address>
+endsnippet
+snippet area
+<area shape="${1:rect}" coords="${2}" href="${3}" alt="${0}">
+endsnippet
+snippet area+
+<area shape="${1:rect}" coords="${2}" href="${3}" alt="${4}">
+area+
+endsnippet
+snippet area:c
+<area shape="circle" coords="${1}" href="${2}" alt="${0}">
+endsnippet
+snippet area:d
+<area shape="default" coords="${1}" href="${2}" alt="${0}">
+endsnippet
+snippet area:p
+<area shape="poly" coords="${1}" href="${2}" alt="${0}">
+endsnippet
+snippet area:r
+<area shape="rect" coords="${1}" href="${2}" alt="${0}">
+endsnippet
+snippet article
+<article>
+	${0}
+</article>
+endsnippet
+snippet article.
+<article class="${1}">
+	${0}
+</article>
+endsnippet
+snippet article#
+<article id="${1}">
+	${0}
+</article>
+endsnippet
+snippet aside
+<aside>
+	${0}
+</aside>
+endsnippet
+snippet aside.
+<aside class="${1}">
+	${0}
+</aside>
+endsnippet
+snippet aside#
+<aside id="${1}">
+	${0}
+</aside>
+endsnippet
+snippet audio
+<audio src="${1}">${0}</audio>
+endsnippet
+snippet b
+<b>${0}</b>
+endsnippet
+snippet base
+<base href="${1}" target="${0}">
+endsnippet
+snippet bdi
+<bdi>${0}</bdo>
+endsnippet
+snippet bdo
+<bdo dir="${1}">${0}</bdo>
+endsnippet
+snippet bdo:l
+<bdo dir="ltr">${0}</bdo>
+endsnippet
+snippet bdo:r
+<bdo dir="rtl">${0}</bdo>
+endsnippet
+snippet blockquote
+<blockquote>
+	${0}
+</blockquote>
+endsnippet
+snippet body
+<body>
+	${0}
+</body>
+endsnippet
+snippet br
+<br>
+endsnippet
+snippet button
+<button type="${1:submit}">${0}</button>
+endsnippet
+snippet button.
+<button class="${1:button}" type="${2:submit}">${0}</button>
+endsnippet
+snippet button#
+<button id="${1}" type="${2:submit}">${0}</button>
+endsnippet
+snippet button:s
+<button type="submit">${0}</button>
+endsnippet
+snippet button:r
+<button type="reset">${0}</button>
+endsnippet
+snippet canvas
+<canvas>
+	${0}
+</canvas>
+endsnippet
+snippet caption
+<caption>${0}</caption>
+endsnippet
+snippet cite
+<cite>${0}</cite>
+endsnippet
+snippet code
+<code>${0}</code>
+endsnippet
+snippet col
+<col>
+endsnippet
+snippet colgroup
+<colgroup>
+	${0}
+</colgroup>
+endsnippet
+snippet colgroup+
+<colgroup>
+	<col>
+	col+${0}
+</colgroup>
+endsnippet
+snippet command
+<command type="command" label="${1}" icon="${0}">
+endsnippet
+snippet command:c
+<command type="checkbox" label="${1}" icon="${0}">
+endsnippet
+snippet command:r
+<command type="radio" radiogroup="${1}" label="${2}" icon="${0}">
+endsnippet
+snippet datagrid
+<datagrid>
+	${0}
+</datagrid>
+endsnippet
+snippet datalist
+<datalist>
+	${0}
+</datalist>
+endsnippet
+snippet datatemplate
+<datatemplate>
+	${0}
+</datatemplate>
+endsnippet
+snippet dd
+<dd>${0}</dd>
+endsnippet
+snippet dd.
+<dd class="${1}">${0}</dd>
+endsnippet
+snippet dd#
+<dd id="${1}">${0}</dd>
+endsnippet
+snippet del
+<del>${0}</del>
+endsnippet
+snippet details
+<details>${0}</details>
+endsnippet
+snippet dfn
+<dfn>${0}</dfn>
+endsnippet
+snippet dialog
+<dialog>
+	${0}
+</dialog>
+endsnippet
+snippet div
+<div>
+	${0}
+</div>
+endsnippet
+snippet div.
+<div class="${1}">
+	${0}
+</div>
+endsnippet
+snippet div#
+<div id="${1}">
+	${0}
+</div>
+endsnippet
+snippet dl
+<dl>
+	${0}
+</dl>
+endsnippet
+snippet dl.
+<dl class="${1}">
+	${0}
+</dl>
+endsnippet
+snippet dl#
+<dl id="${1}">
+	${0}
+</dl>
+endsnippet
+snippet dl+
+<dl>
+	<dt>${1}</dt>
+	<dd>${2}</dd>
+	dt+${0}
+</dl>
+endsnippet
+snippet dt
+<dt>${0}</dt>
+endsnippet
+snippet dt.
+<dt class="${1}">${0}</dt>
+endsnippet
+snippet dt#
+<dt id="${1}">${0}</dt>
+endsnippet
+snippet dt+
+<dt>${1}</dt>
+<dd>${2}</dd>
+dt+${0}
+endsnippet
+snippet em
+<em>${0}</em>
+endsnippet
+snippet embed
+<embed src="${1}" type="${0}">
+endsnippet
+snippet fieldset
+<fieldset>
+	${0}
+</fieldset>
+endsnippet
+snippet fieldset.
+<fieldset class="${1}">
+	${0}
+</fieldset>
+endsnippet
+snippet fieldset#
+<fieldset id="${1}">
+	${0}
+</fieldset>
+endsnippet
+snippet fieldset+
+<fieldset>
+	<legend><span>${1}</span></legend>
+	${2}
+</fieldset>
+fieldset+${0}
+endsnippet
+snippet figcaption
+<figcaption>${0}</figcaption>
+endsnippet
+snippet figure
+<figure>${0}</figure>
+endsnippet
+snippet figure#
+<figure id="${1}">
+	${0}
+</figure>
+endsnippet
+snippet figure.
+<figure class="${1}">
+	${0}
+</figure>
+endsnippet
+snippet footer
+<footer>
+	${0}
+</footer>
+endsnippet
+snippet footer.
+<footer class="${1}">
+	${0}
+</footer>
+endsnippet
+snippet footer#
+<footer id="${1}">
+	${0}
+</footer>
+endsnippet
+snippet form
+<form action="${1}" method="${2:post}">
+	${0}
+</form>
+endsnippet
+snippet form.
+<form class="${1}" action="${2}" method="${3:post}">
+	${0}
+</form>
+endsnippet
+snippet form#
+<form id="${1}" action="${2}" method="${3:post}">
+	${0}
+</form>
+endsnippet
+snippet h1
+<h1>${0}</h1>
+endsnippet
+snippet h1.
+<h1 class="${1}">${0}</h1>
+endsnippet
+snippet h1#
+<h1 id="${1}">${0}</h1>
+endsnippet
+snippet h2
+<h2>${0}</h2>
+endsnippet
+snippet h2.
+<h2 class="${1}">${0}</h2>
+endsnippet
+snippet h2#
+<h2 id="${1}">${0}</h2>
+endsnippet
+snippet h3
+<h3>${0}</h3>
+endsnippet
+snippet h3.
+<h3 class="${1}">${0}</h3>
+endsnippet
+snippet h3#
+<h3 id="${1}">${0}</h3>
+endsnippet
+snippet h4
+<h4>${0}</h4>
+endsnippet
+snippet h4.
+<h4 class="${1}">${0}</h4>
+endsnippet
+snippet h4#
+<h4 id="${1}">${0}</h4>
+endsnippet
+snippet h5
+<h5>${0}</h5>
+endsnippet
+snippet h5.
+<h5 class="${1}">${0}</h5>
+endsnippet
+snippet h5#
+<h5 id="${1}">${0}</h5>
+endsnippet
+snippet h6
+<h6>${0}</h6>
+endsnippet
+snippet h6.
+<h6 class="${1}">${0}</h6>
+endsnippet
+snippet h6#
+<h6 id="${1}">${0}</h6>
+endsnippet
+snippet head
+
+
+
+endsnippet
+snippet header
+<header>
+	${0}
+</header>
+endsnippet
+snippet header.
+<header class="${1}">
+	${0}
+</header>
+endsnippet
+snippet header#
+<header id="${1}">
+	${0}
+</header>
+endsnippet
+snippet hgroup
+<hgroup>
+	${0}
+</hgroup>
+endsnippet
+snippet hgroup.
+<hgroup class="${1}>
+	${0}
+</hgroup>
+endsnippet
+snippet hr
+<hr>
+endsnippet
+snippet html
+<html>
+${0}
+</html>
+endsnippet
+snippet xhtml
+<html xmlns="http://www.w3.org/1999/xhtml">
+${0}
+</html>
+endsnippet
+
+
+
+
 snippet mdb "Material Design Button" w
 <md-button>$0</md-button>
 endsnippet
