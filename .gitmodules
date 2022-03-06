@@ -112,3 +112,6 @@
 [submodule "vim/bundle/python-syntax"]
 	path = vim/bundle/python-syntax
 	url = git://github.com/vim-python/python-syntax.git
+[submodule "vim/bundle/coc.nvim"]
+	path = vim/bundle/coc.nvim
+	url = git://github.com/neoclide/coc.nvim.git
