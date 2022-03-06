@@ -1,9 +1,3 @@
-[submodule "vim/bundle/Vundle.vim"]
-	path = vim/bundle/Vundle.vim
-	url = https://github.com/gmarik/Vundle.vim.git
-[submodule "nvm"]
-	path = nvm
-	url = https://github.com/creationix/nvm.git
 [submodule "zsh-completions"]
 	path = zsh-completions
 	url = https://github.com/baberthal/zsh-completions.git
@@ -40,24 +34,9 @@
 [submodule "vim/bundle/vim-repeat"]
 	path = vim/bundle/vim-repeat
 	url = http://github.com/tpope/vim-repeat.git
-[submodule "vim/bundle/vim-bundler"]
-	path = vim/bundle/vim-bundler
-	url = http://github.com/tpope/vim-bundler.git
-[submodule "vim/bundle/vim-ruby"]
-	path = vim/bundle/vim-ruby
-	url = http://github.com/vim-ruby/vim-ruby.git
 [submodule "vim/bundle/vim-fugitive"]
 	path = vim/bundle/vim-fugitive
 	url = http://github.com/tpope/vim-fugitive.git
-[submodule "vim/bundle/vim-ruby-refactoring"]
-	path = vim/bundle/vim-ruby-refactoring
-	url = http://github.com/ecomba/vim-ruby-refactoring.git
-[submodule "vim/bundle/vim-rvm"]
-	path = vim/bundle/vim-rvm
-	url = http://github.com/tpope/vim-rvm.git
-[submodule "vim/bundle/vim-yardoc"]
-	path = vim/bundle/vim-yardoc
-	url = http://github.com/noprompt/vim-yardoc.git
 [submodule "vim/bundle/ctrlp.vim"]
 	path = vim/bundle/ctrlp.vim
 	url = http://github.com/ctrlpvim/ctrlp.vim.git
@@ -70,9 +49,6 @@
 [submodule "vim/bundle/bufexplorer"]
 	path = vim/bundle/bufexplorer
 	url = http://github.com/jlanzarotta/bufexplorer.git
-[submodule "vim/bundle/vim-tmux-navigator"]
-	path = vim/bundle/vim-tmux-navigator
-	url = https://github.com/christoomey/vim-tmux-navigator.git
 [submodule "vim/bundle/ultisnips"]
 	path = vim/bundle/ultisnips
 	url = http://github.com/SirVer/ultisnips.git
@@ -91,69 +67,27 @@
 [submodule "vim/bundle/vim-syntax-extra"]
 	path = vim/bundle/vim-syntax-extra
 	url = http://github.com/baberthal/vim-syntax-extra.git
-[submodule "vim/bundle/vim-clang-format"]
-	path = vim/bundle/vim-clang-format
-	url = http://github.com/rhysd/vim-clang-format.git
-[submodule "vim/bundle/DoxygenToolkit.vim"]
-	path = vim/bundle/DoxygenToolkit.vim
-	url = http://github.com/mrtazz/DoxygenToolkit.vim.git
 [submodule "vim/bundle/vim-scriptease"]
 	path = vim/bundle/vim-scriptease
 	url = http://github.com/tpope/vim-scriptease.git
-[submodule "vim/bundle/rust.vim"]
-	path = vim/bundle/rust.vim
-	url = http://github.com/rust-lang/rust.vim.git
-[submodule "vim/bundle/vim-windowswap"]
-	path = vim/bundle/vim-windowswap
-	url = http://github.com/wesQ3/vim-windowswap.git
-[submodule "vim/bundle/vim-tmux"]
-	path = vim/bundle/vim-tmux
-	url = http://github.com/tmux-plugins/vim-tmux.git
-[submodule "vim/bundle/vim-lldb"]
-	path = vim/bundle/vim-lldb
-	url = https://github.com/gilligan/vim-lldb.git
-[submodule "vim/bundle/vim-textobj-user"]
-	path = vim/bundle/vim-textobj-user
-	url = https://github.com/kana/vim-textobj-user.git
-[submodule "vim/bundle/vim-textobj-rubyblock"]
-	path = vim/bundle/vim-textobj-rubyblock
-	url = https://github.com/nelstrom/vim-textobj-rubyblock.git
 [submodule "fzf"]
 	path = fzf
 	url = https://github.com/junegunn/fzf.git
 [submodule "vim/bundle/fzf.vim"]
 	path = vim/bundle/fzf.vim
 	url = https://github.com/junegunn/fzf.vim.git
-[submodule "vim/bundle/vim-ruby-heredoc-syntax"]
-	path = vim/bundle/vim-ruby-heredoc-syntax
-	url = https://github.com/joker1007/vim-ruby-heredoc-syntax.git
-[submodule "vim/bundle/swift.vim"]
-	path = vim/bundle/swift.vim
-	url = https://github.com/keith/swift.vim.git
 [submodule "vim/bundle/vim-closetag"]
 	path = vim/bundle/vim-closetag
 	url = https://github.com/alvan/vim-closetag.git
 [submodule "vim/bundle/vim-dispatch"]
 	path = vim/bundle/vim-dispatch
 	url = https://github.com/tpope/vim-dispatch.git
-[submodule "vim/bundle/vimproc.vim"]
-	path = vim/bundle/vimproc.vim
-	url = https://github.com/Shougo/vimproc.vim.git
 [submodule "zprezto"]
 	path = zprezto
 	url = https://github.com/baberthal/prezto.git
-[submodule "vim/bundle/vim-rake"]
-	path = vim/bundle/vim-rake
-	url = git://github.com/tpope/vim-rake.git
 [submodule "vim/bundle/vim-projectionist"]
 	path = vim/bundle/vim-projectionist
 	url = git://github.com/tpope/vim-projectionist.git
-[submodule "vim/bundle/dash.vim"]
-	path = vim/bundle/dash.vim
-	url = git://github.com/rizzatti/dash.vim.git
-[submodule "vim/bundle/vim-cucumber"]
-	path = vim/bundle/vim-cucumber
-	url = git://github.com/tpope/vim-cucumber.git
 [submodule "vim/bundle/taboo.vim"]
 	path = vim/bundle/taboo.vim
 	url = git://github.com/baberthal/taboo.vim.git
@@ -166,9 +100,6 @@
 [submodule "vim/bundle/cpsm"]
 	path = vim/bundle/cpsm
 	url = git://github.com/nixprime/cpsm.git
-[submodule "vim/bundle/vim-rails"]
-	path = vim/bundle/vim-rails
-	url = git://github.com/tpope/vim-rails.git
 [submodule "vim/bundle/tagbar"]
 	path = vim/bundle/tagbar
 	url = git://github.com/majutsushi/tagbar.git
@@ -178,24 +109,6 @@
 [submodule "vim/bundle/vim-gutentags"]
 	path = vim/bundle/vim-gutentags
 	url = git://github.com/ludovicchabant/vim-gutentags.git
-[submodule "vim/bundle/YouCompleteMe"]
-	path = vim/bundle/YouCompleteMe
-	url = git://github.com/Valloric/YouCompleteMe.git
-[submodule "vim/bundle/vim-ft-bzl"]
-	path = vim/bundle/vim-ft-bzl
-	url = git://github.com/bazelbuild/vim-ft-bzl.git
-[submodule "vim/bundle/vim-maktaba"]
-	path = vim/bundle/vim-maktaba
-	url = git://github.com/google/vim-maktaba.git
-[submodule "vim/bundle/vim-codefmt"]
-	path = vim/bundle/vim-codefmt
-	url = git://github.com/google/vim-codefmt.git
-[submodule "vim/bundle/vim-glaive"]
-	path = vim/bundle/vim-glaive
-	url = git://github.com/google/vim-glaive.git
 [submodule "vim/bundle/python-syntax"]
 	path = vim/bundle/python-syntax
 	url = git://github.com/vim-python/python-syntax.git
-[submodule "vim/bundle/vim-vue"]
-	path = vim/bundle/vim-vue
-	url = git://github.com/posva/vim-vue.git
