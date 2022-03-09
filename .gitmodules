@@ -55,9 +55,6 @@
 [submodule "vim/bundle/vim-snippets"]
 	path = vim/bundle/vim-snippets
 	url = http://github.com/honza/vim-snippets.git
-[submodule "vim/bundle/supertab"]
-	path = vim/bundle/supertab
-	url = http://github.com/ervandew/supertab.git
 [submodule "vim/bundle/vim-airline"]
 	path = vim/bundle/vim-airline
 	url = http://github.com/baberthal/vim-airline.git
