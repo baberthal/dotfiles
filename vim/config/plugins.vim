@@ -152,7 +152,7 @@ let g:gutentags_file_list_command = {
 
 " NERDTree Settings {{{ "
 let g:NERDTreeCaseSensitiveSort = 1
-let g:NERDTreeRespectWildIgnore = 1
+let g:NERDTreeRespectWildIgnore = 0
 " }}} NERDTree Settings "
 
 " Taboo Settings {{{ "

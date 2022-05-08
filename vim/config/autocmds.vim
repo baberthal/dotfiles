@@ -42,11 +42,11 @@ augroup JML_FILETYPES
   au FileType dosini set commentstring=#\ %s
 
   " Enable clang-format in c and c++
-  au FileType c,cpp :ClangFormatAutoEnable
+  " au FileType c,cpp :ClangFormatAutoEnable
   " Not in JS
-  au FileType javascript,typescript :ClangFormatAutoDisable
+  " au FileType javascript,typescript :ClangFormatAutoDisable
   " But not in .in files
-  au BufNewFile,BufEnter *.h.in :ClangFormatAutoDisable
+  " au BufNewFile,BufEnter *.h.in :ClangFormatAutoDisable
 
   " Tabs are syntactic in makefiles
   au FileType make set noexpandtab

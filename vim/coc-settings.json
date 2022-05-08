@@ -1,12 +1,9 @@
 {
   "languageserver": {},
-
   "codeLens.enable": true,
-
   "coc.preferences.semanticTokensHighlights": false,
   "coc.preferences.formatOnSaveFiletypes": [
     "css",
-    "javascript",
     "json",
     "jsonc",
     "ruby",
@@ -15,20 +12,22 @@
   "diagnostic.floatConfig": {
     "highlight": "JmlFloating"
   },
-
   "clangd.semanticHighlighting": true,
-  "clangd.path": "/usr/local/opt/llvm@12/bin/clangd",
-
+  "clangd.path": "/opt/homebrew/opt/llvm/bin/clangd",
   "solargraph.useBundler": true,
   "solargraph.formatting": true,
   "solargraph.diagnostics": true,
-
   "json.schemas": [
     {
       "fileMatch": ["tsconfig.*.json"],
       "url": "https://json.schemastore.org/tsconfig"
     }
   ],
-
-  "html.filetypes": ["html", "handlebars", "htmldjango", "blade", "eruby"]
+  "html.filetypes": ["html", "handlebars", "htmldjango", "blade", "eruby"],
+  "eslint.packageManager": "yarn",
+  "javascript.format.insertSpaceAfterOpeningAndBeforeClosingNonemptyBraces": true,
+  "typescript.format.insertSpaceAfterOpeningAndBeforeClosingNonemptyBraces": true,
+  "tsserver.implicitProjectConfig.checkJs": false,
+  "javascript.preferences.quoteStyle": "single",
+  "javascript.format.semicolons": "insert"
 }

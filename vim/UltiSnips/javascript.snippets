@@ -34,22 +34,12 @@ snippet str "use strict" b
 'use strict';$0
 endsnippet
 
-snippet gre "var xx = require('gulp-xx')" b
-const $1 = require("${2:gulp-}${1/([a-z])([A-Z])/$1-\l$2/g}")$3;$0
-endsnippet
-
 snippet re "var xx = require('xx')" b
-const $1 = require("${2:${1/([a-z])([A-Z])/$1-\l$2/g}}")$3;$0
-endsnippet
-
-snippet gulpt "gulp.task(...)" b
-gulp.task('$1', ($2) => {
-	return ${3:gulp.src($4)}
-});
+const $1 = require('${2:${1/([a-z])([A-Z])/$1-\l$2/g}}')$3;$0
 endsnippet
 
 snippet vaf
-var ${1:function_name} = function($2) {
+const ${1:function_name} = ($2) => {
 	$0
 };
 endsnippet
@@ -60,24 +50,117 @@ function(${1:args}) {
 }$0
 endsnippet
 
-snippet then "then(function())..." w
-then(function(${1:args}) {
-	$2
-});$0
-endsnippet
-
 snippet ctor "constructor" w
 constructor($1) {
 	$0
 }
 endsnippet
 
-snippet ret "return" w
-return $1;$0
+snippet = "() => {}" i
+($1) => {
+	$2
+}$0
+endsnippet
+
+snippet =a "async () => {}" i
+async ($1) => {
+	$2
+}$0
+endsnippet
+
+snippet =: "() => {}" i
+= ($1) => ${2:ReturnType}$0
+endsnippet
+
+snippet - "() => <T>" i
+$1 => $2
+endsnippet
+
+snippet if "if statement" w
+if (${1:condition}) {
+	$2
+}$0
 endsnippet
 
 snippet ifi "inline if" w
 if (${1:condition}) $2;$0
+endsnippet
+
+snippet el "else" w
+else {
+	$1
+}$0
+endsnippet
+
+snippet elif "else if" w
+else if (${1:condition}) {
+	$0
+}
+endsnippet
+
+snippet let "let" w
+let $0;
+endsnippet
+snippet try "try { ... } catch(e) { ... }"
+try {
+	${0:${VISUAL}}
+} catch (${1:e}) {
+	${2:/* handle error */}
+}
+endsnippet
+snippet tryf "try { ... } catch(e) { ... } finally { ... }"
+try {
+	${0:${VISUAL}}
+} catch (${1:e}) {
+	${2:/* handle error */}
+} finally {
+	${3:/* be executed regardless of the try / catch result*/}
+}
+endsnippet
+snippet wh "while loop" b
+while (${1:condition}) {
+	$0
+}
+endsnippet
+
+snippet for "for loop" b
+for (let ${1:i} = 0; $1 < ${2:length}; $1++) {
+	$0
+}
+endsnippet
+
+snippet fori "for in" w
+for (${1:const} ${2:varname} in ${3:object}) {
+	$0
+}
+endsnippet
+
+snippet sw "switch (...)" w
+switch (${1:variable}) {
+case ${2:variable_case}:
+	$3
+	${4:break}$5
+$6
+default:
+	$7
+}$0
+endsnippet
+
+snippet case "case..." w
+case ${1:variable_case}:
+	$2
+	${3:${4:break}}
+$0
+endsnippet
+
+snippet ret "return" w
+return $1;$0
+endsnippet
+
+snippet ret{ "Return object literal" b
+return {
+	$1
+$0
 endsnippet
 
 snippet // "'/* */' comment" b
@@ -105,4 +188,102 @@ snippet /** "docstring" b
  * $0
  *
  */
+endsnippet
+
+#
+# Testing
+#
+
+# snippet bef "beforeEach" b
+# beforeEach(() => {
+
+# });
+# $0
+# endsnippet
+
+# snippet befa "beforeAll" b
+# beforeAll($1)
+# $0
+# endsnippet
+
+# snippet aft "afterEach" b
+# afterEach($1)
+# $0
+# endsnippet
+
+snippet it "it(...)" w
+it('${1:does something}', () => {
+	$2
+});$0
+endsnippet
+
+snippet ait "async it(...)" w
+it('${1:does something}', async () => {
+	$2
+});$0
+endsnippet
+
+snippet desc "describe()" w
+describe('${1:description}', () => {
+	$0
+});
+endsnippet
+
+snippet descm "describe(#method)" w
+describe('#${1:method}', () => {
+	$0
+});
+endsnippet
+
+snippet xit "xit('should do', function() { ... })" b
+xit('${1:}', () => {
+	${0:${VISUAL}}
+});
+endsnippet
+snippet bef "beforeEach(function() { ... })" b
+beforeEach(() => {
+	${0:${VISUAL}}
+});
+endsnippet
+snippet befa "before(function() { ... })" b
+before(() => {
+	${0:${VISUAL}}
+});
+endsnippet
+snippet aft "after(function() { ... })" b
+afterEach(() => {
+	${0:${VISUAL}}
+});
+endsnippet
+snippet afta "afterEach(function() { ... })" b
+after(() => {
+	${0:${VISUAL}}
+});
+endsnippet
+snippet exp "expect(...)" b
+expect(${1})${0};
+endsnippet
+snippet expe "expect(...).to.equal(...)" b
+expect(${1}).to.equal(${0});
+endsnippet
+snippet expd "expect(...).to.deep.equal(...)" b
+expect(${1}).to.deep.equal(${0});
+endsnippet
+priority 1
+snippet meth "class/object method" w
+${1:methodName}(${2:args}) {
+	$0
+}
+endsnippet
+priority 1
+snippet def "class/object method" w
+${1:methodName}(${2:args}) {
+	$0
+}
+endsnippet
+
+snippet adef "async class/object method" w
+async ${1:methodName}(${2:args}) {
+	$0
+}
 endsnippet

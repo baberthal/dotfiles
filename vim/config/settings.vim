@@ -13,7 +13,7 @@
 set autoread                    " Autoread
 set belloff=all                 " Don't ring the bell, yo!
 set breakindent                 " best patch ever
-set cmdheight=1                 " Don't give more space for displaying messages
+set cmdheight=2                 " Give more space for displaying messages (coc.nvim)
 set colorcolumn=81
 set completeopt-=preview
 set expandtab                   " SPACES ALWAYS (queue flame war...)

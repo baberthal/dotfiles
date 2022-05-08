@@ -63,7 +63,7 @@ vmap <CR> <Plug>(EasyAlign)
 " nnoremap <silent><buffer> K <Esc>:Dash <C-R><C-W><CR>
 
 " FIXME: What the fuck does this do?
-nnoremap <silent> <C-K> <C-T>
+" nnoremap <silent> <C-K> <C-T>
 
 " Sync syntax using F12
 noremap <F12> <Esc>:syntax sync fromstart<CR>
@@ -197,12 +197,12 @@ endfunction
 " }}} User-Defined Functions "
 
 " Vim-Tmux-Navigator {{{ "
-let g:tmux_navigator_no_mappings = 1
-nnoremap <silent> <C-h> :TmuxNavigateLeft<cr>
-nnoremap <silent> <C-j> :TmuxNavigateDown<cr>
-nnoremap <silent> <C-k> :TmuxNavigateUp<cr>
-nnoremap <silent> <C-l> :TmuxNavigateRight<cr>
-nnoremap <silent> <C-\> :TmuxNavigatePrevious<cr>
+" let g:tmux_navigator_no_mappings = 1
+" nnoremap <silent> <C-h> :TmuxNavigateLeft<cr>
+" nnoremap <silent> <C-j> :TmuxNavigateDown<cr>
+" nnoremap <silent> <C-k> :TmuxNavigateUp<cr>
+" nnoremap <silent> <C-l> :TmuxNavigateRight<cr>
+" nnoremap <silent> <C-\> :TmuxNavigatePrevious<cr>
 
 " }}} Vim-Tmux-Navigator "
 
