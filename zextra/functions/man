@@ -10,5 +10,5 @@ function man {
     PAGER="${commands[less]:-$PAGER}" \
     _NROFF_U=1 \
     PATH="$HOME/bin:$PATH" \
-    command man "$@"
+    man "$@"
 }

@@ -27,6 +27,9 @@ augroup JML_DEFAULTS
   " autocmd BufEnter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
   " Detect filetype on BufEnter
   au BufEnter * filetype detect
+  au BufRead,BufNewFile *.ex,*.exs set filetype=elixir
+  au BufRead,BufNewFile *.eex,*.heex,*.leex,*.sface,*.lexs set filetype=eelixir
+  au BufRead,BufNewFile mix.lock set filetype=elixir
 augroup END
 
 " This group sets filetypes with non-standard extensions

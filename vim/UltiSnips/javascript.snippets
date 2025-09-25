@@ -135,6 +135,12 @@ for (${1:const} ${2:varname} in ${3:object}) {
 }
 endsnippet
 
+snippet foro "for of" w
+for (${1:const} ${2:varname} of ${3:iterable}) {
+	$0
+}
+endsnippet
+
 snippet sw "switch (...)" w
 switch (${1:variable}) {
 case ${2:variable_case}:
@@ -212,27 +218,27 @@ endsnippet
 # endsnippet
 
 snippet it "it(...)" w
-it('${1:does something}', () => {
-	$2
-});$0
+it('${1:does something}', () => { // {{{
+	${0:${VISUAL}}
+}); // }}}
 endsnippet
 
 snippet ait "async it(...)" w
-it('${1:does something}', async () => {
-	$2
-});$0
+it('${1:does something}', async () => { // {{{
+	${0:${VISUAL}}
+}); // }}}
 endsnippet
 
 snippet desc "describe()" w
-describe('${1:description}', () => {
-	$0
-});
+describe('${1:description}', () => { // {{{
+	${0:${VISUAL}}
+}); // }}}
 endsnippet
 
 snippet descm "describe(#method)" w
-describe('#${1:method}', () => {
-	$0
-});
+describe('#${1:method}', () => { // {{{
+	${0:${VISUAL}}
+}); // }}}
 endsnippet
 
 snippet xit "xit('should do', function() { ... })" b
